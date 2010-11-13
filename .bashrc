@@ -42,6 +42,7 @@ fi
 
 source ${HOME}/.alias
 source ${HOME}/.funcs
+source ${HOME}/.sshagent
 
 shopt -s cdspell
 shopt -s checkwinsize
