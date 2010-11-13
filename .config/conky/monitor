@@ -1,0 +1,80 @@
+# set to yes if you want Conky to be forked in the background
+background yes
+
+own_window_colour black
+
+# Use Xft?
+use_xft yes
+
+# Xft font when Xft is enabled
+xftfont Aller Display:size=7.3
+
+# Text alpha when using Xft
+xftalpha 1.0
+
+# Update interval in seconds
+update_interval 3
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window no
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Stippled borders?
+stippled_borders 0
+
+# border width
+border_width 0
+
+# Default colors and also border colors
+default_color white
+
+# own window options
+own_window		yes
+own_window_transparent	no
+own_window_type		desktop
+own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase none
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# number of net samples to average
+# set to 1 to disable averaging
+net_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+
+gap_x 5
+gap_y 3
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+default_shade_color ccc
+
+minimum_size 1430 0
+
+TEXT
+$font${offset 0}.${execi 30 whoami}//${execi 30 hostname} ${color #A6BF1B}$conky_build_arch${alignc}${color #ffffff}${offset 40} [ IP: ${color #A6BF1B}$addr ]${offset 5}${color #ffffff}[ RAM: ${color #A6BF1B}${membar 3,50} ${offset 5} $memperc% / $mem of $memmax ]${offset 5}${color #ffffff}[ Down: ${color #A6BF1B}${downspeed eth0} ]${offset 5}${color #ffffff}[ Up: ${color #A6BF1B}${upspeed eth0} ]${offset 5}${color #ffffff}[ GPU: ${color #A6BF1B}${execi 60 nvidia-settings -query GPUCoreTemp | perl -ne 'print $1 if /GPUCoreTemp.*?: (\d+)./;'}C ]${offset 5}${color #ffffff}[ CPU1: ${color #A6BF1B}${execi 6 /usr/bin/sensors | grep Core\ 0| paste -s | cut -c15-16,16-16}C ]${offset 5}${color #ffffff}[ CPU2: ${color #A6BF1B}${execi 6 /usr/bin/sensors | grep Core\ 1| paste -s | cut -c15-16,16-16}C ]${offset 5}${color #ffffff}[ CPU3: ${color #A6BF1B}${execi 6 /usr/bin/sensors | grep Core\ 2| paste -s | cut -c15-16,16-16}C ]${offset 5}${color #ffffff}[ CPU4: ${color #A6BF1B}${execi 6 /usr/bin/sensors | grep Core\ 3| paste -s | cut -c15-16,16-16}C ]${offset 5}${color #ffffff}[ Home: ${color #A6BF1B}${fs_bar 3,50 /home/jari} ]${offset 5}${color #ffffff}[ Anime: ${color #A6BF1B}${fs_bar 3,50 /media/Anime} ]${offset 5}${color #ffffff}[ Storage ${color #A6BF1B}${fs_bar 3,50 /media/Storage} ] ${alignr}${color #ffffff}Project Arch Linux ${color #A6BF1B}Updates [ ${execi 35 pacman -Qu | wc -l} ]${offset 8}

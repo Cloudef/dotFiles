@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu>
+	<menu id="root-menu" label="OpenBox 3">
+		<separator label="Valikko"/>
+		<item label="Koti">
+			<action name="Execute">
+				<execute>
+					thunar ~
+				</execute>
+			</action>
+		</item>
+		<item label="Terminaali">
+			<action name="Execute">
+				<execute>
+					sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;
+				</execute>
+			</action>
+		</item>
+		<item label="Levykuvat">
+			<action name="Execute">
+				<execute>
+					furiusisomount
+				</execute>
+			</action>
+		</item>
+		<separator/>
+		<menu execute="python2 ~/.config/openbox/weather.py Seinäjoki fi" id="pipe-764356" label="Sää"/>
+		<separator label="Sovellukset"/>
+		<menu id="1" label="Ohjelmointi">
+			<separator label="Ohjelmointi"/>
+			<item label="Code::Blocks IDE">
+				<action name="Execute">
+					<execute>
+						codeblocks
+					</execute>
+				</action>
+			</item>
+			<item label="Geany IDE">
+				<action name="Execute">
+					<execute>
+						geany
+					</execute>
+				</action>
+			</item>
+			<item label="Python">
+				<action name="Execute">
+					<execute>
+						xterm -e python
+					</execute>
+				</action>
+			</item>
+			<item label="CMake">
+				<action name="Execute">
+					<execute>
+						cmake-gui
+					</execute>
+				</action>
+			</item>
+			<item label="GTK+ Editor">
+				<action name="Execute">
+					<execute>
+						glade-3
+					</execute>
+				</action>
+			</item>
+			<item label="Qt Assistant">
+				<action name="Execute">
+					<execute>
+						assistant
+					</execute>
+				</action>
+			</item>
+			<item label="Qt Designer">
+				<action name="Execute">
+					<execute>
+						designer
+					</execute>
+				</action>
+			</item>
+			<item label="Qt Linguist">
+				<action name="Execute">
+					<execute>
+						linguist
+					</execute>
+				</action>
+			</item>
+			<item label="Qt-Creator">
+				<action name="Execute">
+					<execute>
+						qtcreator
+					</execute>
+				</action>
+			</item>
+		</menu>
+		<menu id="10" label="Emulaattorit">
+			<separator label="Emulaattorit"/>
+			<item label="Dolphin">
+				<action name="Execute">
+					<execute>
+						dolphin-emu
+					</execute>
+				</action>
+			</item>
+			<item label="PCSX">
+				<action name="Execute">
+					<execute>
+						pcsx
+					</execute>
+				</action>
+			</item>
+			<item label="PCSX2">
+				<action name="Execute">
+					<execute>
+						pikakuvake &quot;/media/Storage/Emulaattorit/pcsx2/&quot; &quot;pcsx2&quot;
+					</execute>
+				</action>
+			</item>
+			<item label="No$GBA">
+				<action name="Execute">
+					<execute>
+						env WINEDEBUG=-all pikakuvake '/media/Storage/Emulaattorit/NoGBA' 'NO$GBA.exe'
+					</execute>
+				</action>
+			</item>
+			<item label="VBA-M">
+				<action name="Execute">
+					<execute>
+						gvbam
+					</execute>
+				</action>
+			</item>
+		</menu>
+		<menu id="18" label="Pelit">
+			<separator label="Pelit"/>
+			<menu id="18-56539" label="Bishoujo">
+				<menu execute="python2 ~/.config/openbox/dirlist.py &quot;/media/Storage/Bishoujo Pelit/Pelaan&quot;" id="pipe-55552" label="Pelaan"/>
+				<menu execute="python2 ~/.config/openbox/dirlist.py &quot;/media/Storage/Bishoujo Pelit/Pelattu&quot;" id="pipe-79631" label="Pelattu"/>
+			</menu>
+			<menu id="17" label="Touhou">
+				<separator label="Touhou"/>
+				<item label="TH06　東方紅魔郷　～ the Embodiment of Scarlet Devil">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH06' 'th06e.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH07.5　東方萃夢想　～ Immaterial and Missing Power">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH07.5' 'th075e.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH07　東方妖々夢　～ Perfect Cherry Blossom">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH07' 'th07e.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH08　東方永夜抄　～ Imperishable Night">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH08' 'th08.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH09　東方花映塚　～ Phantasmagoria of Flower View">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH09' 'th09e.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH09.5　東方文花帖　～ Shoot the Bullet">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH09.5' 'th095.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH10　東方風神録　～ Mountain of Faith">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH10' 'th10e.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH10.5　東方緋想天　～ Scarlet Weather Rhapsody">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH10.5' 'th105e.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH11　東方地霊殿　～ Subterranean Animism">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH11' 'th11e.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH12　東方星蓮船　～ Undefined Fantastic Object">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH12' 'th12e.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH12.3　東方非想天則　～ 超弩級ギニョルの謎を追え (Touhou Hisoutensoku)">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH12.3' 'th123e.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH12.5　ダブルスポイラー　～ 東方文花帖 (Double Spoiler)">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH12.5' 'th125e.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH12.8　妖精大戦争　～ 東方三月精 (Fairy Wars)">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH12.8' 'th128e.exe'
+						</execute>
+					</action>
+				</item>
+			</menu>
+			<item label="Guilty Gear">
+				<action name="Execute">
+					<execute>
+						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/Program Files/GUILTY GEAR XX ＃RELOAD/' 'gxx.xe'
+					</execute>
+				</action>
+			</item>
+			<item label="Steam">
+				<action name="Execute">
+					<execute>
+						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/Program Files/Steam/' 'steam.exe'
+					</execute>
+				</action>
+			</item>
+			<item label="Fallout : New Vegas">
+				<action name="Execute">
+					<execute>
+						pikakuvake &quot;/home/jari/.wine/drive_c/Ohjelmatiedostot/Bethesda Softworks/Fallout New Vegas&quot; &quot;runGame.sh&quot;
+					</execute>
+				</action>
+			</item>
+			<item label="Phantasy Star Universe">
+				<action name="Execute">
+					<execute>
+						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/SEGA/PHANTASY STAR UNIVERSE Illuminus/' 'online.exe'
+					</execute>
+				</action>
+			</item>
+			<item label="Cave Story">
+				<action name="Execute">
+					<execute>
+						pikakuvake '/media/Storage/Pelit/CaveStory' 'doukutsu'
+					</execute>
+				</action>
+			</item>
+			<item label="Slime Forest">
+				<action name="Execute">
+					<execute>
+						/media/Storage/Pelit/slimeforest/run64
+					</execute>
+				</action>
+			</item>
+		</menu>
+		<menu id="6" label="Grafiikka">
+			<separator label="Grafiikka"/>
+			<item label="Blender">
+				<action name="Execute">
+					<execute>
+						blender
+					</execute>
+				</action>
+			</item>
+			<item label="Mtpaint">
+				<action name="Execute">
+					<execute>
+						mtpaint
+					</execute>
+				</action>
+			</item>
+			<item label="Inkscape">
+				<action name="Execute">
+					<execute>
+						inkscape
+					</execute>
+				</action>
+			</item>
+			<item label="Gimp">
+				<action name="Execute">
+					<execute>
+						gimp
+					</execute>
+				</action>
+			</item>
+			<item label="Comix">
+				<action name="Execute">
+					<execute>
+						comix
+					</execute>
+				</action>
+			</item>
+		</menu>
+		<menu id="7" label="Multimedia">
+			<separator label="Multimedia"/>
+			<item label="GNOME MPlayer">
+				<action name="Execute">
+					<execute>
+						gnome-mplayer
+					</execute>
+				</action>
+			</item>
+			<item label="VLC">
+				<action name="Execute">
+					<execute>
+						vlc
+					</execute>
+				</action>
+			</item>
+			<item label="DeaDBeeF">
+				<action name="Execute">
+					<execute>
+						deadbeef
+					</execute>
+				</action>
+			</item>
+			<item label="MilkyTracker">
+				<action name="Execute">
+					<execute>
+						milkytracker
+					</execute>
+				</action>
+			</item>
+			<item label="Openshot">
+				<action name="Execute">
+					<execute>
+						openshot
+					</execute>
+				</action>
+			</item>
+			<item label="Audacity">
+				<action name="Execute">
+					<execute>
+						audacity
+					</execute>
+				</action>
+			</item>
+			<item label="recordMyDesktop">
+				<action name="Execute">
+					<execute>
+						gtk-recordMyDesktop
+					</execute>
+				</action>
+			</item>
+		</menu>
+		<menu id="5" label="Internet">
+			<separator label="Internet"/>
+			<item label="Opera">
+				<action name="Execute">
+					<execute>
+						opera-10.70
+					</execute>
+				</action>
+			</item>
+			<item label="Emesene">
+				<action name="Execute">
+					<execute>
+						emesene
+					</execute>
+				</action>
+			</item>
+			<item label="Mangler">
+				<action name="Execute">
+					<execute>
+						mangler
+					</execute>
+				</action>
+			</item>
+			<item label="Deluge">
+				<action name="Execute">
+					<execute>
+						deluge-gtk
+					</execute>
+				</action>
+			</item>
+		</menu>
+		<separator label="Tietokone"/>
+		<menu id="37" label="Järjestelmä">
+			<menu id="36" label="Asetukset">
+				<item label="Wacom Graphire">
+					<action name="Execute">
+						<execute>
+							python2 /usr/share/wacom-utility/wacom_utility.py
+						</execute>
+					</action>
+				</item>
+				<item label="NVIDIA GeForce">
+					<action name="Execute">
+						<execute>
+							nvidia-settings
+						</execute>
+					</action>
+				</item>
+				<item label="Qt">
+					<action name="Execute">
+						<execute>
+							qtconfig
+						</execute>
+					</action>
+				</item>
+				<item label="Xvid">
+					<action name="Execute">
+						<execute>
+							xvidtune
+						</execute>
+					</action>
+				</item>
+			</menu>
+			<separator label="Hallinta"/>
+			<item label="Paketinhallinta">
+				<action name="Execute">
+					<execute>
+						gpk-application
+					</execute>
+				</action>
+			</item>
+			<item label="Kiintolevytoiminnot">
+				<action name="Execute">
+					<execute>
+						palimpsest
+					</execute>
+				</action>
+			</item>
+			<item label="Osionti">
+				<action name="Execute">
+					<execute>
+						gksu /usr/sbin/gparted
+					</execute>
+				</action>
+			</item>
+			<separator label="Ylläpito"/>
+			<item label="S.M.A.R.T Levyt">
+				<action name="Execute">
+					<execute>
+						gksudo gsmartcontrol
+					</execute>
+				</action>
+			</item>
+			<item label="Prosessit">
+				<action name="Execute">
+					<execute>
+						qps
+					</execute>
+				</action>
+			</item>
+		</menu>
+		<menu id="40" label="OpenBox">
+			<menu id="client-list-menu"/>
+			<separator label="OpenBox"/>
+			<item label="Asetukset">
+				<action name="Execute">
+					<execute>
+						obconf
+					</execute>
+				</action>
+			</item>
+			<item label="Ulkoasu">
+				<action name="Execute">
+					<execute>
+						lxappearance
+					</execute>
+				</action>
+			</item>
+			<item label="Paaneli">
+				<action name="Execute">
+					<execute>
+						tint2conf
+					</execute>
+				</action>
+			</item>
+			<separator/>
+			<item label="Pikanäppäimet">
+				<action name="Execute">
+					<execute>
+						obkey
+					</execute>
+				</action>
+			</item>
+			<item label="Teemamuokkain">
+				<action name="Execute">
+					<execute>
+						obtheme
+					</execute>
+				</action>
+			</item>
+			<item label="Valikkomuokkain">
+				<action name="Execute">
+					<execute>
+						obmenu
+					</execute>
+				</action>
+			</item>
+			<separator/>
+			<item label="OB Reset">
+				<action name="Reconfigure"/>
+			</item>
+			<separator label="Istunto"/>
+			<item label="Poistu">
+				<action name="Execute">
+					<execute>
+						oblogout
+					</execute>
+				</action>
+			</item>
+		</menu>
+	</menu>
+</openbox_menu>

@@ -1,0 +1,286 @@
+#!/bin/bash
+# c00kiemon5ter (ivan.kanak@gmail.com) ~ under c00kiez License
+
+# color vars, terminal independent
+function setcolors() {
+	DARK=$(tput setaf 0)
+	RED=$(tput setaf 1)
+	GREEN=$(tput setf 2)
+	ORANGE=$(tput setaf 3)
+	LIGHTBLUE=$(tput setaf 4)
+	MAUV=$(tput setaf 5)
+	DARKGREY=$(tput setaf 6)
+	WHITE=$(tput setaf 7)	
+
+	BOLDDARK=$(tput setaf 8)
+	BOLDRED=$(tput setaf 9)
+	BOLDGREEN=$(tput setaf 10)
+	GOLD=$(tput setaf 11)
+	BLUE=$(tput setaf 12)
+	PURPLE=$(tput setaf 13)
+	GREY=$(tput setaf 14)
+	BOLDWHITE=$(tput setaf 15)
+
+	BLACK=$(tput setaf 16)
+	NORMAL=$(tput sgr0) # reset
+	DIM=$(tput dim)
+	BOLD=$(tput bold)
+	UNDRLN=$(tput smul)
+	RMUNDRLN=$(tput rmul)
+	BLINK=$(tput blink)
+	REVERSE=$(tput rev)
+	INVISIBLE=$(tput invis)
+}
+
+# keep path in one line, trim long paths to ..reduced/path/
+function reduce_path() {
+	local path="${PWD/#$HOME/~}"
+	# " on " + " in " = 8  #taken from the prompt
+	local maxlen="$(($(tput cols) -${#USER} -${#HOSTNAME} -8 -${1:-0}))"
+	if [ ${#path} -gt ${maxlen} ]
+	then
+		local prefix=".."
+		local path="${prefix}${path:$((${#path} -${maxlen} +${#prefix}))}"
+	fi
+	echo "${path}"
+}
+
+# the git prompt 
+function git_prompt() {
+	local pre="${WHITE}[branch: ${PURPLE}"
+	local suf="${WHITE}]${NORMAL}"
+	local ref="$(git symbolic-ref HEAD 2> /dev/null)"
+	[ -n "$ref" ] || return
+	git status | grep "not updated" &>/dev/null && ref="${ref}${GREEN}!"
+	git status | grep "Untracked" &>/dev/null && ref="${ref}${GREEN}?"
+	echo ${pre}${ref#refs/heads/}${suf}
+}
+
+function git_cprompt() {
+	local pre="[branch: "
+	local suf="]"
+	local ref="$(git symbolic-ref HEAD 2> /dev/null)"
+	[ -n "$ref" ] || return
+	git status | grep "not updated" &>/dev/null && ref="${ref}!"
+	git status | grep "Untracked" &>/dev/null && ref="${ref}?"
+	echo ${pre}${ref#refs/heads/}${suf}
+}
+
+# the promp
+function prompt() {
+
+	local gitNum=""
+	local cgit="$(git_cprompt)"
+	local git="$(git_prompt)"
+	local cpath="${PWD}"
+	local path="${PWD}"
+	if [ -n "$git" ]; then
+		gitNum="["
+		gitNum+="$(echo $cgit | sed -r "s:\x1B\[[0-9;]*[mK]::g" | wc -c)"
+		gitNum+="]"
+		cpath="${PWD})--(${cgit}${gitNum}"
+		path="${PWD}${cBorder})--(${git}${RED}${gitNum}"
+	fi
+	
+	user="whoami"
+	host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
+	datenow=$(date "+%a, %d %b %y")
+	let promptsize=$(echo -n "--(.$user//$host)---(${cpath})---" \
+			 | wc -c | tr -d " ")
+
+	width=$(tput cols)
+
+	let fillsize=${width}-${promptsize}+1
+
+	fill=""
+
+	while [ "$fillsize" -gt "0" ]
+	do
+		fill="${fill}─"
+		let fillsize=${fillsize}-1
+	done
+
+	if [ "$fillsize" -lt "0" ]
+	then
+		let cutt=3-${fillsize}
+		path="...$(echo -n $cpath | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
+	fi
+    
+	Cyan="\[\e[m\]\[\e[0;36m\]"
+	Red="\[\e[m\]\[\e[0;31m\]"
+
+	# Set prompt colour
+	if [ `id -u` -eq 0 ]
+	then
+	    cText="${LightRed}"
+	    cBorder="${Red}"
+	else
+	    cText="${LightCyan}"
+	    cBorder="${Cyan}"
+	fi
+	
+	if [ "$TERM" = "linux" ]; then
+	
+	PS1="\n[.\[${ORANGE}\]\u\[${NORMAL}\]//\[${ORANGE}\]\h\[${NORMAL}\]]${fill}[\[${ORANGE}\]${path}${NORMAL}]\n\[${NORMAL}\]>>\[${ORANGE}\]>\[${NORMAL}\] "
+	
+	else
+	
+	PS1="\n${cBorder}┌─(${ORANGE}.\u${cBorder}//${BLUE}\h${cBorder})─\${fill}─(${BLUE}${cText}${path}\
+${cBorder})────┐\n${cBorder}└─(${cText}\$(date \"+%H:%M\")${cBorder})─> "
+
+	fi
+}
+
+# display a random quote on top of every new shell
+function wazaaa() {
+	local arch="Arch"
+	local nix="Linux"
+	local say=`curl -s http://bash.org/?random1|grep -oE "<p class=\"quote\">.*</p>.*</p>"|grep -oE "<p class=\"qt.*?</p>"|sed -e 's/<\/p>/\n/g' -e 's/<p class=\"qt\">//g' -e 's/<p class=\"qt\">//g'|perl -ne 'use HTML::Entities;print decode_entities($_),"\n"'|head -1`
+	clear #&& echo "${BOLD}${WHITE}${arch}${BLUE}${nix}${NORMAL}"
+	alsi
+	echo ""
+	echo -e ${WHITE}${say}${NORMAL}
+}
+
+function kingbash.fn() {
+  echo -n "KingBash> $READLINE_LINE" #Where "KingBash> " looks best if it resembles your PS1, at least in length.
+  OUTPUT=`kingbash --extracommands "$(compgen -ab -A function)" --extrafiles "$(compgen -v -P $)"`
+  READLINE_POINT=`echo "$OUTPUT" | tail -n 1`
+  READLINE_LINE=`echo "$OUTPUT" | head -n -1`
+  echo -ne "\r\e[2K"; }
+[[ $- =~ i ]] && bind -x '"\t":kingbash.fn'
+
+# cd helper
+function goto() { 
+	[ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; 
+}
+# copy and follow
+function cpf() { 
+	cp "$@" && goto "$_"; 
+}
+# move and follow
+function mvf() { 
+	mv "$@" && goto "$_"; 
+}
+
+## services handling
+function start() {
+	for arg in $@
+	do
+		sudo /etc/rc.d/$arg start
+	done
+}
+function stop() {
+	for arg in $@
+	do
+		sudo /etc/rc.d/$arg stop
+	done
+}
+function restart() {
+	for arg in $@
+	do
+		sudo /etc/rc.d/$arg restart
+	done
+}
+function status() {
+	for	arg in $@
+	do
+		sudo /etc/rc.d/$arg status
+	done
+}
+
+# funny quotes from bash.org @irc
+function bashfortune() {
+	curl -s http://bash.org/?random1|grep -oE "<p class=\"quote\">.*</p>.*</p>"|grep -oE "<p class=\"qt.*?</p>"|sed -e 's/<\/p>/\n/g' -e 's/<p class=\"qt\">//g' -e 's/<p class=\"qt\">//g'|perl -ne 'use HTML::Entities;print decode_entities($_),"\n"'|head -1
+}
+
+# extract all in one
+function extract() {
+	if [ -f $1 ] ; then
+		case $1 in
+			*.tar.bz2)   tar xvjf $1    ;;
+			*.tar.gz)    tar xvzf $1    ;;
+			*.bz2)       bunzip2 $1     ;;
+			*.rar)       unrar x $1     ;;
+			*.gz)        gunzip $1      ;;
+			*.tar)       tar xvf $1     ;;
+			*.tbz2)      tar xvjf $1    ;;
+			*.tgz)       tar xvzf $1    ;;
+			*.zip)       unzip $1       ;;
+			*.Z)         uncompress $1  ;;
+			*.7z)        7z x $1        ;;
+			*)           echo "don't know how to extract '$1'..." ;;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
+}
+
+# Makes directory then moves into it
+function mkcdr() { 
+	mkdir -vp "$@" && cd "$_"; 
+}
+
+# creates an archive from given directory
+function mktar() { 
+	tar cvf  "${1%%/}.tar"     "${1%%/}/"; 
+}
+function mktgz() { 
+	tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; 
+}
+function mktbz() { 
+	tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; 
+}
+
+function videoconvert()
+{
+	ffmpeg -y -i $1 -threads 4 -acodec libfaac -ar 44100 -ab 96k -vcodec libx264 -vpre libx264-lossless_medium -level 41 -crf 20 -bufsize 24000k -maxrate 32000k -g 250 -r 20 -coder 1 -flags +loop -cmp +chroma -partitions +parti4x4+partp8x8+partb8x8 -flags2 +dct8x8+bpyramid -me_method umh -subq 7 -me_range 16 -keyint_min 25 -sc_threshold 40 -i_qfactor 0.71 -rc_eq 'blurCplx^(1-qComp)' -bf 16 -b_strategy 1 -bidir_refine 1 -refs 6 -deblockalpha 0 -deblockbeta 0 $2
+}
+
+# Convert any flash.flv to matroska.mkv
+function flv2mkv() {
+	mkdir mkvconv
+	for f in *.flv
+	do
+		ffmpeg -i $f -vcodec copy -sameq -acodec copy -f matroska mkvconv/${f%.*}.mkv
+	done
+}
+
+# Convert any flash.flv to mp3
+function flv2mp3() {
+	mkdir mp3conv
+	for f in *.flv
+	do
+		ffmpeg -i $f -ab 320 -ar 44100 mp3conv/${f%.*}.mp3
+	done
+}
+
+# Setup empty github repo
+function mkgit() {
+	mkdir $1
+	cd $1
+	git init
+	touch README
+	git add README
+	git commit -m 'inital setup - automated'
+	git remote add origin git@github.com:crshd/$1.git
+	git push origin master
+}
+
+# screencap - the right way
+function screencap() {
+	local fd="${1-capture.mkv}"
+	local res="${2-1920x1080}"
+	ffmpeg -f alsa -i plughw -acodec flac -f x11grab -r 30 -s $res -i $DISPLAY -vcodec libx264 -vpre lossless_ultrafast -threads 0 $fd
+}
+
+#alias tname="echo -ne \"\033]0;${1:-$TERM}\007\""
+function tname(){
+	echo -ne "\033]0;${1:-$TERM}\007";
+}
+
+function bgmplayer(){
+	mplayer $1 -novideo &>/dev/null </dev/null &
+}
+
+# vim: nospell
