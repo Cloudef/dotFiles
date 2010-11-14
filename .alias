@@ -13,6 +13,8 @@ alias get-update="sudo clyde -Syu --aur"
 alias update-get="get-update"
 alias pacman="powerpill --threads 4 --memoize --pacman-bin pacman-color"
 
+alias get-wine="makepkg -i -p ~/wine/Patches/PKGBUILD"
+
 # Scripti aliakset
 alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'
 alias extip='echo $(curl -s http://www.whatismyip.com/automation/n09230945.asp)'
