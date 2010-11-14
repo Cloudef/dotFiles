@@ -21,7 +21,7 @@ osd.label.text.color: #c0c0c0
 
 !! menus
 menu.border.width: 1
-menu.overlap: 0
+menu.overlap.x: -5
 
 menu.border.color: #303030
 
@@ -53,7 +53,7 @@ window.inactive.label.text.font:shadow=n
 border.color: #414141
 borderWidth: 0
 padding.width: 0
-window.handle.width: 0
+window.handle.width: 5
 window.client.padding.width: 0
 window.label.text.justify: left
 

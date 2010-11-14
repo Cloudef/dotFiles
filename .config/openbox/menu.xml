@@ -397,6 +397,7 @@
 		<separator label="Tietokone"/>
 		<menu id="37" label="Järjestelmä">
 			<menu id="36" label="Asetukset">
+				<separator label="Asetukset"/>
 				<item label="Wacom Graphire">
 					<action name="Execute">
 						<execute>

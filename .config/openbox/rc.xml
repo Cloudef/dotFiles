@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>10</strength>
@@ -111,10 +112,10 @@
     <number>4</number>
     <firstdesk>1</firstdesk>
     <names>
-      <name>Työpöytä 1</name>
-      <name>Työpöytä 2</name>
-      <name>Työpöytä 3</name>
-      <name>Työpöytä 4</name>
+      <name>Ty&#xF6;p&#xF6;yt&#xE4; 1</name>
+      <name>Ty&#xF6;p&#xF6;yt&#xE4; 2</name>
+      <name>Ty&#xF6;p&#xF6;yt&#xE4; 3</name>
+      <name>Ty&#xF6;p&#xF6;yt&#xE4; 4</name>
     </names>
     <popupTime>875</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -193,7 +194,7 @@
     </keybind>
     <keybind key="XF86Favorites">
       <action name="Execute">
-        <command>sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;</command>
+        <command>sh ~/.config/openbox/urxvtc -name "Arch Linux"</command>
       </action>
     </keybind>
     <keybind key="XF86Search">
