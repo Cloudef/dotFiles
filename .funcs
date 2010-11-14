@@ -198,12 +198,16 @@ function pkg() {
 		echo "No PKGBUILD folder in Home"
 		return
 	fi
-	if [ ! -f "$HOME/PKGBUILD/$1" ]; then
+	if [ ! -d "$HOME/PKGBUILD/$1" ]; then
+		echo "No PKG directory for $1"
+		return
+	fi
+	if [ ! -f "$HOME/PKGBUILD/$1/PKGBUILD" ]; then
 		echo "No PKGBUILD for $1"
 		return
 	fi
-	pushd "$HOME/PKGBUILD" >> /dev/null
-	makepkg --clean --install -p "$1"
+	pushd "$HOME/PKGBUILD/$1" >> /dev/null
+	makepkg --clean --install
 	popd >> /dev/null
 }
 
