@@ -28,15 +28,14 @@ if which /usr/lib/openbox/xdg-autostart >/dev/null 2>&1; then
   /usr/lib/openbox/xdg-autostart $DESKTOP_ENV
 fi
 
-xset s off &
-xset -dpms &
-
 # Taustakuva
-feh --bg-scale ~/.feh.bg
-
-pytyle &
+feh --bg-scale ~/.feh.bg &
 
 cairo-compmgr &
+
+tint2 &
+
+pytyle &
 
 volti &
 
@@ -44,14 +43,6 @@ clipit &
 
 liferea &
 
-tint2 &
-
 smart-notifier &
 
 ~/.config/conky/start_conky.sh &
-
-# FI Keyboard layout
-setxkbmap fi &
-
-# CTRL+ALT+BACKSPACE x kill
-setxkbmap -option terminate:ctrl_alt_bksp &

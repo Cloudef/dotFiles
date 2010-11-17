@@ -1,11 +1,10 @@
-<?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>10</strength>
     <screen_edge_strength>20</screen_edge_strength>
   </resistance>
   <focus>
-    <focusNew>yes</focusNew>
+    <focusNew>no</focusNew>
     <!-- always try to focus new windows when they appear. other rules do
        apply -->
     <followMouse>no</followMouse>
@@ -109,13 +108,13 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>4</number>
+    <number>3</number>
     <firstdesk>1</firstdesk>
     <names>
-      <name>Ty&#xF6;p&#xF6;yt&#xE4; 1</name>
-      <name>Ty&#xF6;p&#xF6;yt&#xE4; 2</name>
-      <name>Ty&#xF6;p&#xF6;yt&#xE4; 3</name>
-      <name>Ty&#xF6;p&#xF6;yt&#xE4; 4</name>
+      <name>Net</name>
+      <name>IRC</name>
+      <name>Dev</name>
+      <name>4</name>
     </names>
     <popupTime>875</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -172,6 +171,16 @@
         <command>kupfer</command>
       </action>
     </keybind>
+    <keybind key="W-space">
+      <action name="ShowMenu">
+        <menu>root-menu</menu>
+      </action>
+    </keybind>
+    <keybind key="Print">
+      <action name="Execute">
+        <command>scrot</command>
+      </action>
+    </keybind>
     <keybind key="W-KP_Add">
       <action name="Execute">
         <command>sh ~/.config/conky/addFav.sh</command>
@@ -194,7 +203,7 @@
     </keybind>
     <keybind key="XF86Favorites">
       <action name="Execute">
-        <command>sh ~/.config/openbox/urxvtc -name "Arch Linux"</command>
+        <command>sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;</command>
       </action>
     </keybind>
     <keybind key="XF86Search">

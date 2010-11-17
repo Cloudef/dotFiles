@@ -233,7 +233,7 @@
 			<item label="Guilty Gear">
 				<action name="Execute">
 					<execute>
-						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/Program Files/GUILTY GEAR XX ＃RELOAD/' 'gxx.xe'
+						env WINEDEBUG=-all xwine '/home/jari/.wine/drive_c/Program Files/GUILTY GEAR XX ＃RELOAD/' 'gxx.xe'
 					</execute>
 				</action>
 			</item>
@@ -247,14 +247,14 @@
 			<item label="Fallout : New Vegas">
 				<action name="Execute">
 					<execute>
-						pikakuvake &quot;/home/jari/.wine/drive_c/Ohjelmatiedostot/Bethesda Softworks/Fallout New Vegas&quot; &quot;runGame.sh&quot;
+						env WINEDEBUG=-all xwine &quot;/home/jari/.wine/drive_c/Ohjelmatiedostot/Bethesda Softworks/Fallout New Vegas&quot; &quot;runGame.sh&quot;
 					</execute>
 				</action>
 			</item>
 			<item label="Phantasy Star Universe">
 				<action name="Execute">
 					<execute>
-						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/SEGA/PHANTASY STAR UNIVERSE Illuminus/' 'online.exe'
+						env WINEDEBUG=-all xwine '/home/jari/.wine/drive_c/SEGA/PHANTASY STAR UNIVERSE Illuminus/' 'PsuIlluminus.exe'
 					</execute>
 				</action>
 			</item>
