@@ -63,3 +63,6 @@ PROMPT_COMMAND=prompt
 
 setcolors
 wazaaa
+
+export PNDSDK="/usr/local/pandora/arm-2009q3"
+export PATH="$PATH:$PNDSDK/bin:$PNDSDK/usr/bin"

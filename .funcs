@@ -301,6 +301,10 @@ function tname(){
 	echo -ne "\033]0;${1:-$TERM}\007";
 }
 
+# Decode QR codes
+qrdecode() { zbarimg -S\*.disable -Sqrcode.enable "$1" -q | sed '1s/^[^:]\+://'; }
+
+# bgmplayer
 function bgmplayer(){
 	mplayer $1 -novideo &>/dev/null </dev/null &
 }

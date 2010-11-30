@@ -41,10 +41,10 @@ color1 606060
 
 TEXT
 ${if_existing /home/jari/.config/deadbeef/nowPlaying}
-${image ~/.config/conky/conkyTint.png -p 90,-2}${voffset -4}${goto 130}${font VL PGothic:size=8:bold}${exec cat ~/.config/deadbeef/nowPlaying | head -n1}$font
-${goto 130}${exec cat ~/.config/deadbeef/nowPlaying | head -n2 | tail -n1}
-${goto 130}${exec cat ~/.config/deadbeef/nowPlaying | head -n3 | tail -n1}
-${goto 130}${font Aller Display:size=7}${exec cat ~/.config/deadbeef/nowPlaying | head -n4 | tail -n1}$font
-${goto 130}${font Aller Display:size=7}${exec cat ~/.config/deadbeef/nowPlaying | head -n5 | tail -n1}$font${image ~/.config/conky/conkyCover.png}
+${image ~/.config/conky/conkyTint.png -p 90,0}${voffset -2}${goto 140}${font VL PGothic:size=8:bold}${exec cat ~/.config/deadbeef/nowPlaying | head -n1}$font
+${goto 140}${exec cat ~/.config/deadbeef/nowPlaying | head -n2 | tail -n1}
+${goto 140}${exec cat ~/.config/deadbeef/nowPlaying | head -n3 | tail -n1}
+${goto 140}${font Aller Display:size=7}${exec cat ~/.config/deadbeef/nowPlaying | head -n4 | tail -n1}$font
+${goto 140}${font Aller Display:size=7}${exec cat ~/.config/deadbeef/nowPlaying | head -n5 | tail -n1}$font${image ~/.config/conky/conkyCover.png}
 ${endif}
 ${texeci 1 ~/.config/conky/db-cover.sh &> /dev/null}
