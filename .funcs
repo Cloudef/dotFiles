@@ -254,9 +254,14 @@ function mktbz() {
 	tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; 
 }
 
-function videoconvert()
+function videoconverthd()
 {
 	ffmpeg -y -i $1 -threads 4 -acodec libfaac -ar 44100 -ab 96k -vcodec libx264 -vpre libx264-lossless_medium -level 41 -crf 20 -bufsize 24000k -maxrate 32000k -g 250 -r 20 -coder 1 -flags +loop -cmp +chroma -partitions +parti4x4+partp8x8+partb8x8 -flags2 +dct8x8+bpyramid -me_method umh -subq 7 -me_range 16 -keyint_min 25 -sc_threshold 40 -i_qfactor 0.71 -rc_eq 'blurCplx^(1-qComp)' -bf 16 -b_strategy 1 -bidir_refine 1 -refs 6 -deblockalpha 0 -deblockbeta 0 $2
+}
+
+function videoconvertsd()
+{
+	ffmpeg -i $1 -vcodec libx264 -vpre fast -crf 22 -threads 4 $2
 }
 
 # Convert any flash.flv to matroska.mkv
