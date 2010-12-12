@@ -22,4 +22,5 @@ alias touhou="cat ~/.touhou"
 
 # Kansio aliakset
 alias dev="cd /media/Storage/Dev/"
+alias projekti="cd /media/Storage/Dev/Projektit/Projekti/"
 alias projektit="cd /media/Storage/Dev/projektit"

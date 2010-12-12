@@ -45,4 +45,8 @@ liferea &
 
 smart-notifier &
 
+kupfer &
+
 ~/.config/conky/start_conky.sh &
+
+alsactl restore &

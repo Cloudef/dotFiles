@@ -282,6 +282,18 @@ function flv2mp3() {
 	done
 }
 
+# Convert mid to ogg
+function mid2ogg()
+{
+	timidity -Ov $1
+}
+
+# Convert mid to wav
+function mid2wav()
+{
+	timidity -Ow $1
+}
+
 # Setup empty github repo
 function mkgit() {
 	mkdir $1
