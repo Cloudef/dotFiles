@@ -122,6 +122,20 @@
 					</execute>
 				</action>
 			</item>
+			<item label="GMameUI">
+				<action name="Execute">
+					<execute>
+						gmameui
+					</execute>
+				</action>
+			</item>
+			<item label="ZSnes">
+				<action name="Execute">
+					<execute>
+						zsnes
+					</execute>
+				</action>
+			</item>
 			<item label="VBA-M">
 				<action name="Execute">
 					<execute>
@@ -233,7 +247,7 @@
 			<item label="Guilty Gear">
 				<action name="Execute">
 					<execute>
-						env WINEDEBUG=-all xwine '/home/jari/.wine/drive_c/Program Files/GUILTY GEAR XX ＃RELOAD/' 'gxx.xe'
+						env WINEDEBUG=-all xwine '/home/jari/.wine/drive_c/Program Files/GUILTY GEAR XX ＃RELOAD/' 'ggxx.exe'
 					</execute>
 				</action>
 			</item>
@@ -368,7 +382,7 @@
 			<item label="Opera">
 				<action name="Execute">
 					<execute>
-						opera-10.70
+						opera
 					</execute>
 				</action>
 			</item>

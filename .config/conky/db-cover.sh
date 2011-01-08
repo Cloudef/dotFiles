@@ -59,11 +59,22 @@ if [ ! "$ALBUM" = "$LALBUM" ]; then
 	fi
 fi
 
+eMINUTES="`echo \"$ELAPSED\"|cut -d":" -f1`"
+eSECONDS="`echo \"$ELAPSED\"|cut -d":" -f2`"
+eMINUTES=$(expr $eMINUTES \* 60 )
+eSECONDS=$(expr $eMINUTES + $eSECONDS )
+
+tMINUTES="`echo \"$TIME\"|cut -d":" -f1`"
+tSECONDS="`echo \"$TIME\"|cut -d":" -f2`"
+tMINUTES=$(expr $tMINUTES \* 60 )
+tSECONDS=$(expr $tMINUTES + $tSECONDS )
+
+PERCENT=$(expr \( $eSECONDS \* 100 \) / $tSECONDS )
 echo $TRACK &> ~/.config/deadbeef/nowPlaying
 echo $ARTIST >> ~/.config/deadbeef/nowPlaying
 echo $ALBUM >> ~/.config/deadbeef/nowPlaying
 echo $YEAR >> ~/.config/deadbeef/nowPlaying
 echo "$ELAPSED/$TIME" >> ~/.config/deadbeef/nowPlaying
 echo "$CURCOVER" >> ~/.config/deadbeef/nowPlaying
-
+echo $PERCENT >> ~/.config/deadbeef/nowPlaying
 exit

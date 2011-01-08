@@ -38,12 +38,14 @@ default_color ececec
 
 color1 606060
 
+default_bar_size 170 5
+
 TEXT
 ${if_existing /home/jari/.config/deadbeef/nowPlaying}
 ${image ~/.config/conky/conkyTint.png -p 90,0}${voffset -2}${goto 140}${font VL PGothic:size=8:bold}${exec cat ~/.config/deadbeef/nowPlaying | head -n1}$font
 ${goto 140}${exec cat ~/.config/deadbeef/nowPlaying | head -n2 | tail -n1}
 ${goto 140}${exec cat ~/.config/deadbeef/nowPlaying | head -n3 | tail -n1}
-
+${goto 140}${execbar cat ~/.config/deadbeef/nowPlaying | head -n7 | tail -n1}
 ${goto 140}${font erus:size=6}${exec cat ~/.config/deadbeef/nowPlaying | head -n4 | tail -n1}${alignr}${offset -20}${font erus:size=6}${exec cat ~/.config/deadbeef/nowPlaying | head -n5 | tail -n1}$font${image ~/.config/conky/conkyCover.png}
 ${endif}
 ${texeci 1 ~/.config/conky/db-cover.sh &> /dev/null}
