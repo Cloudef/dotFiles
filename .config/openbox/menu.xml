@@ -122,10 +122,10 @@
 					</execute>
 				</action>
 			</item>
-			<item label="GMameUI">
+			<item label="MAME">
 				<action name="Execute">
 					<execute>
-						gmameui
+						wahcade
 					</execute>
 				</action>
 			</item>
