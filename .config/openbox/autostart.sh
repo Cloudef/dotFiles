@@ -31,9 +31,11 @@ fi
 # Taustakuva
 feh --bg-scale ~/.feh.bg &
 
-cairo-compmgr &
-
 gtk2panel &
+
+stalonetray &
+
+cairo-compmgr &
 
 pytyle &
 
@@ -50,5 +52,3 @@ kupfer &
 ~/.config/conky/start_conky.sh &
 
 alsactl restore &
-
-stalonetray &

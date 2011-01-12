@@ -22,7 +22,7 @@ maximum_width 325
 
 alignment bl
 gap_x -4
-gap_y 7.5
+gap_y 4
 
 draw_shades no
 draw_outline no
