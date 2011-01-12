@@ -33,7 +33,9 @@ feh --bg-scale ~/.feh.bg &
 
 cairo-compmgr &
 
-pancake &
+gtk2panel &
+
+stalonetray &
 
 pytyle &
 

@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>10</strength>
@@ -174,10 +173,10 @@
     </keybind>
     <keybind key="F10">
       <action name="Execute">
-        <command>sh "/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh"</command>
+        <command>sh &quot;/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh&quot;</command>
       </action>
     </keybind>
-    <keybind key="W-space">
+    <keybind key="C-space">
       <action name="ShowMenu">
         <menu>root-menu</menu>
       </action>
@@ -209,7 +208,7 @@
     </keybind>
     <keybind key="XF86Favorites">
       <action name="Execute">
-        <command>sh ~/.config/openbox/urxvtc -name "Arch Linux"</command>
+        <command>sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;</command>
       </action>
     </keybind>
     <keybind key="XF86Search">
@@ -298,27 +297,6 @@
     <keybind key="F12">
       <action name="Decorate"/>
       <action name="UnmaximizeFull"/>
-    </keybind>
-    <keybind key="A-Tab">
-      <action name="NextWindow"/>
-    </keybind>
-    <keybind key="A-S-Tab">
-      <action name="PreviousWindow"/>
-    </keybind>
-    <keybind key="C-A-Tab">
-      <action name="NextWindow">
-        <panels>yes</panels>
-        <desktop>yes</desktop>
-      </action>
-    </keybind>
-    <keybind key="W-e">
-      <action name="Execute">
-        <command>kfmclient openProfile filemanagement</command>
-        <startupnotify>
-          <enabled>yes</enabled>
-          <name>Konqueror</name>
-        </startupnotify>
-      </action>
     </keybind>
   </keyboard>
   <mouse>

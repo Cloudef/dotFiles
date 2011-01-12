@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<interface>
+  <!-- interface-requires gpwidgets 0.0 -->
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GpwShellCommand" id="actionHome">
+    <property name="label">Kotikansio</property>
+    <property name="short_label">Koti</property>
+    <property name="tooltip">Avaa kotikansio</property>
+    <property name="icon_name">user-home</property>
+    <property name="command_line">thunar $home</property>
+  </object>
+  <object class="GpwShowDesktop" id="actionShowDesktop">
+    <property name="label">Ty&#xF6;p&#xF6;yt&#xE4;</property>
+    <property name="tooltip">N&#xE4;yt&#xE4; ty&#xF6;p&#xF6;yt&#xE4;</property>
+  </object>
+  <object class="GpwShellCommand" id="OpenBoxMenu">
+    <property name="label">OpenBox</property>
+    <property name="tooltip">Avaa OpenBox valikko</property>
+    <property name="command_line">xdotool key ctrl+space</property>
+  </object>
+  <object class="GpwPanel" id="panelTop">
+    <property name="height_request">18</property>
+    <property name="default_height">18</property>
+    <property name="type_hint">desktop</property>
+    <property name="edge">bottom</property>
+    <child>
+      <object class="GtkHBox" id="Container">
+        <property name="height_request">18</property>
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkButton" id="OpenBox">
+            <property name="label" translatable="yes">OpenBox</property>
+            <property name="height_request">18</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="related_action">OpenBoxMenu</property>
+            <property name="relief">none</property>
+            <property name="use_underline">True</property>
+            <property name="focus_on_click">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Ty&#xF6;p&#xF6;yt&#xE4;">
+            <property name="label" translatable="yes">Ty&#xF6;p&#xF6;yt&#xE4;</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="related_action">actionShowDesktop</property>
+            <property name="relief">none</property>
+            <property name="focus_on_click">False</property>
+            <property name="yalign">0.4699999988079071</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GpwPager" id="Pager">
+            <property name="width_request">50</property>
+            <property name="height_request">18</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="has_tooltip">True</property>
+            <property name="display_mode">name</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GpwTasklist" id="Tasklist">
+            <property name="height_request">18</property>
+            <property name="visible">True</property>
+            <property name="grouping_policy">auto-group</property>
+          </object>
+          <packing>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFixed" id="fixed1">
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="padding">63</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GpwStrftime" id="statusTime">
+            <property name="height_request">18</property>
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">&lt;span weight="heavy" size="large"&gt;20:02&lt;/span&gt;</property>
+            <property name="use_markup">True</property>
+            <property name="single_line_mode">True</property>
+            <property name="format">&lt;span weight="heavy" size="large"&gt;%H:%M&lt;/span&gt;</property>
+            <property name="period">60000</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="padding">4</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
