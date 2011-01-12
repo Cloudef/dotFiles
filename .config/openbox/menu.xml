@@ -272,6 +272,13 @@
 					</execute>
 				</action>
 			</item>
+			<item label="Osu!">
+				<action name="Execute">
+					<execute>
+						env WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/osu!' 'osu!.exe'
+					</execute>
+				</action>
+			</item>
 			<item label="Cave Story">
 				<action name="Execute">
 					<execute>

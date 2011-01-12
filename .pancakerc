@@ -1,0 +1,150 @@
+# pancake configuration
+# This file is parsed by pancake at startup and may be named
+# $(HOME)/.pancakerc (or lay in any other location and be specified with
+# the --config-option).
+# 
+# In this template, a description for every option of all installed modules
+# is included.
+#
+# Comments start with # or // or may be enclosed in /* and */
+
+# The following line specifies which modules to load. In this example, all
+# found modules are included, but you can remove the ones you don't need
+# Module can provide two types of extensions: Themes to change the look of
+# the panel and it's widgets, and new widgets that can be added to the panel
+modules = { clock, trayarea, defaulttheme, tasklist, pager }
+
+# this sets the panels height in pixels
+height = 18
+
+# the width of the panel. It can be set in two ways: as number in range
+# from 0.0 to 1.0 to specify the panel's width relativ to the screen's
+# width, or, if a number greater than 1 is given, it will be used as amount
+# of pixels the panel will have in width.
+width = 1.0
+
+# the panels align on the screen -- may be set to 'top', 'bottom',
+# 'top_left', 'top_right', 'bottom_left' or 'bottom_right'
+align = bottom
+
+# may be set to 'true' or 'false' to enable/disable strut.
+# An enabled strut will prevent maximized windows from hiding the panel
+strut = true
+
+# Pancake support theme-engines, and the next part of the configuration
+# cares about their settings.
+# Usually, the engine itself defines the basic look of the panel and it's
+# widgets, while it support's various options to set change things like
+# colors.
+# Only one theme can be active at time. You may have as much theme-blocks as
+# you want, but only the one specified at the end of this file will be used.
+#
+# A block has following syntax:
+#
+# THEMENAME IDENTIFIER
+# {
+#     [OPTION = VALUE]
+#     [...]
+# }
+#
+# where THEMENAME is the name of the theme as defined in the module
+# providing the theme, and IDENTIFIER is a arbitrary name you give to your
+# theme-configuration to be able to reference to it later.
+
+# The following lines contains all themes found by pancake. You can remove
+# those you don't want and change it's options
+# This is the standardtheme of pancake
+defaulttheme mytheme
+{
+    # set to 'true' to have the upper edges of the panel rounded
+    rounded_top = false
+
+    # set to 'true' to have the bottom edges of the panel rounded
+    rounded_bottom = false
+
+    # The font to use
+    font = "Aller 8"
+
+    # The foreground-color to use, as red-, green- and blue-values in range
+    # 0.0 to 1.0.
+    fg_normal = { 0.6, 0.6, 0.6 }
+
+    # The background-color to use
+    bg_normal = { 0.2, 0.2, 0.2 }
+
+    # The foreground-color to use for active widgets
+    fg_active = { 0.9, 0.9, 0.9 }
+
+    # The background-color to use for active widgets
+    bg_active = { 0.2, 0.2, 0.2 }
+
+    # The foreground-color to use for prelighted widgets
+    fg_prelight = { 1.0, 1.0, 1.0 }
+
+    # The background-color to use for prelighted widgets
+    bg_prelight = { 0.2, 0.2, 0.2 }
+
+    # alpha-value in range 0.0 to 1.0 for the panel's background
+    bg_alpha = 0.85
+}
+
+# Next, we'll configure widgets. A widget-block has the same semantics as a
+# theme-block. You also can have as much of them as you want and have a
+# widget used multiple times.
+# By writing a widget-block itself, the widget isn't shown already -- you
+# enable it at the end of this file
+
+# Again, a list of all found widgets follows.
+
+# The clock-widget displays a simple, digital clock.
+clock myclock
+{
+    # The format-option specifies the format the time is displayed in in
+    # syntax of strftime (see man strftime(3) for details of possible
+    # fields)
+    format = %H:%M
+}
+
+# the trayarea widget displays an area, where program can paint icons to
+trayarea mytrayarea
+{
+    # this widget doesn't have any options
+}
+
+# The tasklist widget shows opened windows as buttons
+tasklist mytasklist
+{
+    # Sets if the tasks in the list should be grouped. May be 'never',
+    # 'always' or 'auto'
+    grouping = never
+
+    # Set to 'true' to include tasks of all workspaces to the list, to
+    # 'false' to have only the tasks of the current workspace displayed
+    all_workspaces = false
+}
+
+# the pager widget displays the workspaces or the name of the active one
+pager mypager
+{
+    # The pager's mode, set to 'name' or 'content'
+    mode = name
+
+    # set to 'true' to display all workspaces, to 'false' to display only
+    # the active one
+    all_workspaces = true
+
+    # sets the number of rows the pager is organized in
+    rows = 1
+}
+
+# The next line sets the theme to use -- you have to give the identifier
+# of the one you want to be active, or comment out the entire line to
+# disable the use of a theme and have the panel in the look of the active
+# GTK-theme
+theme = mytheme
+
+# The next (and last) line set's the widgets to use. They'll be displayed
+# in the order you specifiy them here by their identifier.
+# You can preprend the string 'expand:' to one of them, to have this widget
+# fill the space left by the others.
+widgets = { mypager, expand:mytasklist, mytrayarea, myclock }

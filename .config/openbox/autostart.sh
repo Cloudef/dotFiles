@@ -33,7 +33,7 @@ feh --bg-scale ~/.feh.bg &
 
 cairo-compmgr &
 
-tint2 &
+pancake &
 
 pytyle &
 
