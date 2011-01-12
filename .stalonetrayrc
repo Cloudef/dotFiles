@@ -1,4 +1,7 @@
-fuzzy_edges 3
-geometry 1x1+1275+883
+geometry 8x18+1275+883
+max_geometry 8x18
 icon_size 16
 background "#404040"
+grow_gravity NW
+sticky true
+window_type dock

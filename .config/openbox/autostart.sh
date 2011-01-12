@@ -35,8 +35,6 @@ cairo-compmgr &
 
 gtk2panel &
 
-stalonetray &
-
 pytyle &
 
 volti &
@@ -52,3 +50,5 @@ kupfer &
 ~/.config/conky/start_conky.sh &
 
 alsactl restore &
+
+stalonetray &
