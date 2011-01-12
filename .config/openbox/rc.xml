@@ -743,5 +743,13 @@
 
   # end of the example
 -->
+	<application name="stalonetray">
+	      <decor>yes</decor>
+	      <desktop>all</desktop>
+	      <layer>below</layer>
+	      <skip_pager>yes</skip_pager>
+	      <skip_taskbar>yes</skip_taskbar>
+	</application>
+
   </applications>
 </openbox_config>
