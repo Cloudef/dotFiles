@@ -70,13 +70,13 @@ defaulttheme mytheme
     fg_normal = { 0.6, 0.6, 0.6 }
 
     # The background-color to use
-    bg_normal = { 0.2, 0.2, 0.2 }
+    bg_normal = { 0.2, 0.2, 0.25 }
 
     # The foreground-color to use for active widgets
     fg_active = { 0.9, 0.9, 0.9 }
 
     # The background-color to use for active widgets
-    bg_active = { 0.2, 0.2, 0.2 }
+    bg_active = { 0.2, 0.2, 0.23 }
 
     # The foreground-color to use for prelighted widgets
     fg_prelight = { 1.0, 1.0, 1.0 }
