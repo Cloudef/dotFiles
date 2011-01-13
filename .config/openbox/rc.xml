@@ -148,14 +148,14 @@
     <right>0</right>
   </margins>
   <dock>
-    <position>TopRight</position>
+    <position>Right</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
     <floatingX>1241</floatingX>
     <floatingY>2</floatingY>
     <noStrut>yes</noStrut>
     <stacking>Above</stacking>
     <!-- 'Above', 'Normal', or 'Below' -->
-    <direction>Vertical</direction>
+    <direction>Horizontal</direction>
     <!-- 'Vertical' or 'Horizontal' -->
     <autoHide>yes</autoHide>
     <hideDelay>300</hideDelay>
