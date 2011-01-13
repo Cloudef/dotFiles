@@ -1,12 +1,9 @@
-geometry 8x18+1270+883
-max_geometry 8x18
 icon_size 16
 slot_size 16
 background "#404040"
-grow_gravity NW
+grow_gravity W
 sticky true
 window_layer top
 window_type dock
-decorations none
-scrollbars horizontal
 kludges force_icons_size
+dockapp_mode simple

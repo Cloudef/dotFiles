@@ -89,17 +89,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkFixed" id="fixed1">
-            <property name="visible">True</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="padding">63</property>
-            <property name="position">4</property>
-          </packing>
-        </child>
-        <child>
           <object class="GpwStrftime" id="statusTime">
             <property name="height_request">18</property>
             <property name="visible">True</property>
@@ -113,7 +102,7 @@
             <property name="expand">False</property>
             <property name="fill">False</property>
             <property name="padding">4</property>
-            <property name="position">5</property>
+            <property name="position">4</property>
           </packing>
         </child>
       </object>

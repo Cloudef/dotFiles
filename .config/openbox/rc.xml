@@ -148,16 +148,16 @@
     <right>0</right>
   </margins>
   <dock>
-    <position>Bottom</position>
+    <position>TopRight</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
-    <floatingX>0</floatingX>
-    <floatingY>0</floatingY>
-    <noStrut>no</noStrut>
+    <floatingX>1241</floatingX>
+    <floatingY>2</floatingY>
+    <noStrut>yes</noStrut>
     <stacking>Above</stacking>
     <!-- 'Above', 'Normal', or 'Below' -->
     <direction>Vertical</direction>
     <!-- 'Vertical' or 'Horizontal' -->
-    <autoHide>no</autoHide>
+    <autoHide>yes</autoHide>
     <hideDelay>300</hideDelay>
     <!-- in milliseconds (1000 = 1 second) -->
     <showDelay>300</showDelay>
@@ -743,13 +743,12 @@
 
   # end of the example
 -->
-	<application name="stalonetray">
-	      <decor>yes</decor>
-	      <desktop>all</desktop>
-	      <layer>below</layer>
-	      <skip_pager>yes</skip_pager>
-	      <skip_taskbar>yes</skip_taskbar>
-	</application>
-
+    <application name="stalonetray">
+      <decor>yes</decor>
+      <desktop>all</desktop>
+      <layer>below</layer>
+      <skip_pager>yes</skip_pager>
+      <skip_taskbar>yes</skip_taskbar>
+    </application>
   </applications>
 </openbox_config>
