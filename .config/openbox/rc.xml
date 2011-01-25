@@ -279,8 +279,42 @@
         <desktop>3</desktop>
       </action>
     </keybind>
+    <keybind key="W-F4">
+      <action name="Desktop">
+        <desktop>4</desktop>
+      </action>
+    </keybind>
+    <keybind key="W-F5">
+      <action name="Desktop"/>
+    </keybind>
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
+    </keybind>
+    <keybind key="W-F6">
+      <action name="Desktop">
+        <desktop>5</desktop>
+      </action>
+    </keybind>
+    <keybind key="W-F6">
+      <action name="Desktop">
+        <desktop>6</desktop>
+      </action>
+    </keybind>
+    <keybind key="W-F7">
+      <action name="Desktop">
+        <desktop>7</desktop>
+      </action>
+    </keybind>
+    <keybind key="W-F8">
+      <action name="Desktop">
+        <desktop>8</desktop>
+      </action>
+    </keybind>
+    <keybind key="W-Right">
+      <action name="DesktopNext"/>
+    </keybind>
+    <keybind key="W-Left">
+      <action name="DesktopLeft"/>
     </keybind>
     <keybind key="A-F4">
       <action name="Close"/>

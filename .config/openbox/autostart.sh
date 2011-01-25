@@ -33,8 +33,6 @@ feh --bg-scale ~/.feh.bg &
 
 gtk2panel -c ~/.config/gtk2panel/default.xml &
 
-redshift -l 62:22 &
-
 stalonetray &
 
 pytyle2 &
@@ -58,3 +56,5 @@ kupfer &
 ~/.config/conky/start_conky.sh &
 
 alsactl restore &
+
+redshift -l 62:22 &
