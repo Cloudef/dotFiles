@@ -49,6 +49,8 @@ deluge &
 
 emesene &
 
+urxvt -title IRSSI -name IRSSI -e irssi &
+
 smart-notifier &
 
 kupfer &

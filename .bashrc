@@ -1,5 +1,5 @@
-z
-export DE="openbox"
+# Naamioidu XFCE:ks
+export DE="xfce"
 export EDITOR="medit"
 
 # c00kiemon5ter (ivan.kanak@gmail.com) ~ under c00kie License

@@ -336,6 +336,15 @@
 				</action>
 			</item>
 		</menu>
+		<menu id="root-menu-56489" label="IRC">
+			<item label="Irssi">
+				<action name="Execute">
+					<execute>
+						urxvt -title IRSSI -name IRSSI -e irssi
+					</execute>
+				</action>
+			</item>
+		</menu>
 		<menu id="5" label="Internet">
 			<separator label="Internet"/>
 			<item label="Opera">
@@ -481,6 +490,13 @@
 				<action name="Execute">
 					<execute>
 						obmenu
+					</execute>
+				</action>
+			</item>
+			<item label="Paaneli">
+				<action name="Execute">
+					<execute>
+						env GLADE_CATALOG_PATH=.config/gtk2panel/ glade-3 .config/gtk2panel/default.xml
 					</execute>
 				</action>
 			</item>
