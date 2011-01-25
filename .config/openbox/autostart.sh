@@ -31,9 +31,9 @@ fi
 # Taustakuva
 feh --bg-scale ~/.feh.bg &
 
-gtk2panel &
+gtk2panel -c ~/.config/gtk2panel/default.xml &
 
-cairo-compmgr &
+redshift -l 62:22 &
 
 stalonetray &
 
@@ -44,6 +44,10 @@ volti &
 clipit &
 
 liferea &
+
+deluge &
+
+emesene &
 
 smart-notifier &
 

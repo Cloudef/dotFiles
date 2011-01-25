@@ -1,6 +1,5 @@
-
-#Naamioidutaan xfce:ksi
-export DE="xfce"
+z
+export DE="openbox"
 export EDITOR="medit"
 
 # c00kiemon5ter (ivan.kanak@gmail.com) ~ under c00kie License

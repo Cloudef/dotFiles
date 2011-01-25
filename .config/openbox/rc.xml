@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>10</strength>
@@ -40,7 +40,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Bioluminescence-Sky</name>
+    <name>Carbon</name>
     <titleLayout>LIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -109,13 +109,17 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>3</number>
+    <number>8</number>
     <firstdesk>1</firstdesk>
     <names>
-      <name>Net</name>
+      <name>NET</name>
       <name>IRC</name>
-      <name>Dev</name>
-      <name>4</name>
+      <name>DEV</name>
+      <name>ANI</name>
+      <name>IM</name>
+      <name>RSS</name>
+      <name>TOR</name>
+      <name>ETC</name>
     </names>
     <popupTime>875</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -148,14 +152,14 @@
     <right>0</right>
   </margins>
   <dock>
-    <position>Right</position>
+    <position>Left</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
     <floatingX>1241</floatingX>
     <floatingY>2</floatingY>
     <noStrut>yes</noStrut>
     <stacking>Above</stacking>
     <!-- 'Above', 'Normal', or 'Below' -->
-    <direction>Horizontal</direction>
+    <direction>Vertical</direction>
     <!-- 'Vertical' or 'Horizontal' -->
     <autoHide>yes</autoHide>
     <hideDelay>300</hideDelay>
@@ -174,7 +178,7 @@
     </keybind>
     <keybind key="F10">
       <action name="Execute">
-        <command>sh "/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh"</command>
+        <command>sh &quot;/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh&quot;</command>
       </action>
     </keybind>
     <keybind key="C-space">
@@ -209,7 +213,7 @@
     </keybind>
     <keybind key="XF86Favorites">
       <action name="Execute">
-        <command>sh ~/.config/openbox/urxvtc -name "Arch Linux"</command>
+        <command>sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;</command>
       </action>
     </keybind>
     <keybind key="XF86Search">
@@ -750,5 +754,28 @@
       <skip_pager>yes</skip_pager>
       <skip_taskbar>yes</skip_taskbar>
     </application>
-  </applications>
+    <application class="Opera" name="opera" type="normal">
+      <decor>no</decor>
+      <maximized>yes</maximized>
+      <desktop>1</desktop>
+    </application>
+    <application class="Thunar" name="thunar" role="Thunar-1295950229-1743260431" type="normal">
+      <desktop>8</desktop>
+    </application>
+    <application class="Codeblocks" name="codeblocks" type="normal">
+      <desktop>3</desktop>
+      <decor>no</decor>
+    </application>
+    <application class="Gnome-mplayer" name="gnome-mplayer" type="normal">
+      <desktop>4</desktop>
+      <decor>no</decor>
+      <maximized>yes</maximized>
+    </application>
+    <application class="Medit" name="medit" type="normal">
+      <desktop>3</desktop>
+    </application>
+  <application class="Deluge-gtk" name="deluge-gtk" type="normal"><desktop>7</desktop><decor>no</decor><fullscreen>default</fullscreen><maximized>yes</maximized></application>
+<application class="Liferea" name="liferea" type="normal"><desktop>6</desktop><maximized>yes</maximized><decor>no</decor></application>
+<application class="Controller.py" name="Controller.py" role="main" type="normal"><desktop>5</desktop></application>
+</applications>
 </openbox_config>
