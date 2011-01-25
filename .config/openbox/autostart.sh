@@ -37,7 +37,7 @@ redshift -l 62:22 &
 
 stalonetray &
 
-pytyle &
+pytyle2 &
 
 volti &
 
