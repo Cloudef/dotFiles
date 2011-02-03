@@ -106,4 +106,10 @@ URxvt*pointerBlankDelay:2
 !URxvt*tabbed.tab-fg:#F60606
 !URxvt*tabbed.tab-bg:#F60606
 
+! --- Clickable links --- !
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: opera
+URxvt.matcher.button: 2
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+
 ! }}}

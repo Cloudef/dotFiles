@@ -31,11 +31,13 @@ fi
 # Taustakuva
 feh --bg-scale ~/.feh.bg &
 
+cairo-compmgr &
+
+gtk-redshift -l 62:22 &
+
 gtk2panel -c ~/.config/gtk2panel/default.xml &
 
 stalonetray &
-
-pytyle2 &
 
 volti &
 
@@ -57,4 +59,4 @@ kupfer &
 
 alsactl restore &
 
-redshift -l 62:22 &
+pytyle2 &

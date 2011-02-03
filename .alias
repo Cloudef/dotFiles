@@ -7,11 +7,9 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Ohjelma aliakset
-alias get-app="packer --noconfirm"
-alias app-get="get-app"
-alias get-update="packer -Syu"
-alias update-get="get-update"
-alias pacman="powerpill --threads 4 --memoize --pacman-bin pacman-color"
+alias bi="sudo bauerbill --aur --threads 4 -S"
+alias bs="sudo bauerbill --aur --threads 4 -Ss"
+alias bu="sudo bauerbill --aur --threads 4 --noconfirm -Su"
 
 # Scripti aliakset
 alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'

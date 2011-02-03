@@ -139,6 +139,8 @@ function wazaaa() {
 	clear #&& echo "${BOLD}${WHITE}${arch}${BLUE}${nix}${NORMAL}"
 	alsi
 	echo ""
+	echo "[bs :: Search AUR] [bi :: Install] [bu :: Update]"
+	echo ""
 	#echo -e ${WHITE}${say}${NORMAL}
 }
 

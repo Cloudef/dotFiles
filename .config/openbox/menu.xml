@@ -2,6 +2,8 @@
 <openbox_menu>
 	<menu id="root-menu" label="OpenBox 3">
 		<separator label="Valikko"/>
+		<menu execute="obfilebrowser --no-parent --no-self /" id="pipe-925244" label="Linux"/>
+		<separator/>
 		<item label="Koti">
 			<action name="Execute">
 				<execute>
@@ -25,6 +27,19 @@
 		</item>
 		<separator/>
 		<menu execute="python2 ~/.config/openbox/weather.py Seinäjoki fi" id="pipe-764356" label="Sää"/>
+		<separator label="Anime" />
+		<menu id="root-menu-775514" label="Anime">
+			<menu execute="obfilebrowser --no-parent --no-self --no-hidden /media/Anime/Watching" id="pipe-705527" label="Watching"/>
+			<menu execute="obfilebrowser --no-parent --no-self --no-hidden /media/Anime/Katsotut" id="pipe-56565" label="Watched"/>
+			<separator/>
+			<item label="ANIME NAO!">
+				<action name="Execute">
+					<execute>
+						sh &quot;/media/Anime/Hmm.. Mitä katsoisin tänään?&quot;
+					</execute>
+				</action>
+			</item>
+		</menu>
 		<separator label="Sovellukset"/>
 		§
 		<menu id="1" label="Ohjelmointi">
@@ -103,6 +118,7 @@
 				<menu execute="python2 ~/.config/openbox/dirlist.py &quot;/media/Storage/Bishoujo Pelit/Pelattu&quot;" id="pipe-79631" label="Pelattu"/>
 			</menu>
 			<menu id="17" label="Touhou">
+				<menu execute="python2 ~/.config/openbox/dirlist.py &quot;/media/Storage/Pelit/Touhou/Doujin&quot;" id="pipe-81747" label="Doujin"/>
 				<separator label="Touhou"/>
 				<item label="TH06　東方紅魔郷　～ the Embodiment of Scarlet Devil">
 					<action name="Execute">
@@ -207,13 +223,6 @@
 				<action name="Execute">
 					<execute>
 						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/Program Files/Steam/' 'steam.exe'
-					</execute>
-				</action>
-			</item>
-			<item label="Fallout : New Vegas">
-				<action name="Execute">
-					<execute>
-						env WINEDEBUG=-all xwine &quot;/home/jari/.wine/drive_c/Ohjelmatiedostot/Bethesda Softworks/Fallout New Vegas&quot; &quot;runGame.sh&quot;
 					</execute>
 				</action>
 			</item>
