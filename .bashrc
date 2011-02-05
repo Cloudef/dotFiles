@@ -1,6 +1,5 @@
-# Naamioidu XFCE:ks
-export DE="xfce"
 export EDITOR="medit"
+export BROWSER="opera"
 
 # c00kiemon5ter (ivan.kanak@gmail.com) ~ under c00kie License
 #
