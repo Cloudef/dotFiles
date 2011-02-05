@@ -6,6 +6,9 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# When running GIT command, check SSH agent
+alias git="check_agent && git"
+
 # Ohjelma aliakset
 alias bi="sudo bauerbill --aur --threads 4 -S"
 alias bs="sudo bauerbill --aur --threads 4 -Ss"
