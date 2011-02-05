@@ -43,5 +43,5 @@ function check_agent {
 }
 
 function git { 
-	if [[ $1 == "push" ]]; then command check_agent && git "$@"; else command git "$@"; fi;
+	if [[ $1 == "push" ]]; then check_agent; command git "$@"; else command git "$@"; fi;
 }
