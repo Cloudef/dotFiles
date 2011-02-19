@@ -1,5 +1,5 @@
 # Värit
-alias ls='ls -h --color=auto'
+alias ls='ls --color=auto'
 alias dir='dir -h --color=auto'
 alias vdir='vdir -h --color=auto'
 alias grep='grep --color=auto'

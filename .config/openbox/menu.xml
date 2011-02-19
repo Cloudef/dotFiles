@@ -27,7 +27,7 @@
 		</item>
 		<separator/>
 		<menu execute="python2 ~/.config/openbox/weather.py Seinäjoki fi" id="pipe-764356" label="Sää"/>
-		<separator label="Anime" />
+		<separator label="Anime"/>
 		<menu id="root-menu-775514" label="Anime">
 			<menu execute="obfilebrowser --no-parent --no-self --no-hidden /media/Anime/Watching" id="pipe-705527" label="Watching"/>
 			<menu execute="obfilebrowser --no-parent --no-self --no-hidden /media/Anime/Katsotut" id="pipe-56565" label="Watched"/>
@@ -85,7 +85,7 @@
 			<item label="No$GBA">
 				<action name="Execute">
 					<execute>
-						env WINEDEBUG=-all pikakuvake '/media/Storage/Emulaattorit/NoGBA' 'NO$GBA.exe'
+						env WINEDEBUG=-all pikakuvake '/media/Storage/Emulaattorit/NoGBA' 'NO$Zoomer.exe'
 					</execute>
 				</action>
 			</item>

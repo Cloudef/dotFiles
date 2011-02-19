@@ -83,7 +83,7 @@ URxvt*font:             xft:erusfont:pixelsize=9
 
 URxvt*depth:32
 URxvt*dynamicColors:on
-URxvt*background:rgba:0000/0000/0000/dddd
+URxvt*background:rgba:ffff/ffff/ffff/dddd
 !URxvt*transparent:true
 
 !! when transparent is true
@@ -91,8 +91,8 @@ URxvt*background:rgba:0000/0000/0000/dddd
 !URxvt*blurRadius:80
 !URxvt*fading:true
 !URxvt*fadeColor:white
-!URxvt*tint:true
-!URxvt*tintColor:grey
+!URxvt*tint:tru
+!URxvt*tintColor:white
 
 URxvt*cursorColor: #DCDCCC
 URxvt*pointerColor:grey

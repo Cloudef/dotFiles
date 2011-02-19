@@ -2,37 +2,14 @@ pixmap_path "/home/jari/.gnome-color-chooser/images/"
 
 style "gnome-color-chooser-default"
 {
-  engine "murrine"
-  {
-    animation = TRUE
-    cellstyle = 1
-    comboboxstyle = 0
-    expanderstyle = 1
-    menubarstyle = 3
-    menuitemstyle = 2
-    progressbarstyle = 2
-    rgba = TRUE
-    roundness = 0
-  }
-
-  bg[NORMAL] = "#343535"
-  bg[SELECTED] = "#777777"
-  bg[INSENSITIVE] = "#343535"
-  fg[NORMAL] = "#9C9C9C"
-  fg[PRELIGHT] = "#505050"
-  fg[ACTIVE] = "#909090"
-  fg[INSENSITIVE] = "#424242"
-  base[NORMAL] = "#FFFFFF"
-  text[NORMAL] = "#000000"
+  bg[SELECTED] = "#ECF4FF"
 }
 class "GtkWidget" style "gnome-color-chooser-default"
 
 style "gnome-color-chooser-button"
 {
-  bg[PRELIGHT] = "#404040"
-  bg[ACTIVE] = "#6D6D6D"
   fg[PRELIGHT] = "#9E9E9E"
-  fg[ACTIVE] = "#E0E0E0"
+  fg[ACTIVE] = "#91A7CA"
 }
 widget_class "*.<GtkButton>*" style "gnome-color-chooser-button"
 

@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>10</strength>
@@ -39,7 +40,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Carbon</name>
+    <name>Nova-Blue</name>
     <titleLayout>LIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -177,7 +178,7 @@
     </keybind>
     <keybind key="F10">
       <action name="Execute">
-        <command>sh &quot;/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh&quot;</command>
+        <command>sh "/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh"</command>
       </action>
     </keybind>
     <keybind key="C-space">
@@ -212,7 +213,7 @@
     </keybind>
     <keybind key="XF86Favorites">
       <action name="Execute">
-        <command>sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;</command>
+        <command>sh ~/.config/openbox/urxvtc -name "Arch Linux"</command>
       </action>
     </keybind>
     <keybind key="XF86Search">
@@ -829,8 +830,16 @@
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-  <application class="File-roller" name="file-roller" type="normal"><desktop>8</desktop></application>
-<application class="Controller.py" name="Controller.py" role="chat" type="normal"><desktop>5</desktop></application>
-
-</applications>
+    <application class="File-roller" name="file-roller" type="normal">
+      <desktop>8</desktop>
+    </application>
+    <application class="Controller.py" name="Controller.py" role="chat" type="normal">
+      <desktop>5</desktop>
+    </application>
+    <application class="Deluge-gtk" name="deluge-gtk" type="normal">
+      <maximized>yes</maximized>
+      <decor>no</decor>
+      <desktop>7</desktop>
+    </application>
+  </applications>
 </openbox_config>

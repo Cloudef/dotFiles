@@ -328,4 +328,14 @@ function bgmplayer(){
 	mplayer $1 -novideo &>/dev/null </dev/null &
 }
 
+japantime() {
+	sudo cp /usr/share/zoneinfo/Japan /etc/localtime
+	sudo ntpdate ntp1.funet.fi
+}
+
+finlandtime() {
+	sudo cp /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
+	sudo ntpdate ntp1.funet.fi
+}
+
 # vim: nospell

@@ -1,7 +1,7 @@
 # set to yes if you want Conky to be forked in the background
 background yes
 
-own_window_colour 343535
+own_window_colour white
 
 # Use Xft?
 use_xft yes
