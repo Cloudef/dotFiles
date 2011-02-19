@@ -42,6 +42,28 @@
 		</menu>
 		<separator label="Sovellukset"/>
 		§
+		<menu id="root-menu-525140" label="^___^">
+			<separator label="Desu"/>
+			<item label="Slime Forest">
+				<action name="Execute">
+					<execute>
+						/media/Storage/Pelit/slimeforest/run64
+					</execute>
+				</action>
+			</item>
+			<item label="gWaei">
+				<action name="Execute">
+					<execute>
+						gwaei
+					</execute>
+				</action>
+			</item>
+			<separator/>
+			<menu id="18-56539" label="Bishoujo">
+				<menu execute="python2 ~/.config/openbox/dirlist.py &quot;/media/Storage/Bishoujo Pelit/Pelaan&quot;" id="pipe-55552" label="Pelaan"/>
+				<menu execute="python2 ~/.config/openbox/dirlist.py &quot;/media/Storage/Bishoujo Pelit/Pelattu&quot;" id="pipe-79631" label="Pelattu"/>
+			</menu>
+		</menu>
 		<menu id="1" label="Ohjelmointi">
 			<separator label="Ohjelmointi"/>
 			<item label="Code::Blocks IDE">
@@ -113,10 +135,6 @@
 		</menu>
 		<menu id="18" label="Pelit">
 			<separator label="Pelit"/>
-			<menu id="18-56539" label="Bishoujo">
-				<menu execute="python2 ~/.config/openbox/dirlist.py &quot;/media/Storage/Bishoujo Pelit/Pelaan&quot;" id="pipe-55552" label="Pelaan"/>
-				<menu execute="python2 ~/.config/openbox/dirlist.py &quot;/media/Storage/Bishoujo Pelit/Pelattu&quot;" id="pipe-79631" label="Pelattu"/>
-			</menu>
 			<menu id="17" label="Touhou">
 				<menu execute="python2 ~/.config/openbox/dirlist.py &quot;/media/Storage/Pelit/Touhou/Doujin&quot;" id="pipe-81747" label="Doujin"/>
 				<separator label="Touhou"/>
@@ -212,6 +230,7 @@
 					</action>
 				</item>
 			</menu>
+			<separator/>
 			<item label="Guilty Gear">
 				<action name="Execute">
 					<execute>
@@ -247,10 +266,10 @@
 					</execute>
 				</action>
 			</item>
-			<item label="Slime Forest">
+			<item label="GrindFantasia">
 				<action name="Execute">
 					<execute>
-						/media/Storage/Pelit/slimeforest/run64
+						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/AeriaGames/GrandFantasia' 'Launcher.exe'
 					</execute>
 				</action>
 			</item>
