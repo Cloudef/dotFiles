@@ -1,21 +1,46 @@
-# An album art conky for DeadBeef
+# set to yes if you want Conky to be forked in the background
+background yes
 
-background no
-update_interval 1
-cpu_avg_samples 2
-net_avg_samples 2
-double_buffer yes
-no_buffers yes
-text_buffer_size 1024
 imlib_cache_size 0
 
-own_window yes
-own_window_type desktop
-own_window_transparent yes
-own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+own_window_colour white
 
-border_inner_margin 1
-border_outer_margin 0
+# Use Xft?
+use_xft yes
+
+# Xft font when Xft is enabled
+xftfont VL PGothic:size=8
+
+# Text alpha when using Xft
+xftalpha 1.0
+
+# Update interval in seconds
+update_interval 3
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window no
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# own window options
+own_window		yes
+own_window_transparent	no
+own_window_type		desktop
+own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase none
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
 
 minimum_size 325 100
 maximum_width 325
@@ -24,19 +49,13 @@ alignment bl
 gap_x -4
 gap_y 20
 
+default_color black
+default_bar_size 165 5
+
 draw_shades no
 draw_outline no
 draw_borders no
 draw_graph_borders no
-default_shade_color 181818
-
-use_xft yes
-xftfont VL PGothic:size=8
-uppercase no
-override_utf8_locale yes
-default_color black
-
-default_bar_size 165 5
 
 TEXT
 ${if_existing /home/jari/.config/deadbeef/nowPlaying}

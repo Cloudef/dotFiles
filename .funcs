@@ -47,8 +47,8 @@ function reduce_path() {
 
 # the git prompt 
 function git_prompt() {
-	local pre="${WHITE}[branch: ${PURPLE}"
-	local suf="${WHITE}]${NORMAL}"
+	local pre="${BLACK}[branch: ${PURPLE}"
+	local suf="${BLACK}]${NORMAL}"
 	local ref="$(git symbolic-ref HEAD 2> /dev/null)"
 	[ -n "$ref" ] || return
 	git status | grep "not updated" &>/dev/null && ref="${ref}${GREEN}!"

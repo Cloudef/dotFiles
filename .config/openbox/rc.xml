@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>10</strength>
@@ -178,7 +178,7 @@
     </keybind>
     <keybind key="F10">
       <action name="Execute">
-        <command>sh "/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh"</command>
+        <command>sh &quot;/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh&quot;</command>
       </action>
     </keybind>
     <keybind key="C-space">
@@ -213,7 +213,7 @@
     </keybind>
     <keybind key="XF86Favorites">
       <action name="Execute">
-        <command>sh ~/.config/openbox/urxvtc -name "Arch Linux"</command>
+        <command>sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;</command>
       </action>
     </keybind>
     <keybind key="XF86Search">
@@ -795,10 +795,7 @@
       <maximized>yes</maximized>
       <desktop>1</desktop>
     </application>
-    <application class="Thunar" type="normal">
-      <desktop>8</desktop>
-      <focus>default</focus>
-    </application>
+    
     <application class="Codeblocks" name="codeblocks" type="normal">
       <desktop>3</desktop>
       <decor>no</decor>
@@ -808,9 +805,7 @@
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    <application class="Medit" name="medit" type="normal">
-      <desktop>3</desktop>
-    </application>
+    
     <application class="Deluge" name="deluge" type="normal">
       <desktop>7</desktop>
       <decor>no</decor>
@@ -830,9 +825,7 @@
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    <application class="File-roller" name="file-roller" type="normal">
-      <desktop>8</desktop>
-    </application>
+    
     <application class="Controller.py" name="Controller.py" role="chat" type="normal">
       <desktop>5</desktop>
     </application>
@@ -841,5 +834,6 @@
       <decor>no</decor>
       <desktop>7</desktop>
     </application>
-  </applications>
+  <application class="Dwb" name="dwb" type="normal"><desktop>1</desktop><decor>no</decor><maximized>yes</maximized></application>
+</applications>
 </openbox_config>

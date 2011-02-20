@@ -1,5 +1,5 @@
 export EDITOR="medit"
-export BROWSER="opera"
+export BROWSER="dwb"
 
 # c00kiemon5ter (ivan.kanak@gmail.com) ~ under c00kie License
 #
