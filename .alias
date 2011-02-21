@@ -10,6 +10,9 @@ alias egrep='egrep --color=auto'
 alias bi="sudo bauerbill --aur --threads 4 -S"
 alias bs="sudo bauerbill --aur --threads 4 -Ss"
 alias bu="sudo bauerbill --aur --threads 4 --noconfirm -Su"
+alias br="sudo bauerbill -R"
+
+alias hijirisay="xcowsay --image /media/Storage/Kuvat/ChibiHijiri.png"
 
 # Scripti aliakset
 alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'

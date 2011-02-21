@@ -37,9 +37,9 @@ gtk-redshift -l 62:22 &
 
 gtk2panel -c ~/.config/gtk2panel/default.xml &
 
-stalonetray &
-
 volti &
+
+stalonetray &
 
 clipit &
 
@@ -59,4 +59,4 @@ kupfer &
 
 alsactl restore &
 
-pytyle2 &
+cow-notify &
