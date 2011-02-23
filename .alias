@@ -7,10 +7,9 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Ohjelma aliakset
-alias bi="sudo bauerbill --aur --threads 4 -S"
-alias bs="sudo bauerbill --aur --threads 4 -Ss"
-alias bu="sudo bauerbill --aur --threads 4 --noconfirm -Su"
-alias br="sudo bauerbill -R"
+alias ai="packer -S --noconfirm"
+alias au="packer -Syu --noconfirm"
+alias ar="sudo pacman -R"
 
 alias hijirisay="xcowsay --image /media/Storage/Kuvat/ChibiHijiri.png"
 
