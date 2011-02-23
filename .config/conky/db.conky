@@ -21,15 +21,12 @@ update_interval 3
 # Set to zero to run forever.
 total_run_times 0
 
-# Create own window instead of using desktop (required in nautilus)
-own_window no
-
 # Use double buffering (reduces flicker, may not work for everyone)
 double_buffer yes
 
 # own window options
 own_window		yes
-own_window_transparent	no
+own_window_transparent	yes
 own_window_type		desktop
 own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
 
@@ -43,10 +40,9 @@ uppercase none
 override_utf8_locale yes
 
 minimum_size 325 100
-maximum_width 325
 
 alignment bl
-gap_x -4
+gap_x 4
 gap_y 20
 
 default_color black
@@ -59,10 +55,10 @@ draw_graph_borders no
 
 TEXT
 ${if_existing /home/jari/.config/deadbeef/nowPlaying}
-${image ~/.config/conky/conkyTint.png -p 90,0}${voffset -2}${goto 130}${font VL PGothic:size=8:bold}${exec cat ~/.config/deadbeef/nowPlaying | head -n1}$font
-${goto 130}${exec cat ~/.config/deadbeef/nowPlaying | head -n2 | tail -n1}
-${goto 130}${exec cat ~/.config/deadbeef/nowPlaying | head -n3 | tail -n1}
-${goto 130}${execbar cat ~/.config/deadbeef/nowPlaying | head -n7 | tail -n1}
-${goto 130}${font erus:size=6}${exec cat ~/.config/deadbeef/nowPlaying | head -n4 | tail -n1}${alignr}${offset -20}${font erus:size=6}${exec cat ~/.config/deadbeef/nowPlaying | head -n5 | tail -n1}$font${image ~/.config/conky/conkyCover.png -p 0,3 }
+${voffset -2}${goto 100}${color 1793d1}${font VL PGothic:size=8:bold}${exec cat ~/.config/deadbeef/nowPlaying | head -n1}$font
+${color ccc}${goto 100}${exec cat ~/.config/deadbeef/nowPlaying | head -n2 | tail -n1}
+${goto 100}${exec cat ~/.config/deadbeef/nowPlaying | head -n3 | tail -n1}
+${color 1793d1}${goto 100}${execbar cat ~/.config/deadbeef/nowPlaying | head -n7 | tail -n1}
+${goto 100}${font erus:size=6}${exec cat ~/.config/deadbeef/nowPlaying | head -n4 | tail -n1}${offset 107}${font erus:size=6}${exec cat ~/.config/deadbeef/nowPlaying | head -n5 | tail -n1}$font${image ~/.config/conky/conkyCover.png -p 0,3 }
 ${endif}
 ${texeci 1 ~/.config/conky/db-cover.sh &> /dev/null}

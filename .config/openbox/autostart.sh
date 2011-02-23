@@ -31,32 +31,47 @@ fi
 # Taustakuva
 feh --bg-scale ~/.feh.bg &
 
+# Cairo compgmr
 cairo-compmgr &
 
+# Redshift
 gtk-redshift -l 62:22 &
 
+# Panel
 gtk2panel -c ~/.config/gtk2panel/default.xml &
 
+# Mixer
 volti &
 
+# Tray
 stalonetray &
 
+# Clipit
 clipit &
 
+# Liferea
 liferea &
 
+# Deluge
 deluge &
 
+# Emesene
 emesene &
 
+# Urxvt
 urxvt -title IRSSI -name IRSSI -e irssi &
 
+# Smart notify
 smart-notifier &
 
+# Kupfer
 kupfer &
 
+# Conky
 ~/.config/conky/start_conky.sh &
 
+# Alsa settings back
 alsactl restore &
 
-cow-notify &
+# Cow notify
+(sleep 8 && cow-notify) &

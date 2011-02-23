@@ -1,5 +1,5 @@
 #openbox themerc edited with obtheme
-border.width: 0
+border.width: 1
 menu.border.color: #f4f4f4
 menu.border.width: 1
 menu.items.active.bg: Flat Gradient Vertical
@@ -26,7 +26,7 @@ osd.border.width: 0
 osd.label.bg: parentrelative
 osd.label.text.color: #202020
 padding.width: 2
-window.active.border.color: #FFFFFF
+window.active.border.color: #fbfbfb
 window.active.button.disabled.bg: Flat Gradient Vertical Border
 window.active.button.disabled.bg.color: #FFFFFF
 window.active.button.disabled.bg.colorTo: #202020
@@ -56,7 +56,7 @@ window.active.title.bg: Flat
 window.active.title.bg.color: #FFFFFF
 window.client.padding.width: 1
 window.handle.width: 2
-window.inactive.border.color: #FFFFFF
+window.inactive.border.color: #fbfbfb
 window.inactive.button.disabled.bg: Flat
 window.inactive.button.disabled.bg.color: #FFFFFF
 window.inactive.button.disabled.bg.border.color: #FFFFFF
