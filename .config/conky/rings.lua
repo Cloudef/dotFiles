@@ -103,8 +103,9 @@ function conky_ring_stats()
         
         str=string.format('${%s %s}',pt['name'],pt['arg'])
         if pcall(conky_parse,str) then
-            str = conky_parse(str)
-        else str='0'
+		str = conky_parse(str)
+        else
+		str='0'
         end
         
         value=tonumber(str)
