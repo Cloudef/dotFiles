@@ -34,8 +34,8 @@ COVER="$CONKYDIR/conkyCover.png"
 if [ ! "$ALBUM" = "$LALBUM" ]; then
 	CURCOVER="`find ${ARTCACHE} -name \"${ALBUM}.jpg\" | head -n 1`"
 	if [ ! -f "$CURCOVER" ]; then
-	    convert $CONKYDIR/Vinyl/base.png $CONKYDIR/Vinyl/top.png
-	    # -geometry +0+0 -composite "$COVER"
+	    convert $CONKYDIR/Vinyl/base.png "$COVER" -geometry +4+3
+	    #-geometry +0+0 -composite "$COVER"
 	else
 	    cp "$CURCOVER" "$COVER"
     

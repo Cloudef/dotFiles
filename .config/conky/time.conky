@@ -54,4 +54,4 @@ lua_load /home/jari/.config/conky/rings.lua
 lua_draw_hook_pre ring_stats
 
 TEXT
-${updates 1}${offset 55}${voffset 105}${color #ccc}${time %H:%M:%S}
+${updates 1}${offset 40}${voffset 105}${color #ccc}${time %H:%M:%S}

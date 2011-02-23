@@ -1,7 +1,6 @@
-<?xml version="1.0" ?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
-    <strength>10</strength>
+    <strength>40</strength>
     <screen_edge_strength>20</screen_edge_strength>
   </resistance>
   <focus>
@@ -176,7 +175,12 @@
         <command>kupfer</command>
       </action>
     </keybind>
-    <keybind key="F10">
+    <keybind key="W-w">
+      <action name="Execute">
+        <command>~/.config/openbox/cwp.sh</command>
+      </action>
+    </keybind>
+    <keybind key="F11">
       <action name="Execute">
         <command>sh &quot;/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh&quot;</command>
       </action>
@@ -331,13 +335,9 @@
         <menu>client-menu</menu>
       </action>
     </keybind>
-    <keybind key="F11">
-      <action name="MaximizeFull"/>
-      <action name="Undecorate"/>
-    </keybind>
     <keybind key="F12">
-      <action name="Decorate"/>
-      <action name="UnmaximizeFull"/>
+      <action name="ToggleMaximizeFull"/>
+      <action name="ToggleDecorations"/>
     </keybind>
   </keyboard>
   <mouse>
@@ -795,7 +795,6 @@
       <maximized>yes</maximized>
       <desktop>1</desktop>
     </application>
-    
     <application class="Codeblocks" name="codeblocks" type="normal">
       <desktop>3</desktop>
       <decor>no</decor>
@@ -805,7 +804,6 @@
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    
     <application class="Deluge" name="deluge" type="normal">
       <desktop>7</desktop>
       <decor>no</decor>
@@ -825,7 +823,6 @@
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    
     <application class="Controller.py" name="Controller.py" role="chat" type="normal">
       <desktop>5</desktop>
     </application>
@@ -834,6 +831,10 @@
       <decor>no</decor>
       <desktop>7</desktop>
     </application>
-  <application class="Dwb" name="dwb" type="normal"><desktop>1</desktop><decor>no</decor><maximized>yes</maximized></application>
-</applications>
+    <application class="Dwb" name="dwb" type="normal">
+      <desktop>1</desktop>
+      <decor>no</decor>
+      <maximized>yes</maximized>
+    </application>
+  </applications>
 </openbox_config>

@@ -29,7 +29,7 @@ if which /usr/lib/openbox/xdg-autostart >/dev/null 2>&1; then
 fi
 
 # Taustakuva
-feh --bg-scale ~/.feh.bg &
+~/.config/openbox/wallpaper.sh &
 
 # Cairo compgmr
 cairo-compmgr &
