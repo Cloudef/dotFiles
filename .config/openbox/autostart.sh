@@ -74,4 +74,4 @@ kupfer &
 alsactl restore &
 
 # Cow notify
-(sleep 8 && cow-notify) &
+cow-notify &

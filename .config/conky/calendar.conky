@@ -20,7 +20,8 @@ double_buffer yes
 # own window options
 own_window		yes
 own_window_transparent  yes
-own_window_type		desktop
+own_window_type		override
+# own_window_type		desktop
 own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
 
 # Text alignment, other possible values are commented
@@ -38,11 +39,12 @@ uppercase yes
 # Force UTF8? note that UTF8 support required XFT
 override_utf8_locale yes
 
-minimum_size 60 0
+minimum_size 280 85
 maximum_width 280
+maximum_height 85
 
 gap_x 5
-gap_y 65
+gap_y 133
 
 draw_shades no
 draw_outline no

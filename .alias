@@ -7,7 +7,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Ohjelma aliakset
-alias ai="packer -S --noconfirm"
+alias ai="packer --noconfirm"
 alias au="packer -Syu --noconfirm"
 alias ar="sudo pacman -R"
 

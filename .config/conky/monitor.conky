@@ -28,7 +28,8 @@ double_buffer yes
 # own window options
 own_window		yes
 own_window_transparent	no
-own_window_type		desktop
+own_window_type		override
+# own_window_type		desktop
 own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
 
 # Text alignment, other possible values are commented

@@ -13,6 +13,9 @@ URxvt*borderLess:false
 URxvt*externalBorder:1
 URxvt*internalBorder:0
 
+URxvt.iconName:URXVT
+URxvt*iconFile:/home/jari/.icons/ACYL_Icon_Theme_0.9.2/scalable/apps/terminal.svg
+
 URxvt*perl-ext-common:default,-tabbed,matcher,-selection-popup,-option-popupi
 
 URxvt*visualBell:false

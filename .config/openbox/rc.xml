@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>40</strength>
@@ -146,7 +147,7 @@
      cases. -->
   <margins>
     <top>21</top>
-    <bottom>18</bottom>
+    <bottom>20</bottom>
     <left>0</left>
     <right>0</right>
   </margins>
@@ -182,7 +183,7 @@
     </keybind>
     <keybind key="F11">
       <action name="Execute">
-        <command>sh &quot;/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh&quot;</command>
+        <command>sh "/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh"</command>
       </action>
     </keybind>
     <keybind key="C-space">
@@ -217,7 +218,7 @@
     </keybind>
     <keybind key="XF86Favorites">
       <action name="Execute">
-        <command>sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;</command>
+        <command>sh ~/.config/openbox/urxvtc -name "Arch Linux"</command>
       </action>
     </keybind>
     <keybind key="XF86Search">
