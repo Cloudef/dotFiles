@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>40</strength>
@@ -147,7 +146,7 @@
      cases. -->
   <margins>
     <top>21</top>
-    <bottom>20</bottom>
+    <bottom>18</bottom>
     <left>0</left>
     <right>0</right>
   </margins>
@@ -181,9 +180,9 @@
         <command>~/.config/openbox/cwp.sh</command>
       </action>
     </keybind>
-    <keybind key="F11">
+    <keybind key="W-v">
       <action name="Execute">
-        <command>sh "/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh"</command>
+        <command>sh &quot;/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh&quot;</command>
       </action>
     </keybind>
     <keybind key="C-space">
@@ -218,7 +217,7 @@
     </keybind>
     <keybind key="XF86Favorites">
       <action name="Execute">
-        <command>sh ~/.config/openbox/urxvtc -name "Arch Linux"</command>
+        <command>sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;</command>
       </action>
     </keybind>
     <keybind key="XF86Search">
@@ -336,7 +335,7 @@
         <menu>client-menu</menu>
       </action>
     </keybind>
-    <keybind key="F12">
+    <keybind key="W-F12">
       <action name="ToggleMaximizeFull"/>
       <action name="ToggleDecorations"/>
     </keybind>
@@ -800,11 +799,6 @@
       <desktop>3</desktop>
       <decor>no</decor>
     </application>
-    <application class="Gnome-mplayer" name="gnome-mplayer" type="normal">
-      <desktop>4</desktop>
-      <decor>no</decor>
-      <maximized>yes</maximized>
-    </application>
     <application class="Deluge" name="deluge" type="normal">
       <desktop>7</desktop>
       <decor>no</decor>
@@ -816,17 +810,13 @@
       <maximized>yes</maximized>
       <decor>no</decor>
     </application>
-    <application class="Controller.py" name="Controller.py" role="main" type="normal">
-      <desktop>5</desktop>
-    </application>
+    
     <application class="URxvt" name="IRSSI" type="normal">
       <desktop>2</desktop>
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    <application class="Controller.py" name="Controller.py" role="chat" type="normal">
-      <desktop>5</desktop>
-    </application>
+    
     <application class="Deluge-gtk" name="deluge-gtk" type="normal">
       <maximized>yes</maximized>
       <decor>no</decor>
@@ -837,5 +827,8 @@
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-  </applications>
+  <application class="Controller.py" name="Controller.py" role="main" type="normal"><desktop>5</desktop><fullscreen>default</fullscreen><decor>default</decor><maximized>default</maximized></application>
+
+<application class="Controller.py" name="Controller.py" role="chat" type="normal"><desktop>5</desktop></application>
+</applications>
 </openbox_config>

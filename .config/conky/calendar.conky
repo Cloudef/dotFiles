@@ -41,10 +41,10 @@ override_utf8_locale yes
 
 minimum_size 280 85
 maximum_width 280
-maximum_height 85
+maximum_height 145
 
 gap_x 5
-gap_y 133
+gap_y 130
 
 draw_shades no
 draw_outline no
@@ -54,4 +54,4 @@ default_shade_color ccc
 
 TEXT
 ${font zekton:size=23}${color 1793d1}${voffset 20}${time %h}
-${voffset -80}${offset 95}${color ccc}${font monospace:size=10}${execpi 3600 cal -s | sed '1d' | sed '/^ *$/d' | sed -r '0,/./s/^(.{0})(.{20})/\1${color 1793d1}\2${color ccc}/' | sed 's/\<'"$(date +%-d)"'\>/${color 1793d1}&${color ccc}/'}
+${voffset -20}${offset 95}${color ccc}${font monospace:size=10}${execpi 3600 cal -s | sed '1d' | sed '/^ *$/d' | sed -r '0,/./s/^(.{0})(.{20})/\1${color 1793d1}\2${color ccc}/' | sed 's/\<'"$(date +%-d)"'\>/${color 1793d1}&${color ccc}/'}

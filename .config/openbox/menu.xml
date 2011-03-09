@@ -266,13 +266,6 @@
 					</execute>
 				</action>
 			</item>
-			<item label="GrindFantasia">
-				<action name="Execute">
-					<execute>
-						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/AeriaGames/GrandFantasia' 'Launcher.exe'
-					</execute>
-				</action>
-			</item>
 		</menu>
 		<menu id="6" label="Grafiikka">
 			<separator label="Grafiikka"/>
@@ -448,7 +441,7 @@
 			<item label="Paketinhallinta">
 				<action name="Execute">
 					<execute>
-						gpk-application
+						gksudo wakka
 					</execute>
 				</action>
 			</item>

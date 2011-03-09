@@ -55,7 +55,7 @@ liferea &
 # Deluge
 deluge &
 
-# Emesene
+# MSN
 emesene &
 
 # Urxvt
@@ -74,4 +74,4 @@ kupfer &
 alsactl restore &
 
 # Cow notify
-cow-notify &
+(cow-notify &> cow-notify.log) &

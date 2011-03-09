@@ -9,7 +9,8 @@ alias egrep='egrep --color=auto'
 # Ohjelma aliakset
 alias ai="packer --noconfirm"
 alias au="packer -Syu --noconfirm"
-alias ar="sudo pacman -R"
+alias ar="sudo pacman-color -R"
+alias ac="pacman-color -Q -t -d | awk \"{ print \$1 }\" | xargs --interactive --no-run-if-empty sudo pacman-color -R --noconfirm"
 
 alias hijirisay="xcowsay --image /media/Storage/Kuvat/ChibiHijiri.png"
 

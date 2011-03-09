@@ -32,10 +32,11 @@ CONKYDIR="$HOME/.config/conky"
 COVER="$CONKYDIR/conkyCover.png"
 
 if [ ! "$ALBUM" = "$LALBUM" ]; then
-	CURCOVER="`find ${ARTCACHE} -name \"${ALBUM}.jpg\" | head -n 1`"
+	FALBUM="`echo \"${ALBUM}\" | sed \"s/\\//_/g\"`" # Convert all '/' to '_'
+	CURCOVER="`find ${ARTCACHE} -name \"${FALBUM}.jpg\" | head -n 1`"
+	echo $FALBUM
 	if [ ! -f "$CURCOVER" ]; then
-	    convert $CONKYDIR/Vinyl/base.png "$COVER" -geometry +4+3
-	    #-geometry +0+0 -composite "$COVER"
+	    cp $CONKYDIR/Vinyl/base.png "$COVER"
 	else
 	    cp "$CURCOVER" "$COVER"
     
@@ -54,7 +55,7 @@ if [ ! "$ALBUM" = "$LALBUM" ]; then
 			convert "$COVER" -crop 86x86+86+0 +repage "$COVER"
 		fi
 	    fi
-	    convert $CONKYDIR/Vinyl/base.png "$COVER" -geometry +4+3
+	    # convert $CONKYDIR/Vinyl/base.png "$COVER" -geometry +4+3
 	    # -composite $CONKYDIR/Vinyl/top.png -geometry +0+0 -composite "$COVER"
 	fi
 fi

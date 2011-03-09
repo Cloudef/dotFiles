@@ -18,6 +18,8 @@ settings_table = {
         name='time',
         -- "arg" is the argument to the stat type, e.g. if in Conky you would write ${cpu cpu0}, 'cpu0' would be the argument. If you would not use an argument in the Conky variable, use ''.
         arg='%H',
+	-- "max" maximum value
+	max=24,
         -- "bg_colour" is the colour of the base ring.
         bg_colour=0xCDCDC1,
         -- "bg_alpha" is the alpha value of the base ring.
@@ -36,6 +38,7 @@ settings_table = {
     {
         name='time',
         arg='%M',
+	max=60,
         bg_colour=0xCDCDC1,
         bg_alpha=0.5,
         fg_colour=0x1E90FF,
@@ -47,6 +50,7 @@ settings_table = {
     {
         name='time',
         arg='%S',
+	max=60,
         bg_colour=0xCDCDC1,
         bg_alpha=0.2,
         fg_colour=0x1E90FF,
@@ -72,7 +76,7 @@ function draw_ring(t, pt)
     local xc, yc, ring_r, ring_w = pt['x'], pt['y'], pt['radius'], pt['thickness']
     local bgc, bga, fgc, fga=pt['bg_colour'], pt['bg_alpha'], pt['fg_colour'], pt['fg_alpha']
 
-    local t_arc=2*t*math.pi/100
+    local t_arc=2*t*math.pi/(pt['max']-1)
 
     -- Draw background ring
 

@@ -165,6 +165,11 @@ function mvf() {
 	mv "$@" && goto "$_"; 
 }
 
+# VDPAU play
+function vplay() {
+	mplayer -vo vdpau -vc ffh264vdpau "$1"
+}
+
 ## services handling
 function start() {
 	for arg in $@
@@ -336,6 +341,10 @@ japantime() {
 finlandtime() {
 	sudo cp /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
 	sudo ntpdate ntp1.funet.fi
+}
+
+todo() {
+	echo $@ >> ~/.todo
 }
 
 # vim: nospell
