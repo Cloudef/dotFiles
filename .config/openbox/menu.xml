@@ -7,7 +7,7 @@
 		<item label="Koti">
 			<action name="Execute">
 				<execute>
-					thunar ~
+					pcmanfm ~
 				</execute>
 			</action>
 		</item>

@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>40</strength>
@@ -39,7 +40,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Nova-Blue</name>
+    <name>arch.blue</name>
     <titleLayout>LIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -54,7 +55,7 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>Zekton</name>
+      <name>Waiting for the Sunrise Light</name>
       <size>7</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -63,7 +64,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>Zekton</name>
+      <name>Waiting for the Sunrise Light</name>
       <size>7</size>
       <!-- font size in points -->
       <weight>Normal</weight>
@@ -182,7 +183,7 @@
     </keybind>
     <keybind key="W-v">
       <action name="Execute">
-        <command>sh &quot;/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh&quot;</command>
+        <command>sh "/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh"</command>
       </action>
     </keybind>
     <keybind key="C-space">
@@ -217,7 +218,7 @@
     </keybind>
     <keybind key="XF86Favorites">
       <action name="Execute">
-        <command>sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;</command>
+        <command>sh ~/.config/openbox/urxvtc -name "Arch Linux"</command>
       </action>
     </keybind>
     <keybind key="XF86Search">
@@ -810,13 +811,11 @@
       <maximized>yes</maximized>
       <decor>no</decor>
     </application>
-    
     <application class="URxvt" name="IRSSI" type="normal">
       <desktop>2</desktop>
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    
     <application class="Deluge-gtk" name="deluge-gtk" type="normal">
       <maximized>yes</maximized>
       <decor>no</decor>
@@ -827,8 +826,14 @@
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-  <application class="Controller.py" name="Controller.py" role="main" type="normal"><desktop>5</desktop><fullscreen>default</fullscreen><decor>default</decor><maximized>default</maximized></application>
-
-<application class="Controller.py" name="Controller.py" role="chat" type="normal"><desktop>5</desktop></application>
-</applications>
+    <application class="Controller.py" name="Controller.py" role="main" type="normal">
+      <desktop>5</desktop>
+      <fullscreen>default</fullscreen>
+      <decor>default</decor>
+      <maximized>default</maximized>
+    </application>
+    <application class="Controller.py" name="Controller.py" role="chat" type="normal">
+      <desktop>5</desktop>
+    </application>
+  </applications>
 </openbox_config>

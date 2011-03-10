@@ -23,6 +23,7 @@
     <property name="height_request">18</property>
     <property name="default_height">18</property>
     <property name="type_hint">desktop</property>
+    <property name="opacity">0.75</property>
     <property name="edge">bottom</property>
     <child>
       <object class="GtkHBox" id="Container">

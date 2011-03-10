@@ -86,7 +86,7 @@ URxvt*font:             xft:erusfont:pixelsize=9
 
 URxvt*depth:32
 URxvt*dynamicColors:on
-URxvt*background:rgba:ffff/ffff/ffff/dddd
+URxvt*background:rgba:dddd/dddd/dddd/dddd
 !URxvt*transparent:true
 
 !! when transparent is true
