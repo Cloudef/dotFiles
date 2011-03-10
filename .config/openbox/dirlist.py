@@ -32,7 +32,7 @@ def gen_menu(dirs, files):
         print('  <item label="' + thisdir +'">')
 	print('		<action name="execute">')
 	print('			<execute>')
-	print('				thunar "' + curpath + '/' + thisdir + '"')
+	print('				pcmanfm "' + curpath + '/' + thisdir + '"')
 	print('			</execute>')	
 	print('		</action>')
 	print('  </item>')
