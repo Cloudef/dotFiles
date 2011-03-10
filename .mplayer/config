@@ -1,0 +1,37 @@
+# MPlayer
+
+vo=vdpau,xv,
+vc=ffh264vdpau,ffmpeg12vdpau,ffvc1vdpau,ffwmv3vdpau,
+ao=alsa
+
+alang=Japanese,jpn,ja
+slang=English,eng,en
+
+# Ajust volume differences.
+a52drc=1
+
+# Fix A/V sync problems.
+mc=0.2
+autosync=30
+
+really-quiet="1" # Less output
+
+double="yes" # Double buffering
+framedrop="1" # Frame dropping
+hardframedrop="0" # Disable hard frame dropping
+monitoraspect="16:9" # Aspect ratio
+
+# Normal subs
+fontconfig = 1
+ffactor="10" # Black outline
+subfont-text-scale="2.7" # Font scale
+subfont-blur="1" # Slight blur
+subpos="90" # Raise subs
+spuaa=2 # Antialias
+
+# Enable stylized subtitles
+ass=yes
+embeddedfonts=yes
+
+# Post-processing
+autoq=100

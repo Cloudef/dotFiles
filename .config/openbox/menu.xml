@@ -7,7 +7,7 @@
 		<item label="Koti">
 			<action name="Execute">
 				<execute>
-					pcmanfm ~
+					pcmanfm --no-desktop
 				</execute>
 			</action>
 		</item>
