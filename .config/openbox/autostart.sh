@@ -73,5 +73,8 @@ kupfer &
 # Alsa settings back
 alsactl restore &
 
+# Hatsune Miku
+macopix .macopix/Miku_by_Kurobane.mcpx &
+
 # Cow notify
-(cow-notify &> cow-notify.log) &
+(sleep 30 && cow-notify) &

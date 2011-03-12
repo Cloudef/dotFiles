@@ -66,13 +66,6 @@
 		</menu>
 		<menu id="1" label="Ohjelmointi">
 			<separator label="Ohjelmointi"/>
-			<item label="Code::Blocks IDE">
-				<action name="Execute">
-					<execute>
-						codeblocks
-					</execute>
-				</action>
-			</item>
 			<item label="CMake">
 				<action name="Execute">
 					<execute>
