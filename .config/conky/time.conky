@@ -5,7 +5,7 @@ background no
 use_xft yes
 
 # Xft font when Xft is enabled
-xftfont erus:size=22
+xftfont aller:size=22
 
 # Text alpha when using Xft
 xftalpha 1.0
@@ -58,6 +58,6 @@ lua_load /home/jari/.config/conky/rings.lua
 lua_draw_hook_pre ring_stats
 
 TEXT
-${voffset 95}${color #ccc}${alignc}${offset -5}${time %H:%M:%S}
+${voffset 97}${color #ccc}${alignc}${offset -5}${time %H:%M:%S}
 ${voffset 85}${color 1793d1}${font aller:size=12:bold}TO-DO
 ${color ccc}${font aller:size=8:bold}${execi 15 cat ~/.todo}

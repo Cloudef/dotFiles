@@ -24,8 +24,8 @@ sd_y=1
 round=FALSE
 
 [Balloon]
-text_x=1
-text_y=1
+text_x=3
+text_y=3
 border=1
 position=0
 font=Aller 8
@@ -275,9 +275,10 @@ border_b=65535
 bg_r=65535
 bg_g=65535
 bg_b=65535
-border_r=65535
-border_g=65535
-border_b=65535
+border_r=5911
+border_g=37779
+border_b=53713
+border_p=6682
 
 [Alpha]
 main=100
