@@ -35,3 +35,6 @@ embeddedfonts=yes
 
 # Post-processing
 autoq=100
+
+# Num threads
+threads=4

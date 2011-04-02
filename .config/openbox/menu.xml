@@ -7,7 +7,7 @@
 		<item label="Koti">
 			<action name="Execute">
 				<execute>
-					pcmanfm --no-desktop
+					thunar ~
 				</execute>
 			</action>
 		</item>
@@ -241,7 +241,14 @@
 			<item label="Phantasy Star Universe">
 				<action name="Execute">
 					<execute>
-						env WINEDEBUG=-all xwine '/home/jari/.wine/drive_c/SEGA/PHANTASY STAR UNIVERSE Illuminus/' 'PsuIlluminus.exe'
+						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/SEGA/PHANTASY STAR UNIVERSE Illuminus/' 'PsuIlluminus.exe'
+					</execute>
+				</action>
+			</item>
+			<item label="Dragon Age 2">
+				<action name="Execute">
+					<execute>
+						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/Ohjelmatiedostot/Dragon Age 2/bin_ship' 'DragonAge2.exe'
 					</execute>
 				</action>
 			</item>
@@ -249,6 +256,13 @@
 				<action name="Execute">
 					<execute>
 						env WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/osu!' 'osu!.exe'
+					</execute>
+				</action>
+			</item>
+			<item label="Sprial Knights">
+				<action name="Execute">
+					<execute>
+						sh ~/.getdown/spiral/runGame.sh
 					</execute>
 				</action>
 			</item>

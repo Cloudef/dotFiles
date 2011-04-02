@@ -12,8 +12,6 @@ alias au="packer -Syu --noconfirm"
 alias ar="sudo pacman-color -R"
 alias ac="pacman-color -Q -t -d | awk \"{ print \$1 }\" | xargs --interactive --no-run-if-empty sudo pacman-color -R --noconfirm"
 
-alias hijirisay="xcowsay --image /media/Storage/Kuvat/ChibiHijiri.png"
-
 # Scripti aliakset
 alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'
 alias extip='echo $(curl -s http://www.whatismyip.com/automation/n09230945.asp)'

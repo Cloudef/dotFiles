@@ -117,7 +117,7 @@ def get_openbox_pipe_menu(lang, forecast_information, current_conditions, foreca
     output += '<item label="%s: %s" />' % ( tt['weather'], current_conditions['condition'])
     output += '<item label="%s: %s %s" />' % (tt['temp'], current_conditions[temp_var], temp_unit)
     output += '<item label="%s" />' % (current_conditions['humidity'])
-    output += '<item label="%s" />' % (current_conditions['wind_condition'])
+    # output += '<item label="%s" />' % (current_conditions['wind_condition'])
     for forecast in forecasts:
         output += '\n<separator label="%s: %s" />' % (tt['forecast'], forecast['day_of_week'])
         output += '<item label="%s: %s" />' % (tt['weather'], forecast['condition'])

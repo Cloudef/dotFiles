@@ -53,5 +53,4 @@ draw_graph_borders no
 default_shade_color ccc
 
 TEXT
-${font zekton:size=18}${color 1793d1}${voffset 80}${time %h}
-${voffset -80}${offset 95}${color ccc}${font monospace:size=10}${execpi 3600 cal -s | sed '1d' | sed '/^ *$/d' | sed -r '0,/./s/^(.{0})(.{20})/\1${color 1793d1}\2${color ccc}/' | sed 's/\<'"$(date +%-d)"'\>/${color 1793d1}&${color ccc}/'}
+${font zekton:size=18}${color 1793d1}${voffset 80}${time %h %d %A}

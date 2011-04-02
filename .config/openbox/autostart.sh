@@ -40,6 +40,9 @@ gtk-redshift -l 62:22 &
 # Panel
 gtk2panel -c ~/.config/gtk2panel/default.xml &
 
+# Unclutter
+unclutter -idle 5 -jitter 5 &
+
 # Mixer
 volti &
 
@@ -74,7 +77,7 @@ kupfer &
 alsactl restore &
 
 # Hatsune Miku
-macopix --sockmsg .macopix/Miku_by_Kurobane.mcpx &
+(sleep 20 && macopix --sockmsg .macopix/Miku_by_Kurobane.mcpx) &
 
 # Cow notify
-(sleep 30 && cow-notify) &
+(sleep 50 && cow-notify) &
