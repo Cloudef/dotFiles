@@ -2,7 +2,7 @@
 
 wid=$(xdotool search --classname urxvtq)
 if [ -z "$wid" ]; then
-  sh ~/.config/openbox/urxvtc -name urxvtq -geometry 240x26+0+18 -borderLess -depth 32
+  sh ~/.config/openbox/urxvtc -name urxvtq -geometry 240x26+0+125 -borderLess -depth 32
   wid=$(xdotool search --classname urxvtq | head -1)
   xdotool windowfocus $wid
 else

@@ -46,7 +46,7 @@ minimum_size 240 140
 maximum_width 240
 
 gap_x 5
-gap_y 35
+gap_y 155
 
 draw_shades no
 draw_outline no

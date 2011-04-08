@@ -7,8 +7,8 @@ default_color=TRUE
 move=0
 xoff=20
 yoff=68
-fix_x=1378
-fix_y=819
+fix_x=2653
+fix_y=943
 
 [Clock]
 mode=0

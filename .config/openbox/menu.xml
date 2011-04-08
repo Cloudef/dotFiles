@@ -224,45 +224,31 @@
 				</item>
 			</menu>
 			<separator/>
-			<item label="Guilty Gear">
-				<action name="Execute">
-					<execute>
-						env WINEDEBUG=-all xwine '/home/jari/.wine/drive_c/Program Files/GUILTY GEAR XX ＃RELOAD/' 'ggxx.exe'
-					</execute>
-				</action>
-			</item>
-			<item label="Steam">
-				<action name="Execute">
-					<execute>
-						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/Program Files/Steam/' 'steam.exe'
-					</execute>
-				</action>
-			</item>
-			<item label="Phantasy Star Universe">
-				<action name="Execute">
-					<execute>
-						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/SEGA/PHANTASY STAR UNIVERSE Illuminus/' 'PsuIlluminus.exe'
-					</execute>
-				</action>
-			</item>
-			<item label="Dragon Age 2">
-				<action name="Execute">
-					<execute>
-						env WINEDEBUG=-all pikakuvake '/home/jari/.wine/drive_c/Ohjelmatiedostot/Dragon Age 2/bin_ship' 'DragonAge2.exe'
-					</execute>
-				</action>
-			</item>
-			<item label="Osu!">
-				<action name="Execute">
-					<execute>
-						env WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/osu!' 'osu!.exe'
-					</execute>
-				</action>
-			</item>
 			<item label="Sprial Knights">
 				<action name="Execute">
 					<execute>
 						sh ~/.getdown/spiral/runGame.sh
+					</execute>
+				</action>
+			</item>
+			<item label="Ys Origins">
+				<action name="Execute">
+					<execute>
+						env WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Ys Origins' 'origins.exe'
+					</execute>
+				</action>
+			</item>
+			<item label="Ys The Ark of Napishtim">
+				<action name="Execute">
+					<execute>
+						env WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Ys The Ark of Napishtim' 'ys6_win_dx9.exe'
+					</execute>
+				</action>
+			</item>
+			<item label="Ys The Oath in Felghana">
+				<action name="Execute">
+					<execute>
+						env WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Ys The Oath in Felghana' 'ysf_win_dx9.exe'
 					</execute>
 				</action>
 			</item>
