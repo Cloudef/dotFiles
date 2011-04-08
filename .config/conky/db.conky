@@ -43,7 +43,7 @@ override_utf8_locale yes
 minimum_size 325 100
 
 alignment bl
-gap_x 4
+gap_x 1450
 gap_y 20
 
 default_color black

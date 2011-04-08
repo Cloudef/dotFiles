@@ -28,8 +28,8 @@ own_window_type		override
 own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
 
 # Text alignment, other possible values are commented
-alignment top_left
-#alignment top_right
+#alignment top_left
+alignment top_right
 #alignment bottom_left
 #alignment bottom_right
 
@@ -45,8 +45,8 @@ override_utf8_locale yes
 minimum_size 240 140
 maximum_width 240
 
-gap_x 5
-gap_y 155
+gap_x 10
+gap_y 35
 
 draw_shades no
 draw_outline no
@@ -58,6 +58,6 @@ lua_load /home/jari/.config/conky/rings.lua
 lua_draw_hook_pre ring_stats
 
 TEXT
-${voffset 97}${color #ccc}${alignc}${offset -5}${time %H:%M:%S}
+${voffset 97}${color 1793d1}${alignc}${offset -5}${time %H:%M:%S}
 ${voffset 85}${color 1793d1}${font aller:size=12:bold}TO-DO
-${color ccc}${font aller:size=8:bold}${execi 15 cat ~/.todo}
+${color 1793d1}${font aller:size=8:bold}${execi 15 cat ~/.todo}
