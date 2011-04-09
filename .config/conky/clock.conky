@@ -1,0 +1,49 @@
+# -- Conky settings -- #
+background no
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+text_buffer_size 2048
+imlib_cache_size 0
+
+# -- Window specifications -- #
+
+own_window		yes
+own_window_transparent  yes
+own_window_type		override
+# own_window_type	desktop
+own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
+
+border_inner_margin 0
+border_outer_margin 0
+
+minimum_size 400 600
+
+alignment bottom_right
+gap_x -200
+gap_y -250
+
+# -- Graphics settings -- #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+uppercase no
+
+default_color  FFFFFF
+
+# -- Lua Load -- #
+lua_load ~/.config/conky/rings.lua
+lua_draw_hook_pre clock_rings
+
+TEXT
+${voffset 245}${offset 80}${time %H.%M}
+${offset 40}${execi 35 pacman -Qu | wc -l} Updates
