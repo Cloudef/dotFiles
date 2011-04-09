@@ -21,14 +21,9 @@ own_window_type		override
 # own_window_type	desktop
 own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
 
-border_inner_margin 0
-border_outer_margin 0
-
-minimum_size 400 600
-
 alignment bottom_right
-gap_x -200
-gap_y -250
+gap_x -90
+gap_y 100
 
 # -- Graphics settings -- #
 draw_shades no
@@ -40,6 +35,8 @@ uppercase no
 
 default_color  FFFFFF
 
+minimum_size 325 100
+
 # -- Lua Load -- #
 lua_load ~/.config/conky/rings.lua
 lua_draw_hook_pre clock_rings
@@ -47,3 +44,4 @@ lua_draw_hook_pre clock_rings
 TEXT
 ${voffset 245}${offset 80}${time %H.%M}
 ${offset 40}${execi 35 pacman -Qu | wc -l} Updates
+${mem} ${execi 5 sensors | grep "Core 0" | cut -c16-19}c ${execi 5 nvidia-settings -query GPUCoreTemp | grep Attribute | cut -c39-40}.0c

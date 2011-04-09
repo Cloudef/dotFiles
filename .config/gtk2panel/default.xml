@@ -124,7 +124,10 @@
             <property name="related_action">Orage</property>
             <property name="relief">none</property>
             <child>
-              <placeholder/>
+              <object class="GtkFixed" id="fixed2">
+                <property name="width_request">24</property>
+                <property name="visible">True</property>
+              </object>
             </child>
           </object>
           <packing>
