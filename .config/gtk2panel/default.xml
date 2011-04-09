@@ -124,15 +124,7 @@
             <property name="related_action">Orage</property>
             <property name="relief">none</property>
             <child>
-              <object class="GpwStrftime" id="statusTime">
-                <property name="height_request">18</property>
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">&lt;span weight="heavy" size="large"&gt;03:59&lt;/span&gt;</property>
-                <property name="use_markup">True</property>
-                <property name="single_line_mode">True</property>
-                <property name="format">&lt;span weight="heavy" size="large"&gt;%H:%M&lt;/span&gt;</property>
-                <property name="period">60000</property>
-              </object>
+              <placeholder/>
             </child>
           </object>
           <packing>

@@ -3,7 +3,7 @@
 
 !URxvt*background: rgba:0000/0000/0000/c000
 *foreground: #be5037
-*background: #be5037
+*background: #000
 
 ! Black
 *color0: #222222

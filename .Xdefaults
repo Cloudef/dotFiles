@@ -82,11 +82,11 @@ URxvt*font:             xft:erusfont:pixelsize=9
 !URxvt Color Settings {{{
 
 ! Color Scheme
-#include "/home/jari/.color_schemes/c00kiez"
+#include "/home/jari/.color_schemes/Longbow"
 
 URxvt*depth:32
 URxvt*dynamicColors:on
-URxvt*background:rgba:1111/0000/0000/c000
+URxvt*background:rgba:0000/0000/0000/cc00
 eURxvt*transparent:true
 
 !! when transparent is true
