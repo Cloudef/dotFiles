@@ -28,7 +28,7 @@
     <center>yes</center>
     <!-- whether to place windows in the center of the free area found or
        the top left corner -->
-    <monitor>Active</monitor>
+    <monitor>Mouse</monitor>
     <!-- with Smart placement on a multi-monitor system, try to place new windows
        on: 'Any' - any monitor, 'Mouse' - where the mouse is, 'Active' - where
        the active window is -->
@@ -146,7 +146,7 @@
      Many programs reserve space automatically, but you can use this in other
      cases. -->
   <margins>
-    <top>21</top>
+    <top>24</top>
     <bottom>18</bottom>
     <left>0</left>
     <right>0</right>
@@ -338,7 +338,12 @@
     </keybind>
     <keybind key="W-F12">
       <action name="ToggleMaximizeFull"/>
-      <action name="ToggleDecorations"/>
+    </keybind>
+    <keybind key="W-s">
+      <action name="ToggleOmnipresent"/>
+    </keybind>
+    <keybind key="W-q">
+      <action name="Close"/>
     </keybind>
   </keyboard>
   <mouse>
@@ -784,6 +789,10 @@
 
   # end of the example
 -->
+    <!-- match all windows, and remove their decorations -->
+    <application class="*">
+      <decor>no</decor>
+    </application>
     <application name="stalonetray">
       <decor>yes</decor>
       <desktop>all</desktop>

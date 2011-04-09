@@ -53,4 +53,4 @@ draw_graph_borders no
 default_shade_color ccc
 
 TEXT
-${font zekton:size=18}${color 1793d1}${voffset 80}${time %h %d %A}
+${font zekton:size=18}${color be5037}${voffset 80}${time %h %d %A}

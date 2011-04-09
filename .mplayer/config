@@ -1,7 +1,8 @@
 # MPlayer
 
-vo=vdpau,xv,
-vc=ffh264vdpau,ffmpeg12vdpau,ffvc1vdpau,ffwmv3vdpau,
+vo=x11
+#vo=vdpau,xv,
+#vc=ffh264vdpau,ffmpeg12vdpau,ffvc1vdpau,ffwmv3vdpau,
 ao=alsa
 
 alang=Japanese,jpn,ja
@@ -14,7 +15,7 @@ a52drc=1
 mc=0.2
 autosync=30
 
-really-quiet="1" # Less output
+#really-quiet="1" # Less output
 
 double="yes" # Double buffering
 framedrop="1" # Frame dropping
@@ -22,7 +23,7 @@ hardframedrop="0" # Disable hard frame dropping
 monitoraspect="16:9" # Aspect ratio
 
 # Normal subs
-fontconfig = 1
+fontconfig=1
 ffactor="10" # Black outline
 subfont-text-scale="2.7" # Font scale
 subfont-blur="1" # Slight blur
@@ -38,3 +39,6 @@ autoq=100
 
 # Num threads
 threads=4
+
+# Disable lirc
+nolirc=yes

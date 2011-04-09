@@ -126,13 +126,13 @@ menu.title.text.color: #CCC
 menu.title.text.justify: Left
 
 menu.items.bg: Flat Solid
-menu.items.bg.color: #fbfbfb
-menu.items.text.color: #1793d1
+menu.items.bg.color: #ece9e2
+menu.items.text.color: #000
 menu.items.disabled.text.color: #c3c3c3
 
 menu.items.active.bg: Flat Gradient Vertical
-menu.items.active.bg.color: #1793d1
-menu.items.active.bg.colorTo: #1793d1
+menu.items.active.bg.color: #333
+menu.items.active.bg.colorTo: #333
 menu.items.active.text.color: #fbfbfb
 menu.items.active.disabled.text.color: #c3c3c3
 

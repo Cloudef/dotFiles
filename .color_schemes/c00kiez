@@ -2,8 +2,8 @@
 !
 
 !URxvt*background: rgba:0000/0000/0000/c000
-*foreground: #5E7175
-*background: #1C1C1C
+*foreground: #be5037
+*background: #be5037
 
 ! Black
 *color0: #222222
