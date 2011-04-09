@@ -47,7 +47,7 @@ function reduce_path() {
 
 # the git prompt 
 function git_prompt() {
-	local pre="${BLACK}[branch: ${PURPLE}"
+	local pre="${WHITE}[branch: ${PURPLE}"
 	local suf="${BLACK}]${NORMAL}"
 	local ref="$(git symbolic-ref HEAD 2> /dev/null)"
 	[ -n "$ref" ] || return

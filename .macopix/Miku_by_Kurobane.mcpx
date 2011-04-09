@@ -7,8 +7,8 @@ default_color=TRUE
 move=0
 xoff=20
 yoff=68
-fix_x=2652
-fix_y=944
+fix_x=2659
+fix_y=942
 
 [Clock]
 mode=0
@@ -272,13 +272,16 @@ border_g=65535
 border_b=65535
 
 [BalloonColor]
-bg_r=65535
-bg_g=65535
-bg_b=65535
+bg_r=21669
+bg_g=21669
+bg_b=21669
 border_r=5911
 border_g=37779
 border_b=53713
 border_p=6682
+text_r=48830
+text_g=20560
+text_b=14135
 
 [Alpha]
 main=100
