@@ -46,3 +46,4 @@ ${voffset 245}${offset 80}${time %H.%M}
 ${offset 40}${execi 35 pacman -Qu | wc -l} Updates
 ${mem} ${execi 5 sensors | grep "Core 0" | cut -c16-19}c ${execi 5 nvidia-settings -query GPUCoreTemp | grep Attribute | cut -c39-40}.0c
 ${offset 40}${downspeedf}KiB ${upspeedf}KiB
+${offset 100}${addr eth0}
