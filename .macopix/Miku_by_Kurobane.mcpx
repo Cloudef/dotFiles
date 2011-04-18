@@ -272,9 +272,9 @@ border_g=65535
 border_b=65535
 
 [BalloonColor]
-bg_r=21669
-bg_g=21669
-bg_b=21669
+bg_r=7399
+bg_g=7399
+bg_b=7399
 border_r=5911
 border_g=37779
 border_b=53713

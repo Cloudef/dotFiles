@@ -1,9 +1,12 @@
 # MPlayer
 
-vo=x11
+vo=xv
 #vo=vdpau,xv,
 #vc=ffh264vdpau,ffmpeg12vdpau,ffvc1vdpau,ffwmv3vdpau,
 ao=alsa
+
+# Software scaling
+# zoom=yes
 
 alang=Japanese,jpn,ja
 slang=English,eng,en
@@ -20,7 +23,7 @@ autosync=30
 double="yes" # Double buffering
 framedrop="1" # Frame dropping
 hardframedrop="0" # Disable hard frame dropping
-monitoraspect="16:9" # Aspect ratio
+#monitoraspect="16:9" # Aspect ratio
 
 # Normal subs
 fontconfig=1
@@ -42,3 +45,6 @@ threads=4
 
 # Disable lirc
 nolirc=yes
+
+# Do not keep aspect ratio
+nokeepaspect=yes

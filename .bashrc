@@ -24,6 +24,8 @@ fi
 ## Put your fun stuff here ##
 #############################
 
+xseticon -id $WINDOWID /usr/share/pixmaps/openbox.png
+
 # tty color theme
 if [ "$TERM" = "linux" ]; then
 	## set the theme name

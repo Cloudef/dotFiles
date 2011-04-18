@@ -343,8 +343,47 @@ finlandtime() {
 	sudo ntpdate ntp1.funet.fi
 }
 
+# Useful MKV functions
+
+# Remux to single audio
+remux() {
+	if [ ! "$1" ] || [ ! "$2" ] || [ ! "$3" ] || [ ! "$4" ]; then
+		echo "Usage : remux [output] [input] [audio track to keep] [subtible track to keep]"
+		return
+	fi
+	mkvmerge -o "$1" -d 1 --audio-tracks "$3" --subtitle-tracks "$4" "$2"
+}
+
+# Batch remux on current directory
+bremux() {
+	FILTER="*.mkv"
+	if [ ! "$1" ] || [ ! "$2" ]; then
+		echo "Usage : bremux [audio track] [subtible track] [filter]"
+		return
+	fi
+	if [ "$3" ]; then
+		FILTER="$3"
+	fi
+	for i in $FILTER
+	do
+		remux "[REMUX]$i" "$i" "$1" "$2"
+	done
+}
+
+# Print MKV info
+mkv() {
+	if [ ! "$1" ]; then
+		echo "Usage : mkv [file]"
+		return
+	fi
+	mkvmerge -i "$@"
+}
+
 todo() {
-	echo $@ >> ~/.todo
+	if [ ! "$1" ]; then
+		return
+	fi
+	echo "$@" >> ~/.todo
 }
 
 # vim: nospell
