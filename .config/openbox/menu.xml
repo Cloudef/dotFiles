@@ -521,13 +521,6 @@
 					</execute>
 				</action>
 			</item>
-			<item label="Paaneli">
-				<action name="Execute">
-					<execute>
-						env GLADE_CATALOG_PATH=.config/gtk2panel/ glade-3 .config/gtk2panel/default.xml
-					</execute>
-				</action>
-			</item>
 			<separator/>
 			<item label="OB Reset">
 				<action name="Reconfigure"/>

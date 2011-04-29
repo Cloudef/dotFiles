@@ -28,6 +28,10 @@ if which /usr/lib/openbox/xdg-autostart >/dev/null 2>&1; then
   /usr/lib/openbox/xdg-autostart $DESKTOP_ENV
 fi
 
+# Turn off dmps and screen blanking
+xset -dpms
+xset s off
+
 # Set wallpapers
 nitrogen --restore
 
@@ -38,7 +42,7 @@ cairo-compmgr &
 gtk-redshift -l 62:22 &
 
 # Panel
-gtk2panel -c ~/.config/gtk2panel/default.xml &
+xfce4-panel &
 
 # Unclutter
 unclutter -idle 5 -jitter 5 &

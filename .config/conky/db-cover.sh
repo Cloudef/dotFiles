@@ -41,8 +41,6 @@ if [ ! "$ALBUM" = "$LALBUM" ]; then
 	    cp "$CURCOVER" "$COVER"
     
 	    ASPECT=$((($(identify -format %w "$COVER") - $(identify -format %h "$COVER"))/86))
-	    
-	    echo "$ASPECT" >> ~/.config/deadbeef/nowPlaying
 
 	    if [ $ASPECT -lt -30 ]; then
 		convert "$COVER"  -thumbnail 86x300 "$COVER"
