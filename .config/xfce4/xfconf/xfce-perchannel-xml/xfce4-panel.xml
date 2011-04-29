@@ -22,6 +22,7 @@
         <value type="int" value="5"/>
         <value type="int" value="7"/>
         <value type="int" value="1"/>
+        <value type="int" value="2"/>
       </property>
       <property name="position-locked" type="bool" value="true"/>
       <property name="background-alpha" type="uint" value="100"/>
@@ -48,5 +49,6 @@
         <value type="string" value="13040940942.desktop"/>
       </property>
     </property>
+    <property name="plugin-2" type="string" value="clock"/>
   </property>
 </channel>

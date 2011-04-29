@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>40</strength>
@@ -109,13 +109,12 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>8</number>
+    <number>7</number>
     <firstdesk>1</firstdesk>
     <names>
       <name>NET</name>
       <name>IRC</name>
       <name>DEV</name>
-      <name>ANI</name>
       <name>IM</name>
       <name>RSS</name>
       <name>TOR</name>
@@ -183,7 +182,7 @@
     </keybind>
     <keybind key="W-v">
       <action name="Execute">
-        <command>sh "/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh"</command>
+        <command>sh &quot;/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh&quot;</command>
       </action>
     </keybind>
     <keybind key="C-space">
@@ -218,7 +217,7 @@
     </keybind>
     <keybind key="XF86Favorites">
       <action name="Execute">
-        <command>sh ~/.config/openbox/urxvtc -name "Arch Linux"</command>
+        <command>sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;</command>
       </action>
     </keybind>
     <keybind key="XF86Search">
@@ -810,13 +809,13 @@
       <decor>no</decor>
     </application>
     <application class="Deluge" name="deluge" type="normal">
-      <desktop>7</desktop>
+      <desktop>6</desktop>
       <decor>no</decor>
       <fullscreen>default</fullscreen>
       <maximized>yes</maximized>
     </application>
     <application class="Liferea" name="liferea" type="normal">
-      <desktop>6</desktop>
+      <desktop>5</desktop>
       <maximized>yes</maximized>
       <decor>no</decor>
     </application>
@@ -828,7 +827,7 @@
     <application class="Deluge-gtk" name="deluge-gtk" type="normal">
       <maximized>yes</maximized>
       <decor>no</decor>
-      <desktop>7</desktop>
+      <desktop>6</desktop>
     </application>
     <application class="Dwb" name="dwb" type="normal">
       <desktop>1</desktop>
@@ -836,13 +835,13 @@
       <maximized>yes</maximized>
     </application>
     <application class="Controller.py" name="Controller.py" role="main" type="normal">
-      <desktop>5</desktop>
+      <desktop>4</desktop>
       <fullscreen>default</fullscreen>
       <decor>default</decor>
       <maximized>default</maximized>
     </application>
     <application class="Controller.py" name="Controller.py" role="chat" type="normal">
-      <desktop>5</desktop>
+      <desktop>4</desktop>
     </application>
   </applications>
 </openbox_config>
