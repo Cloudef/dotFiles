@@ -1,2 +1,8 @@
 pixmap_path "/home/jari/.gnome-color-chooser/images/"
 
+style "gnome-color-chooser-default"
+{
+  bg[NORMAL] = "#FFFFFF"
+}
+class "GtkWidget" style "gnome-color-chooser-default"
+
