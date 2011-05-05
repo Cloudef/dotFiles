@@ -52,5 +52,9 @@ draw_borders no
 draw_graph_borders no
 default_shade_color ccc
 
+# -- Lua Load -- #
+lua_load ~/.config/conky/bg.lua
+lua_draw_hook_pre conky_draw_bg
+
 TEXT
 ${font zekton:size=18}${color be5037}${voffset 80}${time %h %d %A}

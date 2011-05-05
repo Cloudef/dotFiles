@@ -23,7 +23,7 @@ own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
 
 alignment bottom_right
 gap_x -90
-gap_y 100
+gap_y 30
 
 # -- Graphics settings -- #
 draw_shades no

@@ -1,6 +1,6 @@
 icon_size 16
 slot_size 16
-background white
+background black
 sticky true
 window_layer top
 window_type dock

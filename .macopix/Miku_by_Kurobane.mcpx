@@ -7,8 +7,8 @@ default_color=TRUE
 move=0
 xoff=20
 yoff=68
-fix_x=2666
-fix_y=942
+fix_x=2660
+fix_y=944
 
 [Clock]
 mode=0
@@ -28,7 +28,7 @@ text_x=3
 text_y=3
 border=1
 position=0
-font=Aller 9
+font=erusfont 9
 
 [Biff]
 pix-pos=1
@@ -272,9 +272,9 @@ border_g=65535
 border_b=65535
 
 [BalloonColor]
-bg_r=7399
-bg_g=7399
-bg_b=7399
+bg_r=0
+bg_g=0
+bg_b=0
 border_r=5911
 border_g=37779
 border_b=53713

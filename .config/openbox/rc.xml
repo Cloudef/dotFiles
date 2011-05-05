@@ -1,4 +1,3 @@
-<?xml version="1.0" ?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>40</strength>
@@ -173,11 +172,6 @@
     <keybind key="A-F2">
       <action name="Execute">
         <command>kupfer</command>
-      </action>
-    </keybind>
-    <keybind key="W-w">
-      <action name="Execute">
-        <command>~/.config/openbox/cwp.sh</command>
       </action>
     </keybind>
     <keybind key="W-v">

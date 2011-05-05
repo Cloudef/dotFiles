@@ -231,6 +231,13 @@
 					</execute>
 				</action>
 			</item>
+			<item label="The Last Remnant">
+				<action name="Execute">
+					<execute>
+						pikakuvake '/home/jari/.wine/drive_c/Program Files/The Last Remnant/Binaries' 'runGame.sh'
+					</execute>
+				</action>
+			</item>
 			<item label="Ys Origins">
 				<action name="Execute">
 					<execute>

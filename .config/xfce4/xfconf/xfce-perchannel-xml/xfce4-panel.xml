@@ -6,9 +6,9 @@
       <property name="position" type="string" value="p=12;x=258;y=1008"/>
       <property name="background-style" type="uint" value="1"/>
       <property name="background-color" type="array">
-        <value type="uint" value="65535"/>
-        <value type="uint" value="65535"/>
-        <value type="uint" value="65535"/>
+        <value type="uint" value="0"/>
+        <value type="uint" value="0"/>
+        <value type="uint" value="0"/>
         <value type="uint" value="65535"/>
       </property>
       <property name="horizontal" type="bool" value="true"/>
@@ -22,11 +22,13 @@
         <value type="int" value="5"/>
         <value type="int" value="7"/>
         <value type="int" value="1"/>
-        <value type="int" value="2"/>
       </property>
       <property name="position-locked" type="bool" value="true"/>
       <property name="background-alpha" type="uint" value="100"/>
       <property name="background-image" type="string" value="/media/Storage/Kuvat/Piirrustus/sensei.ora"/>
+      <property name="autohide" type="bool" value="false"/>
+      <property name="enter-opacity" type="uint" value="100"/>
+      <property name="leave-opacity" type="uint" value="100"/>
     </property>
   </property>
   <property name="plugins" type="empty">
@@ -49,6 +51,5 @@
         <value type="string" value="13040940942.desktop"/>
       </property>
     </property>
-    <property name="plugin-2" type="string" value="clock"/>
   </property>
 </channel>

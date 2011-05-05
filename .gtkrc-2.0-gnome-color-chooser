@@ -2,7 +2,17 @@ pixmap_path "/home/jari/.gnome-color-chooser/images/"
 
 style "gnome-color-chooser-default"
 {
-  bg[NORMAL] = "#FFFFFF"
+  base[NORMAL] = "#FFFFFF"
 }
 class "GtkWidget" style "gnome-color-chooser-default"
+
+style "gnome-color-chooser-scrollbar"
+{
+  engine "industrial"
+  {
+  }
+
+  GtkScrollbar::slider_width = 15
+}
+widget_class "*Scrollbar" style "gnome-color-chooser-scrollbar"
 

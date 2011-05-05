@@ -1,10 +1,10 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-gtk-theme-name="MurrinaAquaIsh"
+gtk-theme-name="ntsumi"
 gtk-icon-theme-name="ACYL_Icon_Theme_0.9.2"
-gtk-font-name="Arimo 7"
-gtk-cursor-theme-name="Ecliz"
+gtk-font-name="MonteCarlo Medium 7"
+gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_ICONS
 gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR

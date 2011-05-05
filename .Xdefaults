@@ -1,4 +1,4 @@
-Xcursor.theme: Ecliz
+Xcursor.theme: Adwaita
 
 !URxvt Settings {{{
 !URxvt*title:Arch Linux
@@ -70,7 +70,7 @@ URXvt*mouseWheelScrollPage:false
 
 !! small
 !URxvt*font:             xft:Liberation Mono:size=9
-URxvt*font:             xft:erusfont:pixelsize=9
+URxvt*font:             xft:erusfont:pixelsize=7
 
 !! other
 !URxvt*font:             xft:Droid Sans Mono:size=9
