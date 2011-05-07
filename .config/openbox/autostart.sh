@@ -74,6 +74,9 @@ smart-notifier &
 # Kupfer
 kupfer &
 
+# Tiling
+pytyle &
+
 # Conky
 ~/.config/conky/start_conky.sh &
 
