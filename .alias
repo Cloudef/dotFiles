@@ -24,3 +24,6 @@ alias touhou="cat ~/.touhou"
 alias dev="cd /media/Storage/Dev/"
 alias projekti="cd /media/Storage/Dev/Projektit/Projekti/"
 alias projektit="cd /media/Storage/Dev/projektit"
+
+# Wine
+alias ffcfg="WINEPREFIX=~/.FFXIV winecfg"

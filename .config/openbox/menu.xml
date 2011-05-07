@@ -307,13 +307,6 @@
 		</menu>
 		<menu id="7" label="Multimedia">
 			<separator label="Multimedia"/>
-			<item label="GNOME MPlayer">
-				<action name="Execute">
-					<execute>
-						gnome-mplayer
-					</execute>
-				</action>
-			</item>
 			<item label="VLC">
 				<action name="Execute">
 					<execute>

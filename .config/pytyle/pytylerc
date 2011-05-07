@@ -233,7 +233,14 @@ Config.KEYMAP = {
 #
 # Note: If you have this set and you only have one screen, it will override
 # the workarea reported by your window manager.
-Config.WORKAREA = {}
+Config.WORKAREA =	{
+			0:	{
+				'bottom': 18,
+				},
+			1:	{
+				'bottom': 18,
+				},
+			}
 
 # Pretty straight forward here. Just use the screen number as your key,
 # (starting from zero) and specify *all four* of the configuration 
