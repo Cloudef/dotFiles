@@ -1,4 +1,4 @@
-export EDITOR="medit"
+export EDITOR="vim"
 export BROWSER="opera"
 
 # c00kiemon5ter (ivan.kanak@gmail.com) ~ under c00kie License

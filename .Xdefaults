@@ -5,7 +5,7 @@ Xcursor.theme: Adwaita
 URxvt*iconName:console
 URxvt*termName:rxvt-unicode
 
-URxvt*geometry:80x12+317+307
+!URxvt*geometry:80x12+317+307
 !90x20+35+560
 !80x24+375+394 (top parallel terms)
 !80x24+317+307 (center)

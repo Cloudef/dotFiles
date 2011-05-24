@@ -12,4 +12,4 @@ uim-xim &
 export XMODIFIERS=@im='uim'
 uim-toolbar-gtk-systray &
 
-exec ck-launch-session openbox-session
+exec openbox-session

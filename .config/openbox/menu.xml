@@ -7,7 +7,7 @@
 		<item label="Koti">
 			<action name="Execute">
 				<execute>
-					thunar ~
+					sh ~/.config/openbox/urxvtc -title Ranger -name Ranger -e ranger ~
 				</execute>
 			</action>
 		</item>
@@ -66,13 +66,6 @@
 		</menu>
 		<menu id="1" label="Ohjelmointi">
 			<separator label="Ohjelmointi"/>
-			<item label="CMake">
-				<action name="Execute">
-					<execute>
-						cmake-gui
-					</execute>
-				</action>
-			</item>
 			<item label="GTK+ Editor">
 				<action name="Execute">
 					<execute>
@@ -108,13 +101,6 @@
 				<action name="Execute">
 					<execute>
 						wahcade
-					</execute>
-				</action>
-			</item>
-			<item label="ZSnes">
-				<action name="Execute">
-					<execute>
-						zsnes
 					</execute>
 				</action>
 			</item>
@@ -307,24 +293,10 @@
 		</menu>
 		<menu id="7" label="Multimedia">
 			<separator label="Multimedia"/>
-			<item label="VLC">
-				<action name="Execute">
-					<execute>
-						vlc
-					</execute>
-				</action>
-			</item>
 			<item label="DeaDBeeF">
 				<action name="Execute">
 					<execute>
 						deadbeef
-					</execute>
-				</action>
-			</item>
-			<item label="MilkyTracker">
-				<action name="Execute">
-					<execute>
-						milkytracker
 					</execute>
 				</action>
 			</item>
@@ -361,13 +333,6 @@
 		</menu>
 		<menu id="5" label="Internet">
 			<separator label="Internet"/>
-			<item label="dwb">
-				<action name="Execute">
-					<execute>
-						dwb
-					</execute>
-				</action>
-			</item>
 			<item label="Opera">
 				<action name="Execute">
 					<execute>
@@ -389,10 +354,17 @@
 					</execute>
 				</action>
 			</item>
-			<item label="Deluge">
+			<item label="RSS">
 				<action name="Execute">
 					<execute>
-						deluge-gtk
+						sh ~/.config/openbox/urxvtc -title SnowNews -name SnowNews -e snownews
+					</execute>
+				</action>
+			</item>
+			<item label="rTorrent">
+				<action name="Execute">
+					<execute>
+						sh ~/.config/openbox/urxvtc -title rTorrent -name rTorrent -e rtorrent
 					</execute>
 				</action>
 			</item>
@@ -431,13 +403,6 @@
 				</item>
 			</menu>
 			<separator label="Hallinta"/>
-			<item label="Paketinhallinta">
-				<action name="Execute">
-					<execute>
-						gksudo wakka
-					</execute>
-				</action>
-			</item>
 			<item label="Osionti">
 				<action name="Execute">
 					<execute>
@@ -456,7 +421,7 @@
 			<item label="Prosessit">
 				<action name="Execute">
 					<execute>
-						qps
+						sh ~/.config/openbox/urxvtcrto -title hTop -name hTop -e htop
 					</execute>
 				</action>
 			</item>

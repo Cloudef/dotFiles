@@ -21,7 +21,7 @@ if which start_kdeinit >/dev/null 2>&1; then
   LD_BIND_NOW=true start_kdeinit --new-startup +kcminit_startup &
 fi
 
-# Run XDG autostart things.  By default don't run anything desktop-specific
+# Run XDG autostart things.  By default anything desktop-specific
 # See xdg-autostart --help more info
 DESKTOP_ENV="OPENBOX"
 if which /usr/lib/openbox/xdg-autostart >/dev/null 2>&1; then
@@ -57,10 +57,10 @@ stalonetray &
 clipit &
 
 # Liferea
-liferea &
+urxvt -title SnowNews -name SnowNews -e snownews &
 
 # Deluge
-deluge &
+urxvt -title rTorrent -name rTorrent -e rtorrent &
 
 # MSN
 emesene &
@@ -75,7 +75,7 @@ smart-notifier &
 kupfer &
 
 # Tiling
-pytyle &
+# pytyle &
 
 # Conky
 ~/.config/conky/start_conky.sh &

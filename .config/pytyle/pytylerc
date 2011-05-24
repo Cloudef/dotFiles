@@ -101,7 +101,7 @@ Config.MISC = {
 # Note 2: If you've used XMonad, you'll feel right as rain!
 # I started on Arch with XMonad, and moved to OpenBox,
 # so naturally, the key bindings clone XMonad's.
-# 
+# ac
 Config.KEYMAP = {
                  # This will enable and tile the current *screen*.
                  # It will also re-tile when pressed. You can
@@ -116,6 +116,7 @@ Config.KEYMAP = {
                  #'Alt-Ctrl-H': 'tile.Horizontal',
                  #'Alt-Ctrl-M': 'tile.Maximal',
                  #'Alt-Ctrl-C': 'tile.Cascade',
+		 #'Alt-Ctrl-V': 'tile.Vertical',
                  
                  # This will disable and untile the current
                  # *screen*. PyTyle tries to remember the original
