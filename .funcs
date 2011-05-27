@@ -388,13 +388,21 @@ todo() {
 
 source ${HOME}/.streamkey
 streamjustin() {
-   local GEOMETRY=`xwininfo | grep 'geometry'`
-	local INRES=`echo $GEOMETRY | awk '{print $2;}' | cut -f1 -d"+"`
-   local INPOS=`echo $GEOMETRY | awk -F "+" '{print $2","$3;}'`
-   #local OUTRES="1280x800"
-   local OUTRES=${1-480x320}
-   local FPS="24"       # target FPS
-   local QUAL="ultrafast_firstpass"    # one of the many FFMPEG preset
+   local WININFO="`xwininfo`"
+	local INRESW=`echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}'`
+   local INRESH=`echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}'`
+   local INPOSX=`echo "$WININFO" | grep 'Absolute upper-left X:'  | awk '{print $4;}'`
+   local INPOSY=`echo "$WININFO" | grep 'Absolute upper-left Y:'  | awk '{print $4;}'`
+
+   local INRES="${INRESW}x${INRESH}"
+   local INPOS="${INPOSX},${INPOSY}"
+
+   local OUTRES=${1-480x320}           # You can pass argument
+   local FPS="24"                      # Target FPS
+   local QUAL="ultrafast_firstpass"    # ffmpeg preset
+
+   echo "---------$INRES+$INPOS------------"
+   echo ""
 
    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
    -f alsa -async 1 -ac 2 -i hw:0,0 -vcodec libx264 -vsync 1 -sameq -vpre "$QUAL" -s "$OUTRES" \
