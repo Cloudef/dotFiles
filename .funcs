@@ -393,13 +393,17 @@ streamjustin() {
    local INPOS=`echo $GEOMETRY | awk -F "+" '{print $2","$3;}'`
    #local OUTRES="1280x800"
    local OUTRES=${1-480x320}
-   local FPS="10" # target FPS
-   local QUAL="fast"  # one of the many FFMPEG preset
+   local FPS="30"       # target FPS
+   local QUAL="fast"    # one of the many FFMPEG preset
+
+   #ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
+   #-f alsa -ac 2 -i hw:0,0 -vcodec libx264 -vpre "$QUAL" -s "$OUTRES" \
+   #-acodec libmp3lame -ab 128k -threads 0  \
+   #-f flv "rtmp://live.justin.tv/app/$STREAM_KEY" # flashver=FMLE/3.0\20(compatible;\20FMSc/1.0)" 
 
    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
-    -f alsa -ac 2 -i hw:0,0 -vcodec libx264 -vpre "$QUAL" -s "$OUTRES" \
-    -acodec libmp3lame -ab 128k -threads 4  \
-    -f flv "rtmp://live.justin.tv/app/$STREAM_KEY" # flashver=FMLE/3.0\20(compatible;\20FMSc/1.0)" 
+   -vcodec libx264 -vpre "$QUAL" -s "$OUTRES" \
+   -f flv "rtmp://live.justin.tv/app/$STREAM_KEY"
 }
 
 # vim: nospell
