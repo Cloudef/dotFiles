@@ -16,7 +16,7 @@ alias pacman="pacman-color"
 alias ai="packer --noconfirm"
 alias au="packer -Syu --noconfirm"
 alias ar="sudo pacman-color -Rsn"
-alias ac="sudo pacman-color -Q -t -d"| awk \"{ print \$1 }\" | xargs --interactive --no-run-if-empty sudo pacman-color -R --noconfirm"
+alias ac="sudo pacman-color -Q -t -d | awk \"{ print \$1 }\" | xargs --interactive --no-run-if-empty sudo pacman-color -R --noconfirm"
 
 # Scripti aliakset
 alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'

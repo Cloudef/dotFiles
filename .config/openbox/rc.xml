@@ -287,9 +287,6 @@
         <desktop>5</desktop>
       </action>
     </keybind>
-    <keybind key="W-d">
-      <action name="ToggleShowDesktop"/>
-    </keybind>
     <keybind key="W-F6">
       <action name="Desktop">
         <desktop>5</desktop>
@@ -331,6 +328,9 @@
     </keybind>
     <keybind key="W-F12">
       <action name="ToggleMaximizeFull"/>
+    </keybind>
+    <keybind key="W-d">
+      <action name="ToggleDecorations"/>
     </keybind>
     <keybind key="W-s">
       <action name="ToggleOmnipresent"/>

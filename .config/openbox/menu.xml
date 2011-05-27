@@ -7,7 +7,7 @@
 		<item label="Koti">
 			<action name="Execute">
 				<execute>
-					sh ~/.config/openbox/urxvtc -title Ranger -name Ranger -e ranger ~
+					thunar ~
 				</execute>
 			</action>
 		</item>
@@ -245,6 +245,13 @@
 					</execute>
 				</action>
 			</item>
+			<item label="Sora no Kiseki">
+				<action name="Execute">
+					<execute>
+						env WINEDEBUG=-all LC_ALL=ja_JP.utf8 pikakuvake '/media/Storage/Pelit/Sora no Kiseki' 'ED6_WIN.exe'
+					</execute>
+				</action>
+			</item>
 			<item label="Cave Story">
 				<action name="Execute">
 					<execute>
@@ -421,7 +428,7 @@
 			<item label="Prosessit">
 				<action name="Execute">
 					<execute>
-						sh ~/.config/openbox/urxvtcrto -title hTop -name hTop -e htop
+						sh ~/.config/openbox/urxvtc -title hTop -name hTop -e htop
 					</execute>
 				</action>
 			</item>

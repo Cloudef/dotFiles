@@ -3,7 +3,7 @@ Xcursor.theme: Adwaita
 !URxvt Settings {{{
 !URxvt*title:Arch Linux
 URxvt*iconName:console
-URxvt*termName:rxvt-unicode
+URxvt*termName:rxvt-256color
 
 !URxvt*geometry:80x12+317+307
 !90x20+35+560
@@ -24,10 +24,6 @@ URxvt*highlightSelection:True
 URxvt*buffered:true
 URxvt*saveLines:1500
 cutchars::@-./_~?&=%+#'"'()*,;<=>[]^{|}
-
-URxvt*urlLauncher:opera-10.70
-URxvt*matcher.pattern.2:([\\w-]+.jpg)
-URxvt*matcher.launcher.2:feh $@
 
 URxvt*eightBitInput:true
 URxvt*inputMethod:SCIM
@@ -99,7 +95,7 @@ URxvt*pointerBlankDelay:2
 ! --- Clickable links --- !
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: opera
-URxvt.matcher.button: 2
+URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 
 ! }}}

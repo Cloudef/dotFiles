@@ -316,7 +316,7 @@ function mkgit() {
 # screencap - the right way
 function screencap() {
 	local fd="${1-capture.mkv}"
-	local res="${2-1920x1080}"
+	local res="${2-1440x900}"
 	ffmpeg -f alsa -i plughw -acodec flac -f x11grab -r 30 -s $res -i $DISPLAY -vcodec libx264 -vpre lossless_ultrafast -threads 0 $fd
 }
 
@@ -384,6 +384,22 @@ todo() {
 		return
 	fi
 	echo "$@" >> ~/.todo
+}
+
+source ${HOME}/.streamkey
+streamjustin() {
+   local GEOMETRY=`xwininfo | grep 'geometry'`
+	local INRES=`echo $GEOMETRY | awk '{print $2;}' | cut -f1 -d"+"`
+   local INPOS=`echo $GEOMETRY | awk -F "+" '{print $2","$3;}'`
+   #local OUTRES="1280x800"
+   local OUTRES=${1-480x320}
+   local FPS="10" # target FPS
+   local QUAL="fast"  # one of the many FFMPEG preset
+
+   ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
+    -f alsa -ac 2 -i hw:0,0 -vcodec libx264 -vpre "$QUAL" -s "$OUTRES" \
+    -acodec libmp3lame -ab 128k -threads 4  \
+    -f flv "rtmp://live.justin.tv/app/$STREAM_KEY" # flashver=FMLE/3.0\20(compatible;\20FMSc/1.0)" 
 }
 
 # vim: nospell
