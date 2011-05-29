@@ -32,7 +32,7 @@ def gen_menu(dirs, files):
         print('  <item label="' + thisdir +'">')
 	print('		<action name="execute">')
 	print('			<execute>')
-	print('				urxvt -title Ranger -name Ranger -e ranger "' + curpath + '/' + thisdir + '"')
+	print('				thunar "' + curpath + '/' + thisdir + '"')
 	print('			</execute>')	
 	print('		</action>')
 	print('  </item>')
