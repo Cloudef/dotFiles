@@ -399,7 +399,7 @@ streamjustin() {
 
    local OUTRES=${1-480x320}           # You can pass argument
    local FPS="24"                      # Target FPS
-   local QUAL="fast_firstpass"    # ffmpeg preset
+   local QUAL="ultrafast"              # ffmpeg preset
 
    echo "---------$INRES+$INPOS------------"
    echo ""
