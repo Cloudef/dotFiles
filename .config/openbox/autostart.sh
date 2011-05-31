@@ -87,7 +87,7 @@ kupfer &
 alsactl restore &
 
 # Hatsune Miku
-(sleep 20 && macopix --sockmsg .macopix/Miku_by_Kurobane.mcpx) &
+(sleep 20 && macopix --sockmsg .config/macopix/L-Miku.mcpx) &
 
 # Cow notify
 (sleep 50 && cow-notify) &

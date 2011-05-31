@@ -1,14 +1,28 @@
 #!/bin/bash
 # An album art script for Deadbeef
 
+# Make macopix play anim
+USE_MACOPIX=1
+MACOPIX_ANIM=1
+MACOPIX_LOOPS=-1
+
 CURCOVER=""
 TRACK="`deadbeef --nowplaying "%t"`"
 if [ "$TRACK" = "nothing" ]; then
 	if [ -f ~/.config/deadbeef/nowPlaying ]; then
+      if [ $USE_MACOPIX == 1 ]; then
+         # stop the dance
+         macopix --anim-loop 0
+      fi
 		rm ~/.config/deadbeef/nowPlaying
 	fi
 	exit
 fi
+
+# track playing, but no file. Good for init stuff
+#if [ ! -f ~/.config/deadbeef/nowPlaying ];then
+   # One time init here
+#fi  
 
 if [ -f ~/.config/deadbeef/nowPlaying ]; then
 	LTRACK="`cat ~/.config/deadbeef/nowPlaying | head -n1`"
@@ -21,6 +35,12 @@ if [ ! "$TRACK" = "$LTRACK" ]; then
 	ARTIST="`deadbeef --nowplaying "%a"`"
 	ALBUM="`deadbeef --nowplaying "%b"`"
 	YEAR="`deadbeef --nowplaying "%y"`"
+   
+   # track changed, send anim
+   if [ $USE_MACOPIX == 1 ]; then
+      # start the dance
+      macopix --anim $MACOPIX_ANIM --anim-loop $MACOPIX_LOOPS
+   fi   
 else
 	ARTIST="`cat ~/.config/deadbeef/nowPlaying | head -n2 | tail -n1`"
 	ALBUM=$LALBUM
