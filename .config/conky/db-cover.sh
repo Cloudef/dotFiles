@@ -1,28 +1,53 @@
 #!/bin/bash
 # An album art script for Deadbeef
 
+# nowPlaying file
+# 1. Track
+# 2. Artist
+# 3. Album
+# 4. Year
+# 5. Time
+# 6. Coverart path
+# 7. Time percent
+# 8. 1 = Stopped, 0 = Playing
+
 # Make macopix play anim
 USE_MACOPIX=1
 MACOPIX_ANIM=1
 MACOPIX_LOOPS=-1
 
+macopix_play()
+{
+   if [ $USE_MACOPIX == 1 ]; then
+      # start the dance
+      macopix --anim $MACOPIX_ANIM --anim-loop $MACOPIX_LOOPS
+   fi  
+}
+
+macopix_stop()
+{
+   if [ $USE_MACOPIX == 1 ]; then
+      # stop the dance
+      macopix --anim-loop 0
+   fi          
+}
+
 CURCOVER=""
 TRACK="`deadbeef --nowplaying "%t"`"
 if [ "$TRACK" = "nothing" ]; then
 	if [ -f ~/.config/deadbeef/nowPlaying ]; then
-      if [ $USE_MACOPIX == 1 ]; then
-         # stop the dance
-         macopix --anim-loop 0
-      fi
 		rm ~/.config/deadbeef/nowPlaying
 	fi
+
+   # deadbeef closed
+   macopix_stop
 	exit
 fi
 
-# track playing, but no file. Good for init stuff
-#if [ ! -f ~/.config/deadbeef/nowPlaying ];then
-   # One time init here
-#fi  
+if [ ! -f ~/.config/deadbeef/nowPlaying ];then
+   # no file yet, this should be called only once in deadbeef's lifetime
+   macopix_play
+fi  
 
 if [ -f ~/.config/deadbeef/nowPlaying ]; then
 	LTRACK="`cat ~/.config/deadbeef/nowPlaying | head -n1`"
@@ -35,16 +60,16 @@ if [ ! "$TRACK" = "$LTRACK" ]; then
 	ARTIST="`deadbeef --nowplaying "%a"`"
 	ALBUM="`deadbeef --nowplaying "%b"`"
 	YEAR="`deadbeef --nowplaying "%y"`"
-   
-   # track changed, send anim
-   if [ $USE_MACOPIX == 1 ]; then
-      # start the dance
-      macopix --anim $MACOPIX_ANIM --anim-loop $MACOPIX_LOOPS
-   fi   
+
+   # track changed
+   macopix_play
 else
 	ARTIST="`cat ~/.config/deadbeef/nowPlaying | head -n2 | tail -n1`"
 	ALBUM=$LALBUM
 	YEAR="`cat ~/.config/deadbeef/nowPlaying | head -n4 | tail -n1`"
+   LWTIME="`cat ~/.config/deadbeef/nowPlaying | head -n5 | tail -n1`"
+   LPERCENT="`cat ~/.config/deadbeef/nowPlaying | head -n7 | tail -n1`" 
+   LSTOP="`cat ~/.config/deadbeef/nowPlaying | head -n8 | tail -n1`"
 fi
 ELAPSED="`deadbeef --nowplaying "%e"`"
 TIME="`deadbeef --nowplaying "%l"`"
@@ -78,22 +103,43 @@ if [ ! "$ALBUM" = "$LALBUM" ]; then
 	fi
 fi
 
-eMINUTES="`echo \"$ELAPSED\"|cut -d":" -f1`"
-eSECONDS="`echo \"$ELAPSED\"|cut -d":" -f2`"
-eMINUTES=$(expr $eMINUTES \* 60 )
-eSECONDS=$(expr $eMINUTES + $eSECONDS )
+WTIME="$ELAPSED/$TIME"
 
-tMINUTES="`echo \"$TIME\"|cut -d":" -f1`"
-tSECONDS="`echo \"$TIME\"|cut -d":" -f2`"
-tMINUTES=$(expr $tMINUTES \* 60 )
-tSECONDS=$(expr $tMINUTES + $tSECONDS )
+if [ ! "$WTIME" = "$LWTIME" ]; then
+   eMINUTES="`echo \"$ELAPSED\"|cut -d":" -f1`"
+   eSECONDS="`echo \"$ELAPSED\"|cut -d":" -f2`"
+   eMINUTES=$(expr $eMINUTES \* 60 )
+   eSECONDS=$(expr $eMINUTES + $eSECONDS )
 
-PERCENT=$(expr \( $eSECONDS \* 100 \) / $tSECONDS )
-echo $TRACK &> ~/.config/deadbeef/nowPlaying
-echo $ARTIST >> ~/.config/deadbeef/nowPlaying
-echo $ALBUM >> ~/.config/deadbeef/nowPlaying
-echo $YEAR >> ~/.config/deadbeef/nowPlaying
-echo "$ELAPSED/$TIME" >> ~/.config/deadbeef/nowPlaying
-echo "$CURCOVER" >> ~/.config/deadbeef/nowPlaying
-echo $PERCENT >> ~/.config/deadbeef/nowPlaying
+   tMINUTES="`echo \"$TIME\"|cut -d":" -f1`"
+   tSECONDS="`echo \"$TIME\"|cut -d":" -f2`"
+   tMINUTES=$(expr $tMINUTES \* 60 )
+   tSECONDS=$(expr $tMINUTES + $tSECONDS )
+
+   PERCENT=$(expr \( $eSECONDS \* 100 \) / $tSECONDS )
+
+   STOP=0
+else
+   PERCENT=$LPERCENT
+   STOP=1
+fi
+
+if [ ! "$LSTOP" = "$STOP" ]; then
+   if [ $STOP == 1 ]; then
+      # Stopped
+      macopix_stop
+   else
+      # Started
+      macopix_start
+   fi
+fi
+
+echo $TRACK       &> ~/.config/deadbeef/nowPlaying
+echo $ARTIST      >> ~/.config/deadbeef/nowPlaying
+echo $ALBUM       >> ~/.config/deadbeef/nowPlaying
+echo $YEAR        >> ~/.config/deadbeef/nowPlaying
+echo $WTIME       >> ~/.config/deadbeef/nowPlaying
+echo "$CURCOVER"  >> ~/.config/deadbeef/nowPlaying
+echo $PERCENT     >> ~/.config/deadbeef/nowPlaying
+echo $STOP        >> ~/.config/deadbeef/nowPlaying 
 exit
