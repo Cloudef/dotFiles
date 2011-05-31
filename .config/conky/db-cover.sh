@@ -62,7 +62,7 @@ if [ ! "$TRACK" = "$LTRACK" ]; then
 	YEAR="`deadbeef --nowplaying "%y"`"
 
    # track changed
-   macopix_play
+   macopix_play # Hopefully it's fixed now
 else
 	ARTIST="`cat ~/.config/deadbeef/nowPlaying | head -n2 | tail -n1`"
 	ALBUM=$LALBUM
@@ -130,7 +130,7 @@ if [ ! "$LSTOP" = "$STOP" ]; then
       macopix_stop
    else
       # Started
-      macopix_start
+      macopix_play
    fi
 fi
 
