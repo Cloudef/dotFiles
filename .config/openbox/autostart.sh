@@ -59,10 +59,10 @@ stalonetray &
 # Clipit
 clipit &
 
-# Liferea
+# RSS
 urxvt -title SnowNews -name SnowNews -e snownews &
 
-# Deluge
+# Torrent
 urxvt -title rTorrent -name rTorrent -e rtorrent &
 
 # MSN
