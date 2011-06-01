@@ -88,15 +88,15 @@ if [ ! "$ALBUM" = "$LALBUM" ]; then
 	    ASPECT=$((($(identify -format %w "$COVER") - $(identify -format %h "$COVER"))/86))
 
 	    if [ $ASPECT -lt -30 ]; then
-		convert "$COVER"  -thumbnail 86x300 "$COVER"
-		convert "$COVER" -crop 86x86+0+86 +repage "$COVER"
+		   convert "$COVER"  -thumbnail 86x300 "$COVER"
+		   convert "$COVER" -crop 86x86+0+86 +repage "$COVER"
 	    else
-		convert "$COVER"  -thumbnail 300x86 "$COVER"
-		if [ $ASPECT -lt 30 ]; then
-			convert "$COVER" -crop 86x86+0+0 +repage "$COVER"
-		else
-			convert "$COVER" -crop 86x86+86+0 +repage "$COVER"
-		fi
+		   convert "$COVER"  -thumbnail 300x86 "$COVER"
+		   if [ $ASPECT -lt 30 ]; then
+			   convert "$COVER" -crop 86x86+0+0 +repage "$COVER"
+		   else
+			   convert "$COVER" -crop 86x86+86+0 +repage "$COVER"
+		   fi
 	    fi
 	    # convert $CONKYDIR/Vinyl/base.png "$COVER" -geometry +4+3
 	    # -composite $CONKYDIR/Vinyl/top.png -geometry +0+0 -composite "$COVER"
@@ -124,7 +124,7 @@ else
    STOP=1
 fi
 
-if [ ! "$LSTOP" = "$STOP" ]; then
+if [ ! "$STOP" = "$LSTOP" ]; then
    if [ $STOP == 1 ]; then
       # Stopped
       macopix_stop
