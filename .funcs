@@ -386,6 +386,22 @@ todo() {
 	echo "$@" >> ~/.todo
 }
 
+elfcompress() {
+   if [ ! "$1" ]; then
+      echo "Usage : binary"
+      return
+   fi
+   
+   7z a -tGZip -mx=9 /tmp/program.gz "$1"
+   echo 'a=/tmp/I;tail -n+2 $0|zcat>$a;chmod +x $a;$a;rm $a;exit' >> /tmp/unpack.header
+   
+   cat /tmp/unpack.header /tmp/program.gz > "$1.packed"
+   chmod +x "$1.packed"
+
+   rm /tmp/program.gz
+   rm /tmp/unpack.header
+}
+
 source ${HOME}/.streamkey
 streamjustin() {
    local WININFO="`xwininfo`"
