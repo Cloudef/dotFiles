@@ -392,13 +392,17 @@ elfcompress() {
       return
    fi
    
-   7z a -tGZip -mx=9 /tmp/program.gz "$1"
+   cp "$1" /tmp/compress.temp
+   strip -s -R .comment -R .gnu.version /tmp/compress.temp
+
+   7z a -tGZip -mx=9 /tmp/compress.gz /tmp/compress.temp
    echo 'a=/tmp/I;tail -n+2 $0|zcat>$a;chmod +x $a;$a;rm $a;exit' >> /tmp/unpack.header
    
-   cat /tmp/unpack.header /tmp/program.gz > "$1.packed"
+   cat /tmp/unpack.header /tmp/compress.gz > "$1.packed"
    chmod +x "$1.packed"
 
-   rm /tmp/program.gz
+   rm /tmp/compress.temp
+   rm /tmp/compress.gz
    rm /tmp/unpack.header
 }
 
