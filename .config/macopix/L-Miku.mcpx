@@ -164,18 +164,18 @@ fix_x=2603
 fix_y=901
 
 [Clock]
-mode=0
+mode=1
 type=0
-x=-20
+x=0
 y=0
 text_x=1
-text_y=5
+text_y=109
 sd_x=1
 sd_y=1
 border=2
-shadow=TRUE
-round=TRUE
-font=みかちゃん-PB Bold 14
+shadow=FALSE
+round=FALSE
+font=erusfont 7
 
 [Balloon]
 text_x=3
@@ -185,17 +185,24 @@ position=0
 font=erusfont 10
 
 [ClockColor]
-text_r=12594
-text_g=37808
-text_b=63817
-border_r=2135
-border_g=28413
-border_b=48381
+text_r=60652
+text_g=6939
+text_b=8738
+border_r=0
+border_g=0
+border_b=0
+shadow_r=0
+shadow_g=0
+shadow_b=0
+shadow_p=54484
+bg_r=0
+bg_g=0
+bg_b=0
 
 [BalloonColor]
-text_r=60681
-text_g=6952
-text_b=8834
+text_r=60652
+text_g=6939
+text_b=8738
 bg_p=57311
 border_r=0
 border_g=0
