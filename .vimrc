@@ -14,7 +14,7 @@ set smarttab
 set pastetoggle=<F12>
 set number
 set mouse=a
-set ttymouse=xterm2
+set ttymouse=xterm
 set noswapfile
 set wildmenu
 set wildmode=list:longest,full
@@ -36,7 +36,6 @@ set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
 
 " Highlight
 set cul
-hi CursorLine term=none cterm=none ctermbg=1
 
 " Clipboard
 let g:clipbrdDefaultReg = '+'
