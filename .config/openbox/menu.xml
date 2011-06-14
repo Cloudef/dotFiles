@@ -347,10 +347,10 @@
 					</execute>
 				</action>
 			</item>
-			<item label="Emesene">
+			<item label="MSN">
 				<action name="Execute">
 					<execute>
-						emesene
+						urxvt -title MSN -name MSN -e irssi --config=~/.irssi/bitlbee
 					</execute>
 				</action>
 			</item>

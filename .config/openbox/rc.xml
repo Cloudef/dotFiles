@@ -1,3 +1,4 @@
+<?xml version="1.0" ?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>40</strength>
@@ -820,14 +821,12 @@
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    <application class="Controller.py" name="Controller.py" role="main" type="normal">
+    <application class="URxvt" name="MSN" type="normal">
       <desktop>4</desktop>
       <fullscreen>default</fullscreen>
       <decor>default</decor>
       <maximized>default</maximized>
     </application>
-    <application class="Controller.py" name="Controller.py" role="chat" type="normal">
-      <desktop>4</desktop>
-    </application>
+    
   </applications>
 </openbox_config>

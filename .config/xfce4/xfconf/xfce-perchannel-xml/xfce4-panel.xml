@@ -51,5 +51,9 @@
         <value type="string" value="13040940942.desktop"/>
       </property>
     </property>
+    <property name="plugin-2" type="empty">
+      <property name="items" type="array">
+      </property>
+    </property>
   </property>
 </channel>
