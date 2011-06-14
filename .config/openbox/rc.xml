@@ -824,8 +824,8 @@
     <application class="URxvt" name="MSN" type="normal">
       <desktop>4</desktop>
       <fullscreen>default</fullscreen>
-      <decor>default</decor>
-      <maximized>default</maximized>
+      <decor>no</decor>
+      <maximized>yes</maximized>
     </application>
     
   </applications>
