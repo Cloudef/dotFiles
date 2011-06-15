@@ -9,6 +9,7 @@ alias egrep='egrep --color=auto'
 # Kansio aliakset
 alias dev="cd /media/Storage/Dev/"
 alias projekti="cd /media/Storage/Dev/Projektit/Projekti/"
+alias ogl="cd /media/Storage/Dev/Projektit/CFrameWork"
 alias projektit="cd /media/Storage/Dev/projektit"
 
 # Ohjelma aliakset
@@ -24,7 +25,7 @@ alias extip='echo $(curl -s http://www.whatismyip.com/automation/n09230945.asp)'
 alias quote="wazaaa"
 alias weblog="cat /var/log/httpd/access_log | tail -15 | uniq | sort"
 alias touhou="cat ~/.touhou"
-alias vimtux="tmux -f ~/.vimtux.conf attach"
+alias vimtux="tmux new-session -s VIMtux -d \"tmux set-option default-path $PWD\" \; source-file ~/.vimtux.conf \; attach"
 
 # Wine
 alias ffxivcfg="WINEPREFIX=~/.FFXIV winecfg"
