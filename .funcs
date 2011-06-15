@@ -10,7 +10,7 @@ function setcolors() {
 	LIGHTBLUE=$(tput setaf 4)
 	MAUV=$(tput setaf 5)
 	DARKGREY=$(tput setaf 6)
-	WHITE=$(tput setaf 7)	
+	WHITE=$(tput setaf 7)
 
 	BOLDDARK=$(tput setaf 8)
 	BOLDRED=$(tput setaf 9)
@@ -45,7 +45,7 @@ function reduce_path() {
 	echo "${path}"
 }
 
-# the git prompt 
+# the git prompt
 function git_prompt() {
 	local pre="${WHITE}[branch: ${PURPLE}"
 	local suf="${BLACK}]${NORMAL}"
@@ -81,7 +81,7 @@ function prompt() {
 		cpath="${PWD})--(${cgit}${gitNum}"
 		path="${PWD}${cBorder})--(${git}${RED}${gitNum}"
 	fi
-	
+
 	user="whoami"
 	host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
 	datenow=$(date "+%a, %d %b %y")
@@ -105,7 +105,7 @@ function prompt() {
 		let cutt=3-${fillsize}
 		path="...$(echo -n $cpath | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
 	fi
-    
+
 	Cyan="\[\e[m\]\[\e[0;36m\]"
 	Red="\[\e[m\]\[\e[0;31m\]"
 
@@ -118,13 +118,13 @@ function prompt() {
 	    cText="${LightCyan}"
 	    cBorder="${Cyan}"
 	fi
-	
+
 	if [ "$TERM" = "linux" ]; then
-	
+
 	PS1="\n[.\[${ORANGE}\]\u\[${NORMAL}\]//\[${ORANGE}\]\h\[${NORMAL}\]]${fill}[\[${ORANGE}\]${path}${NORMAL}]\n\[${NORMAL}\]>>\[${ORANGE}\]>\[${NORMAL}\] "
-	
+
 	else
-	
+
 	PS1="\n${cBorder}┌─(${ORANGE}.\u${cBorder}//${BLUE}\h${cBorder})─\${fill}─(${BLUE}${cText}${path}\
 ${cBorder})────┐\n${cBorder}└─(${cText}\$(date \"+%H:%M\")${cBorder})─> "
 
@@ -135,10 +135,17 @@ ${cBorder})────┐\n${cBorder}└─(${cText}\$(date \"+%H:%M\")${cBorde
 function wazaaa() {
 	local arch="Arch"
 	local nix="Linux"
+   local tmux=`ps -a | grep tmux`
 	#local say=`curl -s http://bash.org/?random1|grep -oE "<p class=\"quote\">.*</p>.*</p>"|grep -oE "<p class=\"qt.*?</p>"|sed -e 's/<\/p>/\n/g' -e 's/<p class=\"qt\">//g' -e 's/<p class=\"qt\">//g'|perl -ne 'use HTML::Entities;print decode_entities($_),"\n"'|head -1`
 	clear #&& echo "${BOLD}${WHITE}${arch}${BLUE}${nix}${NORMAL}"
 	figlet "Arch Linux"
 	echo ""
+   if [ "$tmux" ]
+   then
+      echo "TMUX Sessions:"
+      tmux list-sessions
+      echo ""
+   fi
 	echo "[ai :: Install] [ar :: Remove] [au :: Update]"
 	echo ""
 	#echo -e ${WHITE}${say}${NORMAL}
@@ -153,16 +160,16 @@ function kingbash.fn() {
 [[ $- =~ i ]] && bind -x '"\t":kingbash.fn'
 
 # cd helper
-function goto() { 
-	[ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; 
+function goto() {
+	[ -d "$1" ] && cd "$1" || cd "$(dirname "$1")";
 }
 # copy and follow
-function cpf() { 
-	cp "$@" && goto "$_"; 
+function cpf() {
+	cp "$@" && goto "$_";
 }
 # move and follow
-function mvf() { 
-	mv "$@" && goto "$_"; 
+function mvf() {
+	mv "$@" && goto "$_";
 }
 
 # VDPAU play
@@ -246,19 +253,19 @@ function extract() {
 }
 
 # Makes directory then moves into it
-function mkcdr() { 
-	mkdir -vp "$@" && cd "$_"; 
+function mkcdr() {
+	mkdir -vp "$@" && cd "$_";
 }
 
 # creates an archive from given directory
-function mktar() { 
-	tar cvf  "${1%%/}.tar"     "${1%%/}/"; 
+function mktar() {
+	tar cvf  "${1%%/}.tar"     "${1%%/}/";
 }
-function mktgz() { 
-	tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; 
+function mktgz() {
+	tar cvzf "${1%%/}.tar.gz"  "${1%%/}/";
 }
-function mktbz() { 
-	tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; 
+function mktbz() {
+	tar cvjf "${1%%/}.tar.bz2" "${1%%/}/";
 }
 
 function videoconverthd()
@@ -391,13 +398,13 @@ elfcompress() {
       echo "Usage : binary"
       return
    fi
-   
+
    cp "$1" /tmp/compress.temp
    strip -s -R .comment -R .gnu.version /tmp/compress.temp
 
    7z a -tGZip -mx=9 /tmp/compress.gz /tmp/compress.temp
    echo 'a=/tmp/I;tail -n+2 $0|zcat>$a;chmod +x $a;$a;rm $a;exit' >> /tmp/unpack.header
-   
+
    cat /tmp/unpack.header /tmp/compress.gz > "$1.packed"
    chmod +x "$1.packed"
 

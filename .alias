@@ -24,7 +24,7 @@ alias extip='echo $(curl -s http://www.whatismyip.com/automation/n09230945.asp)'
 alias quote="wazaaa"
 alias weblog="cat /var/log/httpd/access_log | tail -15 | uniq | sort"
 alias touhou="cat ~/.touhou"
-alias vimtux="tmux -f ~/.vimtux.conf"
+alias vimtux="tmux -f ~/.vimtux.conf attach"
 
 # Wine
 alias ffxivcfg="WINEPREFIX=~/.FFXIV winecfg"
