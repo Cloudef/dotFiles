@@ -66,7 +66,7 @@ urxvt -title SnowNews -name SnowNews -e snownews &
 urxvt -title rTorrent -name rTorrent -e rtorrent &
 
 # MSN
-emesene &
+urxvt -title MSN -name MSN -e irssi --config=~/.irssi/bitlbee &
 
 # Urxvt
 urxvt -title IRSSI -name IRSSI -e irssi &
