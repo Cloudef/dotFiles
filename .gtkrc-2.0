@@ -4,7 +4,7 @@
 gtk-theme-name="ntsumi"
 gtk-icon-theme-name="ACYL_Icon_Theme_0.9.2"
 gtk-font-name="MonteCarlo Medium 7"
-gtk-cursor-theme-name="Adwaita"
+gtk-cursor-theme-name="AnArchCursor-26"
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_ICONS
 gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR

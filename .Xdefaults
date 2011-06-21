@@ -1,4 +1,4 @@
-Xcursor.theme: Adwaita
+Xcursor.theme: AnArchCursor-26
 
 !URxvt Settings {{{
 !URxvt*title:Arch Linux
@@ -33,7 +33,7 @@ URxvt*imLocale:fi_FI.UTF-8
 
 modifier:meta
 !alt, meta, hyper, super, mod1..5
-!}}} 
+!}}}
 
 !Scroll and mousewheel {{{
 XTerm*jumpScroll:true
@@ -43,7 +43,7 @@ URxvt*skipScroll:true
 URxvt*scrollBar:false
 URxvt*scrollBar_right:false
 URxvt*scrollstyle:plain
-URxvt*secondaryScroll:true 
+URxvt*secondaryScroll:true
 URxvt*scrollTtyOutput:false
 URxvt*scrollWithBuffer:true
 URxvt*scrollTtyKeypress:true

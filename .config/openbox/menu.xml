@@ -224,6 +224,14 @@
 					</execute>
 				</action>
 			</item>
+			<item label="Cave Story">
+				<action name="Execute">
+					<execute>
+						pikakuvake '/media/Storage/Pelit/CaveStory' 'doukutsu'
+					</execute>
+				</action>
+			</item>
+			<separator/>
 			<item label="Ys Origins">
 				<action name="Execute">
 					<execute>
@@ -245,17 +253,25 @@
 					</execute>
 				</action>
 			</item>
+			<separator/>
 			<item label="Sora no Kiseki">
 				<action name="Execute">
 					<execute>
-						env WINEDEBUG=-all LC_ALL=ja_JP.utf8 pikakuvake '/media/Storage/Pelit/Sora no Kiseki' 'ED6_WIN.exe'
+						env WINEDEBUG=-all LC_ALL=ja_JP.utf8 pikakuvake '/media/Storage/Pelit/Eiyuu Densetsu - Sora no Kiseki' 'ED6_WIN.exe'
 					</execute>
 				</action>
 			</item>
-			<item label="Cave Story">
+			<item label="Sora no Kiseki SC">
 				<action name="Execute">
 					<execute>
-						pikakuvake '/media/Storage/Pelit/CaveStory' 'doukutsu'
+						env WINEDEBUG=-all LC_ALL=ja_JP.utf8 pikakuvake '/media/Storage/Pelit/Eiyuu Densetsu - Sora no Kiseki SC' 'ED6_WIN2.exe'
+					</execute>
+				</action>
+			</item>
+			<item label="Sora no Kiseki TC">
+				<action name="Execute">
+					<execute>
+						env WINEDEBUG=-all LC_ALL=ja_JP.utf8 pikakuvake '/media/Storage/Pelit/Eiyuu Densetsu - Sora no Kiseki TC' 'ED6_WIN3.exe'
 					</execute>
 				</action>
 			</item>

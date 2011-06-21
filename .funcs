@@ -395,7 +395,7 @@ todo() {
 
 elfcompress() {
    if [ ! "$1" ]; then
-      echo "Usage : binary"
+      echo "Usage : elfcompress [binary]"
       return
    fi
 
