@@ -92,6 +92,8 @@ style "gnome-color-chooser-default"
   }
 
   bg[NORMAL] = "#000000"
+  fg[NORMAL] = "#C4C4C4"
+  text[NORMAL] = "#DADADA"
 }
 class "GtkWidget" style "gnome-color-chooser-default"
 
