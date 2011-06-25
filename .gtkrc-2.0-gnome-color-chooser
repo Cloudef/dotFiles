@@ -135,3 +135,9 @@ style "gnome-color-chooser-button"
 }
 widget_class "*.<GtkButton>*" style "gnome-color-chooser-button"
 
+style "gnome-color-chooser-combobox"
+{
+  text[PRELIGHT] = "#D7D7D7"
+}
+widget_class "*.<GtkComboBox>.<GtkCellView>" style "gnome-color-chooser-combobox"
+
