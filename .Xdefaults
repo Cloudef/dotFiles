@@ -78,7 +78,7 @@ URxvt*font:             xft:erusfont:pixelsize=7
 !URxvt Color Settings {{{
 
 ! Color Scheme
-#include "/home/jari/.color_schemes/Daisuke2"
+#include "/home/jari/.color_schemes/Taters"
 
 URxvt*cursorColor: #DCDCCC
 URxvt*pointerColor:grey
