@@ -93,7 +93,10 @@ style "gnome-color-chooser-default"
 
   bg[NORMAL] = "#000000"
   fg[NORMAL] = "#C4C4C4"
+  fg[PRELIGHT] = "#00FF00"
   text[NORMAL] = "#DADADA"
+  text[SELECTED] = "#FF1515"
+  text[ACTIVE] = "#FF1600"
   GtkWidget::link-color = "#00005D"
 }
 class "GtkWidget" style "gnome-color-chooser-default"
