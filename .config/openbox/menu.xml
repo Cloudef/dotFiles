@@ -32,7 +32,7 @@
 			<menu execute="obfilebrowser --no-parent --no-self --no-hidden /media/Anime/Watching" id="pipe-705527" label="Watching"/>
 			<menu execute="obfilebrowser --no-parent --no-self --no-hidden /media/Anime/Katsotut" id="pipe-56565" label="Watched"/>
 			<separator/>
-			<item label="ANIME NAO!">
+			<item label="Random">
 				<action name="Execute">
 					<execute>
 						sh &quot;/media/Anime/Hmm.. Mitä katsoisin tänään?&quot;
