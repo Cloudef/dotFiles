@@ -29,6 +29,9 @@ set ttyfast
 set noerrorbells
 set shell=bash
 
+" colorscheme
+colorscheme darkblue
+
 " Backup
 set backup
 set backupdir=~/.vim/backup

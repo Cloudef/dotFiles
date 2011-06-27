@@ -33,7 +33,7 @@ if [ "$TERM" = "linux" ]; then
 	## apply the colors
 	for index in ${!colors[@]}
 	do
-		printf '\e]P%x%s' $index ${colors[$index]} 
+		printf '\e]P%x%s' $index ${colors[$index]}
 	done
 	clear #for background artifacting
 fi
@@ -42,7 +42,7 @@ source ${HOME}/.alias
 source ${HOME}/.funcs
 source ${HOME}/.sshagent
 
-if [ "$PS1" ] ; then  
+if [ "$PS1" ] ; then
    mkdir -p -m 0700 /dev/cgroup/cpu/user/$$ > /dev/null 2>&1
    echo $$ > /dev/cgroup/cpu/user/$$/tasks
    echo "1" > /dev/cgroup/cpu/user/$$/notify_on_release
@@ -63,7 +63,7 @@ setcolors
 wazaaa
 
 export PROJECTS_BASEDIR=/media/Storage/Dev/Pandora
- 
+
 setprj() {
  . /usr/local/angstrom/arm/environment-setup;
  setprj $@
@@ -78,5 +78,5 @@ _setprj ()
          COMPREPLY=( $(ls -1d $PROJECTS_BASEDIR/${cur}*|sed "s#$PROJECTS_BASEDIR/##") )
  fi
  return 0
-} 
+}
 complete -F _setprj setprj
