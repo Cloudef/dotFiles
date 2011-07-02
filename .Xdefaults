@@ -1,32 +1,23 @@
 Xcursor.theme: AnArchCursor-26
 
 !URxvt Settings {{{
-!URxvt*title:Arch Linux
-URxvt*iconName:console
 URxvt*termName:rxvt-256color
 
-!URxvt*geometry:80x12+317+307
-!90x20+35+560
-!80x24+375+394 (top parallel terms)
-!80x24+317+307 (center)
-URxvt*borderLess:false
-URxvt*externalBorder:1
+URxvt*borderLess:true
+URxvt*externalBorder:0
 URxvt*internalBorder:0
-
-URxvt.iconName:URXVT
-URxvt*iconFile:/home/jari/.icons/ACYL_Icon_Theme_0.9.2/scalable/apps/terminal.svg
 
 URxvt*perl-ext-common:default,-tabbed,matcher,-selection-popup,-option-popupi
 
 URxvt*visualBell:false
 URxvt*cursorBlink:true
-URxvt*highlightSelection:True
+URxvt*highlightSelection:true
 URxvt*buffered:true
 URxvt*saveLines:1500
 cutchars::@-./_~?&=%+#'"'()*,;<=>[]^{|}
 
 URxvt*eightBitInput:true
-URxvt*inputMethod:SCIM
+URxvt*inputMethod:UIM
 URxvt*multichar_encoding:utf-8
 URxvt*preeditType:OverTheSpot,Root
 URxvt*imLocale:fi_FI.UTF-8
@@ -51,28 +42,7 @@ URXvt*mouseWheelScrollPage:false
 !}}}
 
 !URxvt Fonts {{{
-
-!! passed
-!URxvt*font:             xft:inconsolata:pixelsize=14
-!URxvt*font:             xft:DroidSansMonoSlashed:size=9:antialias=true:hinting=true
-!URxvt*font:             xft:DejaVuSansMono:size=9
-
-!URxvt*font:           xft:DroidSans Mono Slashed-11:antialias=true:hinting=true
-!URxvt*boldFont:       xft:DroidSans Mono Slashed-11:antialias=true:bold:hinting=true
-!URxvt*italicFont:     xft:DroidSans Mono Slashed-11:antialias=true:italic:hinting=true
-!URxvt*bolditalicFont: xft:DroidSans Mono Slashed-11:antialias=true:bold:italic:hinting=true
-
-
-
-!! small
-!URxvt*font:             xft:Liberation Mono:size=9
 URxvt*font:             xft:erusfont:pixelsize=7
-
-!! other
-!URxvt*font:             xft:Droid Sans Mono:size=9
-!URxvt*font:             xft:DejaVu Sans Mono:pixelsize=12
-!URxvt*font:             xft:EnvyCodeR:size=9
-
 !}}}
 
 !URxvt Color Settings {{{
