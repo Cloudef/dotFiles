@@ -217,13 +217,6 @@
 				</item>
 			</menu>
 			<separator/>
-			<item label="Sprial Knights">
-				<action name="Execute">
-					<execute>
-						sh ~/.getdown/spiral/runGame.sh
-					</execute>
-				</action>
-			</item>
 			<item label="The Last Remnant">
 				<action name="Execute">
 					<execute>

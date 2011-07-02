@@ -692,10 +692,10 @@
   </mouse>
   <menu><!-- You can specify more than one menu file in here and they are all loaded,
        just don't make menu ids clash or, well, it'll be kind of pointless --><!-- default menu file (or custom one in $HOME/.config/openbox/) --><file>menu.xml</file><hideDelay>200</hideDelay><!-- if a press-release lasts longer than this setting (in milliseconds), the
-       menu is hidden again --><middle>no</middle><!-- center submenus vertically about the parent entry --><submenuShowDelay>100</submenuShowDelay><!-- time to delay before showing a submenu after hovering over the parent
+       menu is hidden again --><middle>no</middle><!-- center submenus vertically about the parent entry --><submenuShowDelay>8</submenuShowDelay><!-- time to delay before showing a submenu after hovering over the parent
        entry.
        if this is a negative value, then the delay is infinite and the
-       submenu will not be shown until it is clicked on --><submenuHideDelay>400</submenuHideDelay><!-- time to delay before hiding a submenu when selecting another
+       submenu will not be shown until it is clicked on --><submenuHideDelay>500</submenuHideDelay><!-- time to delay before hiding a submenu when selecting another
        entry in parent menu -->
        if this is a negative value, then the delay is infinite and the
        submenu will not be hidden until a different submenu is opened --&gt;
@@ -728,7 +728,7 @@
   # order that they appear in this list
 
 
-    # each rule element can be left out or set to 'default' to specify to not 
+    # each rule element can be left out or set to 'default' to specify to not
     # change that attribute of the window
 
     <decor>yes</decor>
@@ -799,8 +799,8 @@
       <maximized>yes</maximized>
       <desktop>1</desktop>
     </application>
-    
-    
+
+
     <application class="URxvt" name="SnowNews" type="normal">
       <desktop>5</desktop>
       <maximized>yes</maximized>
@@ -827,6 +827,6 @@
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-    
+
   </applications>
 </openbox_config>
