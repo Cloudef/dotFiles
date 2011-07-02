@@ -1,7 +1,7 @@
 #!/usr/bin/python2 -o
 # -*- coding: utf-8 -*-
 
-from urllib import urlopen, quote
+from urllib2 import urlopen, quote
 from xml.etree.cElementTree import parse
 from datetime import datetime, timedelta
 import os
@@ -88,13 +88,13 @@ WEATHER_URL = 'http://www.google.fi/ig/api?weather=%s&hl=%s&oe=UTF-8'
 
 def get_weather(city, lang):
     url = WEATHER_URL % (quote(city), quote(lang))
-    data = parse(urlopen(url))
-    
+    data = parse(urlopen(url, "", 2))
+
     forecasts = []
     for forecast in data.findall('weather/forecast_conditions'):
         forecasts.append(
     dict([(element.tag, element.get("data")) for element in forecast.getchildren()]))
-    
+
     return {
         'forecast_information': dict([(element.tag, element.get("data")) for element in data.find('weather/forecast_information').getchildren()]),
         'current_conditions': dict([(element.tag, element.get("data")) for element in data.find('weather/current_conditions').getchildren()]),
@@ -108,9 +108,9 @@ def get_openbox_pipe_menu(lang, forecast_information, current_conditions, foreca
     if lang == 'en-GB':
         lang = 'en'
     tt = TRANSLATED_TEXT[lang]
-    
+
     temp_var, temp_unit = ("temp_c", u"\u00b0C") if forecast_information['unit_system'] == "SI" else ("temp_f", "F")
-    
+
     output =  '<openbox_pipe_menu>'
     output += '\n<separator label="%s (%s)" />' % (weather['forecast_information']['city'],forecast_information['current_date_time'])
     output += '\n<separator label="%s" />' % tt['current']
@@ -124,7 +124,7 @@ def get_openbox_pipe_menu(lang, forecast_information, current_conditions, foreca
         output += '<item label="%s: %s %s" />' % ( tt['mintemp'], forecast['low'], temp_unit )
         output += '<item label="%s: %s %s" />' % ( tt['maxtemp'], forecast['high'], temp_unit )
     output += '\n</openbox_pipe_menu>'
-    
+
     return output.encode('utf-8')
 
 cache_file = join(os.getenv("HOME"), '.gweather.cache')
@@ -145,7 +145,7 @@ if cache == None or (city, lang) not in cache or (
     if cache == None:
         cache = dict()
     cache[(city, lang)] = {'date': datetime.utcnow(), 'ob_pipe_menu': ob_pipe_menu}
-    
+
     #Save the data in the cache
     try:
         f = open(cache_file, 'wb')

@@ -26,7 +26,7 @@
 			</action>
 		</item>
 		<separator/>
-		<menu execute="python2 ~/.config/openbox/weather.py Seinäjoki fi" id="pipe-764356" label="Sää"/>
+		<menu execute="python2 ~/.config/openbox/weather.py Pihtipudas fi" id="pipe-764356" label="Sää"/>
 		<separator label="Anime"/>
 		<menu id="root-menu-775514" label="Anime">
 			<menu execute="obfilebrowser --no-parent --no-self --no-hidden /media/Anime/Watching" id="pipe-705527" label="Watching"/>

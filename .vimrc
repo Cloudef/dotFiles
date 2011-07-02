@@ -20,7 +20,6 @@ set wildmenu
 set wildmode=list:longest,full
 set ignorecase
 set smartcase
-set hlsearch
 set autoread
 set lazyredraw
 set undolevels=1000

@@ -51,13 +51,13 @@ xfce4-panel &
 unclutter -idle 5 -jitter 5 &
 
 # Mixer
-volti &
+(volti &> /dev/null) &
 
 # Tray
-stalonetray &
+(stalonetray &> /dev/null) &
 
 # Clipit
-clipit &
+(clipit &> /dev/null) &
 
 # RSS
 urxvt -title SnowNews -name SnowNews -e snownews &
@@ -72,22 +72,22 @@ urxvt -title MSN -name MSN -e irssi --config=~/.irssi/bitlbee &
 urxvt -title IRSSI -name IRSSI -e irssi &
 
 # Smart notify
-smart-notifier &
+(smart-notifier &> /dev/null) &
 
 # Kupfer
-kupfer &
+(kupfer &> /dev/null) &
 
 # Tiling
 # pytyle &
 
 # Conky
-~/.config/conky/start_conky.sh &
+(~/.config/conky/start_conky.sh &> /dev/null) &
 
 # Alsa settings back
 alsactl restore &
 
 # Hatsune Miku
-(sleep 20 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx) &
+(sleep 20 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
 
 # Cow notify
-(sleep 50 && cow-notify) &
+(sleep 50 && cow-notify &> /dev/null) &
