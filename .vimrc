@@ -52,6 +52,10 @@ syntax enable
 nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>a
 
+vmap <C-c> y: call system("xclip -i -selection clipboard", getreg("\""))<CR>
+nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
+imap <C-v> <Esc><C-v>a
+
 "Toggle folds with space
 nnoremap <space> za
 

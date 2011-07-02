@@ -17,9 +17,9 @@ URxvt*saveLines:1500
 cutchars::@-./_~?&=%+#'"'()*,;<=>[]^{|}
 
 URxvt*eightBitInput:true
-URxvt*inputMethod:UIM
+URxvt*inputMethod:uim
+URxvt*preeditType:OverTheSpot,root
 URxvt*multichar_encoding:utf-8
-URxvt*preeditType:OverTheSpot,Root
 URxvt*imLocale:fi_FI.UTF-8
 
 modifier:meta
