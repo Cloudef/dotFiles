@@ -128,7 +128,7 @@ style "gnome-color-chooser-button"
   engine "clearlooks"
   {
     style = GLOSSY
-    reliefstyle = 1
+    reliefstyle = 0
   }
 
   bg[PRELIGHT] = "#BA0000"

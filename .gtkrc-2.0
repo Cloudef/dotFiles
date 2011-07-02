@@ -13,3 +13,4 @@ gtk-menu-images=0
 gtk-enable-event-sounds=0
 gtk-enable-input-feedback-sounds=0
 include "/home/jari/.gtkrc-2.0.mine"
+include ".gtkrc-2.0-gnome-color-chooser"
