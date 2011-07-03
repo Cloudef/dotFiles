@@ -46,6 +46,7 @@ sub print_text_notify {
 
 
     return if (!$server || !($dest->{level} & MSGLEVEL_HILIGHT));
+    $stripped =~ s/[^a-zA-Z0-9 .,!?\@:\>]//g;
     my $summary = $dest->{target};
     notify($server, $summary, $stripped);
 }
@@ -56,6 +57,7 @@ sub message_private_notify {
 
 
     return if (!$server);
+    $msg =~ s/[^a-zA-Z0-9 .,!?\@:\>]//g;
     notify($server, "Private message from ".$nick, $msg);
 }
 
