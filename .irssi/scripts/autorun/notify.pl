@@ -25,46 +25,28 @@ $VERSION = "0.01";
 Irssi::settings_add_str('notify', 'notify_icon', 'gtk-dialog-info');
 Irssi::settings_add_str('notify', 'notify_time', '5000');
 
-
-sub sanitize {
-  my ($text) = @_;
-  $text =~ s/&/&amp;/g; # That could have been done better.
-  $text =~ s/</&lt;/g;
-  $text =~ s/>/&gt;/g;
-  $text =~ s/'/&apos;/g;
-  return $text;
-}
-
-
 sub notify {
     my ($server, $summary, $message) = @_;
 
 
     # Make the message entity-safe
-    $summary = sanitize($summary);
-    $message = sanitize($message);
-
-
     my $cmd = "EXEC - notify-send" .
         " -i " . Irssi::settings_get_str('notify_icon') .
         " -t " . Irssi::settings_get_str('notify_time') .
-        " -- '" . $summary . "'" .
-        " '" . $message . "'";
+        " -- \"" . $summary . "\"" .
+        " \"" . $message . "\"";
 
 
     $server->command($cmd);
 }
- 
+
 sub print_text_notify {
     my ($dest, $text, $stripped) = @_;
     my $server = $dest->{server};
 
 
     return if (!$server || !($dest->{level} & MSGLEVEL_HILIGHT));
-    my $sender = $stripped;
-    $sender =~ s/^\<.([^\>]+)\>.+/\1/ ;
-    $stripped =~ s/^\<.[^\>]+\>.// ;
-    my $summary = $dest->{target} . ": " . $sender;
+    my $summary = $dest->{target};
     notify($server, $summary, $stripped);
 }
 
