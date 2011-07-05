@@ -1,4 +1,3 @@
-<?xml version="1.0" ?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>40</strength>
@@ -222,7 +221,7 @@
     </keybind>
     <keybind key="XF86HomePage">
       <action name="Execute">
-        <command>urxvt -title Ranger -name Ranger -e ranger</command>
+        <command>thunar</command>
       </action>
     </keybind>
     <keybind key="C-A-Left">

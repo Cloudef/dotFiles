@@ -413,6 +413,23 @@ elfcompress() {
    rm /tmp/unpack.header
 }
 
+glc-encode() {
+   if [ ! "$1" ] || [ ! "$2" ] || [ ! "$3" ] [ ! "$4" ]; then
+      echo "Usage : glc-encode [input] [audio bitrate] [video bitrate] [output]"
+      return
+   fi
+
+   if [ "$2" != "0" ]; then
+      glc-play $1 -o - -a 1 | ffmpeg -i pipe: -ab $2 /tmp/audio.mp4
+   fi
+   if [ -f /tmp/audio.mp4 ]; then
+      glc-play $1 -o - -y 1 | ffmpeg -i pipe: -i /tmp/audio.mp4 -acodec copy -b $3 $4
+      rm /tmp/audio.mp4
+   else
+      glc-play $1 -o - -y 1 | ffmpeg -i pipe: -b $3 $4
+   fi
+}
+
 source ${HOME}/.streamkey
 streamjustin() {
    local WININFO="`xwininfo`"
