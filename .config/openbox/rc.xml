@@ -189,6 +189,9 @@
         <command>scrot</command>
       </action>
     </keybind>
+    <keybind key="A-s">
+      <action name="Resize"/>
+    </keybind>
     <keybind key="W-KP_Add">
       <action name="Execute">
         <command>sh ~/.config/conky/addFav.sh</command>

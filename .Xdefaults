@@ -15,6 +15,7 @@ URxvt*highlightSelection:true
 URxvt*buffered:true
 URxvt*saveLines:1500
 cutchars::@-./_~?&=%+#'"'()*,;<=>[]^{|}
+URxvt*iconFile: /home/jari/.icons/ACYL_Icon_Theme_0.9.2/scalable/apps/terminal.svg
 
 URxvt*eightBitInput:true
 URxvt*inputMethod:uim

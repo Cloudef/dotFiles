@@ -131,10 +131,10 @@ style "gnome-color-chooser-button"
     reliefstyle = 0
   }
 
-  bg[PRELIGHT] = "#BA0000"
-  bg[ACTIVE] = "#CACAFF"
+  bg[PRELIGHT] = "#D40000"
+  bg[ACTIVE] = "#BA0000"
   fg[PRELIGHT] = "#FFFFFF"
-  fg[ACTIVE] = "#484848"
+  fg[ACTIVE] = "#FFFFFF"
 }
 widget_class "*.<GtkButton>*" style "gnome-color-chooser-button"
 
