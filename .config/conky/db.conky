@@ -47,7 +47,7 @@ gap_x 1460
 gap_y 5
 
 default_color black
-default_bar_size 165 5
+default_bar_size 270 5
 
 draw_shades no
 draw_outline no
@@ -60,6 +60,6 @@ ${voffset -2}${goto 100}${color be5037}${font VL PGothic:size=8:bold}${exec cat 
 ${color ccc}${goto 100}${exec cat ~/.config/deadbeef/nowPlaying | head -n2 | tail -n1}
 ${goto 100}${exec cat ~/.config/deadbeef/nowPlaying | head -n3 | tail -n1}
 ${color be5037}${goto 100}${execbar cat ~/.config/deadbeef/nowPlaying | head -n7 | tail -n1}
-${goto 100}${font erus:size=6}${exec cat ~/.config/deadbeef/nowPlaying | head -n4 | tail -n1}${offset 107}${font erus:size=6}${exec cat ~/.config/deadbeef/nowPlaying | head -n5 | tail -n1}$font${image ~/.config/conky/bg.png -p 0,-14}${image ~/.config/conky/conkyCover.png -p 0,5 }
+${goto 100}${font erus:size=6}${exec cat ~/.config/deadbeef/nowPlaying | head -n4 | tail -n1}${offset 212}${font erus:size=6}${exec cat ~/.config/deadbeef/nowPlaying | head -n5 | tail -n1}$font${image ~/.config/conky/bg.png -p 0,-14}${image ~/.config/conky/conkyCover.png -p 0,5 }
 ${endif}
 ${texeci 1 ~/.config/conky/db-cover.sh &> /dev/null}
