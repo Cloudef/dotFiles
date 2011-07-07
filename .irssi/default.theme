@@ -31,9 +31,9 @@ abstracts = {
   ownnick = "%W$*%n";
   pubmsgnick = "%R{msgnick %w$0 $1-%R}%n";
   pubnick = "%N$*%n";
-  pubmsgmenick = "{msgnick $0 $1-}";
+  pubmsgmenick = "%R{msgnick %w$1 $0$2-%R}%n";
   menick = "%K$*%n";
-  pubmsghinick = "{msgnick $1 $0$2-%n}";
+  pubmsghinick = "%R{msgnick %w$1 $0$2-%R}%n";
   msgchannel = "%K:%c$*%n";
   privmsg = "[%R$0%K(%r$1-%K)%n] ";
   ownprivmsg = "[%r$0%K(%R$1-%K)%n] ";
@@ -117,8 +117,9 @@ formats = {
     theme_saved = "Theme saved ->> $0";
     config_saved = "Configuration saved ->> $0";
     own_msg = "{ownmsgnick $2 {ownnick $0}}$1";
-    pubmsg_me = "{pubmsgmenick $3 {menick $0}{msgchannel $1}}$2";
-    pubmsg_me_channel = "{pubmsgmenick $3 {menick $0}{msgchannel $1}}$2";
+    pubmsg_me = "{pubmsgmenick $2 {pubnick \00309$0}}%r$1"";
+    pubmsg_me_channel = "{pubmsgmenick $2 {pubnick \00309$0}}%r$1"";
+    pubmsg = "{pubmsgnick $2 {pubnick \00309$0}}$1";
   };
   "fe-text" = { paste_prompt = "Hit Ctrl-K to paste, Ctrl-C to abort"; };
   "fe-common/irc" = {
