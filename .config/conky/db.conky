@@ -45,7 +45,7 @@ maximum_width 403
 
 dalignment bl
 gap_x 1460
-gap_y 10
+gap_y 25
 
 default_color black
 default_bar_size 270 5
