@@ -16,14 +16,14 @@ imlib_cache_size 0
 # -- Window specifications -- #
 
 own_window		yes
-own_window_transparent  yes
+own_window_transparent  no
 own_window_type		override
 # own_window_type	desktop
 own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
 
-alignment bottom_right
-gap_x -90
-gap_y 30
+alignment top_right
+gap_x 0
+gap_y 15
 
 # -- Graphics settings -- #
 draw_shades no
@@ -35,15 +35,7 @@ uppercase no
 
 default_color  FFFFFF
 
-minimum_size 325 100
-
-# -- Lua Load -- #
-lua_load ~/.config/conky/rings.lua
-lua_draw_hook_pre clock_rings
+minimum_size 100 5
 
 TEXT
-${voffset 245}${offset 80}${time %H.%M}
-${offset 40}${execi 35 pacman -Qu | wc -l} Updates
-${mem} ${execi 5 sensors | grep "Core 0" | cut -c16-19}c ${execi 5 nvidia-settings -query GPUCoreTemp | grep Attribute | cut -c39-40}.0c
-${offset 40}${downspeedf wlan0}KiB ${upspeedf wlan0}KiB
-${offset 100}${addr wlan0}
+${alignr}${time %H.%M} | ${execi 35 pacman -Qu | wc -l} Updates | ${mem} ${execi 5 sensors | grep "Core 0" | cut -c16-19}c ${execi 5 nvidia-settings -query GPUCoreTemp | grep Attribute | cut -c39-40}.0c | ${downspeedf wlan0}KiB ${upspeed} | ${addr wlan0}  ${offset 15}
