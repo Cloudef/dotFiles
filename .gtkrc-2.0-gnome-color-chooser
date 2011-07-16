@@ -108,7 +108,7 @@ style "gnome-color-chooser-scrollbar"
   }
 
   bg[NORMAL] = "#9E0B00"
-  GtkScrollbar::slider_width = 5
+  GtkScrollbar::slider_width = 7
 }
 widget_class "*Scrollbar" style "gnome-color-chooser-scrollbar"
 

@@ -44,9 +44,6 @@ gtk-redshift -l 62:22 &
 # Panel
 xfce4-panel &
 
-# Devmon
-( sleep 5 && devmon ) &
-
 # Unclutter
 unclutter -idle 5 -jitter 5 &
 

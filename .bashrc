@@ -38,6 +38,9 @@ if [ "$TERM" = "linux" ]; then
 	clear #for background artifacting
 fi
 
+# LS_COLORS
+eval $( dircolors -b $HOME/.LS_COLORS )
+
 source ${HOME}/.alias
 source ${HOME}/.funcs
 source ${HOME}/.sshagent

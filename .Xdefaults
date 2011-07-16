@@ -43,25 +43,16 @@ URXvt*mouseWheelScrollPage:false
 !}}}
 
 !URxvt Fonts {{{
-URxvt*font:             xft:erusfont:pixelsize=7
+URxvt*font:  xft:erusfont
 !}}}
 
 !URxvt Color Settings {{{
-
-! Color Scheme
 #include "/home/jari/.color_schemes/Taters"
 
-URxvt*cursorColor: #DCDCCC
-URxvt*pointerColor:grey
-URxvt*pointerColorBackground:black
-URxvt*pointerBlank:false
-URxvt*pointerBlankDelay:2
-
-! --- URxvt Tab Colors --- !
-!URxvt*tabbed.tabbar-fg:#F60606
-!URxvt*tabbed.tabbar-bg:#F60606
-!URxvt*tabbed.tab-fg:#F60606
-!URxvt*tabbed.tab-bg:#F60606
+URxvt*borderColor:        #151515
+URxvt*colorBD:            #ffffff
+URxvt*cursorColor:        #ff8939
+URxvt*cursorColor2:       #151515
 
 ! --- Clickable links --- !
 URxvt.perl-ext-common: default,matcher

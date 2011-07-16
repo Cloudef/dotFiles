@@ -340,6 +340,22 @@ function bgmplayer(){
 	mplayer $1 -novideo &>/dev/null </dev/null &
 }
 
+# grep libs for symbols
+function greplib(){
+   if [ ! "$1" ]; then
+      echo "Usage : greplib [symbol] (lookup path)"
+      return
+   fi
+
+   if [ ! "$2" ]; then
+      nm -a -o /usr/lib/*.so | grep $1
+      nm -a -o /usr/lib/*.a  | grep $1
+   else
+      nm -a -o $2/*.so | grep $1
+      nm -a -o $2/*.a  | grep $1
+   fi
+}
+
 japantime() {
 	sudo cp /usr/share/zoneinfo/Japan /etc/localtime
 	sudo ntpdate ntp1.funet.fi

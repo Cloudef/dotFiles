@@ -14,7 +14,7 @@
 #max_uploads = 15
 
 # Global upload and download rate in KiB. "0" for unlimited.
-download_rate = 700
+download_rate = 600
 upload_rate = 40
 
 # Default directory to save the downloaded torrents.
