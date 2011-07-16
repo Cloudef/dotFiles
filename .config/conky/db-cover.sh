@@ -21,7 +21,7 @@ macopix_play()
    if [ $USE_MACOPIX == 1 ]; then
       # start the dance
       macopix --anim $MACOPIX_ANIM --anim-loop $MACOPIX_LOOPS
-   fi  
+   fi
 }
 
 macopix_stop()
@@ -29,7 +29,7 @@ macopix_stop()
    if [ $USE_MACOPIX == 1 ]; then
       # stop the dance
       macopix --anim-loop 0
-   fi          
+   fi
 }
 
 CURCOVER=""
@@ -47,7 +47,7 @@ fi
 if [ ! -f ~/.config/deadbeef/nowPlaying ];then
    # no file yet, this should be called only once in deadbeef's lifetime
    macopix_play
-fi  
+fi
 
 if [ -f ~/.config/deadbeef/nowPlaying ]; then
 	LTRACK="`cat ~/.config/deadbeef/nowPlaying | head -n1`"
@@ -55,7 +55,7 @@ if [ -f ~/.config/deadbeef/nowPlaying ]; then
 	CURCOVER="`cat ~/.config/deadbeef/nowPlaying | head -n6 | tail -n1`"
 fi
 
-ARTCACHE=~/.config/deadbeef/artcache
+ARTCACHE=~/.cache/deadbeef/covers
 if [ ! "$TRACK" = "$LTRACK" ]; then
 	ARTIST="`deadbeef --nowplaying "%a"`"
 	ALBUM="`deadbeef --nowplaying "%b"`"
@@ -68,7 +68,7 @@ else
 	ALBUM=$LALBUM
 	YEAR="`cat ~/.config/deadbeef/nowPlaying | head -n4 | tail -n1`"
    LWTIME="`cat ~/.config/deadbeef/nowPlaying | head -n5 | tail -n1`"
-   LPERCENT="`cat ~/.config/deadbeef/nowPlaying | head -n7 | tail -n1`" 
+   LPERCENT="`cat ~/.config/deadbeef/nowPlaying | head -n7 | tail -n1`"
    LSTOP="`cat ~/.config/deadbeef/nowPlaying | head -n8 | tail -n1`"
 fi
 ELAPSED="`deadbeef --nowplaying "%e"`"
@@ -84,7 +84,7 @@ if [ ! "$ALBUM" = "$LALBUM" ]; then
 	    cp $CONKYDIR/Vinyl/base.png "$COVER"
 	else
 	    cp "$CURCOVER" "$COVER"
-    
+
 	    ASPECT=$((($(identify -format %w "$COVER") - $(identify -format %h "$COVER"))/86))
 
 	    if [ $ASPECT -lt -30 ]; then
@@ -141,5 +141,5 @@ echo $YEAR        >> ~/.config/deadbeef/nowPlaying
 echo $WTIME       >> ~/.config/deadbeef/nowPlaying
 echo "$CURCOVER"  >> ~/.config/deadbeef/nowPlaying
 echo $PERCENT     >> ~/.config/deadbeef/nowPlaying
-echo $STOP        >> ~/.config/deadbeef/nowPlaying 
+echo $STOP        >> ~/.config/deadbeef/nowPlaying
 exit
