@@ -154,7 +154,7 @@ abstracts = {
   prompt = "%K[%w$tag%K/%m$cumode%c$*%K]%n ";
 
 
-  sb = " %m-=%K[%w$*%K]%m=-%n";
+  sb = " %m%K[%w$*%K]%m%n";
   sbmode = "%K(%n+%C$*%K)%n";
   sbaway = " %K(%MzZzZ%K)";
   sbservertag = "%n:$0 (change with ^X)";
