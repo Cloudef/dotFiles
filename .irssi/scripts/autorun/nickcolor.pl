@@ -1,10 +1,10 @@
 use strict;
 use Irssi;
-use vars qw($VERSION %IRSSI); 
+use vars qw($VERSION %IRSSI);
 $VERSION = "1";
 %IRSSI = (
     authors     => "Timo Sirainen, Ian Peters",
-    contact	=> "tss\@iki.fi", 
+    contact	=> "tss\@iki.fi",
     name        => "Nick Color",
     description => "assign a different color for each nick",
     license	=> "Public Domain",
@@ -105,7 +105,7 @@ sub sig_public {
   }
 
   $color = "0".$color if ($color < 10);
-  $server->command('/^format pubmsg {pubmsgnick $2 {pubnick '.chr(3).$color.'$0}}$1');
+  $server->command('/^format pubmsg %b<%w$2'.chr(3).$color.'$[-11]0%b>%K | %n$1');
 }
 
 sub cmd_color {

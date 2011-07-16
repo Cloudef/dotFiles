@@ -1,18 +1,18 @@
 #######################################################################
 #
 # xchat.theme for irssi - http://waxman.org/irssi/xchat.theme (xchat.png)
-# 
+#
 # xchat.theme, Public Beta, 1.5.1 2004/08/06
 #
 # Copyright 2004 Dave Waxman
 #
 # Please report any bugs to xchattheme@waxman.org
 #
-# For best results it is suggested you do the following:                                                                  
-# /set show_nickmode_empty on                                     
-# /set hide_server_tag on                                          
-# /set timestamp %H:%M:%S                                            
-# /set indent 28                                        
+# For best results it is suggested you do the following:
+# /set show_nickmode_empty on
+# /set hide_server_tag on
+# /set timestamp %H:%M:%S
+# /set indent 28
 #
 # This theme is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -27,7 +27,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this theme; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-#           
+#
 #######################################################################
 
 
@@ -217,7 +217,7 @@ formats = {
     daychange = "                      %w-%c-%C- %K| %nDay changed to %%d %%b %%Y";
     your_nick_changed = "           %w-%c-%C- %K| %nYou're now known as %W$1";
 
-    #pubmsg = "%b<%w$2\00311$[-11]0%b> %K|%n $1";
+    pubmsg = "%b<%w$2\00311$[-11]0%b>%K | %n$1";
     own_msg_private_query = "%m<%W$[-12]2%m> %K| %n$1";
     msg_private_query = "%b<%w$[-12]0%b>%K | %n$2";
     own_msg = "%m<%W$2$[-11]0%m>%K | %n$1";
@@ -226,9 +226,9 @@ formats = {
     pubmsg_me_channel = "{pubmsgmenick $3 {menick $[-11]0}{msgchannel $1}}%K|%n $2";
     pubmsg_hilight = "{pubmsghinick $0 $3 $[-11]1}%K|%n $2";
     pubmsg_hilight_channel = "{pubmsghinick $0 $4 $[-11]1{msgchannel $2}}%K|%n $3";
-    #pubmsg_channel = "{pubmsgnick {pubnick $[-11]0}{msgchannel $1}}%K|%n $2";
+    pubmsg_channel = "{pubmsgnick {pubnick $[-11]0}{msgchannel $1}}%K|%n $2";
 
-    pubmsg = "{pubmsgnick $2 {pubnick \00304$0}}$1";
+#   pubmsg = "{pubmsgnick $2 {pubnick \00304$0}}$1";
     talking_with = "           %w-%c-%C- %K| %nYou are now talking with %W$0";
     refnum_too_low = "           %w-%c-%C- %K| %WWindow: %nWindow number must be greater than 1";
     error_server_sticky = "           %w-%c-%C- %K| %WWindow: %nWindow's server is sticky, use -unsticky option to change";
