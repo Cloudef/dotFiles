@@ -222,11 +222,11 @@ formats = {
     msg_private_query = "%b<%w$[-12]0%b>%K | %n$2";
     own_msg = "%m<%W$2$[-11]0%m>%K | %n$1";
     own_msg_private = "%G>%w$[-12]0%G<%K |%n $1-";
-    pubmsg_me = "{pubmsgmenick {menick $[-11]0}}%K|%n $1";
-    pubmsg_me_channel = "{pubmsgmenick $3 {menick $[-11]0}{msgchannel $1}}%K|%n $2";
-    pubmsg_hilight = "{pubmsghinick $0 $3 $[-11]1}%K|%n $2";
-    pubmsg_hilight_channel = "{pubmsghinick $0 $4 $[-11]1{msgchannel $2}}%K|%n $3";
-    pubmsg_channel = "{pubmsgnick {pubnick $[-11]0}{msgchannel $1}}%K|%n $2";
+    pubmsg_me = "{pubmsgmenick {menick $[-11]0}}%K |%n $1";
+    pubmsg_me_channel = "{pubmsgmenick $3 {menick $[-11]0}{msgchannel $1}}%K | %n$2";
+    pubmsg_hilight = "{pubmsghinick $0 $3 $[-11]1}%K| %n$2";
+    pubmsg_hilight_channel = "{pubmsghinick $0 $4 $[-11]1{msgchannel $2}}%K| %n$3";
+    pubmsg_channel = "{pubmsgnick {pubnick $[-11]0}{msgchannel $1}}%K | %n$2";
 
 #   pubmsg = "{pubmsgnick $2 {pubnick \00304$0}}$1";
     talking_with = "           %w-%c-%C- %K| %nYou are now talking with %W$0";
