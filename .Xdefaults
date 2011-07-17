@@ -21,7 +21,6 @@ URxvt*eightBitInput:true
 URxvt*inputMethod:uim
 URxvt*preeditType:OverTheSpot,root
 URxvt*multichar_encoding:utf-8
-URxvt*imLocale:fi_FI.UTF-8
 
 modifier:meta
 !alt, meta, hyper, super, mod1..5

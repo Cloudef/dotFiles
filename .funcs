@@ -136,7 +136,6 @@ function wazaaa() {
 	local arch="Arch"
 	local nix="Linux"
    local tmux=`ps -a | grep tmux`
-	#local say=`curl -s http://bash.org/?random1|grep -oE "<p class=\"quote\">.*</p>.*</p>"|grep -oE "<p class=\"qt.*?</p>"|sed -e 's/<\/p>/\n/g' -e 's/<p class=\"qt\">//g' -e 's/<p class=\"qt\">//g'|perl -ne 'use HTML::Entities;print decode_entities($_),"\n"'|head -1`
 	clear #&& echo "${BOLD}${WHITE}${arch}${BLUE}${nix}${NORMAL}"
 	figlet "Arch Linux"
 	echo ""
@@ -148,7 +147,6 @@ function wazaaa() {
    fi
 	echo "[ai :: Install] [ar :: Remove] [au :: Update]"
 	echo ""
-	#echo -e ${WHITE}${say}${NORMAL}
 }
 
 function kingbash.fn() {
