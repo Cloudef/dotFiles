@@ -2,7 +2,7 @@
 
 use Irssi;
 use strict;
-use vars qw($VERSION %IRSSI); 
+use vars qw($VERSION %IRSSI);
 $VERSION = "0.1";
 %IRSSI = (
     authors	=> "Jari Vetoniemi",
@@ -25,4 +25,5 @@ sub msg_part {
 }
 
 Irssi::signal_add( {	'message join' => \&msg_join,
-			'message part' => \&msg_part	} );
+			            'message part' => \&msg_part,
+                     'message quit' => \&msg_part } );

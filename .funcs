@@ -468,4 +468,15 @@ streamjustin() {
    -f flv "rtmp://live.justin.tv/app/$STREAM_KEY"
 }
 
+# Valgrind wrapper
+memleak()
+{
+   if [ -f valgrind.supp ]
+   then
+      valgrind --suppressions=valgrind.supp $@
+   else
+      valgrind $@
+   fi
+}
+
 # vim: nospell
