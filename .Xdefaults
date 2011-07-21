@@ -2,6 +2,7 @@ Xcursor.theme: AnArchCursor-26
 
 !URxvt Settings {{{
 URxvt*termName:rxvt-unicode-256color
+URxvt*letterSpace: 0
 
 URxvt*borderLess:true
 URxvt*externalBorder:0
@@ -46,7 +47,7 @@ URxvt*font:  xft:erusfont
 !}}}
 
 !URxvt Color Settings {{{
-#include "/home/jari/.color_schemes/Taters"
+#include "/home/jari/.Xcolors/Taters"
 
 URxvt*borderColor:        #151515
 URxvt*colorBD:            #ffffff

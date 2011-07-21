@@ -4,7 +4,7 @@
 export EDITOR="vim"
 export BROWSER="opera"
 
-export TTY_THEME=console_phraktured
+export TTY_THEME="console_phraktured"
 
 ################################
 ## Test for interactive shell ##
@@ -26,6 +26,23 @@ shopt -s hostcomplete
 shopt -s no_empty_cmd_completion
 shopt -s nocaseglob
 
+################
+## TTY COLORS ##
+################
+if [ "$TERM" = "linux" ]; then
+	local colors=($(cat $HOME/.Xcolors/$TTY_THEME | sed 's/#.*//'))
+	for index in ${!colors[@]}
+	do
+		printf '\e]P%x%s' $index ${colors[$index]}
+	done
+	clear
+fi
+
+###############
+## LS COLORS ##
+###############
+eval $( dircolors -b $HOME/.LS_COLORS )
+
 ########################
 ## Includes && Prompt ##
 ########################
@@ -41,24 +58,6 @@ PROMPT_COMMAND=prompt
 #############
 setcolors
 welcome
-
-###############
-## LS COLORS ##
-###############
-eval $( dircolors -b $HOME/.LS_COLORS )
-
-
-################
-## TTY COLORS ##
-################
-if [ "$TERM" = "linux" ]; then
-	local colors=($(cat $HOME/.color_schemes/$TTY_THEME | sed 's/#.*//'))
-	for index in ${!colors[@]}
-	do
-		printf '\e]P%x%s' $index ${colors[$index]}
-	done
-	clear
-fi
 
 #############
 ## ARM Dev ##

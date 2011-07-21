@@ -90,18 +90,10 @@ function prompt() {
 		path="${ORANGE}${PWD} :: ${git}${RED} ${gitNum}${cBorder}"
 	fi
 
-	let promptsize=$(echo -n ".$user//$host---${cpath}" \
-			 | wc -c | tr -d " ")
+	let promptsize=$(echo -n ".${user}//{$host}---${cpath}" | wc -c | tr -d " ")
 	width=$(tput cols)
 
-	let fillsize=${width}-${promptsize}+3
-
-	fill=""
-   while [ "$fillsize" -gt "0" ]
-	do
-		fill="${fill}─"
-		let fillsize=${fillsize}-1
-	done
+	let fillsize=${width}-${promptsize}
 
 	if [ "$fillsize" -lt "0" ]
 	then
@@ -109,11 +101,9 @@ function prompt() {
 		path="...$(echo -n $cpath | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
 	fi
 
-	if [ "$TERM" = "linux" ]; then
-	   PS1="\n[.\[${ORANGE}\]\u\[${NORMAL}\]//\[${ORANGE}\]\h\[${NORMAL}\]]${fill}[\[${ORANGE}\]${path}${NORMAL}]\n\[${NORMAL}\]>>\[${ORANGE}\]>\[${NORMAL}\] "
-	else
-	   PS1="\n${ORANGE}.\u${WHITE}//${GREEN}\h :: ${path}\n${RED}>>${NORMAL} "
-	fi
+   echo ""
+   echo "${ORANGE}.${user}${WHITE}//${GREEN}${host} :: ${path}"
+	PS1="\[\e[1;31m\]>>\[\e[0m\] "
 }
 
 #################################

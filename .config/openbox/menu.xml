@@ -14,7 +14,7 @@
 		<item label="Terminaali">
 			<action name="Execute">
 				<execute>
-					sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;
+					sh ~/.config/openbox/urxvtc -title Arch Linux
 				</execute>
 			</action>
 		</item>
@@ -349,7 +349,7 @@
 			<item label="Irssi">
 				<action name="Execute">
 					<execute>
-						urxvt -title IRSSI -name IRSSI -e irssi
+						urxvt -title IRSSI -e irssi
 					</execute>
 				</action>
 			</item>
@@ -366,7 +366,7 @@
 			<item label="MSN">
 				<action name="Execute">
 					<execute>
-						urxvt -title MSN -name MSN -e irssi --config=~/.irssi/bitlbee
+						urxvt -title MSN -e irssi --config=~/.irssi/bitlbee
 					</execute>
 				</action>
 			</item>
@@ -380,14 +380,14 @@
 			<item label="RSS">
 				<action name="Execute">
 					<execute>
-						sh ~/.config/openbox/urxvtc -title SnowNews -name SnowNews -e snownews
+						sh ~/.config/openbox/urxvtc -title SnowNews -e snownews
 					</execute>
 				</action>
 			</item>
 			<item label="rTorrent">
 				<action name="Execute">
 					<execute>
-						sh ~/.config/openbox/urxvtc -title rTorrent -name rTorrent -e rtorrent
+						sh ~/.config/openbox/urxvtc -title rTorrent -e rtorrent
 					</execute>
 				</action>
 			</item>
