@@ -1,3 +1,5 @@
+## Aliases ##
+
 # More functionality by default
 alias ls='ls++'                            # https://github.com/trapd00r/ls--
 alias dir='dir -h --color=auto'
