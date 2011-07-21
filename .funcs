@@ -439,3 +439,20 @@ memleak()
       valgrind $@
    fi
 }
+
+##################################################
+## Convert ISO to splitted WBFS to use with Wii ##
+##################################################
+wiisplit()
+{
+   if [ ! $1 ]; then
+      echo "Usage: [ISO file]"
+      return
+   fi
+   if [ ! -f $1 ]; then
+      echo "'$1' is not a valid file"
+      return
+   fi
+
+   wbfs_file $1
+}
