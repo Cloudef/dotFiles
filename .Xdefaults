@@ -1,7 +1,7 @@
 Xcursor.theme: AnArchCursor-26
 
 !URxvt Settings {{{
-URxvt*termName:rxvt-256color
+URxvt*termName:rxvt-unicode-256color
 
 URxvt*borderLess:true
 URxvt*externalBorder:0
@@ -24,7 +24,7 @@ URxvt*multichar_encoding:utf-8
 
 modifier:meta
 !alt, meta, hyper, super, mod1..5
-!}}}
+ !}}}
 
 !Scroll and mousewheel {{{
 XTerm*jumpScroll:true

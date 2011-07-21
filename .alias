@@ -1,32 +1,38 @@
-# Värit
-alias ls='ls --color=auto'
+# More functionality by default
+alias ls='ls++'                            # https://github.com/trapd00r/ls--
 alias dir='dir -h --color=auto'
 alias vdir='vdir -h --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# Kansio aliakset
+# Directory aliases
 alias dev="cd /media/Storage/Dev/"
 alias projekti="cd /media/Storage/Dev/Projektit/Projekti/"
 alias ogl="cd /media/Storage/Dev/Projektit/CFrameWork"
 alias projektit="cd /media/Storage/Dev/projektit"
 
-# Ohjelma aliakset
+# We have pacman-color
 alias pacman="pacman-color"
+
+# Packer aliases
 alias ai="packer --noconfirm"
 alias au="packer -Syu --noconfirm"
 alias ar="sudo pacman-color -Rsn"
 alias ac="sudo pacman-color -Q -t -d | awk \"{ print \$1 }\" | xargs --interactive --no-run-if-empty sudo pacman-color -R --noconfirm"
 
-# Scripti aliakset
+# Clean garbage
 alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'
+
+# Extrenal IP
 alias extip='echo $(curl -s http://www.whatismyip.com/automation/n09230945.asp)'
-alias quote="wazaaa"
+
+# Cherokee weblog
 alias weblog="cat /var/log/httpd/access_log | tail -15 | uniq | sort"
-alias touhou="cat ~/.touhou"
+
+# Vim && Tmux
 alias vimtux="tmux new-session -s VIMtux -d \"tmux set-option default-path $PWD\" \; source-file ~/.vimtux.conf \; attach"
 
-# Wine
+# Final Fantasy XIV && WINE
 alias ffxivcfg="WINEPREFIX=~/.FFXIV winecfg"
 alias ffxivconfig="WINEPREFIX=~/.FFXIV wine C:/Program\ Files/SquareEnix/FINAL\ FANTASY\ XIV/ffxivconfig.exe"

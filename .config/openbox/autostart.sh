@@ -33,19 +33,19 @@ xset -dpms
 xset s off
 
 # Set wallpapers
-nitrogen --restore
+(nitrogen --restore &> /dev/null) &
 
 # Cairo compgmr
-cairo-compmgr &
+(cairo-compmgr &> /dev/null) &
 
 # Redshift
-gtk-redshift -l 62:22 &
+(gtk-redshift -l 62:22 &> /dev/null) &
 
 # Panel
-xfce4-panel &
+(xfce4-panel &> /dev/null) &
 
 # Unclutter
-unclutter -idle 5 -jitter 5 &
+(unclutter -idle 5 -jitter 5 &> /dev/null) &
 
 # Mixer
 (volti &> /dev/null) &

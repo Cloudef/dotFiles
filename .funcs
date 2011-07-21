@@ -1,199 +1,77 @@
-#!/bin/bash
-# c00kiemon5ter (ivan.kanak@gmail.com) ~ under c00kiez License
+## INCLUDE FILE ##
 
-# color vars, terminal independent
-function setcolors() {
-	DARK=$(tput setaf 0)
-	RED=$(tput setaf 1)
-	GREEN=$(tput setf 2)
-	ORANGE=$(tput setaf 3)
-	LIGHTBLUE=$(tput setaf 4)
-	MAUV=$(tput setaf 5)
-	DARKGREY=$(tput setaf 6)
-	WHITE=$(tput setaf 7)
+# Useful shell functions
+# Most of these aren't done by me, but collected from different places.
 
-	BOLDDARK=$(tput setaf 8)
-	BOLDRED=$(tput setaf 9)
-	BOLDGREEN=$(tput setaf 10)
-	GOLD=$(tput setaf 11)
-	BLUE=$(tput setaf 12)
-	PURPLE=$(tput setaf 13)
-	GREY=$(tput setaf 14)
-	BOLDWHITE=$(tput setaf 15)
-
-	BLACK=$(tput setaf 16)
-	NORMAL=$(tput sgr0) # reset
-	DIM=$(tput dim)
-	BOLD=$(tput bold)
-	UNDRLN=$(tput smul)
-	RMUNDRLN=$(tput rmul)
-	BLINK=$(tput blink)
-	REVERSE=$(tput rev)
-	INVISIBLE=$(tput invis)
-}
-
-# keep path in one line, trim long paths to ..reduced/path/
-function reduce_path() {
-	local path="${PWD/#$HOME/~}"
-	# " on " + " in " = 8  #taken from the prompt
-	local maxlen="$(($(tput cols) -${#USER} -${#HOSTNAME} -8 -${1:-0}))"
-	if [ ${#path} -gt ${maxlen} ]
-	then
-		local prefix=".."
-		local path="${prefix}${path:$((${#path} -${maxlen} +${#prefix}))}"
-	fi
-	echo "${path}"
-}
-
-# the git prompt
-function git_prompt() {
-	local pre="${WHITE}[branch: ${PURPLE}"
-	local suf="${BLACK}]${NORMAL}"
-	local ref="$(git symbolic-ref HEAD 2> /dev/null)"
-	[ -n "$ref" ] || return
-	git status | grep "not updated" &>/dev/null && ref="${ref}${GREEN}!"
-	git status | grep "Untracked" &>/dev/null && ref="${ref}${GREEN}?"
-	echo ${pre}${ref#refs/heads/}${suf}
-}
-
-function git_cprompt() {
-	local pre="[branch: "
-	local suf="]"
-	local ref="$(git symbolic-ref HEAD 2> /dev/null)"
-	[ -n "$ref" ] || return
-	git status | grep "not updated" &>/dev/null && ref="${ref}!"
-	git status | grep "Untracked" &>/dev/null && ref="${ref}?"
-	echo ${pre}${ref#refs/heads/}${suf}
-}
-
-# the promp
-function prompt() {
-
-	local gitNum=""
-	local cgit="$(git_cprompt)"
-	local git="$(git_prompt)"
-	local cpath="${PWD}"
-	local path="${PWD}"
-	if [ -n "$git" ]; then
-		gitNum="["
-		gitNum+="$(echo $cgit | sed -r "s:\x1B\[[0-9;]*[mK]::g" | wc -c)"
-		gitNum+="]"
-		cpath="${PWD})--(${cgit}${gitNum}"
-		path="${PWD}${cBorder})--(${git}${RED}${gitNum}"
-	fi
-
-	user="whoami"
-	host=$(echo -n $HOSTNAME | sed -e "s/[\.].*//")
-	datenow=$(date "+%a, %d %b %y")
-	let promptsize=$(echo -n "--(.$user//$host)---(${cpath})---" \
-			 | wc -c | tr -d " ")
-
-	width=$(tput cols)
-
-	let fillsize=${width}-${promptsize}+1
-
-	fill=""
-
-	while [ "$fillsize" -gt "0" ]
-	do
-		fill="${fill}─"
-		let fillsize=${fillsize}-1
-	done
-
-	if [ "$fillsize" -lt "0" ]
-	then
-		let cutt=3-${fillsize}
-		path="...$(echo -n $cpath | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
-	fi
-
-	Cyan="\[\e[m\]\[\e[0;36m\]"
-	Red="\[\e[m\]\[\e[0;31m\]"
-
-	# Set prompt colour
-	if [ `id -u` -eq 0 ]
-	then
-	    cText="${LightRed}"
-	    cBorder="${Red}"
-	else
-	    cText="${LightCyan}"
-	    cBorder="${Cyan}"
-	fi
-
-	if [ "$TERM" = "linux" ]; then
-
-	PS1="\n[.\[${ORANGE}\]\u\[${NORMAL}\]//\[${ORANGE}\]\h\[${NORMAL}\]]${fill}[\[${ORANGE}\]${path}${NORMAL}]\n\[${NORMAL}\]>>\[${ORANGE}\]>\[${NORMAL}\] "
-
-	else
-
-	PS1="\n${cBorder}┌─(${ORANGE}.\u${cBorder}//${BLUE}\h${cBorder})─\${fill}─(${BLUE}${cText}${path}\
-${cBorder})────┐\n${cBorder}└─(${cText}\$(date \"+%H:%M\")${cBorder})─> "
-
-	fi
-}
-
-# display a random quote on top of every new shell
-function wazaaa() {
-	local arch="Arch"
-	local nix="Linux"
-   local tmux=`ps -a | grep tmux`
-	clear #&& echo "${BOLD}${WHITE}${arch}${BLUE}${nix}${NORMAL}"
-	figlet "Arch Linux"
-	echo ""
-   if [ "$tmux" ]
-   then
-      echo "TMUX Sessions:"
-      tmux list-sessions
-      echo ""
-   fi
-	echo "[ai :: Install] [ar :: Remove] [au :: Update]"
-	echo ""
-}
-
-function kingbash.fn() {
-  echo -n "KingBash> $READLINE_LINE" #Where "KingBash> " looks best if it resembles your PS1, at least in length.
-  OUTPUT=`kingbash --extracommands "$(compgen -ab -A function)" --extrafiles "$(compgen -v -P $)"`
-  READLINE_POINT=`echo "$OUTPUT" | tail -n 1`
-  READLINE_LINE=`echo "$OUTPUT" | head -n -1`
-  echo -ne "\r\e[2K"; }
-[[ $- =~ i ]] && bind -x '"\t":kingbash.fn'
-
-# cd helper
+################
+## Smarter CD ##
+################
 function goto() {
 	[ -d "$1" ] && cd "$1" || cd "$(dirname "$1")";
 }
-# copy and follow
+
+####################
+## Copy && Follow ##
+####################
 function cpf() {
 	cp "$@" && goto "$_";
 }
-# move and follow
+
+####################
+## Move && Follow ##
+####################
 function mvf() {
 	mv "$@" && goto "$_";
 }
 
-# VDPAU play
+#####################
+## mkdir && follow ##
+#####################
+function mkcdr() {
+	mkdir -vp "$@" && cd "$_";
+}
+
+##########################
+## VDPAU Test           ##
+## CPU is better for me ##
+##########################
 function vplay() {
 	mplayer -vo vdpau -vc ffh264vdpau "$1"
 }
 
-## services handling
+##################
+## Start daemon ##
+##################
 function start() {
 	for arg in $@
 	do
 		sudo /etc/rc.d/$arg start
 	done
 }
+
+#################
+## Stop daemon ##
+#################
 function stop() {
 	for arg in $@
 	do
 		sudo /etc/rc.d/$arg stop
 	done
 }
+
+####################
+## Restart daemon ##
+####################
 function restart() {
 	for arg in $@
 	do
 		sudo /etc/rc.d/$arg restart
 	done
 }
+
+###################
+## Daemon status ##
+###################
 function status() {
 	for	arg in $@
 	do
@@ -201,6 +79,13 @@ function status() {
 	done
 }
 
+
+###################################################################
+## PKG Build system                                              ##
+##                                                               ##
+## Create PKGBUILD folder in your $HOME                          ##
+## For each project create own folder and put the PKGBUILD there ##
+###################################################################
 function pkg() {
 	if [ ! $1 ]; then
 		echo "Usage : pkg [PKGBUILD]"
@@ -223,12 +108,17 @@ function pkg() {
 	popd >> /dev/null
 }
 
-# funny quotes from bash.org @irc
-function bashfortune() {
+
+###########################
+## Quote from bashquotes ##
+###########################
+function quote() {
 	curl -s http://bash.org/?random1|grep -oE "<p class=\"quote\">.*</p>.*</p>"|grep -oE "<p class=\"qt.*?</p>"|sed -e 's/<\/p>/\n/g' -e 's/<p class=\"qt\">//g' -e 's/<p class=\"qt\">//g'|perl -ne 'use HTML::Entities;print decode_entities($_),"\n"'|head -1
 }
 
-# extract all in one
+######################
+## Extract archives ##
+######################
 function extract() {
 	if [ -f $1 ] ; then
 		case $1 in
@@ -250,95 +140,140 @@ function extract() {
 	fi
 }
 
-# Makes directory then moves into it
-function mkcdr() {
-	mkdir -vp "$@" && cd "$_";
-}
-
-# creates an archive from given directory
+########################
+## Create tar archive ##
+########################
 function mktar() {
 	tar cvf  "${1%%/}.tar"     "${1%%/}/";
 }
+
+###########################
+## Create tar.gz archive ##
+###########################
 function mktgz() {
 	tar cvzf "${1%%/}.tar.gz"  "${1%%/}/";
 }
+
+############################
+## Create tar.bz2 archive ##
+############################
 function mktbz() {
 	tar cvjf "${1%%/}.tar.bz2" "${1%%/}/";
 }
 
-function videoconverthd()
+#################################################
+## Simple encode for HD video                  ##
+## If you are _encoder_ don't rely on these :) ##
+#################################################
+function videoencodehd()
 {
-	ffmpeg -y -i $1 -threads 4 -acodec libfaac -ar 44100 -ab 96k -vcodec libx264 -vpre libx264-lossless_medium -level 41 -crf 20 -bufsize 24000k -maxrate 32000k -g 250 -r 20 -coder 1 -flags +loop -cmp +chroma -partitions +parti4x4+partp8x8+partb8x8 -flags2 +dct8x8+bpyramid -me_method umh -subq 7 -me_range 16 -keyint_min 25 -sc_threshold 40 -i_qfactor 0.71 -rc_eq 'blurCplx^(1-qComp)' -bf 16 -b_strategy 1 -bidir_refine 1 -refs 6 -deblockalpha 0 -deblockbeta 0 $2
+   if [ ! -f $1 ] || [ ! $1 ]; then
+      echo "'$1' is not a valid file"
+      return
+   fi
+	ffmpeg -y -i $1 -threads 0 -acodec libfaac -ar 44100 -ab 96k -vcodec libx264 -vpre libx264-lossless_medium -level 41 -crf 20 -bufsize 24000k -maxrate 32000k -g 250 -r 20 -coder 1 -flags +loop -cmp +chroma -partitions +parti4x4+partp8x8+partb8x8 -flags2 +dct8x8+bpyramid -me_method umh -subq 7 -me_range 16 -keyint_min 25 -sc_threshold 40 -i_qfactor 0.71 -rc_eq 'blurCplx^(1-qComp)' -bf 16 -b_strategy 1 -bidir_refine 1 -refs 6 -deblockalpha 0 -deblockbeta 0 $2
 }
 
-function videoconvertsd()
+################################
+## Simple encode for SD video ##
+################################
+function videoencodesd()
 {
-	ffmpeg -i $1 -vcodec libx264 -vpre fast -crf 22 -threads 4 $2
+   if [ ! -f $1 ] || [ ! $1 ]; then
+      echo "'$1' is not a valid file"
+      return
+   fi
+	ffmpeg -i $1 -vcodec libx264 -vpre fast -crf 22 -threads 0 $2
 }
 
-# Convert any flash.flv to matroska.mkv
+################
+## FLV >> MKV ##
+################
 function flv2mkv() {
-	mkdir mkvconv
-	for f in *.flv
-	do
-		ffmpeg -i $f -vcodec copy -sameq -acodec copy -f matroska mkvconv/${f%.*}.mkv
-	done
+   if [ ! -f $1 ] || [ ! $1 ]; then
+      echo "'$1' is not a valid file"
+      return
+   fi
+   ffmpeg -i $1 -vcodec copy -sameq -acodec copy -f matroska ${1%.*}.mkv
 }
 
-# Convert any flash.flv to mp3
+################
+## FLV >> MP3 ##
+################
 function flv2mp3() {
-	mkdir mp3conv
-	for f in *.flv
-	do
-		ffmpeg -i $f -ab 320 -ar 44100 mp3conv/${f%.*}.mp3
-	done
+   if [ ! -f $1 ] || [ ! $1 ]; then
+      echo "'$1' is not a valid file"
+      return
+   fi
+   ffmpeg -i $1 -ab 320 -ar 44100 ${1%.*}.mp3
 }
 
-# Convert mid to ogg
+################
+## MID >> OGG ##
+################
 function mid2ogg()
 {
+   if [ ! -f $1 ] || [ ! $1 ]; then
+      echo "'$1' is not a valid file"
+      return
+   fi
 	timidity -Ov $1
 }
 
-# Convert mid to wav
+################
+## MID >> WAV ##
+################
 function mid2wav()
 {
+   if [ ! -f $1 ] || [ ! $1 ]; then
+      echo "'$1' is not a valid file"
+      return
+   fi
 	timidity -Ow $1
 }
 
-# Setup empty github repo
+#######################
+## Setup github repo ##
+#######################
 function mkgit() {
+   local GITHUB="Cloudef"
+
 	mkdir $1
 	cd $1
 	git init
 	touch README
 	git add README
 	git commit -m 'inital setup - automated'
-	git remote add origin git@github.com:crshd/$1.git
+	git remote add origin git@github.com:$GITHUB/$1.git
 	git push origin master
 }
 
-# screencap - the right way
-function screencap() {
-	local fd="${1-capture.mkv}"
-	local res="${2-1440x900}"
-	ffmpeg -f alsa -i plughw -acodec flac -f x11grab -r 30 -s $res -i $DISPLAY -vcodec libx264 -vpre lossless_ultrafast -threads 0 $fd
-}
-
-#alias tname="echo -ne \"\033]0;${1:-$TERM}\007\""
+###########################
+## Change terminal title ##
+##########################
 function tname(){
 	echo -ne "\033]0;${1:-$TERM}\007";
 }
 
-# Decode QR codes
-qrdecode() { zbarimg -S\*.disable -Sqrcode.enable "$1" -q | sed '1s/^[^:]\+://'; }
 
-# bgmplayer
+#####################
+## Decode QR codes ##
+#####################
+qrdecode() {
+   zbarimg -S\*.disable -Sqrcode.enable "$1" -q | sed '1s/^[^:]\+://';
+}
+
+############################
+## BGM music with mplayer ##
+############################
 function bgmplayer(){
 	mplayer $1 -novideo &>/dev/null </dev/null &
 }
 
-# grep libs for symbols
+####################################
+## Getting undefined references?  ##
+## Grep your libs for symbols     ##
+####################################
 function greplib(){
    if [ ! "$1" ]; then
       echo "Usage : greplib [symbol] (lookup path)"
@@ -354,19 +289,25 @@ function greplib(){
    fi
 }
 
+###########################################
+## Switch to Japanese time using ntpdate ##
+###########################################
 japantime() {
 	sudo cp /usr/share/zoneinfo/Japan /etc/localtime
 	sudo ntpdate ntp1.funet.fi
 }
 
+##########################################
+## Switch to Finnish time using ntpdate ##
+##########################################
 finlandtime() {
 	sudo cp /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
 	sudo ntpdate ntp1.funet.fi
 }
 
-# Useful MKV functions
-
-# Remux to single audio
+#####################################################
+## Remux MKV to use only 1 audio && subtible track ##
+#####################################################
 remux() {
 	if [ ! "$1" ] || [ ! "$2" ] || [ ! "$3" ] || [ ! "$4" ]; then
 		echo "Usage : remux [output] [input] [audio track to keep] [subtible track to keep]"
@@ -375,7 +316,9 @@ remux() {
 	mkvmerge -o "$1" -d 1 --audio-tracks "$3" --subtitle-tracks "$4" "$2"
 }
 
-# Batch remux on current directory
+#####################################################################
+## Same as earlier, expect you can batch whole directory with this ##
+#####################################################################
 bremux() {
 	FILTER="*.mkv"
 	if [ ! "$1" ] || [ ! "$2" ]; then
@@ -391,7 +334,9 @@ bremux() {
 	done
 }
 
-# Print MKV info
+############################################################
+## Print MKV info, use this to find out the track numbers ##
+############################################################
 mkv() {
 	if [ ! "$1" ]; then
 		echo "Usage : mkv [file]"
@@ -400,13 +345,9 @@ mkv() {
 	mkvmerge -i "$@"
 }
 
-todo() {
-	if [ ! "$1" ]; then
-		return
-	fi
-	echo "$@" >> ~/.todo
-}
-
+##################################
+## Compress && Strip elf binary ##
+##################################
 elfcompress() {
    if [ ! "$1" ]; then
       echo "Usage : elfcompress [binary]"
@@ -427,6 +368,18 @@ elfcompress() {
    rm /tmp/unpack.header
 }
 
+############################
+## Screen capture to file ##
+############################
+function screencap() {
+	local fd="${1-capture.mkv}"
+	local res="${2-1440x900}"
+	ffmpeg -f alsa -i plughw -acodec flac -f x11grab -r 30 -s $res -i $DISPLAY -vcodec libx264 -vpre lossless_ultrafast -threads 0 $fd
+}
+
+##############################
+## Encode GLC captured file ##
+##############################
 glc-encode() {
    if [ ! "$1" ] || [ ! "$2" ] || [ ! "$3" ] [ ! "$4" ]; then
       echo "Usage : glc-encode [input] [audio bitrate] [video bitrate] [output]"
@@ -444,6 +397,11 @@ glc-encode() {
    fi
 }
 
+##################################################
+## Stream to JustinTV                           ##
+## Create $HOME/.streamkey with your stream key ##
+## or export STREAM_KEY variable                ##
+##################################################
 source ${HOME}/.streamkey
 streamjustin() {
    local WININFO="`xwininfo`"
@@ -468,7 +426,9 @@ streamjustin() {
    -f flv "rtmp://live.justin.tv/app/$STREAM_KEY"
 }
 
-# Valgrind wrapper
+###################################################################
+## Valgrind wrapper, use valgrind.supp for suppressions if found ##
+###################################################################
 memleak()
 {
    if [ -f valgrind.supp ]
@@ -478,5 +438,3 @@ memleak()
       valgrind $@
    fi
 }
-
-# vim: nospell
