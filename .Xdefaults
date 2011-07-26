@@ -4,9 +4,11 @@ Xcursor.theme: AnArchCursor-26
 URxvt*termName:rxvt-unicode-256color
 URxvt*letterSpace: 0
 
+URxvt*xftAutoHint: false
+
 URxvt*borderLess:true
 URxvt*externalBorder:0
-URxvt*internalBorder:0
+URxvt*internalBorder:1
 
 URxvt*perl-ext-common:default,-tabbed,matcher,-selection-popup,-option-popupi
 
@@ -43,7 +45,7 @@ URXvt*mouseWheelScrollPage:false
 !}}}
 
 !URxvt Fonts {{{
-URxvt*font:  xft:erusfont
+URxvt*font:  xft:Erusfont:pixelsize=7,xft:IPAMonaGothic
 !}}}
 
 !URxvt Color Settings {{{

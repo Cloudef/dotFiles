@@ -1,6 +1,6 @@
 # -- Conky settings -- #
 background no
-update_interval 5
+update_interval 3
 
 cpu_avg_samples 2
 net_avg_samples 2
