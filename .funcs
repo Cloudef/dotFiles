@@ -282,11 +282,11 @@ function greplib(){
    fi
 
    if [ ! "$2" ]; then
-      nm -a -o /usr/lib/*.so | grep $1
-      nm -a -o /usr/lib/*.a  | grep $1
+      nm -a -o /usr/lib/*.so 2> /dev/null | grep $1
+      nm -a -o /usr/lib/*.a  2> /dev/null | grep $1
    else
-      nm -a -o $2/*.so | grep $1
-      nm -a -o $2/*.a  | grep $1
+      nm -a -o $2/*.so 2> /dev/null | grep $1
+      nm -a -o $2/*.a  2> /dev/null | grep $1
    fi
 }
 

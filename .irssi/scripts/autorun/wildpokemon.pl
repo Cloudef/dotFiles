@@ -14,13 +14,13 @@ $VERSION = "0.1";
 
 sub msg_join {
   my ($server, $channel, $nick) = @_;
-  $server->print( $channel, "%B-%n!%B-%G Wild %Y$nick %Gappears!", MSGLEVEL_CLIENTCRAP);
+  $server->print( $channel, " %m            * %K|%W %B-%n!%B-%G Wild %Y$nick %Gappears!", MSGLEVEL_CLIENTCRAP);
   Irssi::signal_stop();
 }
 
 sub msg_part {
   my ($server, $channel, $nick) = @_;
-  $server->print( $channel, "%B-%n!%B-%G Wild %Y$nick %Gfainted!", MSGLEVEL_CLIENTCRAP);
+  $server->print( $channel, " %m            * %K|%W %B-%n!%B-%G Wild %Y$nick %Gfainted!", MSGLEVEL_CLIENTCRAP);
   Irssi::signal_stop();
 }
 

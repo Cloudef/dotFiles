@@ -27,7 +27,7 @@ alias ac="sudo pacman-color -Q -t -d | awk \"{ print \$1 }\" | xargs --interacti
 alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'
 
 # Extrenal IP
-alias extip='echo $(curl -s http://www.whatismyip.com/automation/n09230945.asp)'
+alias extip='echo $(curl -s http://automation.whatismyip.com/n09230945.asp)'
 
 # Cherokee weblog
 alias weblog="cat /var/log/httpd/access_log | tail -15 | uniq | sort"

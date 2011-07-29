@@ -1,3 +1,4 @@
+<?xml version="1.0" ?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>40</strength>
@@ -796,7 +797,7 @@
       <skip_pager>yes</skip_pager>
       <skip_taskbar>yes</skip_taskbar>
     </application>
-    <application class="Opera" name="opera" type="normal">
+    <application class="OperaNext" name="opera" role="browser" type="normal">
       <decor>no</decor>
       <maximized>yes</maximized>
       <desktop>1</desktop>
