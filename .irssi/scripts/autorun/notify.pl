@@ -10,7 +10,6 @@ use strict;
 use Irssi;
 use vars qw($VERSION %IRSSI);
 
-
 $VERSION = "0.01";
 %IRSSI = (
     authors     => 'Luke Macken, Paul W. Frields',
@@ -30,14 +29,16 @@ sub notify {
 
 
     # Make the message entity-safe
-    my $cmd = "EXEC - notify-send" .
-        " -i " . Irssi::settings_get_str('notify_icon') .
-        " -t " . Irssi::settings_get_str('notify_time') .
-        " -- \"" . $summary . "\"" .
-        " \"" . $message . "\" &> /dev/null";
+    my $cmd = 'notify-send' .
+        ' -i ' . Irssi::settings_get_str('notify_icon') .
+        ' -t ' . Irssi::settings_get_str('notify_time') .
+        ' -- \'' . $summary . '\'' .
+        ' \'' . $message . '\' 2> /dev/null';
 
 
-    $server->command($cmd);
+    my(@args) = ($summary, $message);
+    system('notify-send', @args);
+    #$server->command($cmd);
 }
 
 sub print_text_notify {
@@ -46,7 +47,6 @@ sub print_text_notify {
 
 
     return if (!$server || !($dest->{level} & MSGLEVEL_HILIGHT));
-    $stripped =~ s/[^a-zA-Z0-9 öäÖÄ.,!?\@:\>\-']//g;
     my $summary = $dest->{target};
     notify($server, $summary, $stripped);
 }
@@ -57,8 +57,7 @@ sub message_private_notify {
 
 
     return if (!$server);
-    $msg =~ s/[^a-zA-Z0-9 öäÖÄ.,!?\@:\>\-']//g;
-    notify($server, "Private message from ".$nick, $msg);
+    notify($server, $nick, $msg);
 }
 
 

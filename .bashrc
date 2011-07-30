@@ -30,7 +30,7 @@ shopt -s nocaseglob
 ## TTY COLORS ##
 ################
 if [ "$TERM" = "linux" ]; then
-	local colors=($(cat $HOME/.Xcolors/$TTY_THEME | sed 's/#.*//'))
+	local colors=($(cat "HOME/.Xcolors/$TTY_THEME"| sed 's/#.*//'))
 	for index in ${!colors[@]}
 	do
 		printf '\e]P%x%s' $index ${colors[$index]}
