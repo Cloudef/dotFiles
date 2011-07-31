@@ -374,8 +374,23 @@ elfcompress() {
 ############################
 function screencap() {
 	local fd="${1-capture.mkv}"
-	local res="${2-1440x900}"
-	ffmpeg -f alsa -i plughw -acodec flac -f x11grab -r 30 -s $res -i $DISPLAY -vcodec libx264 -vpre lossless_ultrafast -threads 0 $fd
+   local WININFO="`xwininfo`"
+	local INRESW=`echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}'`
+   local INRESH=`echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}'`
+   local INPOSX=`echo "$WININFO" | grep 'Absolute upper-left X:'  | awk '{print $4;}'`
+   local INPOSY=`echo "$WININFO" | grep 'Absolute upper-left Y:'  | awk '{print $4;}'`
+
+   local INRES="${INRESW}x${INRESH}"
+   local INPOS="${INPOSX},${INPOSY}"
+
+   local FPS="24"                      # Target FPS
+
+   echo "---------$INRES+$INPOS------------"
+   echo ""
+
+   ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
+   -f alsa -async 1 -ac 2 -i hw:0,0 -vcodec libx264 -vsync 1 -sameq \
+   -acodec pcm_s16le -threads 0  $fd
 }
 
 ##############################
