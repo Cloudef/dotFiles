@@ -42,7 +42,6 @@ sub print_text_notify {
 sub message_private_notify {
     my ($server, $msg, $nick, $address) = @_;
 
-
     return if (!$server);
     notify($server, $nick, $msg);
 }
@@ -50,7 +49,6 @@ sub message_private_notify {
 sub dcc_request_notify {
     my ($dcc, $sendaddr) = @_;
     my $server = $dcc->{server};
-
 
     return if (!$dcc);
     notify($server, "DCC ".$dcc->{type}." request", $dcc->{nick});
