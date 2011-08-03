@@ -46,6 +46,6 @@ function ssh {
 	check_agent; command ssh $@
 }
 
-function git { 
+function git {
 	if [[ $1 == "push" ]]; then check_agent; command git "$@"; else command git "$@"; fi;
 }

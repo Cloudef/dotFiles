@@ -43,6 +43,7 @@ set cul
 
 " Clipboard
 let g:clipbrdDefaultReg = '+'
+let g:user_zen_leader_key = '<c-h>'
 
 " Plugins
 filetype on

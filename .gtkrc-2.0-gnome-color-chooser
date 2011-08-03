@@ -85,62 +85,9 @@ style "gnome-color-chooser-compact-tooltips"
 widget "gtk-tooltip*" style "gnome-color-chooser-compact-tooltips"
   
 
-style "gnome-color-chooser-default"
-{
-  engine "thinice"
-  {
-  }
-
-  bg[NORMAL] = "#000000"
-  fg[NORMAL] = "#C4C4C4"
-  fg[PRELIGHT] = "#00FF00"
-  text[NORMAL] = "#DADADA"
-  text[SELECTED] = "#FF1515"
-  text[ACTIVE] = "#FF1600"
-  GtkWidget::link-color = "#00005D"
-}
-class "GtkWidget" style "gnome-color-chooser-default"
-
 style "gnome-color-chooser-scrollbar"
 {
-  engine "crux-engine"
-  {
-  }
-
-  bg[NORMAL] = "#9E0B00"
-  GtkScrollbar::slider_width = 7
+  GtkScrollbar::slider_width = 10
 }
 widget_class "*Scrollbar" style "gnome-color-chooser-scrollbar"
-
-style "gnome-color-chooser-progressbar"
-{
-  engine "murrine"
-  {
-    animation = TRUE
-  }
-
-  bg[SELECTED] = "#A00A00"
-}
-class "GtkProgressBar" style "gnome-color-chooser-progressbar"
-
-style "gnome-color-chooser-button"
-{
-  engine "clearlooks"
-  {
-    style = GLOSSY
-    reliefstyle = 0
-  }
-
-  bg[PRELIGHT] = "#D40000"
-  bg[ACTIVE] = "#BA0000"
-  fg[PRELIGHT] = "#FFFFFF"
-  fg[ACTIVE] = "#FFFFFF"
-}
-widget_class "*.<GtkButton>*" style "gnome-color-chooser-button"
-
-style "gnome-color-chooser-combobox"
-{
-  text[PRELIGHT] = "#D7D7D7"
-}
-widget_class "*.<GtkComboBox>.<GtkCellView>" style "gnome-color-chooser-combobox"
 

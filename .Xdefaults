@@ -6,9 +6,8 @@ URxvt*letterSpace: 0
 
 URxvt*xftAutoHint: false
 
-URxvt*borderLess:true
-URxvt*externalBorder:0
-URxvt*internalBorder:1
+URxvt*borderLess:false
+URxvt*internalBorder:5
 
 URxvt*perl-ext-common:default,-tabbed,matcher,-selection-popup,-option-popupi
 

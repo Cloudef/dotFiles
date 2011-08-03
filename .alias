@@ -7,6 +7,8 @@ alias vdir='vdir -h --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias :q="exit"
+alias dm="man dwb"
 
 # Directory aliases
 alias dev="cd /media/Storage/Dev/"

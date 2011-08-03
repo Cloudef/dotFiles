@@ -14,7 +14,7 @@
 		<item label="Terminaali">
 			<action name="Execute">
 				<execute>
-					sh ~/.config/openbox/urxvtc -title Arch Linux
+					sh ~/.config/openbox/urxvtc
 				</execute>
 			</action>
 		</item>
@@ -459,7 +459,14 @@
 					</execute>
 				</action>
 			</item>
-			<item label="Ulkoasu">
+			<item label="GTK2">
+				<action name="Execute">
+					<execute>
+						lxappearance_gtk2
+					</execute>
+				</action>
+			</item>
+			<item label="GTK3">
 				<action name="Execute">
 					<execute>
 						lxappearance
