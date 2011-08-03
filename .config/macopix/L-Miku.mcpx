@@ -160,22 +160,22 @@ default_color=TRUE
 move=0
 xoff=0
 yoff=0
-fix_x=2603
-fix_y=901
+fix_x=2616
+fix_y=900
 
 [Clock]
-mode=1
+mode=2
 type=0
-x=0
-y=0
+x=100
+y=215
 text_x=1
-text_y=109
+text_y=1
 sd_x=1
 sd_y=1
 border=2
 shadow=FALSE
 round=FALSE
-font=erusfont 7
+font=erusfont 8
 
 [Balloon]
 text_x=3
@@ -185,19 +185,19 @@ position=0
 font=erusfont 10
 
 [ClockColor]
-text_r=60652
-text_g=6939
-text_b=8738
+text_r=56371
+text_g=0
+text_b=1888
 border_r=0
 border_g=0
 border_b=0
 shadow_r=0
 shadow_g=0
 shadow_b=0
-shadow_p=54484
 bg_r=0
 bg_g=0
 bg_b=0
+bg_p=55255
 
 [BalloonColor]
 text_r=60652
