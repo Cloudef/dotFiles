@@ -146,22 +146,22 @@
      cases. -->
   <margins>
     <top>0</top>
-    <bottom>18</bottom>
+    <bottom>0</bottom>
     <left>0</left>
     <right>0</right>
   </margins>
   <dock>
     <position>Left</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
-    <floatingX>1241</floatingX>
-    <floatingY>2</floatingY>
+    <floatingX>1449</floatingX>
+    <floatingY>1006</floatingY>
     <noStrut>yes</noStrut>
     <stacking>Above</stacking>
     <!-- 'Above', 'Normal', or 'Below' -->
-    <direction>Vertical</direction>
+    <direction>Horizontal</direction>
     <!-- 'Vertical' or 'Horizontal' -->
     <autoHide>yes</autoHide>
-    <hideDelay>300</hideDelay>
+    <hideDelay>380</hideDelay>
     <!-- in milliseconds (1000 = 1 second) -->
     <showDelay>300</showDelay>
     <!-- in milliseconds (1000 = 1 second) -->

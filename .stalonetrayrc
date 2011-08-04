@@ -1,5 +1,5 @@
-icon_size 16
-slot_size 16
+icon_size 24
+slot_size 18
 background black
 sticky true
 window_layer top
@@ -7,4 +7,4 @@ window_type dock
 kludges force_icons_size
 dockapp_mode simple
 transparent false
-vertical true
+vertical false
