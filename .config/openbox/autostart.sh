@@ -84,7 +84,7 @@ urxvt -title IRSSI -name IRSSI -e irssi &
 alsactl restore &
 
 # Hatsune Miku
-(sleep 20 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
+(sleep 50 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
 
 # Cow notify
 (sleep 50 && cow-notify &> /dev/null) &

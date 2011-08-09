@@ -114,7 +114,18 @@ function pkg() {
 ## Quote from bashquotes ##
 ###########################
 function quote() {
-	curl -s http://bash.org/?random1|grep -oE "<p class=\"quote\">.*</p>.*</p>"|grep -oE "<p class=\"qt.*?</p>"|sed -e 's/<\/p>/\n/g' -e 's/<p class=\"qt\">//g' -e 's/<p class=\"qt\">//g'|perl -ne 'use HTML::Entities;print decode_entities($_),"\n"'|head -1
+	curl -s "http://bash.org/?random1"|grep -oE "<p class=\"quote\">.*</p>.*</p>"|grep -oE "<p class=\"qt.*?</p>"|sed -e 's/<\/p>/\n/g' -e 's/<p class=\"qt\">//g' -e 's/<p class=\"qt\">//g'|perl -ne 'use HTML::Entities;print decode_entities($_),"\n"'|head -1
+}
+
+#################################
+## CLIcandy from commandlinefu ##
+#################################
+function fu() {
+   if [ ! $1 ]; then
+      echo "Usage: fu [query]"
+      return
+   fi
+   curl -s "http://www.commandlinefu.com/commands/matching/$@/$(echo -n $@ | openssl base64)/plaintext" | grep -v "^# commandlinefu"
 }
 
 ######################
@@ -295,7 +306,7 @@ function greplib(){
 ###########################################
 japantime() {
 	sudo cp /usr/share/zoneinfo/Japan /etc/localtime
-	sudo ntpdate ntp1.funet.fi
+	sudo ntpdate pool.ntp.org
 }
 
 ##########################################
@@ -303,7 +314,7 @@ japantime() {
 ##########################################
 finlandtime() {
 	sudo cp /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
-	sudo ntpdate ntp1.funet.fi
+	sudo ntpdate pool.ntp.org
 }
 
 #####################################################
@@ -384,12 +395,13 @@ function screencap() {
    local INPOS="${INPOSX},${INPOSY}"
 
    local FPS="24"                      # Target FPS
+   local PRESET="ultrafast"
 
    echo "---------$INRES+$INPOS------------"
    echo ""
 
    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
-   -f alsa -async 1 -ac 2 -i hw:0,0 -vcodec libx264 -vsync 1 -sameq \
+   -f alsa -async 1 -ac 2 -i hw:0,0 -vcodec libx264 -vsync 1 -vpre $PRESET -sameq \
    -acodec pcm_s16le -threads 0  $fd
 }
 
@@ -431,12 +443,13 @@ streamjustin() {
 
    local OUTRES=${1-480x320}           # You can pass argument
    local FPS="24"                      # Target FPS
+   local PRESET="ultrafast"
 
    echo "---------$INRES+$INPOS------------"
    echo ""
 
    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
-   -f alsa -ac 2 -i hw:0,0 -vcodec libx264 -vsync 1 -sameq -s "$OUTRES" \
+   -f alsa -ac 2 -async 1 -i hw:0,0 -vcodec libx264 -vsync 1 -sameq -vpre $PRESET -s "$OUTRES" \
    -acodec libmp3lame -ar 44100 -ab 128k -threads 0  \
    -f flv "rtmp://live.justin.tv/app/$STREAM_KEY"
 }

@@ -122,7 +122,7 @@ menu.items.active.text.color: #ababab
 menu.items.active.disabled.text.color: #454545
 
 #osd
-osd.border.width: 1
+osd.border.width: 3
 osd.border.color:  #000000
 
 osd.bg: flat solid border
