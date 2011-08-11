@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc">
   <resistance>
     <strength>40</strength>
@@ -151,7 +151,7 @@
     <right>0</right>
   </margins>
   <dock>
-    <position>Left</position>
+    <position>TopRight</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
     <floatingX>1449</floatingX>
     <floatingY>1006</floatingY>
@@ -177,7 +177,7 @@
     </keybind>
     <keybind key="W-v">
       <action name="Execute">
-        <command>sh &quot;/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh&quot;</command>
+        <command>sh "/media/Storage/Bishoujo Pelit/AGTH/AutoPaste.sh"</command>
       </action>
     </keybind>
     <keybind key="C-space">
@@ -215,7 +215,7 @@
     </keybind>
     <keybind key="XF86Favorites">
       <action name="Execute">
-        <command>sh ~/.config/openbox/urxvtc -name &quot;Arch Linux&quot;</command>
+        <command>sh ~/.config/openbox/urxvtc -name "Arch Linux"</command>
       </action>
     </keybind>
     <keybind key="XF86Search">
@@ -828,6 +828,10 @@
       <decor>no</decor>
       <maximized>yes</maximized>
     </application>
-  <application class="URxvt" name="URxvtq" type="normal"><layer>above</layer><skip_pager>yes</skip_pager><skip_taskbar>yes</skip_taskbar></application>
-</applications>
+    <application class="URxvt" name="URxvtq" type="normal">
+      <layer>above</layer>
+      <skip_pager>yes</skip_pager>
+      <skip_taskbar>yes</skip_taskbar>
+    </application>
+  </applications>
 </openbox_config>

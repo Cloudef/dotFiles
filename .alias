@@ -18,14 +18,10 @@ alias projekti="cd /media/Storage/Dev/Projektit/Projekti/"
 alias ogl="cd /media/Storage/Dev/Projektit/CFrameWork"
 alias projektit="cd /media/Storage/Dev/projektit"
 
-# We have pacman-color
-alias pacman="pacman-color"
-
 # Packer aliases
-alias ai="packer --noconfirm"
-alias au="packer -Syu --noconfirm"
-alias ar="sudo pacman-color -Rsn"
-alias ac="sudo pacman-color -Q -t -d | awk \"{ print \$1 }\" | xargs --interactive --no-run-if-empty sudo pacman-color -R --noconfirm"
+alias ai="pacaur --noconfirm"
+alias au="pacaur -Syu --noconfirm"
+alias ar="sudo pacman -Rsn"
 
 # Clean garbage
 alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'
