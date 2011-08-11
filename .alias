@@ -19,8 +19,9 @@ alias ogl="cd /media/Storage/Dev/Projektit/CFrameWork"
 alias projektit="cd /media/Storage/Dev/projektit"
 
 # Packer aliases
-alias ai="pacaur --noconfirm"
-alias au="pacaur -Syu --noconfirm"
+alias ai="pacaur -S -y"
+alias as="pacaur -Ss"
+alias au="pacaur -Syu"
 alias ar="sudo pacman -Rsn"
 
 # Clean garbage
