@@ -90,13 +90,6 @@
 					</execute>
 				</action>
 			</item>
-			<item label="PCSX2">
-				<action name="Execute">
-					<execute>
-						pikakuvake '/media/Storage/Emulaattorit/pcsx2' 'pcsx2'
-					</execute>
-				</action>
-			</item>
 			<item label="No$GBA">
 				<action name="Execute">
 					<execute>
@@ -212,6 +205,13 @@
 					<action name="Execute">
 						<execute>
 							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH12.8' 'th128e.exe'
+						</execute>
+					</action>
+				</item>
+				<item label="TH13　東方神霊廟　～ Ten Desires">
+					<action name="Execute">
+						<execute>
+							env LC_ALL=ja_JP.utf8 WINEDEBUG=-all pikakuvake '/media/Storage/Pelit/Touhou/TH13' 'runGame.sh'
 						</execute>
 					</action>
 				</item>

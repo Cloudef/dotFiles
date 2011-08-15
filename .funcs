@@ -473,7 +473,7 @@ memleak()
 wiisplit()
 {
    if [ ! "$1" ]; then
-      echo "Usage: [ISO file]"
+      echo "Usage: wiisplit [ISO file]"
       return
    fi
    if [ ! -f "$1" ]; then
@@ -482,4 +482,53 @@ wiisplit()
    fi
 
    wbfs_file "$1"
+}
+
+################
+## Play Anime ##
+################
+anime()
+{
+   local WATCHED="/media/Anime/Katsotut"
+   local WATCHING="/media/Anime/Watching"
+
+   if [ ! $1 ] || [ ! $2 ]; then
+      echo "Usage: anime [Title] [Episode]"
+      return
+   fi
+
+   local MATCH=`find "$WATCHED" -iname "*$1*$2*\[*\].*" -print -quit`
+   if [[ ! "$MATCH" ]]; then
+      MATCH=`find "$WATCHING" -iname "*$1*$2*\[*\].*" -print -quit`
+   fi
+   if [[ ! "$MATCH" ]]; then
+      MATCH=`find "$WATCHED" -iname "*$1*$2*.*" -print -quit`
+   fi
+   if [[ ! "$MATCH" ]]; then
+      MATCH=`find "$WATCHING" -iname "*$1*$2*.*" -print -quit`
+   fi
+   if [[ ! "$MATCH" ]]; then
+      echo "No match.."
+      return
+   fi
+
+   echo "playing: $MATCH"
+   mplayer "$MATCH" &> /dev/null
+}
+
+################
+## List Anime ##
+################
+animec()
+{
+   local WATCHED="/media/Anime/Katsotut"
+   local WATCHING="/media/Anime/Watching"
+
+   if [ ! $1 ]; then
+      echo "Usage: anime [Title]"
+      return
+   fi
+
+   find "$WATCHED"  -iname "*$1*.*"
+   find "$WATCHING" -iname "*$1*.*"
 }

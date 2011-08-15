@@ -28,7 +28,7 @@ set ttyfast
 set noerrorbells
 set shell=bash
 
-set fileencodings=ucs-bom,utf-8,latin1
+set fileencodings=ucs-bom,utf-8,sjis,default
 
 " colorscheme
 colorscheme desertEx

@@ -19,9 +19,9 @@ alias ogl="cd /media/Storage/Dev/Projektit/CFrameWork"
 alias projektit="cd /media/Storage/Dev/projektit"
 
 # Packer aliases
-alias ai="pacaur -S -y"
-alias as="pacaur -Ss"
-alias au="pacaur -Syu"
+alias ai="mkdir -p /tmp/pacaur; pacaur -S -y"
+alias as="mkdir -p /tmp/pacaur; pacaur -Ss"
+alias au="mkdir -p /tmp/pacaur; pacaur -Syu"
 alias ar="sudo pacman -Rsn"
 
 # Clean garbage
@@ -40,4 +40,4 @@ alias vimtux="tmux new-session -s VIMtux -d \"tmux set-option default-path $PWD\
 alias ffxivcfg="WINEPREFIX=~/.FFXIV winecfg"
 alias ffxivconfig="WINEPREFIX=~/.FFXIV wine C:/Program\ Files/SquareEnix/FINAL\ FANTASY\ XIV/ffxivconfig.exe"
 
-alias macostart="(macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &"
+alias macostart="pkill macopix; (macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &"
