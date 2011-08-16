@@ -484,28 +484,28 @@ wiisplit()
    wbfs_file "$1"
 }
 
+ANIME_WATCHED="/media/Anime/Katsotut"
+ANIME_WATCHING="/media/Anime/Watching"
+ANIME_SEED="/media/Anime/Seed"
 ################
 ## Play Anime ##
 ################
 anime()
 {
-   local WATCHED="/media/Anime/Katsotut"
-   local WATCHING="/media/Anime/Watching"
-
-   if [ ! $1 ] || [ ! $2 ]; then
-      echo "Usage: anime [Title] [Episode]"
+   if [ ! "$1" ] || [ ! "$2" ]; then
+      echo "Usage: anime [title] [episode]"
       return
    fi
 
-   local MATCH=`find "$WATCHED" -iname "*$1*$2*\[*\].*" -print -quit`
+   local MATCH=`find "$ANIME_WATCHED" -type f -iname "*$1*$2*\[*\].*" -print -quit`
    if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$WATCHING" -iname "*$1*$2*\[*\].*" -print -quit`
+      MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*\[*\].*" -print -quit`
    fi
    if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$WATCHED" -iname "*$1*$2*.*" -print -quit`
+      MATCH=`find "$ANIME_WATCHED" -type f -iname "*$1*$2*.*" -print -quit`
    fi
    if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$WATCHING" -iname "*$1*$2*.*" -print -quit`
+      MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*.*" -print -quit`
    fi
    if [[ ! "$MATCH" ]]; then
       echo "No match.."
@@ -521,14 +521,63 @@ anime()
 ################
 animec()
 {
-   local WATCHED="/media/Anime/Katsotut"
-   local WATCHING="/media/Anime/Watching"
-
-   if [ ! $1 ]; then
-      echo "Usage: anime [Title]"
+   if [ ! "$1" ]; then
+      echo "Usage: animec [title]"
       return
    fi
 
-   find "$WATCHED"  -iname "*$1*.*"
-   find "$WATCHING" -iname "*$1*.*"
+   find "$ANIME_WATCHED"  -iname "*$1*.*"
+   find "$ANIME_WATCHING" -iname "*$1*.*"
+}
+
+#############################
+## MV Anime to right place ##
+#############################
+mvanime()
+{
+   if [ ! "$1" ] || [ ! "$2" ]; then
+      echo "Usage: mvanime [title] [title]"
+      return
+   fi
+
+   local MATCH=`find "$ANIME_WATCHED" -iname "*$2*" -print -quit`
+   if [[ ! "$MATCH" ]]; then
+      MATCH=`find "$ANIME_WATCHING" -iname "*$2*" -print -quit`
+   fi
+   if [[ ! "$MATCH" ]]; then
+      echo "destination not found, check with animec"
+      return
+   fi
+
+   if [ -f "$MATCH" ]; then
+      MATCH=`dirname "$MATCH"`
+   fi
+   find "$ANIME_SEED" -maxdepth 1 -type f -name "*$1*.*" -print0 | xargs -0 -r mv -v --target-directory="$MATCH"
+}
+
+################################
+## Create new watching folder ##
+################################
+mkanime()
+{
+   if [ ! "$1" ]; then
+      echo "Usage: mkanime [title]"
+      return
+   fi
+
+   mkdir "$ANIME_WATCHING/$1"
+   echo "mk : $ANIME_WATCHING/$1"
+}
+
+############################
+## Store anime in watched ##
+############################
+rsanime()
+{
+   if [ ! "$1" ]; then
+      echo "Usage: rsanime [title]"
+      return
+   fi
+
+   find "$ANIME_WATCHING" -maxdepth 1 -type d -iname "*$1*" -print0 | xargs -0 -r mv -v --target-directory="$ANIME_WATCHED"
 }

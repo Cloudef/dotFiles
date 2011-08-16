@@ -36,6 +36,9 @@ alias weblog="cat /var/log/httpd/access_log | tail -15 | uniq | sort"
 # Vim && Tmux
 alias vimtux="tmux new-session -s VIMtux -d \"tmux set-option default-path $PWD\" \; source-file ~/.vimtux.conf \; attach"
 
+# Now playing
+alias np='ARTIST=`cat .config/deadbeef/nowPlaying | head -n2 | tail -n1`; ALBUM=`cat .config/deadbeef/nowPlaying | head -n3 | tail -n1`; TRACK=`cat .config/deadbeef/nowPlaying | head -n1` YEAR=`cat .config/deadbeef/nowPlaying | head -n4 | tail -n1`; TIME=`cat .config/deadbeef/nowPlaying | head -n5 | tail -n1`; echo "「DeaDBeeF」$ARTIST ー $ALBUM ー $TRACK 「$TIME」「$YEAR」"'
+
 # Final Fantasy XIV && WINE
 alias ffxivcfg="WINEPREFIX=~/.FFXIV winecfg"
 alias ffxivconfig="WINEPREFIX=~/.FFXIV wine C:/Program\ Files/SquareEnix/FINAL\ FANTASY\ XIV/ffxivconfig.exe"
