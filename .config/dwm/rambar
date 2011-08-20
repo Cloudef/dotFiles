@@ -8,14 +8,17 @@ AWKS='/MemTotal/   {mtotal=$2};
 /SwapTotal/  {swtotal=$2};
 /SwapFree/   {swfree=$2};
 END {
-    print mtotal-mfree " " mtotal;
+    print mactive " " mtotal;
     print mactive " " mtotal;
     print mcached " " mtotal;
     print swtotal-swfree " " swtotal; }'
 
-    while echo "^tw()^fg(red3)^i(${ICONPATH}/mem.xbm)^fg()
+MEMACTIVE=0
+
+while echo "^tw()^fg(red3)^i(${ICONPATH}/mem.xbm)^fg(white) $MEMACTIVE MiB
 Active
 Cached
 Swap  " | paste -d ' ' - <(awk "$AWKS" /proc/meminfo | gdbar -fg '#d00e0e' -bg '#37383a' -w 50 -h 7); do
+MEMACTIVE=$((`awk '/Active:/{print $2}' /proc/meminfo`/1024))
 sleep 5
 done

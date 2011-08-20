@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # D-bus
 if which dbus-launch >/dev/null 2>&1 && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
@@ -52,6 +52,9 @@ xset s off
 # Kupfer
 (kupfer &> /dev/null) &
 
+# Dropbox
+(dropboxd &> /dev/null) &
+
 # Conky
 (sleep 2 && conky -q -d -c $HOME/.config/conky/db.conky &> /dev/null) &
 
@@ -65,25 +68,7 @@ alsactl restore &
 (sleep 60 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
 
 # Dzen
-RAM_DWIDTH=100
-RAM_WIDTH=60
-WLAN_DWIDTH=200
-WLAN_WIDTH=170
-HEIGHT=10
-POSY=1024
-
-FONT="erusfont:size=9"
-RAM_ACT='entertitle=uncollapse;leavetitle=collapse'
-WLAN_ACT='entertitle=uncollapse;leavetitle=collapse'
-
-ETC_WIDTH=$((${WLAN_WIDTH}+${RAM_WIDTH}))
-WIDTH=$((1440-${ETC_WIDTH}))
-RAM_X=$WIDTH
-WLAN_X=$((${RAM_X}+${RAM_WIDTH}))
-
-(~/.config/dwm/bottom | dzen2 -ta l -h $HEIGHT -fn "$FONT" -x 0 -y $POSY -w $WIDTH -tw $WIDTH -e "") &
-(~/.config/dwm/rambar | dzen2 -ta l -l 3 -h $HEIGHT -fn "$FONT" -x $RAM_X -y $POSY -w $RAM_DWIDTH -tw $RAM_WIDTH -sa c -e "$RAM_ACT") &
-(~/.config/dwm/wlan   | dzen2 -ta l -l 5 -h $HEIGHT  -fn "$FONT" -x $WLAN_X -y $POSY -tw $WLAN_WIDTH -w $WLAN_DWIDTH -e "$WLAN_ACT") &
+$HOME/.config/dwm/dzen2 &
 
 #needs sleep, I guess?
 sleep 5
