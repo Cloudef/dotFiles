@@ -82,11 +82,9 @@ def showmail(feed):
     atom = feedparser.parse(feed)
     newmails = len(atom.entries)
     if newmails == 0:
-        title = "^fg(%s) ^i(blue_envelope.xpm) You have no new mails" % (plaincolor)
-    elif newmails == 1:
-        title = "^fg(%s) ^i(red_envelope.xpm) You have 1 new mail"  % (alertcolor)
+        title = "^fg(%s) ^i(/home/jari/.config/dwm/blue_envelope.xpm) 0" % (plaincolor)
     else:
-        title = "^fg(%s) ^i(red_envelope.xpm) You have %s new mails" % (alertcolor,newmails)
+        title = "^fg(%s) ^i(/home/jari/.config/dwm/red_envelope.xpm) %s" % (alertcolor,newmails)
 
     # print the title with formatting
     print "^tw()" +title
