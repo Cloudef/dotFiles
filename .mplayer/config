@@ -45,3 +45,5 @@ nolirc=yes
 
 # Do not keep aspect ratio
 nokeepaspect=yes
+
+fstype=none
