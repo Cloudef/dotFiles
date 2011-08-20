@@ -71,7 +71,7 @@ alsactl restore &
 $HOME/.config/dwm/dzen2 &
 
 #needs sleep, I guess?
-sleep 5
+sleep 20
 
 # RSS
 urxvt -title SnowNews -name SnowNews -e snownews &
