@@ -27,8 +27,8 @@ double_buffer yes
 # own window options
 own_window		yes
 own_window_transparent	yes
-own_window_type		override
-# own_window_type	desktop
+#own_window_type		override
+own_window_type	desktop
 own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
 
 # Subtract file system buffers from used memory?
@@ -43,9 +43,9 @@ override_utf8_locale yes
 minimum_size 403 80
 maximum_width 403
 
-dalignment bl
-gap_x 1460
-gap_y 25
+alignment bl
+gap_x 10
+gap_y 5
 
 default_color black
 default_bar_size 270 5

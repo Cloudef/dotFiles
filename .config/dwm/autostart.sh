@@ -1,5 +1,4 @@
-# This shell script is run before Openbox launches.
-# Environment variables set here are passed to the Openbox session.
+#!/bin/bash
 
 # D-bus
 if which dbus-launch >/dev/null 2>&1 && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
@@ -41,20 +40,53 @@ xset s off
 # Redshift
 (gtk-redshift -l 62:22 &> /dev/null) &
 
-# Panel
-(xfce4-panel &> /dev/null) &
-
 # Unclutter
 (unclutter -idle 5 -jitter 5 &> /dev/null) &
 
-# Mixer
-(volti &> /dev/null) &
-
-# Tray
-(stalonetray &> /dev/null) &
-
 # Clipit
 (clipit &> /dev/null) &
+
+# Smart notify
+(smart-notifier &> /dev/null) &
+
+# Kupfer
+(kupfer &> /dev/null) &
+
+# Conky
+(sleep 2 && conky -q -d -c $HOME/.config/conky/db.conky &> /dev/null) &
+
+# Alsa settings back
+alsactl restore &
+
+# Cow notify
+(sleep 50 && cow-notify &> /dev/null) &
+
+# Hatsune Miku
+(sleep 60 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
+
+# Dzen
+RAM_DWIDTH=100
+RAM_WIDTH=60
+WLAN_DWIDTH=200
+WLAN_WIDTH=170
+HEIGHT=10
+POSY=1024
+
+FONT="erusfont:size=9"
+RAM_ACT='entertitle=uncollapse;leavetitle=collapse'
+WLAN_ACT='entertitle=uncollapse;leavetitle=collapse'
+
+ETC_WIDTH=$((${WLAN_WIDTH}+${RAM_WIDTH}))
+WIDTH=$((1440-${ETC_WIDTH}))
+RAM_X=$WIDTH
+WLAN_X=$((${RAM_X}+${RAM_WIDTH}))
+
+(~/.config/dwm/bottom | dzen2 -ta l -h $HEIGHT -fn "$FONT" -x 0 -y $POSY -w $WIDTH -tw $WIDTH -e "") &
+(~/.config/dwm/rambar | dzen2 -ta l -l 3 -h $HEIGHT -fn "$FONT" -x $RAM_X -y $POSY -w $RAM_DWIDTH -tw $RAM_WIDTH -sa c -e "$RAM_ACT") &
+(~/.config/dwm/wlan   | dzen2 -ta l -l 5 -h $HEIGHT  -fn "$FONT" -x $WLAN_X -y $POSY -tw $WLAN_WIDTH -w $WLAN_DWIDTH -e "$WLAN_ACT") &
+
+#needs sleep, I guess?
+sleep 5
 
 # RSS
 urxvt -title SnowNews -name SnowNews -e snownews &
@@ -67,24 +99,3 @@ urxvt -title MSN -name MSN -e irssi --config=~/.irssi/bitlbee &
 
 # Urxvt
 urxvt -title IRSSI -name IRSSI -e irssi &
-
-# Smart notify
-(smart-notifier &> /dev/null) &
-
-# Kupfer
-(kupfer &> /dev/null) &
-
-# Tiling
-# pytyle &
-
-# Conky
-(~/.config/conky/start_conky.sh &> /dev/null) &
-
-# Alsa settings back
-alsactl restore &
-
-# Hatsune Miku
-(sleep 50 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
-
-# Cow notify
-(sleep 50 && cow-notify &> /dev/null) &

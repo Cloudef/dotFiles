@@ -1,9 +1,5 @@
 servers = (
-  {
-    address = "127.0.0.1";
-    chatnet = "Bitlbee";
-    autoconnect = "yes";
-  }
+  { address = "127.0.0.1"; chatnet = "Bitlbee"; autoconnect = "yes"; }
 );
 
 chatnets = {
@@ -64,6 +60,7 @@ aliases = {
   ATAG = "WINDOW SERVER";
   UNSET = "set -clear";
   RESET = "set -default";
+  np = "/exec -out np";
 };
 
 statusbar = {
@@ -178,7 +175,7 @@ statusbar = {
   };
 };
 settings = {
-  core = {
+  core = { 
     real_name = "Unknown";
     user_name = "Cloudef";
     nick = "Cloudef";

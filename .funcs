@@ -37,7 +37,7 @@ function mkcdr() {
 ## CPU is better for me ##
 ##########################
 function vplay() {
-	mplayer -vo vdpau -vc ffh264vdpau "$1"
+	mplayer-icon -vo vdpau -vc ffh264vdpau "$1"
 }
 
 ##################
@@ -454,6 +454,16 @@ streamjustin() {
    -f flv "rtmp://live.justin.tv/app/$STREAM_KEY"
 }
 
+########################
+## Print window class ##
+########################
+xclass()
+{
+   xprop |awk '
+       /^WM_CLASS/{sub(/.* =/, "instance:"); sub(/,/, "\nclass:"); print}
+       /^WM_NAME/{sub(/.* =/, "title:"); print}'
+}
+
 ###################################################################
 ## Valgrind wrapper, use valgrind.supp for suppressions if found ##
 ###################################################################
@@ -493,7 +503,12 @@ ANIME_SEED="/media/Anime/Seed"
 anime()
 {
    if [ ! "$1" ] || [ ! "$2" ]; then
-      echo "Usage: anime [title] [episode]"
+      echo "Usage:"
+      echo "anime   [title] [episode] - Watch"
+      echo "animec  [title]           - Check"
+      echo "mvanime [title] [title]   - Move"
+      echo "mkanime [title]           - New"
+      echo "rsanime [title]           - Store"
       return
    fi
 
@@ -513,7 +528,7 @@ anime()
    fi
 
    echo "playing: $MATCH"
-   mplayer "$MATCH" &> /dev/null
+   mplayer-icon "$MATCH" &> /dev/null
 }
 
 ################
@@ -552,7 +567,7 @@ mvanime()
    if [ -f "$MATCH" ]; then
       MATCH=`dirname "$MATCH"`
    fi
-   find "$ANIME_SEED" -maxdepth 1 -type f -name "*$1*.*" -print0 | xargs -0 -r mv -v --target-directory="$MATCH"
+   find "$ANIME_SEED" -maxdepth 1 -type f -iname "*$1*.*" -print0 | xargs -0 -r mv -v --target-directory="$MATCH"
 }
 
 ################################

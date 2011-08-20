@@ -1,0 +1,53 @@
+#!/bin/bash
+#
+# (c) 2007, by Robert Manea
+# (c) 2007, Christian Dietrich
+
+# icons
+ICONPATH=$HOME/.icons/dwm
+# network interface
+INTERFACE=wlan0
+WIRELESS=yes
+# update every x seconds
+SLEEP=1
+BBG='#333' # Bar Background
+BFG=green  # Bar Foreground
+
+# Here we remember the previous rx/tx counts
+RXB=`cat /sys/class/net/${INTERFACE}/statistics/rx_bytes`
+TXB=`cat /sys/class/net/${INTERFACE}/statistics/tx_bytes`
+
+while :; do
+   # get new rx/tx counts
+   RXBN=`cat /sys/class/net/${INTERFACE}/statistics/rx_bytes`
+   TXBN=`cat /sys/class/net/${INTERFACE}/statistics/tx_bytes`
+
+   # calculate the rates
+   # format the values to 4 digit fields
+   RXR=$(printf "%4d\n" $(echo "($RXBN - $RXB) / 1024/${SLEEP}" | bc))
+   TXR=$(printf "%4d\n" $(echo "($TXBN - $TXB) / 1024/${SLEEP}" | bc))
+   OWN_IP=$(ifconfig $INTERFACE | sed -ne '/inet addr/ s/.*addr:\([^ ]*\).*/\1/p')
+   ROUTER="10.0.0.2"
+
+   if [ x"$WIRELESS" = x"yes" ]; then
+      SIGNAL=$(iwconfig $INTERFACE | sed -ne '/Link Quality/ { s/.*Link Quality:\([0-9]*\)\/\([0-9]*\).*/\1/p}' )
+      SIGNALMETER=`echo $SIGNAL | gdbar -s v -h 15 -ss 1 -sh 2 -sw 12 -fg $BFG \
+         -bg $BBG -nonl`
+      WLAN_DETAILS=$(iwconfig $INTERFACE | awk '
+      /^'$INTERFACE'/ {print gensub(":", ": ", 1, $4)}
+      /Mode/ {print "Access Point: " $6}
+      /Bit Rate/ {print "Bit Rate: " gensub(".*=(.*)", "\\1 MB/s", 1, $2)}')
+   fi
+
+# print out the rates with some nice formatting
+echo "^tw()^fg(white)${RXR}KiB/s^fg(#80AA83)^p(3) ^i(${ICONPATH}/net_down_03.xbm)^fg(white)${TXR}KiB/s^fg(orange3) ^i(${ICONPATH}/net_up_03.xbm)^fg() $SIGNALMETER
+^cs()
+IP: $OWN_IP
+Router: $ROUTER
+$WLAN_DETAILS"
+
+   # reset old rates
+   RXB=$RXBN; TXB=$TXBN
+
+   sleep $SLEEP
+done

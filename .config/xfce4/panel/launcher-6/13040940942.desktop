@@ -1,9 +1,0 @@
-
-[Desktop Entry]
-Name=Arch OBMenu
-Exec=xdotool key ctrl+space
-Type=Application
-StartupNotify=false
-Icon=novell-button
-GenericName=
-X-XFCE-Source=file:///home/jari/bin/ArchOBMenu.desktop

@@ -1,5 +1,13 @@
 Xcursor.theme: AnArchCursor-26
 
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+Xft.dpi: 95
+
 !URxvt Settings {{{
 URxvt*termName:rxvt-unicode-256color
 URxvt*letterSpace: 0

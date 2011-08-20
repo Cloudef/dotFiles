@@ -14,14 +14,15 @@ alias dm="man dwb"
 
 # Directory aliases
 alias dev="cd /media/Storage/Dev/"
+alias cdw="cd /media/Storage/Dev/VCS/dwm"
 alias projekti="cd /media/Storage/Dev/Projektit/Projekti/"
 alias ogl="cd /media/Storage/Dev/Projektit/CFrameWork"
 alias projektit="cd /media/Storage/Dev/projektit"
 
 # Packer aliases
-alias ai="mkdir -p /tmp/pacaur; pacaur -S -y"
+alias ai="mkdir -p /tmp/pacaur; pacaur -S -y --noconfirm"
 alias as="mkdir -p /tmp/pacaur; pacaur -Ss"
-alias au="mkdir -p /tmp/pacaur; pacaur -Syu"
+alias au="mkdir -p /tmp/pacaur; pacaur -Syu --noconfirm"
 alias ar="sudo pacman -Rsn"
 
 # Clean garbage
@@ -35,9 +36,6 @@ alias weblog="cat /var/log/httpd/access_log | tail -15 | uniq | sort"
 
 # Vim && Tmux
 alias vimtux="tmux new-session -s VIMtux -d \"tmux set-option default-path $PWD\" \; source-file ~/.vimtux.conf \; attach"
-
-# Now playing
-alias np='ARTIST=`cat .config/deadbeef/nowPlaying | head -n2 | tail -n1`; ALBUM=`cat .config/deadbeef/nowPlaying | head -n3 | tail -n1`; TRACK=`cat .config/deadbeef/nowPlaying | head -n1` YEAR=`cat .config/deadbeef/nowPlaying | head -n4 | tail -n1`; TIME=`cat .config/deadbeef/nowPlaying | head -n5 | tail -n1`; echo "「DeaDBeeF」$ARTIST ー $ALBUM ー $TRACK 「$TIME」「$YEAR」"'
 
 # Final Fantasy XIV && WINE
 alias ffxivcfg="WINEPREFIX=~/.FFXIV winecfg"

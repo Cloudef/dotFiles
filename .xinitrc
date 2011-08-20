@@ -13,4 +13,5 @@ export QT_IM_MODULE='uim'
 (uim-xim &> /dev/null) &
 (uim-toolbar-gtk-systray &> /dev/null) &
 
-exec ck-launch-session openbox-session
+exec ck-launch-session dwm
+#exec ck-launch-session openbox-session

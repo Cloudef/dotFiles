@@ -2,13 +2,14 @@
 
 wid=$(xdotool search --classname URxvtq)
 if [ -z "$wid" ]; then
-  sh ~/.config/openbox/urxvtc -name URxvtq -geometry 240x26+0+124 -borderLess
+  sh ~/.config/openbox/urxvtc -name URxvtq -geometry 238x26+0+138 -borderLess
   wid=$(xdotool search --classname URxvtq | head -1)
   xdotool windowfocus $wid
 else
   if [ -z "$(xdotool search --onlyvisible --classname URxvtq 2>/dev/null)" ]; then
     xdotool windowmap $wid
     xdotool windowfocus $wid
+    xdotool windowraise $wid
   else
     xdotool windowunmap $wid
   fi
