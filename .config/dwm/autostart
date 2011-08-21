@@ -1,0 +1,110 @@
+#!/bin/bash
+#
+# DWM Autostart
+# Put all applications you want to start here
+# I don't suggest starting another shellscripts under this, they clutter pstree
+#
+# When you execeute another process, if the parent dies, child becomes a root,
+# so you can easily get zombie processes. I suggest debugging your autostart with pstree.
+#
+# Autostart can be anything that is executable, but we are using bash as example here,
+# note that other shell scripts are sourced instead of executed.
+#
+
+# Make GTK apps look and behave how they were set up in the gnome config tools
+if test -x /usr/libexec/gnome-settings-daemon >/dev/null; then
+  /usr/libexec/gnome-settings-daemon &
+elif which gnome-settings-daemon >/dev/null 2>&1; then
+  gnome-settings-daemon &
+# Make GTK apps look and behave how they were set up in the XFCE config tools
+elif which xfce-mcs-manager >/dev/null 2>&1; then
+  xfce-mcs-manager n &
+fi
+# Preload stuff for KDE apps
+if which start_kdeinit >/dev/null 2>&1; then
+  LD_BIND_NOW=true start_kdeinit --new-startup +kcminit_startup &
+fi
+
+# Run XDG autostart things.  By default anything desktop-specific
+# See xdg-autostart --help more info
+DESKTOP_ENV="xfce"
+if which /usr/lib/openbox/xdg-autostart >/dev/null 2>&1; then
+  /usr/lib/openbox/xdg-autostart $DESKTOP_ENV
+fi
+
+# Turn off dmps and screen blanking
+xset -dpms
+xset s off
+
+# DWM text
+xsetroot -name "DWM"
+
+# Set wallpapers
+(nitrogen --restore &> /dev/null) &
+
+# Cairo compgmr
+(cairo-compmgr &> /dev/null) &
+
+# Unclutter
+(unclutter -idle 5 -jitter 5 &> /dev/null) &
+
+# Clipit
+(clipit &> /dev/null) &
+
+# Smart notify
+(smart-notifier &> /dev/null) &
+
+# Kupfer
+(kupfer &> /dev/null) &
+
+# Dropbox
+(dropboxd &> /dev/null) &
+
+# Udiskie
+(udiskie &> /dev/null) &
+
+# Conky
+(sleep 2 && conky -q -c $HOME/.config/conky/db.conky &> /dev/null) &
+
+# Alsa settings back
+alsactl restore &
+
+# Cow notify
+(sleep 20 && cow-notify &> /dev/null) &
+
+# Hatsune Miku
+(sleep 30 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
+
+# Dzen
+source $HOME/.config/dwm/dzen2start
+
+# needs sleep, I guess?
+sleep 10
+
+# Redshift
+(gtk-redshift -l 62:22 &> /dev/null) &
+
+# RSS
+urxvt -title SnowNews -name SnowNews -e snownews &
+
+# Torrent
+urxvt -title rTorrent -name rTorrent -e rtorrent &
+
+# MSN
+urxvt -title MSN -name MSN -e irssi --config=~/.irssi/bitlbee &
+
+# Urxvt
+urxvt -title IRSSI -name IRSSI -e irssi &
+
+# IMPORTANT!
+# Avoids this script from exiting until DWM finishes
+# Do this for all parent shell scripts too.
+# Use pstree to debug your autostart
+# note: it's possible to find DWM's PID by other means,
+# but bash provides it out of the box neatly
+while kill -0 $PPID; do sleep 10; done
+
+# Exit
+# If you get any zombies, kill them here
+killall redshift
+killall gmail
