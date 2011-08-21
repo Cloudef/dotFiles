@@ -46,4 +46,5 @@ nolirc=yes
 # Do not keep aspect ratio
 nokeepaspect=yes
 
-fstype=none
+# Do not handle FS atoms
+# fstype=none
