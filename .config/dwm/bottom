@@ -6,12 +6,12 @@ ICONPATH=$HOME/.icons/dwm
 
 while true; do
    UPDATES=`pacman -Qu | wc -l` # Pacman updates
-   LOAD=`uptime | cut -d, -f 3 |  awk -F: ' $2>0.1 { a=$2*16;if(a>15) a=15;printf ("%s",a,16-a,$2+0) }'`
+   LOAD=`uptime | cut -d, -f 3 |  awk -F: ' $2>0.1 { a=$2;printf ("%4.2f",a) }'`
    TIME=`date "+%a %d.%m.%Y %H:%M:%S"`
    NP=`np`
 
    # Linux info
-   echo -n "^fg(blue3)^i(${ICONPATH}/arch.xbm)^fg() `uname -srm` "
+   echo -n "^fg(white)^i(${ICONPATH}/arch.xbm) `uname -srm`^fg() "
    echo -n "^fg(red3)^i(${ICONPATH}/cpu.xbm)^fg(white) $LOAD "
 
    # Time
