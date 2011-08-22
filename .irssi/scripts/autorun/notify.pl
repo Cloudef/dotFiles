@@ -22,7 +22,7 @@ sub notify {
 		close(STDIN);
 		close(STDERR);
 
-      my(@args) = ('-t', 10000, $summary, $message);
+      my(@args) = ('-t', 6000, $summary, $message);
       system('/usr/bin/notify-send', @args);
       exit(0);
     }
