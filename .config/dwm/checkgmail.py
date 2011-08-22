@@ -82,9 +82,9 @@ def showmail(feed):
     atom = feedparser.parse(feed)
     newmails = len(atom.entries)
     if newmails == 0:
-        title = "^fg(%s) ^i(/home/jari/.config/dwm/blue_envelope.xpm) 0" % (plaincolor)
+        title = "^fg(%s) ^i(/home/jari/.config/dwm/blue_envelope.xpm) %02d" % (plaincolor,0)
     else:
-        title = "^fg(%s) ^i(/home/jari/.config/dwm/red_envelope.xpm) %s" % (alertcolor,newmails)
+        title = "^fg(%s) ^i(/home/jari/.config/dwm/red_envelope.xpm) %02d" % (alertcolor,newmails)
 
     # print the title with formatting
     print "^tw()" +title
@@ -99,7 +99,11 @@ def showmail(feed):
         if len(emailtitle.split()) > headerlength:
             emailtitle = ' '.join(emailtitle.split()[:headerlength])
 
-        print "^fg(%s) %s from %s" % (plaincolor, emailtitle, atom.entries[i].author)
+        print "^fg(%s)%40s [%s]" % (plaincolor, emailtitle, atom.entries[i].author)
+    else:
+        print ""
+        print ""
+        print "Nothing here"
 
 if __name__ == "__main__":
 

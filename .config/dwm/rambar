@@ -13,12 +13,11 @@ END {
     print mcached " " mtotal;
     print swtotal-swfree " " swtotal; }'
 
-MEMACTIVE=0
-
-while echo "^tw()^fg(red3)^i(${ICONPATH}/mem.xbm)^fg(white) $MEMACTIVE MiB
+MEMACTIVE=$(printf "%4d" $(echo "0"))
+while echo "^tw()^fg(red3)^i(${ICONPATH}/mem.xbm)^fg(white) ${MEMACTIVE}MiB
 Active
 Cached
 Swap  " | paste -d ' ' - <(awk "$AWKS" /proc/meminfo | gdbar -fg '#d00e0e' -bg '#37383a' -w 50 -h 7); do
-MEMACTIVE=$((`awk '/Active:/{print $2}' /proc/meminfo`/1024))
+MEMACTIVE=$(printf "%4d" $(echo "`awk '/Active:/{print $2}' /proc/meminfo`/1024" | bc))
 sleep 5
 done

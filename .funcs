@@ -88,7 +88,7 @@ function status() {
 ## For each project create own folder and put the PKGBUILD there ##
 ###################################################################
 function pkg() {
-	if [ ! $1 ]; then
+	if [[ ! "$1" ]]; then
 		echo "Usage : pkg [PKGBUILD]"
 		return
 	fi
@@ -121,7 +121,7 @@ function quote() {
 ## CLIcandy from commandlinefu ##
 #################################
 function fu() {
-   if [ ! $1 ]; then
+   if [[ ! "$1" ]]; then
       echo "Usage: fu [query]"
       return
    fi
@@ -132,19 +132,19 @@ function fu() {
 ## Extract archives ##
 ######################
 function extract() {
-	if [ -f $1 ] ; then
-		case $1 in
-			*.tar.bz2)   tar xvjf $1    ;;
-			*.tar.gz)    tar xvzf $1    ;;
-			*.bz2)       bunzip2 $1     ;;
-			*.rar)       unrar x $1     ;;
-			*.gz)        gunzip $1      ;;
-			*.tar)       tar xvf $1     ;;
-			*.tbz2)      tar xvjf $1    ;;
-			*.tgz)       tar xvzf $1    ;;
-			*.zip)       unzip $1       ;;
-			*.Z)         uncompress $1  ;;
-			*.7z)        7z x $1        ;;
+	if [ -f "$1" ] ; then
+		case "$1" in
+			*.tar.bz2)   tar xvjf "$1"    ;;
+			*.tar.gz)    tar xvzf "$1"    ;;
+			*.bz2)       bunzip2 "$1"     ;;
+			*.rar)       unrar x "$1"     ;;
+			*.gz)        gunzip "$1"      ;;
+			*.tar)       tar xvf "$1"     ;;
+			*.tbz2)      tar xvjf "$1"    ;;
+			*.tgz)       tar xvzf "$1"    ;;
+			*.zip)       unzip "$1"       ;;
+			*.Z)         uncompress "$1"  ;;
+			*.7z)        7z x "$1"        ;;
 			*)           echo "don't know how to extract '$1'..." ;;
 		esac
 	else
@@ -179,7 +179,7 @@ function mktbz() {
 #################################################
 function videoencodehd()
 {
-   if [ ! -f $1 ] || [ ! $1 ]; then
+   if [ ! -f "$1" || [[ ! "$1" ]]; then
       echo "'$1' is not a valid file"
       return
    fi
@@ -191,33 +191,33 @@ function videoencodehd()
 ################################
 function videoencodesd()
 {
-   if [ ! -f $1 ] || [ ! $1 ]; then
+   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
       echo "'$1' is not a valid file"
       return
    fi
-	ffmpeg -i $1 -vcodec libx264 -vpre fast -crf 22 -threads 0 $2
+	ffmpeg -i "$1" -vcodec libx264 -vpre fast -crf 22 -threads 0 $2
 }
 
 ################
 ## FLV >> MKV ##
 ################
 function flv2mkv() {
-   if [ ! -f $1 ] || [ ! $1 ]; then
+   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
       echo "'$1' is not a valid file"
       return
    fi
-   ffmpeg -i $1 -vcodec copy -sameq -acodec copy -f matroska ${1%.*}.mkv
+   ffmpeg -i "$1" -vcodec copy -sameq -acodec copy -f matroska ${1%.*}.mkv
 }
 
 ################
 ## FLV >> MP3 ##
 ################
 function flv2mp3() {
-   if [ ! -f $1 ] || [ ! $1 ]; then
+   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
       echo "'$1' is not a valid file"
       return
    fi
-   ffmpeg -i $1 -ab 320 -ar 44100 ${1%.*}.mp3
+   ffmpeg -i "$1" -ab 320 -ar 44100 ${1%.*}.mp3
 }
 
 ################
@@ -225,11 +225,11 @@ function flv2mp3() {
 ################
 function mid2ogg()
 {
-   if [ ! -f $1 ] || [ ! $1 ]; then
+   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
       echo "'$1' is not a valid file"
       return
    fi
-	timidity -Ov $1
+	timidity -Ov "$1"
 }
 
 ################
@@ -237,11 +237,11 @@ function mid2ogg()
 ################
 function mid2wav()
 {
-   if [ ! -f $1 ] || [ ! $1 ]; then
+   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
       echo "'$1' is not a valid file"
       return
    fi
-	timidity -Ow $1
+	timidity -Ow "$1"
 }
 
 #######################
@@ -250,8 +250,8 @@ function mid2wav()
 function mkgit() {
    local GITHUB="Cloudef"
 
-	mkdir $1
-	cd $1
+	mkdir "$1"
+	cd "$1"
 	git init
 	touch README
 	git add README
@@ -279,7 +279,7 @@ qrdecode() {
 ## BGM music with mplayer ##
 ############################
 function bgmplayer(){
-	mplayer $1 -novideo &>/dev/null </dev/null &
+	mplayer "$1" -novideo &>/dev/null </dev/null &
 }
 
 ####################################
@@ -287,12 +287,12 @@ function bgmplayer(){
 ## Grep your libs for symbols     ##
 ####################################
 function greplib(){
-   if [ ! "$1" ]; then
+   if [[ ! "$1" ]]; then
       echo "Usage : greplib [symbol] (lookup path)"
       return
    fi
 
-   if [ ! "$2" ]; then
+   if [[ ! "$2" ]]; then
       nm -a -o /usr/lib/*.so 2> /dev/null | grep $1
       nm -a -o /usr/lib/*.a  2> /dev/null | grep $1
    else
@@ -321,7 +321,7 @@ finlandtime() {
 ## Remux MKV to use only 1 audio && subtible track ##
 #####################################################
 remux() {
-	if [ ! "$1" ] || [ ! "$2" ] || [ ! "$3" ] || [ ! "$4" ]; then
+	if [[ ! "$1" ]] || [[ ! "$2" ]] || [[ ! "$3" ]] || [[ ! "$4" ]]; then
 		echo "Usage : remux [output] [input] [audio track to keep] [subtible track to keep]"
 		return
 	fi
@@ -333,11 +333,11 @@ remux() {
 #####################################################################
 bremux() {
 	FILTER="*.mkv"
-	if [ ! "$1" ] || [ ! "$2" ]; then
+	if [[ ! "$1" ]] || [[ ! "$2" ]]; then
 		echo "Usage : bremux [audio track] [subtible track] [filter]"
 		return
 	fi
-	if [ "$3" ]; then
+	if [[ "$3" ]]; then
 		FILTER="$3"
 	fi
 	for i in $FILTER
@@ -350,7 +350,7 @@ bremux() {
 ## Print MKV info, use this to find out the track numbers ##
 ############################################################
 mkv() {
-	if [ ! "$1" ]; then
+	if [[ ! "$1" ]]; then
 		echo "Usage : mkv [file]"
 		return
 	fi
@@ -361,7 +361,7 @@ mkv() {
 ## Compress && Strip elf binary ##
 ##################################
 elfcompress() {
-   if [ ! "$1" ]; then
+   if [[ ! "$1" ]]; then
       echo "Usage : elfcompress [binary]"
       return
    fi
@@ -402,26 +402,26 @@ function screencap() {
 
    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
    -f alsa -async 1 -ac 2 -i hw:0,0 -vcodec libx264 -vsync 1 -vpre $PRESET -sameq \
-   -acodec pcm_s16le -threads 0  $fd
+   -acodec pcm_s16le -threads 0  "$fd"
 }
 
 ##############################
 ## Encode GLC captured file ##
 ##############################
 glc-encode() {
-   if [ ! "$1" ] || [ ! "$2" ] || [ ! "$3" ] [ ! "$4" ]; then
+   if [[ ! "$1" ]] || [[ ! "$2" ]] || [[ ! "$3" ]] || [[ ! "$4" ]]; then
       echo "Usage : glc-encode [input] [audio bitrate] [video bitrate] [output]"
       return
    fi
 
-   if [ "$2" != "0" ]; then
-      glc-play $1 -o - -a 1 | ffmpeg -i pipe: -ab $2 /tmp/audio.mp4
+   if [[ "$2" != "0" ]]; then
+      glc-play "$1" -o - -a 1 | ffmpeg -i pipe: -ab $2 /tmp/audio.mp4
    fi
    if [ -f /tmp/audio.mp4 ]; then
-      glc-play $1 -o - -y 1 | ffmpeg -i pipe: -i /tmp/audio.mp4 -acodec copy -b $3 $4
+      glc-play "$1" -o - -y 1 | ffmpeg -i pipe: -i /tmp/audio.mp4 -acodec copy -b $3 "$4"
       rm /tmp/audio.mp4
    else
-      glc-play $1 -o - -y 1 | ffmpeg -i pipe: -b $3 $4
+      glc-play "$1" -o - -y 1 | ffmpeg -i pipe: -b $3 "$4"
    fi
 }
 
@@ -482,11 +482,11 @@ memleak()
 ##################################################
 wiisplit()
 {
-   if [ ! "$1" ]; then
+   if [[ ! "$1" ]]; then
       echo "Usage: wiisplit [ISO file]"
       return
    fi
-   if [ ! -f "$1" ]; then
+   if [[ ! -f "$1" ]]; then
       echo "'$1' is not a valid file"
       return
    fi
@@ -502,7 +502,7 @@ ANIME_SEED="/media/Anime/Seed"
 ################
 anime()
 {
-   if [ ! "$1" ] || [ ! "$2" ]; then
+   if [[ ! "$1" ]] || [[ ! "$2" ]]; then
       echo "Usage:"
       echo "anime   [title] [episode] - Watch"
       echo "animec  [title]           - Check"
@@ -536,7 +536,7 @@ anime()
 ################
 animec()
 {
-   if [ ! "$1" ]; then
+   if [[ ! "$1" ]]; then
       echo "Usage: animec [title]"
       return
    fi
@@ -550,7 +550,7 @@ animec()
 #############################
 mvanime()
 {
-   if [ ! "$1" ] || [ ! "$2" ]; then
+   if [[ ! "$1" ]] || [[ ! "$2" ]]; then
       echo "Usage: mvanime [title] [title]"
       return
    fi
@@ -575,7 +575,7 @@ mvanime()
 ################################
 mkanime()
 {
-   if [ ! "$1" ]; then
+   if [[ ! "$1" ]]; then
       echo "Usage: mkanime [title]"
       return
    fi
@@ -589,7 +589,7 @@ mkanime()
 ############################
 rsanime()
 {
-   if [ ! "$1" ]; then
+   if [[ ! "$1" ]]; then
       echo "Usage: rsanime [title]"
       return
    fi
