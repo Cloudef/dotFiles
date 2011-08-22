@@ -10,12 +10,11 @@ $VERSION = "1.0";
     license     => 'WTFPL',
 );
 
-Irssi::settings_add_str('notify', 'notify_icon', 'gtk-dialog-info');
-Irssi::settings_add_str('notify', 'notify_time', '5000');
-
 sub notify {
     my ($server, $summary, $message) = @_;
 
+    $summary =~ s/\\/\\\\/g;
+    $message =~ s/\\/\\\\/g;
     $SIG{CHLD} = 'IGNORE';
     if(fork() == 0)
     {
@@ -23,20 +22,19 @@ sub notify {
 		close(STDIN);
 		close(STDERR);
 
-      my(@args) = ($summary, $message);
-      system('notify-send', @args);
+      my(@args) = ('-t', 10000, $summary, $message);
+      system('/usr/bin/notify-send', @args);
       exit(0);
     }
 }
 
 sub print_text_notify {
-    my ($dest, $text, $stripped) = @_;
+    my ($dest, $text) = @_;
     my $server = $dest->{server};
-
 
     return if (!$server || !($dest->{level} & MSGLEVEL_HILIGHT));
     my $summary = $dest->{target};
-    notify($server, $summary, $stripped);
+    notify($server, $summary, $text);
 }
 
 sub message_private_notify {
