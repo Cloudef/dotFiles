@@ -42,8 +42,8 @@ xsetroot -name "DWM"
 # Set wallpapers
 (nitrogen --restore &> /dev/null) &
 
-# Cairo compgmr
-(cairo-compmgr &> /dev/null) &
+# Xcompmgr
+(xcompmgr &> /dev/null) &
 
 # Unclutter
 (unclutter -idle 5 -jitter 5 &> /dev/null) &

@@ -1,1 +1,1 @@
-macopix --message '<[summary]> [body]' --message-expire [expire]
+macopix --message '[summary]%3a  [body]' --message-expire [expire]
