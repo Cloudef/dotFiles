@@ -1,9 +1,6 @@
 # set to yes if you want Conky to be forked in the background
-background yes
-
+background no
 imlib_cache_size 0
-
-own_window_colour white
 
 # Use Xft?
 use_xft yes
@@ -15,7 +12,7 @@ xftfont VL PGothic:size=8
 xftalpha 1.0
 
 # Update interval in seconds
-update_interval 3
+update_interval 1
 
 # This is the number of times Conky will update before quitting.
 # Set to zero to run forever.
@@ -27,8 +24,7 @@ double_buffer yes
 # own window options
 own_window		yes
 own_window_transparent	yes
-#own_window_type		override
-own_window_type	desktop
+own_window_type	override
 own_window_hints	undecorated,below,sticky,skip_taskbar,skip_pager
 
 # Subtract file system buffers from used memory?

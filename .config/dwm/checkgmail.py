@@ -42,8 +42,8 @@ def getOptions(parser):
                       help="Your gmail password")
     parser.add_option("-m", "--messages", dest="messages", default=5,
                       help="Number of messages to show, default is 5")
-    parser.add_option("-l", "--length", dest="headerlength",default=42,
-                      help="Number of character in mail header, default is 42")
+    parser.add_option("-l", "--length", dest="headerlength",default=48,
+                      help="Number of character in mail header, default is 48")
     options, args = parser.parse_args()
 
     # lets do some checking
@@ -96,10 +96,13 @@ def showmail(feed):
 
         emailtitle  = atom.entries[i].title.encode("utf-8")
         emailauthor = atom.entries[i].author.encode("utf-8")
-        length = headerlength - len(emailauthor)
-        # show only first few words if title is too long
-        if len(emailtitle) > length:
-         emailtitle = emailtitle[:length]
+
+        if len(emailauthor) > 6:
+         emailauthor = emailauthor[:6]
+
+        stripped    = headerlength - len(emailauthor)
+        if len(emailtitle) + len(emailauthor) > headerlength:
+         emailtitle = emailtitle[:stripped]
 
         print "^fg(%s)%s [%s]" % (plaincolor, emailtitle,emailauthor)
     if newmails == 0:

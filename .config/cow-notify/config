@@ -1,1 +1,1 @@
-macopix --message '[summary]%3a  [body]' --message-expire [expire]
+if [[ '[body]' ]];then macopix --message '[summary]%3a  [body]' --message-expire [expire]; else macopix --message '[summary]' --message-expire [expire]; fi

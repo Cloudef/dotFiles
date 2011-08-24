@@ -2,7 +2,7 @@
 
 wid=$(xdotool search --classname URxvtq)
 if [ -z "$wid" ]; then
-  sh ~/.config/dwm/urxvtc -name URxvtq -geometry 238x26+0+138
+  sh ~/.config/dwm/urxvtc -name URxvtq -geometry 238x26+0+137
   wid=$(xdotool search --classname URxvtq | head -1)
   xdotool windowfocus $wid
 else
