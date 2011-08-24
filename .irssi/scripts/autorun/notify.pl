@@ -29,12 +29,12 @@ sub notify {
 }
 
 sub print_text_notify {
-    my ($dest, $text) = @_;
+    my ($dest, $text, $stripped) = @_;
     my $server = $dest->{server};
 
     return if (!$server || !($dest->{level} & MSGLEVEL_HILIGHT));
     my $summary = $dest->{target};
-    notify($server, $summary, $text);
+    notify($server, $summary, $stripped);
 }
 
 sub message_private_notify {

@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 # Settings
 SLEEP=1
 ICONPATH=$HOME/.icons/dwm
+
 
 while true; do
    UPDATES=`pacman -Qu | wc -l` # Pacman updates
@@ -12,36 +13,36 @@ while true; do
 
    # Linux info
    echo -n "^fg(white)^i(${ICONPATH}/arch.xbm) `uname -srm`^fg() "
-   echo -n "^fg(red3)^i(${ICONPATH}/cpu.xbm)^fg(white) $LOAD "
+   echo -n "^fg(red3)^i(${ICONPATH}/cpu.xbm)^fg(white) ${LOAD} "
 
    # Time
-   echo -n "^fg(black3)^i(${ICONPATH}/clock.xbm)^fg(white) $TIME "
+   echo -n "^fg(black3)^i(${ICONPATH}/clock.xbm)^fg(white) ${TIME} "
 
    # Pacman info
    echo -n "^fg(yellow3)^i(${ICONPATH}/pacman.xbm)^fg(white) "
-   if [[ $UPDATES ]]; then
-      echo -n "$UPDATES updates "
+   if [[ "$UPDATES" ]]; then
+      echo -n "${UPDATES} updates "
    else
       echo -n "no updates.. "
    fi
 
    # CPU info
-   for i in {0..3}; do
+   for i in $(seq 0 3); do
       TEMP=`sensors | grep Core\ $i| paste -s | cut -c16-17,17-17`
-      echo -n "^fg(#80AA83)^i(${ICONPATH}/cpu.xbm)$i^fg(white) $TEMP°C "
+      echo -n "^fg(#80AA83)^i(${ICONPATH}/cpu.xbm)$i^fg(white) ${TEMP}°C "
    done
 
    # GPU info
    TEMP=`nvidia-settings -query GPUCoreTemp | perl -ne 'print $1 if /GPUCoreTemp.*?: (\d+)./;'`
-   if [[ $TEMP ]]; then
-      echo -n "^fg(orange3)^i(${ICONPATH}/cpu.xbm)^fg(white) $TEMP°C "
+   if [[ "$TEMP" ]]; then
+      echo -n "^fg(orange3)^i(${ICONPATH}/cpu.xbm)^fg(white) ${TEMP}°C "
    fi
 
-   if [[ $NP ]]; then
-      echo -n "^fn(IPAMonaGothic:size=7)^fg(black3)^i(${ICONPATH}/play.xbm)^fg(white) $NP^fn() "
+   if [[ "$NP" ]]; then
+      echo -n "^fn(Sazanami Gothic:size=7)^fg(black3)^i(${ICONPATH}/play.xbm)^fg(white) ${NP}^fn() "
    fi
 
    # Finish
    echo ""
-   sleep $SLEEP
+   sleep ${SLEEP}
 done;
