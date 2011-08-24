@@ -22,7 +22,10 @@ alias projektit="cd /media/Storage/Dev/projektit"
 # Packer aliases
 function ai()
 {
-   mkdir -p /tmp/pacaur; pacaur -y --noconfirm $@; pacaur -S --noconfirm $@;
+   mkdir -p /tmp/pacaur
+   if [[ ! `pacaur -S $@` ]]; then
+      pacaur -y --noconfirm $@ # Try AUR
+   fi
 }
 alias as="mkdir -p /tmp/pacaur; pacaur -Ss"
 alias au="mkdir -p /tmp/pacaur; pacaur -Syu --noconfirm"
