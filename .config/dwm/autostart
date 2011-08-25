@@ -42,12 +42,6 @@ xsetroot -name "DWM"
 # Set wallpapers
 (nitrogen --restore &> /dev/null) &
 
-# Xcompmgr
-# (xcompmgr -fF -I-.02 -O-.04 -D0001 -m.82 &> /dev/null) &
-
-# dcompmgr
-(dcompmgr --gl &> /dev/null) &
-
 # Unclutter
 (unclutter -idle 5 -jitter 5 &> /dev/null) &
 
@@ -83,6 +77,12 @@ source $HOME/.config/dwm/dzen2start
 
 # needs sleep, I guess?
 sleep 10
+
+# Xcompmgr
+# (xcompmgr -fF -I-.02 -O-.04 -D0001 -m.82 &> /dev/null) &
+
+# dcompmgr
+(dcompmgr --gl &> /dev/null) &
 
 # Redshift
 (gtk-redshift -l 62:22 &> /dev/null) &

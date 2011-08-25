@@ -23,7 +23,8 @@ alias projektit="cd /media/Storage/Dev/projektit"
 function ai()
 {
    mkdir -p /tmp/pacaur
-   if [[ ! `pacaur -S $@` ]]; then
+   pacaur -S $@
+   if [[ ! $? ]]; then
       pacaur -y --noconfirm $@ # Try AUR
    fi
 }
