@@ -46,7 +46,7 @@ xsetroot -name "DWM"
 # (xcompmgr -fF -I-.02 -O-.04 -D0001 -m.82 &> /dev/null) &
 
 # dcompmgr
-dcompmgr --gl
+(dcompmgr --gl &> /dev/null) &
 
 # Unclutter
 (unclutter -idle 5 -jitter 5 &> /dev/null) &
