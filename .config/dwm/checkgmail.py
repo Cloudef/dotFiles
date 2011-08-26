@@ -97,12 +97,13 @@ def showmail(feed):
         emailtitle  = atom.entries[i].title.encode("utf-8")
         emailauthor = atom.entries[i].author.encode("utf-8")
 
-        if len(emailauthor) > 6:
-         emailauthor = emailauthor[:6]
-
-        stripped    = headerlength - len(emailauthor)
         if len(emailtitle) + len(emailauthor) > headerlength:
-         emailtitle = emailtitle[:stripped]
+         if len(emailauthor) > 7:
+            emailauthor = emailauthor[:7]
+
+         stripped    = headerlength - len(emailauthor)
+         if len(emailtitle) + len(emailauthor) > headerlength:
+            emailtitle = emailtitle[:stripped]
 
         print "^fg(%s)%s [%s]" % (plaincolor, emailtitle,emailauthor)
     if newmails == 0:

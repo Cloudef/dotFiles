@@ -81,7 +81,7 @@ if [ ! "$ALBUM" = "$LALBUM" ]; then
 	CURCOVER="`find ${ARTCACHE} -name \"${FALBUM}.jpg\" | head -n 1`"
 	echo $FALBUM
 	if [ ! -f "$CURCOVER" ]; then
-	    cp $CONKYDIR/Vinyl/base.png "$COVER"
+	    cp $CONKYDIR//base.png "$COVER"
 	else
 	    cp "$CURCOVER" "$COVER"
 
@@ -98,8 +98,6 @@ if [ ! "$ALBUM" = "$LALBUM" ]; then
 			   convert "$COVER" -crop 86x86+86+0 +repage "$COVER"
 		   fi
 	    fi
-	    # convert $CONKYDIR/Vinyl/base.png "$COVER" -geometry +4+3
-	    # -composite $CONKYDIR/Vinyl/top.png -geometry +0+0 -composite "$COVER"
 	fi
 fi
 
@@ -134,12 +132,12 @@ if [ ! "$STOP" = "$LSTOP" ]; then
    fi
 fi
 
-echo $TRACK       &> ~/.config/deadbeef/nowPlaying
-echo $ARTIST      >> ~/.config/deadbeef/nowPlaying
-echo $ALBUM       >> ~/.config/deadbeef/nowPlaying
-echo $YEAR        >> ~/.config/deadbeef/nowPlaying
-echo $WTIME       >> ~/.config/deadbeef/nowPlaying
-echo "$CURCOVER"  >> ~/.config/deadbeef/nowPlaying
-echo $PERCENT     >> ~/.config/deadbeef/nowPlaying
-echo $STOP        >> ~/.config/deadbeef/nowPlaying
+echo "$TRACK"       &> ~/.config/deadbeef/nowPlaying
+echo "$ARTIST"      >> ~/.config/deadbeef/nowPlaying
+echo "$ALBUM"       >> ~/.config/deadbeef/nowPlaying
+echo "$YEAR"        >> ~/.config/deadbeef/nowPlaying
+echo "$WTIME"       >> ~/.config/deadbeef/nowPlaying
+echo "$CURCOVER"    >> ~/.config/deadbeef/nowPlaying
+echo "$PERCENT"     >> ~/.config/deadbeef/nowPlaying
+echo "$STOP"        >> ~/.config/deadbeef/nowPlaying
 exit

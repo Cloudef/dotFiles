@@ -57,9 +57,6 @@ xsetroot -name "DWM"
 # Dropbox
 (dropboxd &> /dev/null) &
 
-# Udiskie
-(udiskie &> /dev/null) &
-
 # Conky
 (sleep 2 && conky -q -c $HOME/.config/conky/db.conky &> /dev/null) &
 
@@ -79,10 +76,7 @@ source $HOME/.config/dwm/dzen2start
 sleep 10
 
 # Xcompmgr
-# (xcompmgr -fF -I-.02 -O-.04 -D0001 -m.82 &> /dev/null) &
-
-# dcompmgr
-(dcompmgr --gl &> /dev/null) &
+(xcompmgr -fF -I-.02 -O-.04 -D0001 -m.82 &> /dev/null) &
 
 # Redshift
 (gtk-redshift -l 62:22 &> /dev/null) &
@@ -105,7 +99,13 @@ urxvt -title IRSSI -name IRSSI -e irssi &
 # Use pstree to debug your autostart
 # note: it's possible to find DWM's PID by other means,
 # but bash provides it out of the box neatly
-while kill -0 $PPID; do sleep 10; done
+while kill -0 $PPID; do
+   OS=`df / | awk '{print $5}' | tail -n 1`;
+   STORAGE=`df /media/Storage | awk '{ print $5 }' | tail -n 1`;
+   ANIME=`df /media/Anime | awk '{ print $5 }' | tail -n 1`;
+   xsetroot -name "| OS: $OS | STORAGE: $STORAGE | ANIME: $ANIME |"
+   sleep 10;
+done
 
 # Exit
 # If you get any zombies, kill them here
