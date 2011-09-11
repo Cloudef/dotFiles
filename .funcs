@@ -559,7 +559,15 @@ mvanime()
       return
    fi
 
-   local MATCH=`find "$ANIME_WATCHING" -iname "*$2*" -print -quit`
+   # prefer files first
+   local MATCH=`find "$ANIME_WATCHING" -iname "*$2*.*" -print -quit`
+   if [[ ! "$MATCH" ]]; then
+      MATCH=`find "$ANIME_WATCHED" -iname "*$2*.*" -print -quit`
+   fi
+   # try without ext
+   if [[ ! "$MATCH" ]]; then
+      MATCH=`find "$ANIME_WATCHING" -iname "*$2*" -print -quit`
+   fi
    if [[ ! "$MATCH" ]]; then
       MATCH=`find "$ANIME_WATCHED" -iname "*$2*" -print -quit`
    fi
