@@ -30,7 +30,7 @@ function ai()
    rm /tmp/pacaur_hack
 }
 alias as="mkdir -p /tmp/pacaur; pacaur -Ss"
-alias au="mkdir -p /tmp/pacaur; pacaur -Syu --noconfirm"
+alias au="mkdir -p /tmp/pacaur; pacaur -Syu --noedit --noconfirm"
 alias ar="sudo pacman -Rsn"
 
 # Clean garbage

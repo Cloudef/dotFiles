@@ -7,10 +7,9 @@ set incsearch
 set virtualedit=all
 set autoindent
 set cindent
-set tabstop=3           " indents
+set expandtab           " spaces not tabs
+set softtabstop=3       " indents
 set shiftwidth=3        " more indents
-set expandtab           " use spaces instead of tabs
-set smarttab
 set pastetoggle=<F12>
 set number
 set mouse=a
