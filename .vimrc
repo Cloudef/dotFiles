@@ -67,6 +67,8 @@ map :GPL :0r ~/.vim/GPL.txt
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
+au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.shd set syntax=glsl
+
 " Automatically cd into the directory that the file is in
 autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 
