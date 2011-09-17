@@ -10,8 +10,8 @@ export TTY_THEME="console_phraktured"
 ## Test for interactive shell ##
 ################################
 if [[ $- != *i* ]] ; then
-	# Shell is non-interactive.  Be done now!
-	return
+   # Shell is non-interactive.  Be done now!
+   return
 fi
 
 ##################
@@ -30,12 +30,12 @@ shopt -s nocaseglob
 ## TTY COLORS ##
 ################
 if [ "$TERM" = "linux" ]; then
-	local colors=($(cat "HOME/.Xcolors/$TTY_THEME"| sed 's/#.*//'))
-	for index in ${!colors[@]}
-	do
-		printf '\e]P%x%s' $index ${colors[$index]}
-	done
-	clear
+   local colors=($(cat "HOME/.Xcolors/$TTY_THEME"| sed 's/#.*//'))
+   for index in ${!colors[@]}
+   do
+          printf '\e]P%x%s' $index ${colors[$index]}
+   done
+   clear
 fi
 
 ###############
@@ -65,18 +65,18 @@ welcome
 export PROJECTS_BASEDIR=/media/Storage/Dev/Pandora
 
 setprj() {
- . /usr/local/angstrom/arm/environment-setup;
- setprj $@
+   . /usr/local/angstrom/arm/environment-setup;
+   setprj $@
 }
 
 _setprj ()
 {
- local cur
- _get_comp_words_by_ref cur
- COMPREPLY=()
- if ls $PROJECTS_BASEDIR/${cur}* >/dev/null 2>&1;then
+   local cur
+   _get_comp_words_by_ref cur
+   COMPREPLY=()
+   if ls $PROJECTS_BASEDIR/${cur}* >/dev/null 2>&1;then
          COMPREPLY=( $(ls -1d $PROJECTS_BASEDIR/${cur}*|sed "s#$PROJECTS_BASEDIR/##") )
- fi
- return 0
+   fi
+   return 0
 }
 complete -F _setprj setprj

@@ -5,69 +5,69 @@
 ## Color variables ##
 #####################
 function setcolors() {
-	DARK=$(tput setaf 0)
-	RED=$(tput setaf 1)
-	GREEN=$(tput setf 2)
-	ORANGE=$(tput setaf 3)
-	LIGHTBLUE=$(tput setaf 4)
-	MAUV=$(tput setaf 5)
-	DARKGREY=$(tput setaf 6)
-	WHITE=$(tput setaf 7)
+   DARK=$(tput setaf 0)
+   RED=$(tput setaf 1)
+   GREEN=$(tput setf 2)
+   ORANGE=$(tput setaf 3)
+   LIGHTBLUE=$(tput setaf 4)
+   MAUV=$(tput setaf 5)
+   DARKGREY=$(tput setaf 6)
+   WHITE=$(tput setaf 7)
 
-	BOLDDARK=$(tput setaf 8)
-	BOLDRED=$(tput setaf 9)
-	BOLDGREEN=$(tput setaf 10)
-	GOLD=$(tput setaf 11)
-	BLUE=$(tput setaf 12)
-	PURPLE=$(tput setaf 13)
-	GREY=$(tput setaf 14)
-	BOLDWHITE=$(tput setaf 15)
+   BOLDDARK=$(tput setaf 8)
+   BOLDRED=$(tput setaf 9)
+   BOLDGREEN=$(tput setaf 10)
+   GOLD=$(tput setaf 11)
+   BLUE=$(tput setaf 12)
+   PURPLE=$(tput setaf 13)
+   GREY=$(tput setaf 14)
+   BOLDWHITE=$(tput setaf 15)
 
-	BLACK=$(tput setaf 16)
-	NORMAL=$(tput sgr0) # reset
-	DIM=$(tput dim)
-	BOLD=$(tput bold)
-	UNDRLN=$(tput smul)
-	RMUNDRLN=$(tput rmul)
-	BLINK=$(tput blink)
-	REVERSE=$(tput rev)
-	INVISIBLE=$(tput invis)
+   BLACK=$(tput setaf 16)
+   NORMAL=$(tput sgr0) # reset
+   DIM=$(tput dim)
+   BOLD=$(tput bold)
+   UNDRLN=$(tput smul)
+   RMUNDRLN=$(tput rmul)
+   BLINK=$(tput blink)
+   REVERSE=$(tput rev)
+   INVISIBLE=$(tput invis)
 }
 
 ############################
 ## Trim long paths to ... ##
 ############################
 function reduce_path() {
-	local path="${PWD/#$HOME/~}"
-	# " on " + " in " = 8  #taken from the prompt
-	local maxlen="$(($(tput cols) -${#USER} -${#HOSTNAME} -8 -${1:-0}))"
-	if [ ${#path} -gt ${maxlen} ]
-	then
-		local prefix=".."
-		local path="${prefix}${path:$((${#path} -${maxlen} +${#prefix}))}"
-	fi
-	echo "${path}"
+   local path="${PWD/#$HOME/~}"
+   # " on " + " in " = 8  #taken from the prompt
+   local maxlen="$(($(tput cols) -${#USER} -${#HOSTNAME} -8 -${1:-0}))"
+   if [ ${#path} -gt ${maxlen} ]
+   then
+      local prefix=".."
+      local path="${prefix}${path:$((${#path} -${maxlen} +${#prefix}))}"
+   fi
+   echo "${path}"
 }
 
 #########################
 ## Prompt for Git root ##
 #########################
 function git_prompt() {
-	local pre="${GREEN}branch: ${RED}"
-	local ref="$(git symbolic-ref HEAD 2> /dev/null)"
-	[ -n "$ref" ] || return
-	git status | grep "not updated" &>/dev/null && ref="${ref}${GREEN}!"
-	git status | grep "Untracked" &>/dev/null && ref="${ref}${GREEN}?"
-	echo ${pre}${ref#refs/heads/}
+   local pre="${GREEN}branch: ${RED}"
+   local ref="$(git symbolic-ref HEAD 2> /dev/null)"
+   [ -n "$ref" ] || return
+   git status | grep "not updated" &>/dev/null && ref="${ref}${GREEN}!"
+   git status | grep "Untracked" &>/dev/null && ref="${ref}${GREEN}?"
+   echo ${pre}${ref#refs/heads/}
 }
 
 function git_cprompt() {
-	local pre="branch: "
-	local ref="$(git symbolic-ref HEAD 2> /dev/null)"
-	[ -n "$ref" ] || return
-	git status | grep "not updated" &>/dev/null && ref="${ref}!"
-	git status | grep "Untracked" &>/dev/null && ref="${ref}?"
-	echo ${pre}${ref#refs/heads/}
+   local pre="branch: "
+   local ref="$(git symbolic-ref HEAD 2> /dev/null)"
+   [ -n "$ref" ] || return
+   git status | grep "not updated" &>/dev/null && ref="${ref}!"
+   git status | grep "Untracked" &>/dev/null && ref="${ref}?"
+   echo ${pre}${ref#refs/heads/}
 }
 
 ############
@@ -75,48 +75,52 @@ function git_cprompt() {
 ############
 function prompt() {
    local user=`whoami`
-	local host=$HOSTNAME
+   local host=$HOSTNAME
 
-	local gitNum=""
-	local cgit="$(git_cprompt)"
-	local git="$(git_prompt)"
-	local cpath="${PWD}"
-	local path="${ORANGE}${PWD}"
+   local gitNum=""
+   local cgit="$(git_cprompt)"
+   local git="$(git_prompt)"
+   local cpath="${PWD}"
+   local path="${ORANGE}${PWD}"
 
-	if [ -n "$git" ]; then
-		gitNum="["
-		gitNum+="$(echo $cgit | sed -r "s:\x1B\[[0-9;]*[mK]::g" | wc -c)"
-		gitNum+="]"
-		cpath="${PWD} :: ${cgit} ${gitNum}"
-		path="${ORANGE}${PWD} :: ${git}${RED} ${gitNum}${cBorder}"
-	fi
+   if [ -n "$git" ]; then
+      gitNum="["
+      gitNum+="$(echo $cgit | sed -r "s:\x1B\[[0-9;]*[mK]::g" | wc -c)"
+      gitNum+="]"
+      cpath="${PWD} :: ${cgit} ${gitNum}"
+      path="${ORANGE}${PWD} :: ${git}${RED} ${gitNum}${cBorder}"
+   fi
 
-	let promptsize=$(echo -n ".${user}//{$host}---${cpath}" | wc -c | tr -d " ")
-	width=$(tput cols)
+   let promptsize=$(echo -n ".${user}//{$host}---${cpath}" | wc -c | tr -d " ")
+   width=$(tput cols)
 
-	let fillsize=${width}-${promptsize}
+   let fillsize=${width}-${promptsize}
 
-	if [ "$fillsize" -lt "0" ]
-	then
-		let cutt=3-${fillsize}
-		path="...$(echo -n $cpath | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
-	fi
+   if [ "$fillsize" -lt "0" ]
+   then
+      let cutt=3-${fillsize}
+      path="...$(echo -n $cpath | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
+   fi
 
    echo ""
    echo "${ORANGE}.${user}${WHITE}//${GREEN}${host} :: ${path}"
-	PS1="\[\e[1;31m\]>>\[\e[0m\] "
+   if [[ "$PROMPT_TITLE" ]]; then
+      PS1="\[\e[1;35m\]$PROMPT_TITLE\[\e[1;31m\] >>\[\e[0m\] "
+   else
+      PS1="\[\e[1;31m\]>>\[\e[0m\] "
+   fi
 }
 
 #################################
 ## Welcome screen on new shell ##
 #################################
 function welcome() {
-	local arch="Arch"
-	local nix="Linux"
+   local arch="Arch"
+   local nix="Linux"
    local tmux=`ps -a | grep tmux`
-	clear
+   clear
    echo "${BOLD}${CYAN}${arch}${WHITE}${nix}${NORMAL}"
-   if [ "$tmux" ]
+   if [[ "$tmux" ]]
    then
       echo ""
       echo "${ORANGE}TMUX${GREEN}"
@@ -129,10 +133,10 @@ function welcome() {
 ##       ATARI FTW       ##
 ###########################
 function kingbash.fn() {
-  echo -n "KingBash> $READLINE_LINE" #Where "KingBash> " looks best if it resembles your PS1, at least in length.
-  OUTPUT=`kingbash --extracommands "$(compgen -ab -A function)" --extrafiles "$(compgen -v -P $)"`
-  READLINE_POINT=`echo "$OUTPUT" | tail -n 1`
-  READLINE_LINE=`echo "$OUTPUT" | head -n -1`
-  echo -ne "\r\e[2K";
+   echo -n "KingBash> $READLINE_LINE" #Where "KingBash> " looks best if it resembles your PS1, at least in length.
+   OUTPUT=`kingbash --extracommands "$(compgen -ab -A function)" --extrafiles "$(compgen -v -P $)"`
+   READLINE_POINT=`echo "$OUTPUT" | tail -n 1`
+   READLINE_LINE=`echo "$OUTPUT" | head -n -1`
+   echo -ne "\r\e[2K";
 }
 [[ $- =~ i ]] && bind -x '"\t":kingbash.fn'

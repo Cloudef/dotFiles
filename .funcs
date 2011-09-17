@@ -8,28 +8,28 @@
 ## Smarter CD ##
 ################
 function goto() {
-	[ -d "$1" ] && cd "$1" || cd "$(dirname "$1")";
+   [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")";
 }
 
 ####################
 ## Copy && Follow ##
 ####################
 function cpf() {
-	cp "$@" && goto "$_";
+   cp "$@" && goto "$_";
 }
 
 ####################
 ## Move && Follow ##
 ####################
 function mvf() {
-	mv "$@" && goto "$_";
+   mv "$@" && goto "$_";
 }
 
 #####################
 ## mkdir && follow ##
 #####################
 function mkcdr() {
-	mkdir -vp "$@" && cd "$_";
+   mkdir -vp "$@" && cd "$_";
 }
 
 ##########################
@@ -37,47 +37,47 @@ function mkcdr() {
 ## CPU is better for me ##
 ##########################
 function vplay() {
-	mplayer-icon -vo vdpau -vc ffh264vdpau "$1"
+   mplayer-icon -vo vdpau -vc ffh264vdpau "$1"
 }
 
 ##################
 ## Start daemon ##
 ##################
 function start() {
-	for arg in $@
-	do
-		sudo /etc/rc.d/$arg start
-	done
+   for arg in $@
+   do
+      sudo /etc/rc.d/$arg start
+   done
 }
 
 #################
 ## Stop daemon ##
 #################
 function stop() {
-	for arg in $@
-	do
-		sudo /etc/rc.d/$arg stop
-	done
+   for arg in $@
+   do
+      sudo /etc/rc.d/$arg stop
+   done
 }
 
 ####################
 ## Restart daemon ##
 ####################
 function restart() {
-	for arg in $@
-	do
-		sudo /etc/rc.d/$arg restart
-	done
+   for arg in $@
+   do
+      sudo /etc/rc.d/$arg restart
+   done
 }
 
 ###################
 ## Daemon status ##
 ###################
 function status() {
-	for	arg in $@
-	do
-		sudo /etc/rc.d/$arg status
-	done
+   for     arg in $@
+   do
+      sudo /etc/rc.d/$arg status
+   done
 }
 
 
@@ -88,25 +88,25 @@ function status() {
 ## For each project create own folder and put the PKGBUILD there ##
 ###################################################################
 function pkg() {
-	if [[ ! "$1" ]]; then
-		echo "Usage : pkg [PKGBUILD]"
-		return
-	fi
-	if [ ! -d "$HOME/PKGBUILD" ]; then
-		echo "No PKGBUILD folder in Home"
-		return
-	fi
-	if [ ! -d "$HOME/PKGBUILD/$1" ]; then
-		echo "No PKG directory for $1"
-		return
-	fi
-	if [ ! -f "$HOME/PKGBUILD/$1/PKGBUILD" ]; then
-		echo "No PKGBUILD for $1"
-		return
-	fi
-	pushd "$HOME/PKGBUILD/$1" >> /dev/null
-	makepkg --clean --install
-	popd >> /dev/null
+   if [[ ! "$1" ]]; then
+      echo "Usage : pkg [PKGBUILD]"
+      return
+   fi
+   if [ ! -d "$HOME/PKGBUILD" ]; then
+      echo "No PKGBUILD folder in Home"
+      return
+   fi
+   if [ ! -d "$HOME/PKGBUILD/$1" ]; then
+      echo "No PKG directory for $1"
+      return
+   fi
+   if [ ! -f "$HOME/PKGBUILD/$1/PKGBUILD" ]; then
+      echo "No PKGBUILD for $1"
+      return
+   fi
+   pushd "$HOME/PKGBUILD/$1" >> /dev/null
+   makepkg --clean --install
+   popd >> /dev/null
 }
 
 
@@ -114,7 +114,7 @@ function pkg() {
 ## Quote from bashquotes ##
 ###########################
 function quote() {
-	curl -s "http://bash.org/?random1"|grep -oE "<p class=\"quote\">.*</p>.*</p>"|grep -oE "<p class=\"qt.*?</p>"|sed -e 's/<\/p>/\n/g' -e 's/<p class=\"qt\">//g' -e 's/<p class=\"qt\">//g'|perl -ne 'use HTML::Entities;print decode_entities($_),"\n"'|head -1
+   curl -s "http://bash.org/?random1"|grep -oE "<p class=\"quote\">.*</p>.*</p>"|grep -oE "<p class=\"qt.*?</p>"|sed -e 's/<\/p>/\n/g' -e 's/<p class=\"qt\">//g' -e 's/<p class=\"qt\">//g'|perl -ne 'use HTML::Entities;print decode_entities($_),"\n"'|head -1
 }
 
 #################################
@@ -125,52 +125,53 @@ function fu() {
       echo "Usage: fu [query]"
       return
    fi
-   curl -s "http://www.commandlinefu.com/commands/matching/$@/$(echo -n $@ | openssl base64)/plaintext" | grep -v "^# commandlinefu"
+   URL=`echo "$@" | perl -MURI::Escape -ne 'chomp;print uri_escape($_)'`
+   curl -s "http://www.commandlinefu.com/commands/matching/$URL/$(echo -n $@ | openssl base64)/plaintext" | grep -v "^# commandlinefu"
 }
 
 ######################
 ## Extract archives ##
 ######################
 function extract() {
-	if [ -f "$1" ] ; then
-		case "$1" in
-			*.tar.bz2)   tar xvjf "$1"    ;;
-			*.tar.gz)    tar xvzf "$1"    ;;
-			*.bz2)       bunzip2 "$1"     ;;
-			*.rar)       unrar x "$1"     ;;
-			*.gz)        gunzip "$1"      ;;
-			*.tar)       tar xvf "$1"     ;;
-			*.tbz2)      tar xvjf "$1"    ;;
-			*.tgz)       tar xvzf "$1"    ;;
-			*.zip)       unzip "$1"       ;;
-			*.Z)         uncompress "$1"  ;;
-			*.7z)        7z x "$1"        ;;
-			*)           echo "don't know how to extract '$1'..." ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
+   if [ -f "$1" ] ; then
+      case "$1" in
+         *.tar.bz2)   tar xvjf "$1"    ;;
+         *.tar.gz)    tar xvzf "$1"    ;;
+         *.bz2)       bunzip2 "$1"     ;;
+         *.rar)       unrar x "$1"     ;;
+         *.gz)        gunzip "$1"      ;;
+         *.tar)       tar xvf "$1"     ;;
+         *.tbz2)      tar xvjf "$1"    ;;
+         *.tgz)       tar xvzf "$1"    ;;
+         *.zip)       unzip "$1"       ;;
+         *.Z)         uncompress "$1"  ;;
+         *.7z)        7z x "$1"        ;;
+         *)           echo "don't know how to extract '$1'..." ;;
+      esac
+   else
+      echo "'$1' is not a valid file"
+   fi
 }
 
 ########################
 ## Create tar archive ##
 ########################
 function mktar() {
-	tar cvf  "${1%%/}.tar"     "${1%%/}/";
+   tar cvf  "${1%%/}.tar"     "${1%%/}/";
 }
 
 ###########################
 ## Create tar.gz archive ##
 ###########################
 function mktgz() {
-	tar cvzf "${1%%/}.tar.gz"  "${1%%/}/";
+   tar cvzf "${1%%/}.tar.gz"  "${1%%/}/";
 }
 
 ############################
 ## Create tar.bz2 archive ##
 ############################
 function mktbz() {
-	tar cvjf "${1%%/}.tar.bz2" "${1%%/}/";
+   tar cvjf "${1%%/}.tar.bz2" "${1%%/}/";
 }
 
 #################################################
@@ -179,11 +180,11 @@ function mktbz() {
 #################################################
 function videoencodehd()
 {
-   if [ ! -f "$1" || [[ ! "$1" ]]; then
+   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
       echo "'$1' is not a valid file"
       return
    fi
-	ffmpeg -y -i $1 -threads 0 -acodec libfaac -ar 44100 -ab 96k -vcodec libx264 -vpre libx264-lossless_medium -level 41 -crf 20 -bufsize 24000k -maxrate 32000k -g 250 -r 20 -coder 1 -flags +loop -cmp +chroma -partitions +parti4x4+partp8x8+partb8x8 -flags2 +dct8x8+bpyramid -me_method umh -subq 7 -me_range 16 -keyint_min 25 -sc_threshold 40 -i_qfactor 0.71 -rc_eq 'blurCplx^(1-qComp)' -bf 16 -b_strategy 1 -bidir_refine 1 -refs 6 -deblockalpha 0 -deblockbeta 0 $2
+   ffmpeg -y -i $1 -threads 0 -acodec libfaac -ar 44100 -ab 96k -vcodec libx264 -vpre libx264-lossless_medium -level 41 -crf 20 -bufsize 24000k -maxrate 32000k -g 250 -r 20 -coder 1 -flags +loop -cmp +chroma -partitions +parti4x4+partp8x8+partb8x8 -flags2 +dct8x8+bpyramid -me_method umh -subq 7 -me_range 16 -keyint_min 25 -sc_threshold 40 -i_qfactor 0.71 -rc_eq 'blurCplx^(1-qComp)' -bf 16 -b_strategy 1 -bidir_refine 1 -refs 6 -deblockalpha 0 -deblockbeta 0 $2
 }
 
 ################################
@@ -195,7 +196,7 @@ function videoencodesd()
       echo "'$1' is not a valid file"
       return
    fi
-	ffmpeg -i "$1" -vcodec libx264 -vpre fast -crf 22 -threads 0 $2
+   ffmpeg -i "$1" -vcodec libx264 -vpre fast -crf 22 -threads 0 $2
 }
 
 ################
@@ -229,7 +230,7 @@ function mid2ogg()
       echo "'$1' is not a valid file"
       return
    fi
-	timidity -Ov "$1"
+   timidity -Ov "$1"
 }
 
 ################
@@ -241,7 +242,7 @@ function mid2wav()
       echo "'$1' is not a valid file"
       return
    fi
-	timidity -Ow "$1"
+   timidity -Ow "$1"
 }
 
 #######################
@@ -250,21 +251,22 @@ function mid2wav()
 function mkgit() {
    local GITHUB="Cloudef"
 
-	mkdir "$1"
-	cd "$1"
-	git init
-	touch README
-	git add README
-	git commit -m 'inital setup - automated'
-	git remote add origin git@github.com:$GITHUB/$1.git
-	git push origin master
+   mkdir "$1"
+   cd "$1"
+   git init
+   touch README
+   git add README
+   git commit -m 'inital setup - automated'
+   git remote add origin git@github.com:$GITHUB/$1.git
+   git push origin master
 }
 
 ###########################
 ## Change terminal title ##
 ##########################
 function tname(){
-	echo -ne "\033]0;${1:-$TERM}\007";
+   echo -ne "\033]0;${1:-$TERM}\007";
+   PROMPT_TITLE=$1
 }
 
 
@@ -279,7 +281,7 @@ qrdecode() {
 ## BGM music with mplayer ##
 ############################
 function bgmplayer(){
-	mplayer "$1" -novideo &>/dev/null </dev/null &
+   mplayer "$1" -novideo &>/dev/null </dev/null &
 }
 
 ####################################
@@ -287,74 +289,74 @@ function bgmplayer(){
 ## Grep your libs for symbols     ##
 ####################################
 function greplib(){
-   if [[ ! "$1" ]]; then
-      echo "Usage : greplib [symbol] (lookup path)"
-      return
-   fi
+if [[ ! "$1" ]]; then
+   echo "Usage : greplib [symbol] (lookup path)"
+   return
+fi
 
-   if [[ ! "$2" ]]; then
-      nm -a -o /usr/lib/*.so 2> /dev/null | grep $1
-      nm -a -o /usr/lib/*.a  2> /dev/null | grep $1
-   else
-      nm -a -o $2/*.so 2> /dev/null | grep $1
-      nm -a -o $2/*.a  2> /dev/null | grep $1
-   fi
+if [[ ! "$2" ]]; then
+   nm -a -o /usr/lib/*.so 2> /dev/null | grep $1
+   nm -a -o /usr/lib/*.a  2> /dev/null | grep $1
+else
+   nm -a -o $2/*.so 2> /dev/null | grep $1
+   nm -a -o $2/*.a  2> /dev/null | grep $1
+fi
 }
 
 ###########################################
 ## Switch to Japanese time using ntpdate ##
 ###########################################
 japantime() {
-	sudo cp /usr/share/zoneinfo/Japan /etc/localtime
-	sudo ntpdate pool.ntp.org
+   sudo cp /usr/share/zoneinfo/Japan /etc/localtime
+   sudo ntpdate pool.ntp.org
 }
 
 ##########################################
 ## Switch to Finnish time using ntpdate ##
 ##########################################
 finlandtime() {
-	sudo cp /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
-	sudo ntpdate pool.ntp.org
+   sudo cp /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
+   sudo ntpdate pool.ntp.org
 }
 
 #####################################################
 ## Remux MKV to use only 1 audio && subtible track ##
 #####################################################
 remux() {
-	if [[ ! "$1" ]] || [[ ! "$2" ]] || [[ ! "$3" ]] || [[ ! "$4" ]]; then
-		echo "Usage : remux [output] [input] [audio track to keep] [subtible track to keep]"
-		return
-	fi
-	mkvmerge -o "$1" -d 1 --audio-tracks "$3" --subtitle-tracks "$4" "$2"
+   if [[ ! "$1" ]] || [[ ! "$2" ]] || [[ ! "$3" ]] || [[ ! "$4" ]]; then
+      echo "Usage : remux [output] [input] [audio track to keep] [subtible track to keep]"
+      return
+   fi
+   mkvmerge -o "$1" -d 1 --audio-tracks "$3" --subtitle-tracks "$4" "$2"
 }
 
 #####################################################################
 ## Same as earlier, expect you can batch whole directory with this ##
 #####################################################################
 bremux() {
-	FILTER="*.mkv"
-	if [[ ! "$1" ]] || [[ ! "$2" ]]; then
-		echo "Usage : bremux [audio track] [subtible track] [filter]"
-		return
-	fi
-	if [[ "$3" ]]; then
-		FILTER="$3"
-	fi
-	for i in $FILTER
-	do
-		remux "[REMUX]$i" "$i" "$1" "$2"
-	done
+   FILTER="*.mkv"
+   if [[ ! "$1" ]] || [[ ! "$2" ]]; then
+      echo "Usage : bremux [audio track] [subtible track] [filter]"
+      return
+   fi
+   if [[ "$3" ]]; then
+      FILTER="$3"
+   fi
+   for i in $FILTER
+   do
+      remux "[REMUX]$i" "$i" "$1" "$2"
+   done
 }
 
 ############################################################
 ## Print MKV info, use this to find out the track numbers ##
 ############################################################
 mkv() {
-	if [[ ! "$1" ]]; then
-		echo "Usage : mkv [file]"
-		return
-	fi
-	mkvmerge -i "$@"
+   if [[ ! "$1" ]]; then
+      echo "Usage : mkv [file]"
+      return
+   fi
+   mkvmerge -i "$@"
 }
 
 ##################################
@@ -384,9 +386,9 @@ elfcompress() {
 ## Screen capture to file ##
 ############################
 function screencap() {
-	local fd="${1-capture.mkv}"
+   local fd="${1-capture.mkv}"
    local WININFO="`xwininfo`"
-	local INRESW=`echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}'`
+   local INRESW=`echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}'`
    local INRESH=`echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}'`
    local INPOSX=`echo "$WININFO" | grep 'Absolute upper-left X:'  | awk '{print $4;}'`
    local INPOSY=`echo "$WININFO" | grep 'Absolute upper-left Y:'  | awk '{print $4;}'`
@@ -401,8 +403,8 @@ function screencap() {
    echo ""
 
    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
-   -f alsa -async 1 -ac 2 -i hw:0,0 -vcodec libx264 -vsync 1 -vpre $PRESET -sameq \
-   -acodec pcm_s16le -threads 0  "$fd"
+      -f alsa -async 1 -ac 2 -i hw:0,0 -vcodec libx264 -vsync 1 -vpre $PRESET -sameq \
+      -acodec pcm_s16le -threads 0  "$fd"
 }
 
 ##############################
@@ -433,7 +435,7 @@ glc-encode() {
 source ${HOME}/.streamkey
 streamjustin() {
    local WININFO="`xwininfo`"
-	local INRESW=`echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}'`
+   local INRESW=`echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}'`
    local INRESH=`echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}'`
    local INPOSX=`echo "$WININFO" | grep 'Absolute upper-left X:'  | awk '{print $4;}'`
    local INPOSY=`echo "$WININFO" | grep 'Absolute upper-left Y:'  | awk '{print $4;}'`
@@ -449,9 +451,9 @@ streamjustin() {
    echo ""
 
    ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
-   -f alsa -ac 2 -async 1 -i hw:0,0 -vcodec libx264 -vsync 1 -sameq -vpre $PRESET -s "$OUTRES" \
-   -acodec libmp3lame -ar 44100 -ab 128k -threads 0  \
-   -f flv "rtmp://live.justin.tv/app/$STREAM_KEY"
+      -f alsa -ac 2 -async 1 -i hw:0,0 -vcodec libx264 -vsync 1 -sameq -vpre $PRESET -s "$OUTRES" \
+      -acodec libmp3lame -ar 44100 -ab 128k -threads 0  \
+      -f flv "rtmp://live.justin.tv/app/$STREAM_KEY"
 }
 
 ########################
@@ -460,8 +462,8 @@ streamjustin() {
 xclass()
 {
    xprop |awk '
-       /^WM_CLASS/{sub(/.* =/, "instance:"); sub(/,/, "\nclass:"); print}
-       /^WM_NAME/{sub(/.* =/, "title:"); print}'
+   /^WM_CLASS/{sub(/.* =/, "instance:"); sub(/,/, "\nclass:"); print}
+   /^WM_NAME/{sub(/.* =/, "title:"); print}'
 }
 
 ###################################################################
