@@ -20,18 +20,10 @@ alias ogl="cd /media/Storage/Dev/Projektit/CFrameWork"
 alias projektit="cd /media/Storage/Dev/projektit"
 
 # Packer aliases
-function ai()
-{
-   mkdir -p /tmp/pacaur
-   pacaur -S $@ 3>&2 2>&1 1>&3 3>&- | tee /tmp/pacaur_hack
-   if [[ "`cat /tmp/pacaur_hack | wc -l`" == "1" ]]; then
-      pacaur -y $@ # Try AUR
-   fi
-   rm /tmp/pacaur_hack
-}
-alias as="mkdir -p /tmp/pacaur; pacaur -Ss"
-alias au="mkdir -p /tmp/pacaur; pacaur -Syu --noedit --noconfirm"
-alias ar="sudo pacman -Rsn"
+alias ai="packer-color"
+alias as="packer-color -Ss"
+alias au="packer-color -Su --noconfirm"
+alias ar="sudo pacman-color -Rsn"
 
 # Clean garbage
 alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'

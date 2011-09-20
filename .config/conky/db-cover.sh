@@ -132,7 +132,7 @@ if [ ! "$STOP" = "$LSTOP" ]; then
    fi
 fi
 
-echo "$TRACK"       &> ~/.config/deadbeef/nowPlaying
+echo "$TRACK"        > ~/.config/deadbeef/nowPlaying
 echo "$ARTIST"      >> ~/.config/deadbeef/nowPlaying
 echo "$ALBUM"       >> ~/.config/deadbeef/nowPlaying
 echo "$YEAR"        >> ~/.config/deadbeef/nowPlaying
