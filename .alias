@@ -41,4 +41,4 @@ alias vimtux="tmux new-session -s VIMtux -d \"tmux set-option default-path $PWD\
 alias ffxivcfg="WINEPREFIX=~/.FFXIV winecfg"
 alias ffxivconfig="WINEPREFIX=~/.FFXIV wine C:/Program\ Files/SquareEnix/FINAL\ FANTASY\ XIV/ffxivconfig.exe"
 
-alias macostart="pkill macopix; (macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &"
+alias macostart="pkill macopix; sleep 2; (macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &"

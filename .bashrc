@@ -6,6 +6,8 @@ export BROWSER="opera"
 
 export TTY_THEME="console_phraktured"
 
+export PATH="$HOME/bin:$PATH"
+
 ################################
 ## Test for interactive shell ##
 ################################

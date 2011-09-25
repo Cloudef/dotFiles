@@ -13,4 +13,4 @@ export QT_IM_MODULE='uim'
 (uim-xim &> /dev/null) &
 (uim-toolbar-gtk-systray &> /dev/null) &
 
-exec ck-launch-session dwm
+exec ck-launch-session dbus-launch --sh-syntax --exit-with-session dwm

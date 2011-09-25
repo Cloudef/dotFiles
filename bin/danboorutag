@@ -1,0 +1,59 @@
+#!/bin/sh
+# Crawl Danbooru for pics
+
+if [ ! "$1" ]
+then
+	echo "Usage: danboorutag <tag> [page]"
+	exit
+fi
+
+if [[ -f "/tmp/danbooru.pid" ]]
+then
+	echo "already running"
+	echo "rm /tmp/danbooru.pid, only if you are certain it's not running"
+	exit
+fi
+touch /tmp/danbooru.pid
+
+wget "http://danbooru.donmai.us/post/index?page=$2&tags=$1" -O /tmp/danbooru.html
+
+SERVER="hijiribe"
+TOUHOU_DIR="/media/Storage/Kuvat/Touhou"
+RANDOM_DIR="/media/Storage/Kuvat/Random"
+IMAGES=`cat /tmp/danbooru.html | grep -o -E '\b(([\w-]+://?|[.]donmai[.]us/data/)[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))' | awk -F '"' '{ print $1 }' | uniq`
+
+mkdir -p /tmp/danbooru
+
+for i in $IMAGES
+do
+   if [[ "$i" != */preview/* ]] && [[ "$i" == */data/* ]]
+   then
+      TOUHOU=`cat /tmp/danbooru.html | grep "$i" | grep "touhou"`
+      FILE=`basename "$i"`
+      if [[ -n "$TOUHOU" ]]
+      then
+         if [[ -f "$TOUHOU_DIR/$FILE" ]]
+         then
+            echo "exist: $TOUHOU_DIR/$FILE"
+         else
+	    # wget to tmp, to avoid partial files if script is cancelled or killed
+            wget "${SERVER}${i}" -O "/tmp/danbooru/$FILE"
+	    mv "/tmp/danbooru/$FILE" "$TOUHOU_DIR/$FILE"
+         fi
+      else
+         if [[ -f "$RANDOM_DIR/$FILE" ]]
+         then
+            echo "exist: $RANDOM_DIR/$FILE"
+         else
+	    # wget to tmp, to avoid partial files if script is cancelled or killed
+            wget "${SERVER}${i}" -O "/tmp/danbooru/$FILE"
+	    mv "/tmp/danbooru/$FILE" "$RANDOM_DIR/$FILE"
+         fi
+      fi
+      echo "http://${SERVER}${i}"
+   fi
+done
+
+rm -r /tmp/danbooru
+rm /tmp/danbooru.html
+rm /tmp/danbooru.pid

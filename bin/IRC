@@ -1,0 +1,17 @@
+#!/bin/sh
+
+PIDFILE="/tmp/IRSSI.pid"
+if [ -e "$PIDFILE" ]; then
+   PID=`cat "$PIDFILE"`
+   if kill -0 &>1 > /dev/null $PID; then
+      echo "Already running"
+      exit 1
+   else
+      rm "$PIDFILE"
+   fi
+fi
+
+if [ ! -e "$PIDFILE" ]; then
+   urxvt -title IRSSI -name IRSSI -e irssi &
+   echo "$!" > "$PIDFILE"
+fi

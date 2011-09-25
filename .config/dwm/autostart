@@ -11,11 +11,6 @@
 # note that other shell scripts are sourced instead of executed.
 #
 
-# DBUS
-if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
-    eval `dbus-launch --sh-syntax --exit-with-session`
-fi
-
 # Make GTK apps look and behave how they were set up in the gnome config tools
 if test -x /usr/libexec/gnome-settings-daemon >/dev/null; then
   /usr/libexec/gnome-settings-daemon &
@@ -65,8 +60,6 @@ xsetroot -name "DWM"
 # Dropbox
 (dropboxd &> /dev/null) &
 
-(shutter --min_at_startup &> /dev/null) &
-
 # Conky
 (sleep 2 && conky -q -c $HOME/.config/conky/db.conky &> /dev/null) &
 
@@ -92,16 +85,16 @@ sleep 10
 (gtk-redshift -l 62:22 &> /dev/null) &
 
 # RSS
-urxvt -title SnowNews -name SnowNews -e snownews &
+RSS
 
 # Torrent
-urxvt -title rTorrent -name rTorrent -e rtorrent &
+TORRENT
 
 # MSN
-urxvt -title MSN -name MSN -e irssi --config=~/.irssi/bitlbee &
+MSN
 
-# Urxvt
-urxvt -title IRSSI -name IRSSI -e irssi &
+# IRC
+IRC
 
 # IMPORTANT!
 # Avoids this script from exiting until DWM finishes

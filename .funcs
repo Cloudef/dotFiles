@@ -397,7 +397,7 @@ function screencap() {
    local INPOS="${INPOSX},${INPOSY}"
 
    local FPS="24"                      # Target FPS
-   local PRESET="ultrafast"
+   local PRESET="lossless_fast"
 
    echo "---------$INRES+$INPOS------------"
    echo ""

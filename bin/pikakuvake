@@ -1,0 +1,9 @@
+#!/bin/sh
+DIR=`dirname  "$1"`
+BIN=`basename "$1"` 
+cd "$DIR"
+export WINEDEBUG=-all
+if [ ! `wine "$BIN"` ]
+then
+	./"$BIN" $2
+fi
