@@ -1,6 +1,11 @@
 #!/bin/sh
+if [[ ! "$1" ]]; then
+   echo "Usage: pikakuvake <application>"
+   exit
+fi
+
 DIR=`dirname  "$1"`
-BIN=`basename "$1"` 
+BIN=`basename "$1"`
 cd "$DIR"
 export WINEDEBUG=-all
 if [ ! `wine "$BIN"` ]
