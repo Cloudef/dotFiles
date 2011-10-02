@@ -109,6 +109,29 @@ function pkg() {
    popd >> /dev/null
 }
 
+# Does not clean the build directory
+function pkgd() {
+    if [[ ! "$1" ]]; then
+      echo "Usage : pkgd[PKGBUILD]"
+      return
+   fi
+   if [ ! -d "$HOME/PKGBUILD" ]; then
+      echo "No PKGBUILD folder in Home"
+      return
+   fi
+   if [ ! -d "$HOME/PKGBUILD/$1" ]; then
+      echo "No PKG directory for $1"
+      return
+   fi
+   if [ ! -f "$HOME/PKGBUILD/$1/PKGBUILD" ]; then
+      echo "No PKGBUILD for $1"
+      return
+   fi
+   pushd "$HOME/PKGBUILD/$1" >> /dev/null
+   makepkg --install
+   popd >> /dev/null
+}
+
 
 ###########################
 ## Quote from bashquotes ##
@@ -516,10 +539,10 @@ anime()
 
    local MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*\[*\].*" -print -quit`
    if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHED" -type f -iname "*$1*$2*\[*\].*" -print -quit`
+      MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*.*" -print -quit`
    fi
    if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*.*" -print -quit`
+      MATCH=`find "$ANIME_WATCHED" -type f -iname "*$1*$2*\[*\].*" -print -quit`
    fi
    if [[ ! "$MATCH" ]]; then
       MATCH=`find "$ANIME_WATCHED" -type f -iname "*$1*$2*.*" -print -quit`
@@ -563,12 +586,15 @@ mvanime()
 
    # prefer files first
    local MATCH=`find "$ANIME_WATCHING" -iname "*$2*.*" -print -quit`
-   if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHED" -iname "*$2*.*" -print -quit`
-   fi
+
    # try without ext
    if [[ ! "$MATCH" ]]; then
       MATCH=`find "$ANIME_WATCHING" -iname "*$2*" -print -quit`
+   fi
+
+   # same for WATCHED
+   if [[ ! "$MATCH" ]]; then
+      MATCH=`find "$ANIME_WATCHED" -iname "*$2*.*" -print -quit`
    fi
    if [[ ! "$MATCH" ]]; then
       MATCH=`find "$ANIME_WATCHED" -iname "*$2*" -print -quit`

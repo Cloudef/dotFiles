@@ -1,6 +1,7 @@
 #!/bin/sh
 
 PIDFILE="/tmp/MSN.pid"
+SOCKET="/tmp/MSN.sck"
 if [ -e "$PIDFILE" ]; then
    PID=`cat "$PIDFILE"`
    if kill -0 &>1 > /dev/null "$PID"; then
@@ -11,7 +12,13 @@ if [ -e "$PIDFILE" ]; then
    fi
 fi
 
+if [ -e "$SOCKET" ]; then
+   urxvt -title MSN -name MSN -e dtach -a "$SOCKET" &
+   echo "$!" > "$PIDFILE"
+   exit 1
+fi
+
 if [ ! -e "$PIDFILE" ]; then
-   urxvt -title MSN -name MSN -e irssi --config=~/.irssi/bitlbee &
+   urxvt -title MSN -name MSN -e dtach -c "$SOCKET" irssi --config=~/.irssi/bitlbee &
    echo "$!" > "$PIDFILE"
 fi
