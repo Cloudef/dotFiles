@@ -74,7 +74,7 @@ function restart() {
 ## Daemon status ##
 ###################
 function status() {
-   for     arg in $@
+   for arg in $@
    do
       sudo /etc/rc.d/$arg status
    done
@@ -104,34 +104,15 @@ function pkg() {
       echo "No PKGBUILD for $1"
       return
    fi
+   shift
    pushd "$HOME/PKGBUILD/$1" >> /dev/null
-   makepkg --clean --install
+   if [[ "$2" ]]; then
+      makepkg --install "$@"
+   else
+      makepkg --clean --install
+   fi
    popd >> /dev/null
 }
-
-# Does not clean the build directory
-function pkgd() {
-    if [[ ! "$1" ]]; then
-      echo "Usage : pkgd[PKGBUILD]"
-      return
-   fi
-   if [ ! -d "$HOME/PKGBUILD" ]; then
-      echo "No PKGBUILD folder in Home"
-      return
-   fi
-   if [ ! -d "$HOME/PKGBUILD/$1" ]; then
-      echo "No PKG directory for $1"
-      return
-   fi
-   if [ ! -f "$HOME/PKGBUILD/$1/PKGBUILD" ]; then
-      echo "No PKGBUILD for $1"
-      return
-   fi
-   pushd "$HOME/PKGBUILD/$1" >> /dev/null
-   makepkg --install
-   popd >> /dev/null
-}
-
 
 ###########################
 ## Quote from bashquotes ##
@@ -149,7 +130,7 @@ function fu() {
       return
    fi
    URL=`echo "$@" | perl -MURI::Escape -ne 'chomp;print uri_escape($_)'`
-   curl -s "http://www.commandlinefu.com/commands/matching/$URL/$(echo -n $@ | openssl base64)/plaintext" | grep -v "^# commandlinefu"
+   curl -s "http://www.commandlinefu.com/commands/matching/$URL/$(echo -n "$@" | openssl base64)/plaintext" | grep -v "^# commandlinefu"
 }
 
 ######################
@@ -280,7 +261,7 @@ function mkgit() {
    touch README
    git add README
    git commit -m 'inital setup - automated'
-   git remote add origin git@github.com:$GITHUB/$1.git
+   git remote add origin "git@github.com:$GITHUB/$1.git"
    git push origin master
 }
 
@@ -496,9 +477,9 @@ memleak()
 {
    if [ -f valgrind.supp ]
    then
-      valgrind --suppressions=valgrind.supp $@
+      valgrind --suppressions=valgrind.supp "$@"
    else
-      valgrind $@
+      valgrind "$@"
    fi
 }
 

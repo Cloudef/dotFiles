@@ -6,9 +6,9 @@ fi
 
 DIR=`dirname  "$1"`
 BIN=`basename "$1"`
-cd "$DIR"
+shift; cd "$DIR"
 export WINEDEBUG=-all
-if [ ! `wine "$BIN"` ]
+if [ ! "$(wine \"$BIN\" \"$@\")" ]
 then
-	./"$BIN" $2
+	./"$BIN" \"$@\"
 fi
