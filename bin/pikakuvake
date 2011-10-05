@@ -8,7 +8,7 @@ DIR=`dirname  "$1"`
 BIN=`basename "$1"`
 shift; cd "$DIR"
 export WINEDEBUG=-all
-if [ ! "$(wine \"$BIN\" \"$@\")" ]
+if [ ! `wine "$BIN" "$@"` ]
 then
 	./"$BIN" \"$@\"
 fi

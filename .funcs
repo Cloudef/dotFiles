@@ -400,13 +400,13 @@ function screencap() {
    local INRES="${INRESW}x${INRESH}"
    local INPOS="${INPOSX},${INPOSY}"
 
-   local FPS="24"                      # Target FPS
+   local FPS="30"                      # Target FPS
    local PRESET="lossless_fast"
 
    echo "---------$INRES+$INPOS------------"
    echo ""
 
-   ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
+   ffmpeg -f x11grab -s "$INRES" -vf scale=${INRESW}:-1 -r "$FPS" -i :0.0+$INPOS \
       -f alsa -async 1 -ac 2 -i hw:0,0 -vcodec libx264 -vsync 1 -vpre $PRESET -sameq \
       -acodec pcm_s16le -threads 0  "$fd"
 }
@@ -448,13 +448,13 @@ streamjustin() {
    local INPOS="${INPOSX},${INPOSY}"
 
    local OUTRES=${1-480x320}           # You can pass argument
-   local FPS="24"                      # Target FPS
+   local FPS="30"                      # Target FPS
    local PRESET="ultrafast"
 
    echo "---------$INRES+$INPOS------------"
    echo ""
 
-   ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0+$INPOS \
+   ffmpeg -f x11grab -s "$INRES" -vf scale=${INRESW}:-1 -r "$FPS" -i :0.0+$INPOS \
       -f alsa -ac 2 -async 1 -i hw:0,0 -vcodec libx264 -vsync 1 -sameq -vpre $PRESET -s "$OUTRES" \
       -acodec libmp3lame -ar 44100 -ab 128k -threads 0  \
       -f flv "rtmp://live.justin.tv/app/$STREAM_KEY"

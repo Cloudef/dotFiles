@@ -106,7 +106,8 @@ while kill -0 $PPID; do
    OS=`df / | awk '{print $5}' | tail -n 1`;
    STORAGE=`df /media/Storage | awk '{ print $5 }' | tail -n 1`;
    ANIME=`df /media/Anime | awk '{ print $5 }' | tail -n 1`;
-   xsetroot -name "| OS: $OS | STORAGE: $STORAGE | ANIME: $ANIME |"
+   NOTE=`cat "$HOME/.note"`
+   xsetroot -name "$NOTE | OS: $OS | STORAGE: $STORAGE | ANIME: $ANIME |"
    sleep 10;
 done
 
