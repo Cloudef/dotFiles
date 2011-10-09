@@ -1,4 +1,4 @@
 #!/bin/sh
 # Start opera with different GTK theme to avoid issues, with dark theme
-GTK2_RC_FILES=$HOME/.gtkrc-2.0-opera /usr/bin/opera
+GTK2_RC_FILES=$HOME/.gtkrc-2.0-opera /usr/bin/opera "$@"
 
