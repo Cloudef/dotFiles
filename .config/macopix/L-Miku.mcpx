@@ -160,8 +160,8 @@ default_color=TRUE
 move=0
 xoff=0
 yoff=0
-fix_x=2621
-fix_y=904
+fix_x=2631
+fix_y=928
 
 [Clock]
 mode=2

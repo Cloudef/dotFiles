@@ -1,12 +1,19 @@
 ###########################
 ## Enviroiment Variables ##
 ###########################
+# DEFAULT APPS
 export EDITOR="vim"
 export BROWSER="opera"
 
+# TTY THEME
 export TTY_THEME="console_phraktured"
 
+# $HOME/BIN
 export PATH="$HOME/bin:$PATH"
+
+# OPERA TWEAKS
+OPERAPLUGINWRAPPER_PRIORITY=0
+OPERA_KEEP_BLOCKED_PLUGIN=1
 
 ################################
 ## Test for interactive shell ##

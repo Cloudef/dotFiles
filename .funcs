@@ -104,10 +104,10 @@ function pkg() {
       echo "No PKGBUILD for $1"
       return
    fi
-   shift
    pushd "$HOME/PKGBUILD/$1" >> /dev/null
    if [[ "$2" ]]; then
-      makepkg --install "$@"
+      shift
+      makepkg "$@"
    else
       makepkg --clean --install
    fi

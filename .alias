@@ -37,6 +37,9 @@ alias weblog="cat /var/log/httpd/access_log | tail -15 | uniq | sort"
 # Vim && Tmux
 alias vimtux="tmux new-session -s VIMtux -d \"tmux set-option default-path $PWD\" \; source-file ~/.vimtux.conf \; attach"
 
+# DWM note
+alias note="echo \"$@\" > \"$HOME/.note\""
+
 # Grand fantasia mule
 alias gfm="pushd $HOME/.wine/drive_c/AeriaGames/GrandFantasia && (env WINE_FAKEDISP=1278x756 WINEDEBUG=-all ./runGame.sh &) && popd"
 alias gf="pushd $HOME/.wine/drive_c/AeriaGames/GrandFantasia && (env WINE_FAKEDISP=1440x900 WINEDEBUG=-all ./runGame.sh &) && popd"
