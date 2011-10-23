@@ -1,7 +1,5 @@
-# DO NOT EDIT! This file will be overwritten by LXAppearance.
-# Any customization should be done in ~/.gtkrc-2.0.mine instead.
+# Opera FIX
 
-gtk-theme-name="Equinox Evolution"
 gtk-icon-theme-name="Faenza-Fresh"
 gtk-font-name="Sans 7"
 gtk-cursor-theme-name="X-Steel-GRAY"
@@ -16,4 +14,16 @@ gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle="hintfull"
 gtk-xft-rgba="rgb"
-include "/home/jari/.gtkrc-2.0.mine"
+
+include ".themes/Equinox Evolution Plus/gtk-2.0/gtkrc"
+
+style "theme-entry" {
+  text[NORMAL] = "#000000"
+  text[ACTIVE] = "#000000"
+  fg[NORMAL]   = "#000000"
+  fg[ACTIVE]   = "#000000"
+  base[NORMAL] = "#ffffff"
+  base[ACTIVE] = "#ffffff"
+}
+
+class "GtkWidget" style "theme-entry"

@@ -76,11 +76,3 @@ style "mozilla-header-fix" {
   bg[ACTIVE] = shade(1.40, @bg_color)
 }
 widget "*MozillaGtkWidget*Tree*GtkButton" 	    style:highest "mozilla-header-fix"
-
-
-style "default-style"
-{
-   GtkMenu::vertical-padding = 1 # Fix dissapearing right mouse menu in Thunar
-}
-
-class "GtkWidget" style "default-style"
