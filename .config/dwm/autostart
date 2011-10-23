@@ -66,11 +66,11 @@ xsetroot -name "DWM"
 # Alsa settings back
 alsactl restore &
 
-# Cow notify
-(sleep 20 && cow-notify &> /dev/null) &
+# Hatsune Miku (Start before cow-notify, otherwise it starts it without sockmsg)
+(sleep 10 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
 
-# Hatsune Miku
-(sleep 30 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
+# Cow notify
+(sleep 30 && cow-notify &> /dev/null) &
 
 # Dzen
 source $HOME/.config/dwm/dzen2start

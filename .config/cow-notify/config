@@ -1,1 +1,1 @@
-if [[ '[body]' ]];then macopix --message '[summary]%3a[body]' --message-expire [expire]; else macopix --message '[summary]' --message-expire [expire]; fi
+if [[ '[body]' ]];then macopix --sockmsg --message '[summary]%3a[body]' --message-expire [expire]; else macopix --sockmsg --message '[summary]' --message-expire [expire]; fi

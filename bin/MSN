@@ -4,7 +4,7 @@ PIDFILE="/tmp/MSN.pid"
 SOCKET="/tmp/MSN.sck"
 if [ -e "$PIDFILE" ]; then
    PID=`cat "$PIDFILE"`
-   if kill -0 &>1 > /dev/null "$PID"; then
+   if kill -0 $PID; then
       echo "Already running"
       exit 1
    else

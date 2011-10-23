@@ -62,6 +62,18 @@ source ${HOME}/.sshagent   # Keeps you from entering SSH password repeateply
 
 PROMPT_COMMAND=prompt
 
+#######################
+## Auto Completition ##
+#######################
+source /etc/bash_completion.d/git
+source /etc/bash_completion.d/bzr
+source /etc/bash_completion.d/hg
+source /etc/bash_completion.d/subversion
+
+source /etc/bash_completion.d/pacman
+source /etc/bash_completion.d/rc.d
+source /etc/bash_completion.d/tmux
+
 #############
 ## Startup ##
 #############
