@@ -1,0 +1,54 @@
+style "theme-panel" = "theme-default" {
+  color["panel_bg"] = shade(1.0, @bg_color)
+  bg[NORMAL]        = @panel_bg
+ 	bg[ACTIVE]		  	= shade (0.9, @panel_bg)
+  bg[SELECTED]    	= shade (0.85, @panel_bg)
+  bg[PRELIGHT]     	= shade (1.15, @panel_bg)
+}
+
+style "theme-panel-background" = "theme-panel" {
+  xthickness        = 0
+  ythickness        = 0
+  bg[SELECTED]      = shade(1.075, @bg_color)
+  fg[PRELIGHT]      = @fg_color
+  bg_pixmap[NORMAL] = "images/panel_bg.png"
+  engine "equinox" {
+    menubaritemstyle = 2
+    curvature = 0
+    textstyle = 4
+    textshade = 0.5
+  }
+}
+
+widget "*PanelWidget*"                    style "theme-panel-background"
+widget "*Panel*Frame*"                    style "theme-panel-background"
+widget "*fast-user-switch*"		style "theme-panel-background" # Workaround for Fast User Switch applet
+class "PanelApp*" 						style "theme-panel-background"
+class "PanelToplevel*" 				style "theme-panel-background"
+widget_class "*Panel*<GtkMenuBar>*"     style:highest "theme-panel-background" # The panel menubar
+widget "*TomboyTray*"					style "theme-panel-background" # Workaround for Tomboy
+widget "*TomboyApplet*"				style "theme-panel-background"
+widget "*Net*Applet*"					style "theme-panel-background"
+widget "*CPU*Applet*"					style "theme-panel-background"
+widget "*dictApplet*"					style "theme-panel-background"
+#XFCE panel
+widget_class "*notif*"				style "theme-panel-background"
+widget_class "*Notif*"				style "theme-panel-background"
+widget_class "*Tray*"					style "theme-panel-background"
+widget_class "*tray*"					style "theme-panel-background"
+widget "*Xfce*Panel*"					style "theme-panel-background"
+class "*Xfce*Panel*"					style "theme-panel-background"
+
+style "theme-panelbutton" = "theme-panel" {
+  xthickness   = 3
+  ythickness   = 2
+  bg[NORMAL]	 = shade(1.1, @panel_bg)
+  bg[PRELIGHT] = shade(1.25, @panel_bg)
+  bg[SELECTED] = @selected_bg_color
+}
+
+widget "*PanelButton*" 					style:highest "theme-panelbutton"
+#widget_class "*Panel*GtkToggleButton"	style:highest "theme-panelbutton"
+widget_class "*Panel*<GtkButton>"			style:highest "theme-panelbutton" 
+
+

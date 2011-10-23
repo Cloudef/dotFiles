@@ -1,0 +1,8 @@
+widget "*ManagementPanel.GtkVBox.GtkEventBox"                                style "theme-toolbar"
+
+style "theme-ubuntuone-progressbar" = "theme-dark" {
+  bg[NORMAL]   = shade (1.15, @bg_color)
+}
+
+widget "*ManagementPanel.GtkVBox.GtkEventBox.GtkVBox.GtkHBox.*GtkProgressBar"   style:highest "theme-ubuntuone-progressbar"
+

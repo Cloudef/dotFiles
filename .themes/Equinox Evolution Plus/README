@@ -1,0 +1,17 @@
+
+To enable breadcrumbs in Nautilus Elementary, uncomment the following line at the end of the gtkrc file (in gtk-2.0/):
+
+#include "apps/nautilus-elementary.rc"
+
+To enable support of global menu, uncomment the following line at the end of the gtkrc, then launch gnome-appearance-properties, click on the 'Customize...' button and select the window borders from Equinox Evolution Dawn:
+
+#include "apps/globalmenu.rc"
+
+Known issues
+============
+
+Gnome does not support well dark themes, so you may experiment:
+* Some ugly controls in HTML forms with Firefox (but you can use Chrome/Chromium insteed)
+* A dark background in all you OpenOffice/LibreOffice documents (but you can force the default background color of windows and documents in the application's options).
+* Evolution appears particulary ugly: there is a hard-coded color value for the header of the left sidebar, treeview/list headers are displayed in dark, etc.
+* Probably many other...

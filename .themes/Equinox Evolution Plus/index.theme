@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Equinox Evolution Midnight
+Comment=Gtk 2.0 Equinox Evolution Midnight theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Equinox Evolution Midnight
+MetacityTheme=Equinox Evolution Midnight
+IconTheme=Faenza-Darkest
+CursorTheme=DMZ-White
+ButtonLayout=close,minimize,maximize:menu

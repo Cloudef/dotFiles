@@ -1,0 +1,19 @@
+style "chrome-gtk-frame" = "theme-default" {
+
+    ChromeGtkFrame::frame-color	= @menu_bg_color
+    ChromeGtkFrame::inactive-frame-color = @menu_bg_color
+    ChromeGtkFrame::incognito-frame-color = @menu_bg_color
+    ChromeGtkFrame::incognito-inactive-frame-color = @menu_bg_color
+
+    ChromeGtkFrame::frame-gradient-size		= 0
+    ChromeGtkFrame::frame-gradient-color		= shade (1.0,@menu_bg_color)
+    ChromeGtkFrame::inactive-frame-gradient-color	= shade (1.0,@menu_bg_color)
+
+    ChromeGtkFrame::scrollbar-trough-color 	= @widget_bg_color
+    ChromeGtkFrame::scrollbar-slider-normal-color 		= "#CCCCCC"
+    ChromeGtkFrame::scrollbar-slider-prelight-color 	= "#D8D8D8"
+}
+
+class "ChromeGtkFrame" style "chrome-gtk-frame"
+
+

@@ -107,7 +107,7 @@ while kill -0 $PPID; do
    STORAGE=`df /media/Storage | awk '{ print $5 }' | tail -n 1`;
    ANIME=`df /media/Anime | awk '{ print $5 }' | tail -n 1`;
    NOTE=`cat "$HOME/.note"`
-   xsetroot -name "$NOTE | OS: $OS | STORAGE: $STORAGE | ANIME: $ANIME |"
+   xsetroot -name "$NOTE | OS: $OS | STORAGE: $STORAGE | ANIME: $ANIME | DIRTY: $(grep ^Dirty /proc/meminfo | sed 's/^Dirty: *//')"
    sleep 10;
 done
 

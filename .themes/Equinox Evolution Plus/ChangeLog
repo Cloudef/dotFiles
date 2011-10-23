@@ -1,0 +1,9 @@
+1.50
+====
+* Gtkrc: new engine option resizegripstyle
+* Gtkrc: support of global menu (see README file)
+* Gtkrc: better support of Ubuntu One Client and Software Center
+* Metacity: better rendering of the top right corner in Ubuntu 11.04
+1.40
+====
+* First public release

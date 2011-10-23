@@ -185,9 +185,9 @@ position=0
 font=erusfont 9
 
 [ClockColor]
-text_r=51914
-text_g=51914
-text_b=51914
+text_r=29068
+text_g=29068
+text_b=29068
 border_r=49601
 border_g=0
 border_b=0
@@ -201,9 +201,9 @@ bg_p=55255
 text_p=65278
 
 [BalloonColor]
-text_r=51914
-text_g=51914
-text_b=51914
+text_r=55493
+text_g=55493
+text_b=55493
 bg_p=65535
 border_r=49601
 border_g=0

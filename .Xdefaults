@@ -15,7 +15,6 @@ URxvt*letterSpace: 0
 URxvt*xftAutoHint: false
 
 URxvt*borderLess:false
-URxvt*internalBorder:5
 
 URxvt*perl-ext-common:default,-tabbed,matcher,-selection-popup,-option-popupi
 
@@ -64,7 +63,6 @@ URxvt*font:  xft:Erusfont:pixelsize=7,xft:IPAMonaGothic
 !URxvt Color Settings {{{
 #include "/home/jari/.Xcolors/Colorshot"
 
-URxvt*borderColor:        #151515
 URxvt*colorBD:            #ffffff
 URxvt*cursorColor:        #ff8939
 URxvt*cursorColor2:       #151515

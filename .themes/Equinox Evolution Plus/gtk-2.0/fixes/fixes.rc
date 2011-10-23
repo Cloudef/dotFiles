@@ -1,0 +1,86 @@
+# Wrokaround style for places where the text color is used instead of the fg color.
+style "text_is_fg_color_workaround"
+{
+	text[NORMAL]      			= @fg_color
+	text[PRELIGHT]    			= @fg_color
+	text[SELECTED]    			= @selected_fg_color
+	text[ACTIVE]      			= @fg_color
+	text[INSENSITIVE] 			= darker (@bg_color)
+}
+
+# Workaround style for menus where the text color is used instead of the fg color.
+style "menuitem_text_is_fg_color_workaround"
+{
+	text[NORMAL]        			= @fg_color
+	text[PRELIGHT]      			= @selected_fg_color
+	text[SELECTED]      			= @selected_fg_color
+	text[ACTIVE]        			= @fg_color
+	text[INSENSITIVE]   			= darker (@bg_color)
+}
+
+# Workaround style for places where the fg color is used instead of the text color.
+style "fg_is_text_color_workaround"
+{
+	fg[NORMAL]        			= @text_color
+	fg[PRELIGHT]      			= @text_color
+	fg[SELECTED]      			= @selected_fg_color
+	fg[ACTIVE]        			= @selected_fg_color
+	fg[INSENSITIVE]   			= darker (@bg_color)
+}
+
+# Work around for http://bugzilla.gnome.org/show_bug.cgi?id=382646
+# Note that this work around assumes that the combobox is _not_ in appears-as-list mode.
+#widget_class "*.<GtkComboBox>.<GtkCellView>" 	style "text_is_fg_color_workaround"
+widget_class "*.<GtkCellView>" 	style "text_is_fg_color_workaround"
+
+#emesene button colors
+widget "MainWindow+MainWindow.GtkVBox.GtkVBox.GtkHBox.GtkHBox.GtkVBox.GtkHBox.GtkButton*" style "text_is_fg_color_workaround"
+#pidgin status button color
+widget "*pidgin_blist_statusbox.GtkToggleButton*" style "text_is_fg_color_workaround"
+# This is the part of the workaround that fixes the menus
+widget "*.gtk-combobox-popup-menu.*" 		style "menuitem_text_is_fg_color_workaround"
+
+# Work around the usage of GtkLabel inside GtkListItems to display text.
+# This breaks because the label is shown on a background that is based on the base color.
+widget_class "*<GtkListItem>*" 			style "fg_is_text_color_workaround"
+# GtkCList also uses the fg color to draw text on top of the base colors.
+widget_class "*<GtkCList>" 			style "fg_is_text_color_workaround"
+# Nautilus when renaming files, and maybe other places.
+widget_class "*<EelEditableLabel>" 		style "fg_is_text_color_workaround"
+
+#Non gtk progressbar
+widget "GtkWindow.GtkFixed.GtkProgressBar"				style "text_is_fg_color_workaround"
+
+#Non gtk text view
+widget "GtkWindow.GtkFixed.GtkTextView"					style "text_is_fg_color_workaround"
+
+widget "ido-offscreen-scale" style "theme-menu" # Sound panel appel
+widget "*IdoEntryMenuItem*" style "theme-wide"
+
+# Evolution
+widget_class "*.ETree.ECanvas"    style "theme-treeview-header"
+widget_class "*.ETable.ECanvas" 	style "theme-treeview-header"
+
+style "evolution-new-button-workaround" {
+  bg[NORMAL] = @bg_color
+	engine "equinox" {
+		toolbarstyle = 0
+	}
+}
+widget_class "EShellWindow.GtkVBox.BonoboDock.BonoboDockBand.BonoboDockItem*" style "evolution-new-button-workaround"
+
+# Mozilla treeview header fix
+style "mozilla-header-fix" {
+  bg[NORMAL] = shade(1.35, @bg_color)
+  bg[PRELIGHT] = shade(1.45, @bg_color)
+  bg[ACTIVE] = shade(1.40, @bg_color)
+}
+widget "*MozillaGtkWidget*Tree*GtkButton" 	    style:highest "mozilla-header-fix"
+
+
+style "default-style"
+{
+   GtkMenu::vertical-padding = 1 # Fix dissapearing right mouse menu in Thunar
+}
+
+class "GtkWidget" style "default-style"

@@ -1,0 +1,43 @@
+style "theme-default" {
+  engine "equinox" {
+    menubarborders      = 0 
+    menubarstyle        = 0
+  }
+}
+
+style "theme-menubar" = "theme-default" {
+  bg[NORMAL] = "#333333"
+}
+
+style "theme-toolbar" = "theme-default" { 
+  bg[NORMAL] = "#363636"
+}
+style "theme-toolbar-button" = "theme-button" {
+  bg[NORMAL]   = shade (1.05, "#363636")
+  bg[ACTIVE]   = shade (0.9, "#363636")
+  bg[PRELIGHT] = shade (1.15, "#363636")
+}
+widget_class "*<GtkToolbar>*<GtkButton>"    						style "theme-toolbar-button"
+widget_class "*<GtkHandleBox>*<GtkToolbar>*<GtkButton>" style:highest "theme-toolbar-button"
+
+
+style "pixmap-mode-button-global" {
+	engine "pixmap" {	
+		image { function = BOX state = PRELIGHT    file = "../images/mode_prelight_global.png" border = { 4, 13, 4, 4 } stretch = TRUE }
+		image { function = BOX state = NORMAL      file = "../images/mode_normal_global.png"   border = { 4, 13, 4, 4 } stretch = TRUE }
+	  image { function = BOX state = ACTIVE      file = "../images/mode_pressed_global.png"  border = { 4, 13, 4, 4 } stretch = TRUE }  
+		image { function = BOX state = INSENSITIVE file = "../images/mode_normal_global.png"   border = { 4, 13, 4, 4 } stretch = TRUE } 
+	  image { function = BOX state = SELECTED    file	= "../images/mode_pressed_global.png"  border = { 4, 13, 4, 4 } stretch = TRUE }
+	}
+}
+widget "*ModeButton*"                       style:highest "pixmap-mode-button-global"
+
+style "theme-toolbar-ubuntuone" = "theme-default" { 
+  bg[NORMAL] = "#333333"
+}
+widget "*ManagementPanel.GtkVBox.GtkEventBox"           style:highest "theme-toolbar-ubuntuone"
+
+style "theme-panel-background" = "theme-panel" {
+  bg_pixmap[NORMAL] = "images/panel_bg_global.png"
+}
+

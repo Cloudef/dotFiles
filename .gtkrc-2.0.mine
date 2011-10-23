@@ -1,0 +1,6 @@
+style "default-style"
+{
+   GtkMenu::vertical-padding = 1 # Fix dissapearing right mouse menu in Thunar
+}
+
+class "GtkWidget" style "default-style"

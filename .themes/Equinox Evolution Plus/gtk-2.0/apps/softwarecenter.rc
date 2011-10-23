@@ -1,0 +1,26 @@
+style "theme-softwarecenter-text" = "theme-default" {
+  GtkWidget::link-color = "#2485FF"
+  GtkIMHtml::hyperlink-color = "#2485FF"
+	GtkHTML::link-color = "#2485FF"
+  fg[NORMAL]       	=  "#111111"
+  fg[PRELIGHT]     	=  "#111111"
+  fg[SELECTED]     	=  "#111111"
+  fg[ACTIVE]     	  =  "#111111"
+  fg[INSENSITIVE]   =  "#999999"
+  text[NORMAL]      =  "#111111"
+  text[PRELIGHT]    =  "#111111"
+  text[SELECTED]    =  "#111111"
+  text[ACTIVE]      =  "#111111"
+  text[INSENSITIVE] =  "#999999"
+  engine "equinox" {
+    textstyle       = 0
+  }
+}
+widget_class "*softwarecenter*.GtkVBox*"              style:highest "theme-softwarecenter-text"
+widget_class "*softwarecenter*.GtkVBox*<GtkButton>.<GtkLabel>"  style:highest "theme-button"
+style "theme-softwarecenter" = "theme-default" {
+  bg[NORMAL]       	=  "#DDDDDD"
+}
+widget_class "*softwarecenter*.GtkVBox" style:highest "theme-softwarecenter"
+widget_class "*softwarecenter*.GtkVBox*<GtkTreeView>" style:highest "theme-default"
+

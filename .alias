@@ -19,6 +19,9 @@ alias projekti="cd /media/Storage/Dev/Projektit/Projekti/"
 alias ogl="cd /media/Storage/Dev/Projektit/CFrameWork"
 alias projektit="cd /media/Storage/Dev/projektit"
 
+# Power outages (-_-;)うっ・・・
+alias dataloss="grep ^Dirty /proc/meminfo"
+
 # Packer aliases
 alias ai="packer-color"
 alias as="packer-color -Ss"
