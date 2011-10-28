@@ -20,7 +20,6 @@ set wildmode=list:longest,full
 set ignorecase
 set smartcase
 set autoread
-set lazyredraw
 set undolevels=1000
 set updatecount=100
 set ttyfast

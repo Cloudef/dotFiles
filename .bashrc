@@ -5,6 +5,9 @@
 export EDITOR="vim"
 export BROWSER="opera"
 
+# ALSA
+export SDL_AUDIODRIVER="alsa"
+
 # TTY THEME
 export TTY_THEME="console_phraktured"
 

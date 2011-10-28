@@ -2,10 +2,10 @@ Xcursor.theme: X-Steel-GRAY
 
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  hintfull
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle:  hintslight
+Xft.antialias: true
+Xft.rgba: none
 Xft.dpi: 95
 
 !URxvt Settings {{{
@@ -23,9 +23,7 @@ URxvt*cursorBlink:true
 URxvt*highlightSelection:true
 URxvt*buffered:true
 URxvt*saveLines:1500
-cutchars::@-./_~?&=%+#'"'()*,;<=>[]^{|}
-URxvt*iconFile: /home/jari/.icons/ACYL_Icon_Theme_0.9.2/scalable/apps/terminal.svg
-
+URxvt*cutchars:@-./_~?&=%+#'"'()*,;<=>[]^{|}
 URxvt*eightBitInput:true
 URxvt*inputMethod:uim
 URxvt*preeditType:OverTheSpot,root

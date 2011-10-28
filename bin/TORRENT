@@ -1,6 +1,7 @@
 #!/bin/sh
 
 PIDFILE="/tmp/TORRENT.pid"
+SOCKET="/tmp/TORRENT.sck"
 if [ -e "$PIDFILE" ]; then
    PID=`cat "$PIDFILE"`
    if kill -0 $PID; then
@@ -11,7 +12,13 @@ if [ -e "$PIDFILE" ]; then
    fi
 fi
 
+if [ -e "$SOCKET" ]; then
+   urxvt -title rTorrent -name rTorrent -e dtach -a "$SOCKET" &
+   echo "$!" > "$PIDFILE"
+   exit 1
+fi
+
 if [ ! -e "$PIDFILE" ]; then
-   urxvt -title rTorrent -name rTorrent -e rtorrent &
+   urxvt -title rTorrent -name rTorrent -e dtach -c "$SOCKET" rtorrent &
    echo "$!" > "$PIDFILE"
 fi

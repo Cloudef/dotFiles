@@ -67,10 +67,10 @@ xsetroot -name "DWM"
 alsactl restore &
 
 # Hatsune Miku (Start before cow-notify, otherwise it starts it without sockmsg)
-(sleep 10 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
+(sleep 30 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
 
 # Cow notify
-(sleep 30 && cow-notify &> /dev/null) &
+(sleep 40 && cow-notify &> /dev/null) &
 
 # Dzen
 source $HOME/.config/dwm/dzen2start
@@ -107,7 +107,7 @@ while kill -0 $PPID; do
    STORAGE=`df /media/Storage | awk '{ print $5 }' | tail -n 1`;
    ANIME=`df /media/Anime | awk '{ print $5 }' | tail -n 1`;
    NOTE=`cat "$HOME/.note"`
-   xsetroot -name "$NOTE | OS: $OS | STORAGE: $STORAGE | ANIME: $ANIME | DIRTY: $(grep ^Dirty /proc/meminfo | sed 's/^Dirty: *//')"
+   xsetroot -name "$(echo -e "\x05$NOTE \x02|\x01 OS $OS :: STORAGE $STORAGE :: ANIME $ANIME \x02|\x01 >> $(grep ^Dirty /proc/meminfo | sed 's/^Dirty: *//')")"
    sleep 10;
 done
 

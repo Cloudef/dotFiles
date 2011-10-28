@@ -126,7 +126,7 @@ style "theme-default" {
   fg[INSENSITIVE]  	=  shade (4.5, @bg_color)
 
   bg[NORMAL]       	=  @bg_color
-  bg[ACTIVE]        =  shade (0.975, @bg_color) # inactive tab color
+  bg[ACTIVE]        =  shade (0.975, @fg_color) # inactive tab color
   bg[PRELIGHT]      =  mix (0.85, shade (1.1, @bg_color), @selected_bg_color)
   bg[SELECTED]      =  @selected_bg_color
   bg[INSENSITIVE]  	=  shade (1.03, @bg_color)
@@ -224,8 +224,8 @@ style "theme-scrollbar" = "theme-default" {
   text[INSENSITIVE] = "#000000"
   text[PRELIGHT]    = "#000000"
   text[SELECTED]    = "#000000"
-  bg[NORMAL]   = @bg_color
-  bg[ACTIVE]   = shade (0.5, @bg_color)
+  bg[NORMAL]   = shade (2.5, @bg_color)
+  bg[ACTIVE]   = shade (5.0, @bg_color)
   bg[PRELIGHT] = shade (2.0, @bg_color)
   engine "equinox" {
       curvature = 2

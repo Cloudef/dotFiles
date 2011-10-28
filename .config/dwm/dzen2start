@@ -20,7 +20,7 @@ GMAIL_X=$((${RAM_X}+${RAM_WIDTH}))
 WLAN_X=$((${GMAIL_X}+${GMAIL_WIDTH}))
 COLOR="#1C1C1C"
 
-(~/.config/dwm/bottom | dzen2 -bg $COLOR -ta l -h $HEIGHT -fn "$FONT" -x 0 -y $POSY -tw $WIDTH -e "") &
-(~/.config/dwm/gmail  | dzen2 -bg $COLOR -sa c -ta l -l 5 -h $HEIGHT -fn "$FONT" -x $GMAIL_X -y $POSY -tw $GMAIL_WIDTH -w $GMAIL_DWIDTH -e "$GMAIL_ACT") &
-(~/.config/dwm/rambar | dzen2 -bg $COLOR -ta l -l 3 -h $HEIGHT -fn "$FONT" -x $RAM_X -y $POSY -w $RAM_DWIDTH -tw $RAM_WIDTH -sa c -e "$RAM_ACT") &
-(~/.config/dwm/wlan   | dzen2 -bg $COLOR -ta l -h $HEIGHT -fn "$FONT" -x $WLAN_X -y $POSY -tw $WLAN_WIDTH -e "" ) &
+(~/.config/dwm/bottom | dzen2 -bg "$COLOR" -ta l -h $HEIGHT -fn "$FONT" -x 0 -y $POSY -tw $WIDTH -e "") &
+(~/.config/dwm/gmail  | dzen2 -bg "$COLOR" -sa c -ta l -l 5 -h $HEIGHT -fn "$FONT" -x $GMAIL_X -y $POSY -tw $GMAIL_WIDTH -w $GMAIL_DWIDTH -e "$GMAIL_ACT") &
+(~/.config/dwm/rambar | dzen2 -bg "$COLOR" -ta l -l 3 -h $HEIGHT -fn "$FONT" -x $RAM_X -y $POSY -w $RAM_DWIDTH -tw $RAM_WIDTH -sa c -e "$RAM_ACT") &
+(~/.config/dwm/wlan   | dzen2 -bg "$COLOR" -ta l -h $HEIGHT -fn "$FONT" -x $WLAN_X -y $POSY -tw $WLAN_WIDTH -e "" ) &

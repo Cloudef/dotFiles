@@ -80,30 +80,31 @@ function prompt() {
    local gitNum=""
    local cgit="$(git_cprompt)"
    local git="$(git_prompt)"
-   local cpath="${PWD}"
-   local path="${ORANGE}${PWD}"
+   local path="${PWD}"
+   local cinfo="${path}"
 
    if [ -n "$git" ]; then
       gitNum="["
       gitNum+="$(echo $cgit | sed -r "s:\x1B\[[0-9;]*[mK]::g" | wc -c)"
       gitNum+="]"
-      cpath="${PWD} :: ${cgit} ${gitNum}"
-      path="${ORANGE}${PWD} :: ${git}${RED} ${gitNum}${cBorder}"
+      cinfo="${PWD} :: ${cgit} ${gitNum}"
    fi
 
-   let promptsize=$(echo -n ".${user}//{$host}---${cpath}" | wc -c | tr -d " ")
-   width=$(tput cols)
+   let promptsize=$(echo -n ".${user}//${host} :: ${cinfo}" | wc -c | tr -d " ")
+    width=$(tput cols)
 
+   echo "" # I like newline before prompt
    let fillsize=${width}-${promptsize}
-
-   if [ "$fillsize" -lt "0" ]
-   then
-      let cutt=3-${fillsize}
-      path="...$(echo -n $cpath | sed -e "s/\(^.\{$cutt\}\)\(.*\)/\2/")"
+   if [ "$fillsize" -gt "0" ]; then
+      # Construct info text
+      if [ -n "$git" ]; then
+         info="${ORANGE}.${user}${WHITE}//${GREEN}${host} :: ${ORANGE}${path} :: ${git}${RED} ${gitNum}${cBorder}"
+      else
+         info="${ORANGE}.${user}${WHITE}//${GREEN}${host} :: ${ORANGE}${path}"
+      fi
+      echo "${info}"
    fi
 
-   echo ""
-   echo "${ORANGE}.${user}${WHITE}//${GREEN}${host} :: ${path}"
    if [[ "$PROMPT_TITLE" ]]; then
       PS1="\[\e[1;35m\]$PROMPT_TITLE\[\e[1;31m\] >>\[\e[0m\] "
    else

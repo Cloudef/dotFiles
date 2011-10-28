@@ -160,7 +160,7 @@ default_color=TRUE
 move=0
 xoff=0
 yoff=0
-fix_x=2630
+fix_x=2631
 fix_y=925
 
 [Clock]
@@ -185,9 +185,9 @@ position=0
 font=erusfont 9
 
 [ClockColor]
-text_r=29068
-text_g=29068
-text_b=29068
+text_r=48094
+text_g=48094
+text_b=48094
 border_r=49601
 border_g=0
 border_b=0
@@ -197,7 +197,7 @@ shadow_b=0
 bg_r=4626
 bg_g=4626
 bg_b=4626
-bg_p=55255
+bg_p=65535
 text_p=65278
 
 [BalloonColor]
