@@ -66,6 +66,12 @@ map :GPL :0r ~/.vim/GPL.txt
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
+autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
+
+let vala_comment_strings = 1
+let vala_space_errors = 1
+
 au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.shd set syntax=glsl
 
 " Automatically cd into the directory that the file is in

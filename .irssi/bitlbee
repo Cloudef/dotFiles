@@ -188,5 +188,5 @@ settings = {
   };
 };
 hilights = ( { text = "Cloudef"; nick = "yes"; word = "yes"; } );
-ignores = ( { level = "QUITS"; } );
+ignores = ( );
 logs = { };
