@@ -1,12 +1,16 @@
 ###########################
 ## Enviroiment Variables ##
 ###########################
-# DEFAULT APPS
+# DEFAULT PROGRAMS
 export EDITOR="vim"
 export BROWSER="opera"
+export PAGER="most"
 
 # ALSA
 export SDL_AUDIODRIVER="alsa"
+
+# SDL Head fix
+export SDL_VIDEO_FULLSCREEN_HEAD=1
 
 # TTY THEME
 export TTY_THEME="console_phraktured"

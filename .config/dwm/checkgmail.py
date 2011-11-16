@@ -23,7 +23,7 @@ import urllib
 import feedparser
 from optparse import OptionParser
 
-gmail_url = "https://mail.google.com/gmail/feed/atom"
+gmail_url  = "https://mail.google.com/gmail/feed/atom"
 plaincolor = 'white'
 alertcolor = 'red'
 

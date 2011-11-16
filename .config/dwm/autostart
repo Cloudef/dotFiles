@@ -39,6 +39,9 @@ xset s off
 # DWM text
 xsetroot -name "DWM"
 
+# Wait for WM a bit
+sleep 5
+
 # Set wallpapers
 (nitrogen --restore &> /dev/null) &
 
@@ -61,7 +64,7 @@ xsetroot -name "DWM"
 (dropboxd &> /dev/null) &
 
 # Conky
-(sleep 2 && conky -q -c $HOME/.config/conky/db.conky &> /dev/null) &
+(conky -q -c $HOME/.config/conky/db.conky &> /dev/null) &
 
 # Alsa settings back
 alsactl restore &
@@ -74,9 +77,6 @@ alsactl restore &
 
 # Dzen
 source $HOME/.config/dwm/dzen2start
-
-# needs sleep, I guess?
-sleep 10
 
 # Xcompmgr
 (xcompmgr -fF -I-.02 -O-.04 -D0001 &> /dev/null) &
@@ -115,3 +115,4 @@ done
 # If you get any processes that run even after logout, kill them here
 killall redshift
 killall gmail
+killall -9 opera

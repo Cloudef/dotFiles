@@ -1,8 +1,8 @@
 # MPlayer
 
 vo=xv
-#vo=vdpau,xv,
-#vc=ffh264vdpau,ffmpeg12vdpau,ffvc1vdpau,ffwmv3vdpau,
+# vo=vdpau,xv,
+# vc=ffh264vdpau,ffmpeg12vdpau,ffvc1vdpau,ffwmv3vdpau,
 ao=alsa
 
 # Software scaling
@@ -18,20 +18,20 @@ a52drc=1
 mc=0.2
 autosync=30
 
-#really-quiet="1" # Less output
+really-quiet=1          # Less output
 
-double="yes" # Double buffering
-framedrop="1" # Frame dropping
-hardframedrop="0" # Disable hard frame dropping
-#monitoraspect="16:9" # Aspect ratio
+# double=yes            # Double buffering [ TribleBuffering enabled on driver ]
+framedrop=0             # Frame dropping
+hardframedrop=0         # Disable hard frame dropping
+# monitoraspect="16:9"  # Aspect ratio
 
 # Normal subs
 fontconfig=1
-ffactor="10" # Black outline
-subfont-text-scale="2.7" # Font scale
-subfont-blur="1" # Slight blur
-subpos="90" # Raise subs
-spuaa=2 # Antialias
+ffactor=10                 # Black outline
+subfont-text-scale=2.7     # Font scale
+subfont-blur="1"           # Slight blur
+subpos="90"                # Raise subs
+spuaa=2                    # Antialias
 
 # Enable stylized subtitles
 ass=yes
