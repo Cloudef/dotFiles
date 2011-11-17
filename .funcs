@@ -401,12 +401,15 @@ function screencap() {
    local INPOS="${INPOSX},${INPOSY}"
 
    local FPS="24"                      # Target FPS
+   local PRESET="ultrafast"
 
    echo "---------$INRES+$INPOS------------"
    echo ""
 
    ffmpeg -f x11grab -s "$INRES" -vf scale=${INRESW}:-1 -r "$FPS" -i :0.0+$INPOS \
-   -vcodec huffyuv -f alsa -i hw:0,0 -async 1 -ab 192k -sameq -threads 4 "$fd"
+          -f alsa -i hw:0,0 -acodec pcm_s16le -async 1 -ar 44100 -ab 128k \
+          -vcodec libx264 -vpre "$PRESET" -crf 22 \
+          -threads 4 "$fd"
 }
 
 ##############################

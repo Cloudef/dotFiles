@@ -18,6 +18,12 @@ export TTY_THEME="console_phraktured"
 # $HOME/BIN
 export PATH="$HOME/bin:$PATH"
 
+# Compile options
+# [ ARM enviroiment will override ]
+export CFLAGS="-march=native -mtune=native -O2 -pipe -fstack-protector --param=ssp-buffer-size=4"
+export CXXFLAGS="${CFLAGS}"
+export LDFLAGS="-Wl,--hash-style=gnu -Wl,--as-needed"
+
 # OPERA TWEAKS
 OPERAPLUGINWRAPPER_PRIORITY=0
 OPERA_KEEP_BLOCKED_PLUGIN=1
