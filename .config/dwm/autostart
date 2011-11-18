@@ -45,8 +45,8 @@ sleep 5
 # Set wallpapers
 (nitrogen --restore &> /dev/null) &
 
-# Unclutter
-(unclutter -idle 5 -jitter 5 &> /dev/null) &
+# Thunar daemon
+thunar --daemon &
 
 # Networkmanager applet
 (nm-applet &> /dev/null) &
