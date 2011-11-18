@@ -66,9 +66,6 @@ sleep 5
 # Conky
 (conky -q -c $HOME/.config/conky/db.conky &> /dev/null) &
 
-# Alsa settings back
-alsactl restore &
-
 # Hatsune Miku (Start before cow-notify, otherwise it starts it without sockmsg)
 (sleep 30 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
 

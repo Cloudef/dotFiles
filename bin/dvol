@@ -1,0 +1,107 @@
+#!/bin/sh
+# OSD Volume utility
+
+#Customize this stuff
+IF="Master"         # audio channel: Master|PCM
+MF="Master"	    # mute channel
+SECS="2"            # sleep $SECS
+BG="#111111"        # background colour of window
+FG="#eeeeee"        # foreground colour of text/icon
+BAR_FG="#ffffff"    # foreground colour of volume bar
+BAR_BG="#777777"    # background colour of volume bar
+XPOS="2540"         # horizontal positioning
+YPOS="0"           # vertical positioning
+HEIGHT="10"         # window height
+WIDTH="175"         # window width
+BAR_WIDTH="150"     # width of volume bar
+ICON=~/.icons/dwm/spkr_01.xbm
+FONT="monospace"
+ICON_VOL=~/.icons/dwm/spkr_01.xbm
+ICON_VOL_MUTE=~/.icons/dwm/spkr_02.xbm
+ICON=$ICON_VOL
+
+#Probably do not customize
+PIPE="/tmp/dvolpipe"
+
+err() {
+  echo "$1"
+  exit 1
+}
+
+usage() {
+  echo "usage: dvol [option] [argument]"
+  echo
+  echo "Options:"
+  echo "     -i, --increase - increase volume by \`argument'"
+  echo "     -d, --decrease - decrease volume by \`argument'"
+  echo "     -t, --toggle   - toggle mute on and off"
+  echo "     -h, --help     - display this"
+  exit
+}
+
+#Argument Parsing
+case "$1" in
+  '-i'|'--increase')
+    [ -z "$2" ] && err "No argument specified for increase."
+    [ -n "$(tr -d [0-9] <<<$2)" ] && err "The argument needs to be an integer."
+#   ALSA
+    AMIXARG="${2}%+"
+
+#   OSS
+#   AMIXARG="-i 2"
+    ;;
+  '-d'|'--decrease')
+    [ -z "$2" ] && err "No argument specified for decrease."
+    [ -n "$(tr -d [0-9] <<<$2)" ] && err "The argument needs to be an integer."
+#   ALSA
+    AMIXARG="${2}%-"
+
+#   OSS
+#   AMIXARG="-d 2"
+    ;;
+  '-t'|'--toggle')
+#   ALSA
+    AMIXARG="toggle"
+    IF="$MF"
+
+#   OSS
+#   AMIXARG="-t"
+    ;;
+  ''|'-h'|'--help')
+    usage
+    ;;
+  *)
+    err "Unrecognized option \`$1', see dvol --help"
+    ;;
+esac
+
+# OLD ALSA CONFIGURATION
+#
+# Actual volume changing (readability low)
+AMIXOUT="$(amixer set "$IF" "$AMIXARG" | tail -n 1)"
+MUTE="$(cut -d '[' -f 4 <<<"$AMIXOUT")"
+VOL="$(cut -d '[' -f 2 <<<"$AMIXOUT" | sed 's/%.*//g')"
+if [ "$MUTE" = "off]" ]; then
+   ICON=$ICON_VOL_MUTE
+   VOL=0
+else
+   # HACK
+   AMIXOUT="$(amixer get "$IF" | tail -n 1)"
+   VOL="$(cut -d '[' -f 2 <<<"$AMIXOUT" | sed 's/%.*//g')"
+   ICON=$ICON_VOL
+fi
+
+# OSS
+#VOL="$(ossvol $AMIXARG | sed 's/^.* //')"
+#VOL=`echo "$VOL * 100 / 25" | bc`
+
+#Using named pipe to determine whether previous call still exists
+#Also prevents multiple volume bar instances
+if [ ! -e "$PIPE" ]; then
+  mkfifo "$PIPE"
+  (dzen2 -tw "$WIDTH" -h "$HEIGHT" -x "$XPOS" -y "$YPOS" -bg "$BG" -fg "$FG" -fn "$FONT" < "$PIPE"
+   rm -f "$PIPE") &
+fi
+
+#Feed the pipe!
+(echo "$VOL" | gdbar -l "^i(${ICON}) " -fg "$BAR_FG" -bg "$BAR_BG" -w "$BAR_WIDTH" -h 8 ; sleep "$SECS") > "$PIPE"
