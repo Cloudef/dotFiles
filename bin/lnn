@@ -7,8 +7,12 @@
 # directory as target
 
 [[ "$1" ]]  || exit
-[ -f "$1" ] || exit
 
-folder=$(dirname "$1")
-file=$(basename "$1")
-ln -s "$1" "${folder}/${file} (link)"
+# You can pass multiple filepaths
+for filepath in "$@"; do
+   if [ -e "$filepath" ]; then
+      folder=$(dirname "$filepath")
+      file=$(basename "$filepath")
+      ln -s "$filepath" "${folder}/${file} (link)"
+   fi
+done
