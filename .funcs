@@ -188,7 +188,7 @@ function videoencodehd()
       echo "'$1' is not a valid file"
       return
    fi
-   ffmpeg -y -i $1 -threads 0 -acodec libvorbis -ar 44100 -ab 96k -vcodec libx264 -vpre libx264-lossless_medium -level 41 -s 800x480 -crf 20 -bufsize 24000k -maxrate 32000k -g 250 -r 20 -coder 1 -flags +loop -cmp +chroma -partitions +parti4x4+partp8x8+partb8x8 -flags2 +dct8x8+bpyramid -me_method umh -subq 7 -me_range 16 -keyint_min 25 -sc_threshold 40 -i_qfactor 0.71 -rc_eq 'blurCplx^(1-qComp)' -bf 16 -b_strategy 1 -bidir_refine 1 -refs 6 -deblockalpha 0 -deblockbeta 0 $2
+   ffmpeg -y -i $1 -threads 0 -acodec libvorbis -ar 44100 -ab 96k -vcodec libx264 -preset fast -level 41 -s 800x480 -crf 20 -bufsize 24000k -maxrate 32000k -g 250 -r 20 -coder 1 -flags +loop -cmp +chroma -partitions +parti4x4+partp8x8+partb8x8 -flags2 +dct8x8+bpyramid -me_method umh -subq 7 -me_range 16 -keyint_min 25 -sc_threshold 40 -i_qfactor 0.71 -rc_eq 'blurCplx^(1-qComp)' -bf 16 -b_strategy 1 -bidir_refine 1 -refs 6 -deblockalpha 0 -deblockbeta 0 $2
 }
 
 ################################
@@ -200,7 +200,7 @@ function videoencodesd()
       echo "'$1' is not a valid file"
       return
    fi
-   ffmpeg -i "$1" -vcodec libx264 -vpre fast -crf 22 -threads 0 $2
+   ffmpeg -i "$1" -vcodec libx264 -preset fast -crf 22 -threads 0 $2
 }
 
 ################
@@ -412,6 +412,35 @@ function screencap() {
           -threads 4 "$fd"
 }
 
+#########################################
+## Screen capture to file              ##
+## Uses huffyuv codec which is low CPU ##
+## However watch out for disk space!   ##
+#########################################
+function screencaplow() {
+   local fd="${1-capture.avi}"
+   local WININFO="`xwininfo`"
+   local INRESW=`echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}'`
+   local INRESH=`echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}'`
+   local INPOSX=`echo "$WININFO" | grep 'Absolute upper-left X:'  | awk '{print $4;}'`
+   local INPOSY=`echo "$WININFO" | grep 'Absolute upper-left Y:'  | awk '{print $4;}'`
+
+   local INRES="${INRESW}x${INRESH}"
+   local INPOS="${INPOSX},${INPOSY}"
+
+   local FPS="24"                      # Target FPS
+   local PRESET="ultrafast"
+
+   echo "---------$INRES+$INPOS------------"
+   echo ""
+
+   ffmpeg -f x11grab -s "$INRES" -vf scale=${INRESW}:-1 -r "$FPS" -i :0.0+$INPOS \
+          -f alsa -i hw:0,0 -acodec pcm_s16le -async 1 -ar 44100 -ab 128k \
+          -vcodec huffyuv \
+          -threads 4 "$fd"
+}
+
+
 ##############################
 ## Encode GLC captured file ##
 ##############################
@@ -493,7 +522,7 @@ wiisplit()
       echo "Usage: wiisplit [ISO file]"
       return
    fi
-   if [[ ! -f "$1" ]]; then
+   if [ ! -f "$1" ]; then
       echo "'$1' is not a valid file"
       return
    fi

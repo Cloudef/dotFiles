@@ -1,4 +1,6 @@
 #!/bin/sh
+# Urxvt client that launches daemon if needed
+
 urxvtc "$@"
 if [ $? -eq 2 ]; then
    urxvtd -q -o -f

@@ -160,13 +160,13 @@ default_color=TRUE
 move=0
 xoff=0
 yoff=0
-fix_x=2631
+fix_x=2635
 fix_y=925
 
 [Clock]
 mode=2
 type=0
-x=98
+x=84
 y=216
 text_x=1
 text_y=1
@@ -175,7 +175,7 @@ sd_y=1
 border=0
 shadow=FALSE
 round=FALSE
-font=erusfont 8
+font=erusfont 7
 
 [Balloon]
 text_x=3

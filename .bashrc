@@ -24,9 +24,12 @@ export CFLAGS="-march=native -mtune=native -O2 -pipe -fstack-protector --param=s
 export CXXFLAGS="${CFLAGS}"
 export LDFLAGS="-Wl,--hash-style=gnu -Wl,--as-needed"
 
-# OPERA TWEAKS
-OPERAPLUGINWRAPPER_PRIORITY=0
-OPERA_KEEP_BLOCKED_PLUGIN=1
+# Opera tweaks
+export OPERAPLUGINWRAPPER_PRIORITY=0
+export OPERA_KEEP_BLOCKED_PLUGIN=1
+
+# Old GTK Applications
+export GDK_USE_XFT=1
 
 ################################
 ## Test for interactive shell ##

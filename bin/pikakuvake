@@ -1,4 +1,6 @@
 #!/bin/sh
+# Shortcut
+
 if [[ ! "$1" ]]; then
    echo "Usage: pikakuvake <application>"
    exit

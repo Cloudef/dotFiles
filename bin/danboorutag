@@ -1,11 +1,13 @@
 #!/bin/sh
 # Crawl Danbooru for pics
 
-if [ ! "$1" ]
-then
-	echo "Usage: danboorutag <tag> [page]"
-	exit
-fi
+usage()
+{
+   echo "Usage: danboorutag <tag> [page]"
+   exit
+}
+
+[[ "$1" ]] || usage
 
 if [[ -f "/tmp/danbooru.pid" ]]
 then

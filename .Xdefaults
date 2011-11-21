@@ -1,21 +1,17 @@
 Xcursor.theme: X-Steel-GRAY
 
 Xft.autohint: 0
-Xft.lcdfilter:  lcddefault
+Xft.lcdfilter: lcddefault
 Xft.hinting: true
 Xft.hintstyle:  hintslight
 Xft.antialias: true
-Xft.rgba: none
+Xft.rgba: rgb
 Xft.dpi: 95
 
 !URxvt Settings {{{
 URxvt*termName:rxvt-unicode-256color
-URxvt*letterSpace: 0
-
-URxvt*xftAutoHint: false
-
+URxvt.letterSpace:0
 URxvt*borderLess:false
-
 URxvt*perl-ext-common:default,-tabbed,matcher,-selection-popup,-option-popupi
 
 URxvt*visualBell:false
@@ -55,7 +51,7 @@ URXvt*mouseWheelScrollPage:false
 !}}}
 
 !URxvt Fonts {{{
-URxvt*font:  xft:Erusfont:pixelsize=7,xft:IPAMonaGothic
+URxvt.font:xft:Erusfont:pixelsize=7,xft:IPAMonaGothic
 !}}}
 
 !URxvt Color Settings {{{
