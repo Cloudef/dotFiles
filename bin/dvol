@@ -79,8 +79,32 @@ esac
 #
 # Actual volume changing (readability low)
 AMIXOUT="$(amixer set "$IF" "$AMIXARG" | tail -n 1)"
-MUTE="$(cut -d '[' -f 4 <<<"$AMIXOUT")"
 VOL="$(cut -d '[' -f 2 <<<"$AMIXOUT" | sed 's/%.*//g')"
+
+# Stupid alsa still playing sound even that MASTER vol is 0 <_<
+# Go figure, other channels won't help here.
+#
+# So hack to workaround it. If OSSv4 ever takes off, switch to it.
+# Has currently problems with few applications while using vmix.
+if [ "$VOL" = "0" ]; then
+   AMIXARG="mute"
+   IF="$MF"
+
+   # Do it again then
+   AMIXOUT="$(amixer set "$IF" "$AMIXARG" | tail -n 1)"
+   VOL="$(cut -d '[' -f 2 <<<"$AMIXOUT" | sed 's/%.*//g')"
+else
+   if [ "$AMIXARG" != "toggle" ]; then
+      AMIXARG="unmute"
+      IF="$MF"
+
+      AMIXOUT="$(amixer set "$IF" "$AMIXARG" | tail -n 1)"
+      VOL="$(cut -d '[' -f 2 <<<"$AMIXOUT" | sed 's/%.*//g')"
+   fi
+fi
+
+MUTE="$(cut -d '[' -f 4 <<<"$AMIXOUT")"
+
 if [ "$MUTE" = "off]" ]; then
    ICON=$ICON_VOL_MUTE
    VOL=0

@@ -26,10 +26,18 @@ set ttyfast
 set noerrorbells
 set shell=bash
 
+" encodings
 set fileencodings=ucs-bom,utf-8,sjis,default
 
 " colorscheme
 colorscheme desertEx
+
+" gvim
+if has('gui_running')
+   set guioptions-=T " Remove the toolbar
+   set guioptions-=m " Remove the menubar
+   set guioptions-=r " Remove the scrollbar
+endif
 
 " Backup
 set backup

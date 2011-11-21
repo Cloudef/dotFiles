@@ -166,7 +166,7 @@ fix_y=925
 [Clock]
 mode=2
 type=0
-x=84
+x=88
 y=216
 text_x=1
 text_y=1

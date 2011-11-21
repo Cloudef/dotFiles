@@ -57,6 +57,9 @@ URxvt.font:xft:Erusfont:pixelsize=7,xft:IPAMonaGothic
 !URxvt Color Settings {{{
 #include "/home/jari/.Xcolors/Colorshot"
 
+URxvt*depth: 32
+URxvt*background:rgba:1000/1000/1000/cccc
+
 URxvt*colorBD:            #ffffff
 URxvt*cursorColor:        #ff8939
 URxvt*cursorColor2:       #151515

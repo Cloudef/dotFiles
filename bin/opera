@@ -1,4 +1,10 @@
 #!/bin/sh
 # Start opera without certain features
+#
+# NOTE: hw acceleration will freeze with anything other than default theme
+# other themes work if you switch them thought after starting to default theme, which is weird.
+#
+# Add -nohwaccel if hw acceleration gives problems
+
 /usr/bin/opera -nohwaccel -nolirc -nomail "$@"
 
