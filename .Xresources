@@ -33,7 +33,7 @@ XTerm*bellIsUrgent:  true
 
 modifier:meta
 !alt, meta, hyper, super, mod1..5
- !}}}
+!}}}
 
 !Scroll and mousewheel {{{
 XTerm*jumpScroll:true
@@ -64,10 +64,11 @@ URxvt*colorBD:            #ffffff
 URxvt*cursorColor:        #ff8939
 URxvt*cursorColor2:       #151515
 
+! }}}
+
 ! --- Clickable links --- !
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: opera
 URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 
-! }}}

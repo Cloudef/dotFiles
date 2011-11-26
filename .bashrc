@@ -39,6 +39,12 @@ if [[ $- != *i* ]] ; then
    return
 fi
 
+######################################
+## Keep a desktop system responsive ##
+######################################
+schedtool -D $$
+ionice -c 3 -p $$
+
 ##################
 ## Bash Options ##
 ##################

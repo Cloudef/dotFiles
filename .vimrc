@@ -68,18 +68,22 @@ imap <C-v> <Esc><C-v>a
 "Toggle folds with space
 nnoremap <space> za
 
+" GPL
 map :GPL :0r ~/.vim/GPL.txt
 
 " Autostart
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
+" Vala
 autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
 au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
 
+" Vala options
 let vala_comment_strings = 1
 let vala_space_errors = 1
 
+" GLSL syntax
 au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.shd set syntax=glsl
 
 " Automatically cd into the directory that the file is in

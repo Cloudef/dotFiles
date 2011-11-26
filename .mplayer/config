@@ -13,6 +13,7 @@ slang=English,eng,en
 
 # Ajust volume differences.
 a52drc=1
+af=volnorm
 
 # Fix A/V sync problems.
 mc=0.2
@@ -20,8 +21,11 @@ autosync=30
 
 really-quiet=1          # Less output
 
+cache=8192
+cache-min=4
+
 # double=yes            # Double buffering [ TribleBuffering enabled on driver ]
-framedrop=0             # Frame dropping
+framedrop=1             # Frame dropping
 hardframedrop=0         # Disable hard frame dropping
 # monitoraspect="16:9"  # Aspect ratio
 

@@ -548,15 +548,15 @@ anime()
       return
    fi
 
-   local MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*\[*\].*" -print -quit`
+   local MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*\[*\].*$3" -print -quit`
    if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*.*" -print -quit`
+      MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*.*$3" -print -quit`
    fi
    if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHED" -type f -iname "*$1*$2*\[*\].*" -print -quit`
+      MATCH=`find "$ANIME_WATCHED" -type f -iname "*$1*$2*\[*\].*$3" -print -quit`
    fi
    if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHED" -type f -iname "*$1*$2*.*" -print -quit`
+      MATCH=`find "$ANIME_WATCHED" -type f -iname "*$1*$2*.*$3" -print -quit`
    fi
    if [[ ! "$MATCH" ]]; then
       echo "No match.."

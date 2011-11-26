@@ -43,13 +43,8 @@ alias vimtux="tmux new-session -s VIMtux -d \"tmux set-option default-path $PWD\
 # DWM note
 alias note="echo \"$@\" > \"$HOME/.note\""
 
-# Grand fantasia mule
-alias gfm="pushd $HOME/.wine/drive_c/AeriaGames/GrandFantasia && (env WINE_FAKEDISP=1278x756 WINEDEBUG=-all ./runGame.sh &) && popd"
-alias gf="pushd $HOME/.wine/drive_c/AeriaGames/GrandFantasia && (env WINE_FAKEDISP=1440x900 WINEDEBUG=-all ./runGame.sh &) && popd"
-
-# Final Fantasy XIV && WINE
-alias ffxivcfg="WINEPREFIX=~/.FFXIV winecfg"
-alias ffxivconfig="WINEPREFIX=~/.FFXIV wine C:/Program\ Files/SquareEnix/FINAL\ FANTASY\ XIV/ffxivconfig.exe"
+# Watch CPU clocks
+alias cpu='watch grep \"cpu MHz\" /proc/cpuinfo'
 
 alias bot="if [ ! -e /tmp/BOT.sck ]; then pushd /media/Storage/Dev/Projektit/lightbot; dtach -c /tmp/BOT.sck ./lightbot; popd; else dtach -a /tmp/BOT.sck; fi"
 

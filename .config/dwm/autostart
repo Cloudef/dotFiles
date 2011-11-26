@@ -45,9 +45,6 @@ sleep 5
 # Set wallpapers
 (nitrogen --restore &> /dev/null) &
 
-# Thunar daemon
-thunar --daemon &
-
 # Networkmanager applet
 (nm-applet &> /dev/null) &
 

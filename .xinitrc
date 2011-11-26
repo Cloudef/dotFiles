@@ -7,11 +7,12 @@ if [[ ! "$WM" ]]; then
 fi
 
 # X
+nvidia-settings -l
 xset s off
 xset -dpms
 setxkbmap fi
 setxkbmap -option terminate:ctrl_alt_bksp
-xrdb -load $HOME/.Xdefaults
+xrdb -merge $HOME/.Xresources
 
 # IBUS
 export GTK_IM_MODULE='uim'
