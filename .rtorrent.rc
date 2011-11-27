@@ -14,8 +14,8 @@ max_peers_seed = 52
 max_uploads = 8
 
 # Global upload and download rate in KiB. "0" for unlimited.
-download_rate = 700
-upload_rate = 28
+download_rate = 600
+upload_rate = 30
 
 # Default directory to save the downloaded torrents.
 directory = /media/Storage/Torrent/

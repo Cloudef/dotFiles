@@ -64,10 +64,10 @@ sleep 5
 (conky -q -c $HOME/.config/conky/db.conky &> /dev/null) &
 
 # Hatsune Miku (Start before cow-notify, otherwise it starts it without sockmsg)
-(sleep 30 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
+(sleep 80 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
 
 # Cow notify
-(sleep 40 && cow-notify &> /dev/null) &
+(sleep 100 && cow-notify &> /dev/null) &
 
 # Dzen
 source $HOME/.config/dwm/dzen2start

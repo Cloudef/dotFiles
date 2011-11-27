@@ -1,13 +1,17 @@
 # MPlayer
 
+# Video output
 vo=xv
 # vo=vdpau,xv,
 # vc=ffh264vdpau,ffmpeg12vdpau,ffvc1vdpau,ffwmv3vdpau,
+
+# Audio output
 ao=alsa
 
 # Software scaling
 # zoom=yes
 
+# Default language
 alang=Japanese,jpn,ja
 slang=English,eng,en
 
@@ -19,15 +23,24 @@ af=volnorm
 mc=0.2
 autosync=30
 
-really-quiet=1          # Less output
+# No output
+# really-quiet=1
 
+# Buffer cache
 cache=8192
 cache-min=4
 
-# double=yes            # Double buffering [ TribleBuffering enabled on driver ]
-framedrop=1             # Frame dropping
-hardframedrop=0         # Disable hard frame dropping
-# monitoraspect="16:9"  # Aspect ratio
+# Double buffering [ TribleBuffering enabled on driver ]
+# double=yes
+
+# Frame dropping
+framedrop=0
+
+# Hard frame dropping
+hardframedrop=0
+
+# Aspect ratio
+# monitoraspect="16:9"
 
 # Normal subs
 fontconfig=1
