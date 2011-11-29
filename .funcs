@@ -80,6 +80,12 @@ function status() {
    done
 }
 
+#####################
+## Man page to PDF ##
+#####################
+man2pdf() {
+   man -w "$@" &> /dev/null && man -t "$@" | ps2pdf - "$@.pdf" && echo "$@.pdf"
+}
 
 ###################################################################
 ## PKG Build system                                              ##

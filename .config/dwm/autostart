@@ -76,7 +76,7 @@ source $HOME/.config/dwm/dzen2start
 (xcompmgr -fF -I-.02 -O-.04 -D0001 &> /dev/null) &
 
 # Redshift
-(gtk-redshift -l 62:22 &> /dev/null) &
+(sleep 20 && gtk-redshift -l 62:22 &> /dev/null) &
 
 # RSS
 RSS
@@ -100,7 +100,7 @@ while kill -0 $PPID; do
    OS=`df / | awk '{print $5}' | tail -n 1`;
    STORAGE=`df /media/Storage | awk '{ print $5 }' | tail -n 1`;
    ANIME=`df /media/Anime | awk '{ print $5 }' | tail -n 1`;
-   NOTE=`cat "$HOME/.note"`
+   NOTE=`shuf -n 1 "$HOME/.note"`
    xsetroot -name "$(echo -e "\x05$NOTE \x02|\x01 OS $OS :: STORAGE $STORAGE :: ANIME $ANIME \x02|\x01 >> $(grep ^Dirty /proc/meminfo | sed 's/^Dirty: *//')")"
    sleep 10;
 done
