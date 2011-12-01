@@ -54,29 +54,17 @@ sleep 5
 # Smart notify
 (smart-notifier &> /dev/null) &
 
-# Kupfer
-(kupfer &> /dev/null) &
-
 # Dropbox
 (dropboxd &> /dev/null) &
 
 # Conky
 (conky -q -c $HOME/.config/conky/db.conky &> /dev/null) &
 
-# Hatsune Miku (Start before cow-notify, otherwise it starts it without sockmsg)
-(sleep 80 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
-
-# Cow notify
-(sleep 100 && cow-notify &> /dev/null) &
-
 # Dzen
 source $HOME/.config/dwm/dzen2start
 
 # Xcompmgr
 (xcompmgr -fF -I-.02 -O-.04 -D0001 &> /dev/null) &
-
-# Redshift
-(sleep 20 && gtk-redshift -l 62:22 &> /dev/null) &
 
 # RSS
 RSS
@@ -89,6 +77,15 @@ MSN
 
 # IRC
 IRC
+
+# Redshift
+(sleep 10 && gtk-redshift -l 62:22 &> /dev/null) &
+
+# Cow notify
+(sleep 10 && cow-notify &> /dev/null) &
+
+# Hatsune Miku
+(sleep 10 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
 
 # IMPORTANT!
 # Avoids this script from exiting until DWM finishes

@@ -6,7 +6,7 @@ if [[ $wid == *BadWindow* ]]; then
    exit
 fi
 if [ ! "$wid" ]; then
-  URXVTC -name URxvtq -geometry 239x26+1+137
+  URXVTC -name URxvtq -geometry 240x26+0+137
   wid=`xdotool search --classname URxvtq | head -1`
   xdotool windowfocus $wid
 else

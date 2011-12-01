@@ -1,5 +1,6 @@
 Xcursor.theme: X-Steel-GRAY
 
+!XFT {{{
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hinting: true
@@ -7,8 +8,12 @@ Xft.hintstyle:  hintslight
 Xft.antialias: true
 Xft.rgba: rgb
 Xft.dpi: 95
+!}}}
 
-!URxvt Settings {{{
+! Input
+preeditType:OverTheSpot,Root
+
+! URxvt Settings {{{
 URxvt*termName:rxvt-unicode-256color
 URxvt.letterSpace:0
 URxvt*borderLess:false
@@ -20,10 +25,6 @@ URxvt*highlightSelection:true
 URxvt*buffered:true
 URxvt*saveLines:1500
 URxvt*cutchars:@-./_~?&=%+#'"'()*,;<=>[]^{|}
-URxvt*eightBitInput:true
-URxvt*inputMethod:uim
-URxvt*preeditType:OverTheSpot,root
-URxvt*multichar_encoding:utf-8
 
 ! rxvt-unicode
 URxvt.urgentOnBell:  true
@@ -31,11 +32,13 @@ URxvt.urgentOnBell:  true
 ! xterm
 XTerm*bellIsUrgent:  true
 
-modifier:meta
-!alt, meta, hyper, super, mod1..5
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: opera
+URxvt.matcher.button: 1
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 !}}}
 
-!Scroll and mousewheel {{{
+! Scroll and mousewheel {{{
 XTerm*jumpScroll:true
 XTerm*multiScroll:true
 URxvt*jumpScroll:true
@@ -50,25 +53,17 @@ URxvt*scrollTtyKeypress:true
 URXvt*mouseWheelScrollPage:false
 !}}}
 
-!URxvt Fonts {{{
+! URxvt Fonts {{{
 URxvt.font:xft:Erusfont:pixelsize=7,xft:IPAMonaGothic
 !}}}
 
-!URxvt Color Settings {{{
+! URxvt Color Settings {{{
 #include "/home/jari/.Xcolors/Colorshot"
 
-URxvt*depth: 32
-URxvt*background:rgba:1000/1000/1000/cccc
+URxvt*depth: 24
+!URxvt*background:rgb:1000/1000/1000/cccc
 
 URxvt*colorBD:            #ffffff
 URxvt*cursorColor:        #ff8939
 URxvt*cursorColor2:       #151515
-
 ! }}}
-
-! --- Clickable links --- !
-URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: opera
-URxvt.matcher.button: 1
-URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-

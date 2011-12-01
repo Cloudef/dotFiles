@@ -18,7 +18,7 @@ nvidia-settings --load-config-only
 export GTK_IM_MODULE='uim'
 export XMODIFIERS=@im='uim'
 export QT_IM_MODULE='uim'
-(uim-xim &> /dev/null) &
 (uim-toolbar-gtk-systray &> /dev/null) &
+(uim-xim &> /dev/null) &
 
 exec ck-launch-session dbus-launch --sh-syntax --exit-with-session "$WM"
