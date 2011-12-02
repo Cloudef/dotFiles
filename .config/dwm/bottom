@@ -39,7 +39,7 @@ while true; do
    fi
 
    if [[ "$NP" ]]; then
-      echo -n "^fn(Sazanami Gothic:size=7)^fg(black3)^i(${ICONPATH}/play.xbm)^fg(white) ${NP}^fn() "
+      echo -n "^fn(IPAMonaGothic:size=7)^fg(black3)^i(${ICONPATH}/play.xbm)^fg(white) ${NP}^fn() "
    fi
 
    # Finish
