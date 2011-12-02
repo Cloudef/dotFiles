@@ -65,9 +65,7 @@ def getOptions(parser):
    return options.username, options.password, messages, headerlength
 
 def fatalError(msg):
-   print "^tw() Fatal Error: ", msg
-   print "^cs()"
-   parser.print_help()
+   print "^tw() ERR"
    sys.exit(1)
 
 def auth():
@@ -87,30 +85,7 @@ def showmail(feed):
       title = "^fg(%s) ^i(/home/jari/.config/dwm/red_envelope.xpm) %02d" % (alertcolor,newmails)
 
    # print the title with formatting
-   print "^tw()" +title
-   #clear the slave window
-   print "^cs()"
-
-   #then print the messages
-   for i in range(min(messages,newmails)):
-
-      emailtitle  = atom.entries[i].title.encode("utf-8")
-      emailauthor = atom.entries[i].author.encode("utf-8")
-
-      if len(emailtitle) + len(emailauthor) > headerlength:
-         if len(emailauthor) > 7:
-            emailauthor = emailauthor[:7]
-
-      stripped    = headerlength - len(emailauthor)
-      if len(emailtitle) + len(emailauthor) > headerlength:
-         emailtitle = emailtitle[:stripped]
-
-      print "^fg(%s)%s [%s]" % (plaincolor, emailtitle,emailauthor)
-
-   if newmails == 0:
-      print ""
-      print ""
-      print "Nothing here"
+   print "^tw()^ca(1,MAIL)" + title + "^ca()"
 
 if __name__ == "__main__":
    print 'arg', sys.argv

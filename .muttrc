@@ -1,0 +1,78 @@
+# .muttrc
+
+# account details
+source "~/.muttpass"
+
+# inbox
+set spoolfile        = "+INBOX"
+mailboxes            = +INBOX
+
+# specify where to save and/or look for postponed messages
+set postponed        = "+[Gmail]/Drafts"
+set record           = "+[Gmail]/Sent Mail"
+
+# vim
+set editor           = 'vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
+set edit_headers     = yes
+
+# store stuff locally to speed things up
+set header_cache     = "~/.cache/mutt/headers"
+set message_cachedir = "~/.cache/mutt/bodies"
+set certificate_file = "~/.cache/mutt/certificates"
+
+# allow mutt to open new imap connection automatically
+unset imap_passive
+
+# keep imap connection alive by polling intermittently (time in seconds)
+set imap_keepalive   = 300
+
+# how often to check for new mail (time in seconds)
+set mail_check       = 120
+
+# stop asking for moving
+set move             = no
+
+# utf-8
+set charset          = utf-8
+
+# headers
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+
+ignore *
+unignore from: date subject to cc
+unignore x-mailing-list: posted-to:
+unignore x-mailer:
+
+# look tweaks
+set markers=no # don't put '+' at the beginning of wrapped lines
+set pager_index_lines= 5 # how large is the index window?
+set sort = 'threads'
+set sort_aux = 'last-date-received'
+
+# COLORS
+
+# -*-muttrc-*-
+
+# Palette for use with the Linux console.  Black background.
+
+color hdrdefault blue black
+color quoted blue black
+color signature blue black
+color attachment red black
+color message brightred black
+color error brightred black
+color indicator black red
+color status brightgreen blue
+color tree white black
+color normal white black
+color markers red black
+color search white black
+color tilde brightmagenta black
+color index blue black ~F
+color index red black "~N|~O"
+
+# color body brightwhite black '\*+[^*]+\*+'
+# color body brightwhite black '_+[^_]+_+'
