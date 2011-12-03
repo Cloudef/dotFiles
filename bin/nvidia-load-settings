@@ -2,6 +2,13 @@
 # Workaround bug where nvidia-settings --load-config-only
 # does not actually load any attributes.
 #
+# It might be related to values that have decimals such as
+# RedBrightness=1.000000
+# nvidia-settings will complain about (Trailing garbage), unless ran as root..
+#
+# However, running as root isn't really a nice thing, so this script just assing everything
+# It will still give you complaints about (Trailing garbage), but at least other settings get applied.
+#
 # This will work as long the configuration file's attributes are in format
 # HOSTNAME:DISPLAY/attribute=value
 # eg. LINUX:0.0/CursorShadow=0
@@ -14,7 +21,7 @@ NVIDIA_SETTINGS_FILE="$HOME/.nvidia-settings-rc"
 # Nvidia-settings utility
 NVIDIA_SETTINGS_BINARY="nvidia-settings"
 
-cat "$NVIDIA_SETTINGS_FILE" | grep "$HOSTNAME:" | while read value;
+for value in $(cat "$NVIDIA_SETTINGS_FILE" | grep "$HOSTNAME:");
 do
    value=$(echo "$value" | sed "s/$HOSTNAME//")
    $NVIDIA_SETTINGS_BINARY -a "$value"
