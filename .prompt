@@ -135,7 +135,7 @@ function welcome() {
 ###########################
 function kingbash.fn() {
    echo -n "KingBash> $READLINE_LINE" #Where "KingBash> " looks best if it resembles your PS1, at least in length.
-   OUTPUT=`kingbash --extracommands "$(compgen -ab -A function)" --extrafiles "$(compgen -v -P $)"`
+   OUTPUT=`kingbash --bashcompletion --extracommands "$(compgen -ab -A function)" --extrafiles "$(compgen -v -P $)"`
    READLINE_POINT=`echo "$OUTPUT" | tail -n 1`
    READLINE_LINE=`echo "$OUTPUT" | head -n -1`
    echo -ne "\r\e[2K";

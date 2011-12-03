@@ -95,14 +95,7 @@ PROMPT_COMMAND=prompt
 #######################
 ## Auto Completition ##
 #######################
-source /etc/bash_completion.d/git
-source /etc/bash_completion.d/bzr
-source /etc/bash_completion.d/hg
-source /etc/bash_completion.d/subversion
-
-source /etc/bash_completion.d/pacman
-source /etc/bash_completion.d/rc.d
-source /etc/bash_completion.d/tmux
+source /etc/bash_completion
 
 #############
 ## Startup ##
