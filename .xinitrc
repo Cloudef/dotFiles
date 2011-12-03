@@ -12,7 +12,10 @@ xset -dpms
 setxkbmap fi
 setxkbmap -option terminate:ctrl_alt_bksp
 xrdb -merge $HOME/.Xresources
-nvidia-settings --load-config-only
+
+# Properiaty shit, that does not work
+# nvidia-settings --load-config-only
+$HOME/bin/nvidia-load-settings
 
 # IBUS
 export GTK_IM_MODULE='uim'

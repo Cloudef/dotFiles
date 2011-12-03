@@ -1,0 +1,21 @@
+#!/bin/sh
+# Workaround bug where nvidia-settings --load-config-only
+# does not actually load any attributes.
+#
+# This will work as long the configuration file's attributes are in format
+# HOSTNAME:DISPLAY/attribute=value
+# eg. LINUX:0.0/CursorShadow=0
+#
+# If nvidia ever changes their configuration, this script will break obiviously :)
+
+# Path to nvidia-settings configuration file
+NVIDIA_SETTINGS_FILE="$HOME/.nvidia-settings-rc"
+
+# Nvidia-settings utility
+NVIDIA_SETTINGS_BINARY="nvidia-settings"
+
+cat "$NVIDIA_SETTINGS_FILE" | grep "$HOSTNAME:" | while read value;
+do
+   value=$(echo "$value" | sed "s/$HOSTNAME//")
+   $NVIDIA_SETTINGS_BINARY -a "$value"
+done
