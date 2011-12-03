@@ -25,6 +25,7 @@ set updatecount=100
 set ttyfast
 set noerrorbells
 set shell=bash
+set showtabline=2
 
 " encodings
 set fileencodings=ucs-bom,utf-8,sjis,default
@@ -65,14 +66,19 @@ vmap <C-c> y: call system("xclip -i -selection clipboard", getreg("\""))<CR>
 nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 imap <C-v> <Esc><C-v>a
 
-"Toggle folds with space
+" Toggle folds with space
 nnoremap <space> za
+
+" NERDTree
+map <C-x> <plug>NERDTreeMirrorToggle<CR>
+
+" C-e = cycle tabs, similar to C-w for panes
+map <C-e> :tabNext<CR>
 
 " GPL
 map :GPL :0r ~/.vim/GPL.txt
 
 " Autostart
-autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
 " Vala
