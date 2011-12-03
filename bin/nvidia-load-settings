@@ -1,4 +1,4 @@
-#!/bin/sh
+                         #!/bin/sh
 # Workaround bug where nvidia-settings --load-config-only
 # does not actually load any attributes.
 #
@@ -6,14 +6,14 @@
 # RedBrightness=1.000000
 # nvidia-settings will complain about (Trailing garbage), unless ran as root..
 #
-# However, running as root isn't really a nice thing, so this script just assing everything
+# However, running as root isn't really a nice thing, so this script just assign everything
 # It will still give you complaints about (Trailing garbage), but at least other settings get applied.
 #
 # This will work as long the configuration file's attributes are in format
 # HOSTNAME:DISPLAY/attribute=value
 # eg. LINUX:0.0/CursorShadow=0
 #
-# If nvidia ever changes their configuration, this script will break obiviously :)
+# If nvidia ever changes their configuration, this script will break obviously :)
 
 # Path to nvidia-settings configuration file
 NVIDIA_SETTINGS_FILE="$HOME/.nvidia-settings-rc"

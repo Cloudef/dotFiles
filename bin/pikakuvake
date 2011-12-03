@@ -9,8 +9,11 @@ fi
 DIR=`dirname  "$1"`
 BIN=`basename "$1"`
 shift; cd "$DIR"
-export WINEDEBUG=-all
-if [ ! `wine "$BIN" "$@"` ]
+
+if [[ $(file "$BIN" --mime-type | grep "application/x-dosexec") ]];
 then
-	./"$BIN" \"$@\"
+   export WINEDEBUG=-all
+   wine "$BIN" "$@"
+else
+   ./"$BIN" \"$@\"
 fi
