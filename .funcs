@@ -44,40 +44,45 @@ function vplay() {
 ## Start daemon ##
 ##################
 function start() {
-   for arg in $@
-   do
-      sudo /etc/rc.d/$arg start
-   done
+   sudo rc.d start $@
+#   for arg in $@
+#   do
+#      sudo /etc/rc.d/$arg start
+#   done
 }
 
 #################
 ## Stop daemon ##
 #################
 function stop() {
-   for arg in $@
-   do
-      sudo /etc/rc.d/$arg stop
-   done
+   sudo rc.d stop $@
+#   for arg in $@
+#   do
+#      sudo /etc/rc.d/$arg stop
+#   done
 }
 
 ####################
 ## Restart daemon ##
 ####################
 function restart() {
-   for arg in $@
-   do
-      sudo /etc/rc.d/$arg restart
-   done
+   sudo rc.d stop  $@
+   sudo rc.d start $@
+#   for arg in $@
+#   do
+#      sudo /etc/rc.d/$arg restart
+#   done
 }
 
 ###################
 ## Daemon status ##
 ###################
 function status() {
-   for arg in $@
-   do
-      sudo /etc/rc.d/$arg status
-   done
+   rc.d list $@
+#   for arg in $@
+#   do
+#      sudo /etc/rc.d/$arg status
+#   done
 }
 
 #####################

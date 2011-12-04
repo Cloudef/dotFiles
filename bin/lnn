@@ -11,8 +11,8 @@
 # You can pass multiple filepaths
 for filepath in "$@"; do
    if [ -e "$filepath" ]; then
-      folder=$(dirname "$filepath")
-      file=$(basename "$filepath")
+      folder="$(dirname "$filepath")"
+      file="$(basename "$filepath")"
       ln -s "$filepath" "${folder}/${file} (link)"
    fi
 done

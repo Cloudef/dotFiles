@@ -28,7 +28,7 @@ alias dataloss="grep ^Dirty /proc/meminfo"
 alias ai="packer-color"
 alias as="packer-color -Ss"
 alias au="packer-color -Su --noconfirm"
-alias ar="sudo pacman-color -Rsn"
+alias ar="sudo pacman-color -Rcs"
 
 # Clean garbage
 alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'

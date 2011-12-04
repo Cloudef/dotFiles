@@ -6,8 +6,8 @@ if [[ ! "$1" ]]; then
    exit
 fi
 
-DIR=`dirname  "$1"`
-BIN=`basename "$1"`
+DIR="$(dirname  "$1")"
+BIN="$(basename "$1")"
 shift; cd "$DIR"
 
 if [[ $(file "$BIN" --mime-type | grep "application/x-dosexec") ]];

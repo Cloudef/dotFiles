@@ -29,6 +29,6 @@ NVIDIA_SETTINGS_BINARY="nvidia-settings"
 
 for value in $(cat "$NVIDIA_SETTINGS_FILE" | egrep -v '^(#|$)' | grep '[0-9]/.*=');
 do
-   value=$(echo "$value" | sed "s/$HOSTNAME//")
-   $NVIDIA_SETTINGS_BINARY -a "$value"
+   value="$(echo "$value" | sed "s/$HOSTNAME//")"
+   "$NVIDIA_SETTINGS_BINARY" -a "$value"
 done

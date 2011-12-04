@@ -1,16 +1,16 @@
 #!/bin/sh
 # Urxvt quake console
 
-wid=`xdotool search --classname URxvtq 2>&1 | head -1`
-if [[ $wid == *BadWindow* ]]; then
+wid="$(xdotool search --classname URxvtq 2>&1 | head -1)"
+if [[ "$wid" == *BadWindow* ]]; then
    exit
 fi
 if [ ! "$wid" ]; then
   URXVTC -name URxvtq -geometry 240x26+0+137
-  wid=`xdotool search --classname URxvtq | head -1`
+  wid="$(xdotool search --classname URxvtq | head -1)"
   xdotool windowfocus $wid
 else
-  visible=`xdotool search --onlyvisible --classname URxvtq 2>/dev/null`
+  visible="$(xdotool search --onlyvisible --classname URxvtq 2>/dev/null)"
   if [ ! "$visible" ]; then
     xdotool windowmap $wid
     xdotool windowfocus $wid
