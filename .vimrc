@@ -59,8 +59,8 @@ filetype plugin indent on
 syntax enable
 
 " Mappings
-nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>a
+nmap <C-s> :w<CR>
+imap <C-s> <Esc>:w<CR>a
 
 vmap <C-c> y: call system("xclip -i -selection clipboard", getreg("\""))<CR>
 nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
@@ -69,11 +69,13 @@ imap <C-v> <Esc><C-v>a
 " Toggle folds with space
 nnoremap <space> za
 
-" NERDTree
-map <C-x> <plug>NERDTreeMirrorToggle<CR>
+" NERDTree toggle
+nmap <C-x> <plug>NERDTreeMirrorToggle<CR>
+imap <C-x> <Esc><C-x>
 
 " C-e = cycle tabs, similar to C-w for panes
-map <C-e> :tabNext<CR>
+nmap <C-e> :tabNext<CR>
+imap <C-e> <Esc><C-e>a
 
 " GPL
 map :GPL :0r ~/.vim/GPL.txt
