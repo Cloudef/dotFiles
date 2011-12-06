@@ -6,5 +6,5 @@
 #
 # Add -nohwaccel if hw acceleration gives problems
 
-/usr/bin/opera -nohwaccel -nolirc -nomail "$@"
+schedtool -a 0 -e /usr/bin/opera -nohwaccel -nolirc -nomail "$@"
 
