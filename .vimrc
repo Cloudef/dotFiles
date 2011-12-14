@@ -26,6 +26,10 @@ set ttyfast
 set noerrorbells
 set shell=bash
 set showtabline=2
+set backspace=indent,eol,start
+
+" Lower prioritory for tab completition
+set suffixes=.bak,~,.swp,.o,.log
 
 " encodings
 set fileencodings=ucs-bom,utf-8,sjis,default
@@ -44,9 +48,6 @@ endif
 set backup
 set backupdir=~/.vim/backup
 set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
-
-" Highlight
-set cul
 
 " Clipboard
 let g:clipbrdDefaultReg = '+'

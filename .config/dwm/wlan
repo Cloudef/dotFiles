@@ -1,10 +1,7 @@
 #!/bin/bash
-#
-# (c) 2007, by Robert Manea
-# (c) 2007, Christian Dietrich
 
 # icons
-ICONPATH=$HOME/.icons/dwm
+ICONPATH="$HOME/.icons/dwm"
 # network interface
 INTERFACE=wlan0
 WIRELESS=1
@@ -15,13 +12,13 @@ BBG='#333' # Bar Background
 BFG=green  # Bar Foreground
 
 # Here we remember the previous rx/tx counts
-RXB=`cat /sys/class/net/${INTERFACE}/statistics/rx_bytes`
-TXB=`cat /sys/class/net/${INTERFACE}/statistics/tx_bytes`
+RXB=(cat /sys/class/net/${INTERFACE}/statistics/rx_bytes)
+TXB=(cat /sys/class/net/${INTERFACE}/statistics/tx_bytes)
 
 while true; do
    # get new rx/tx counts
-   RXBN=`cat /sys/class/net/${INTERFACE}/statistics/rx_bytes`
-   TXBN=`cat /sys/class/net/${INTERFACE}/statistics/tx_bytes`
+   RXBN=$(cat /sys/class/net/${INTERFACE}/statistics/rx_bytes)
+   TXBN=$(cat /sys/class/net/${INTERFACE}/statistics/tx_bytes)
 
    # calculate the rates
    # format the values to 4 digit fields
@@ -30,7 +27,7 @@ while true; do
 
    if [[ "$WIRELESS" ]]; then
       SIGNAL=$(iwconfig $INTERFACE | sed -ne '/Link Quality/ { s/.*Link Quality=\([0-9]*\)\/\([0-9]*\).*/\1/p}' )
-      SIGNALMETER=`echo $SIGNAL | gdbar -s v -h 15 -ss 1 -sh 2 -sw 4 -fg $BFG -bg $BBG -nonl`
+      SIGNALMETER="$(echo $SIGNAL | gdbar -s v -h 15 -ss 1 -sh 2 -sw 4 -fg $BFG -bg $BBG -nonl)"
    fi
 
    # print out the rates with some nice formatting

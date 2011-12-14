@@ -73,3 +73,8 @@ URxvt*colorBD:            #ffffff
 URxvt*cursorColor:        #ff8939
 URxvt*cursorColor2:       #151515
 ! }}}
+
+xrenoise.use_xcursors: 1
+xrenoise.display: :0.0
+xrenoise.display_resource: 0x00,0x15,0xE3,0x1E,0xC1,0x60,0x89,0x43
+xrenoise.executable_path: /usr/bin/renoise

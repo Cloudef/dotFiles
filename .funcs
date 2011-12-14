@@ -172,7 +172,7 @@ function extract() {
 ## Create tar archive ##
 ########################
 function mktar() {
-   tar cvf  "${1%%/}.tar"     "${1%%/}/";
+   tar cvf  "${1%%/}.tar" "${1%%/}/";
 }
 
 ###########################
