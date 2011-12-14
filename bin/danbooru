@@ -180,7 +180,7 @@ check_artist()
 {
    [[ "$@" ]]            || return
    [[ -f "$ARTIST_DB" ]] || return
-   grep "$@::" "$ARTIST_DB" | awk -F'::' '{print $2}' | head -n1
+   grep -F "$@::" "$ARTIST_DB" | awk -F'::' '{print $2}' | head -n1
 }
 
 # $1 = Tag
@@ -198,7 +198,7 @@ check_ignore()
 {
    [[ "$@" ]]            || return
    [[ -f "$IGNORE_DB" ]] || return
-   grep -w "$@" "$IGNORE_DB" | head -n1
+   grep -wF "$@" "$IGNORE_DB" | head -n1
 }
 
 # $1 = URL
