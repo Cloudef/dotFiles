@@ -27,6 +27,11 @@ LOCAL_STORE="$HOME/Kuvat/Danbooru"
 # We can workaround it by keeping local artist cache, which will speed up things eventually.
 ARTIST_DB="$LOCAL_STORE/artist.db"
 
+# Ignore database
+# Another speedup method!
+# Stores all tags here that are not linked to any artist
+IGNORE_DB="$LOCAL_STORE/ignore.db"
+
 # Status to download
 # active  = Only download active posts
 # pending = Download pending && active
@@ -176,18 +181,23 @@ check_cache()
    local MATCH=
 
    [[ -f "$ARTIST_DB" ]] || return
+   grep "$@::" "$ARTIST_DB" | awk -F'::' '{print $2}'
+}
 
-   for TAG in $(cat "$ARTIST_DB")
-   do
-      if [[ "$(echo "$TAG" | awk -F'::' '{print $1}')" == "$1" ]]
-      then
-         MATCH="$TAG"
-         break
-      fi
-   done
+# $1 = Tag
+# Caches tag to ignore file
+cache_ignore()
+{
+   [[ "$@" ]]        || return
+   echo "$@" >> "$IGNORE_DB"
+}
 
-   # Echo name
-   echo "$MATCH" | awk -F'::' '{print $2}'
+# $1 = Matching tag
+# Return tag, if matching tag is found from ignore cache
+check_ignore()
+{
+   [[ -f "$IGNORE_DB" ]] || return
+   grep -w "$@" "$IGNORE_DB"
 }
 
 # $1 = URL
@@ -269,11 +279,14 @@ check_picture()
       [[ $VERBOSE -eq 0 ]] || echo "remote artist lookup"
       for TAG in $3
       do
+         [[ ! "$(check_ignore "$TAG")" ]] || continue
          RESULT="$(get_json "artist/index" "limit=1&name=$(urlencode "$TAG")")"
          if [[ "$RESULT" != "[]" ]]
          then
             MATCH="$TAG"
             break
+         else
+            cache_ignore "$TAG"
          fi
       done
 
