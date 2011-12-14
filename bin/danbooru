@@ -176,18 +176,18 @@ cache_artist()
 
 # $1 = Matching tag
 # Return artist, if matching tag is found from cache
-check_cache()
+check_artist()
 {
-   local MATCH=
-
+   [[ "$@" ]]            || return
    [[ -f "$ARTIST_DB" ]] || return
-   grep "$@::" "$ARTIST_DB" | awk -F'::' '{print $2}'
+   grep "$@::" "$ARTIST_DB" | awk -F'::' '{print $2}' | head -n1
 }
 
 # $1 = Tag
 # Caches tag to ignore file
 cache_ignore()
 {
+   [[ "$@" ]]        || return
    [[ "$@" ]]        || return
    echo "$@" >> "$IGNORE_DB"
 }
@@ -196,8 +196,9 @@ cache_ignore()
 # Return tag, if matching tag is found from ignore cache
 check_ignore()
 {
+   [[ "$@" ]]            || return
    [[ -f "$IGNORE_DB" ]] || return
-   grep -w "$@" "$IGNORE_DB"
+   grep -w "$@" "$IGNORE_DB" | head -n1
 }
 
 # $1 = URL
@@ -208,8 +209,8 @@ store_picture()
 {
    # artist
    local ARTIST="$3"
-   ARTIST=$(echo -n "$ARTIST" | sed 's/^ *//' | sed 's/[ .]*$//')  # Strip leading spaces and trailing spaces / periods.
-   ARTIST=$(echo -n "$ARTIST" | sed "$FILENAME_EXP")               # Replace illegal characters.
+   ARTIST=$(echo -n "$ARTIST" | sed 's/^ *//' | sed 's/[ .]*$//') # Strip leading spaces and trailing spaces / periods.
+   ARTIST=$(echo -n "$ARTIST" | sed "$FILENAME_EXP")              # Replace illegal characters.
 
    # target
    local TARGET="$LOCAL_STORE/$2/$ARTIST/$(basename "$1")"
@@ -270,7 +271,7 @@ check_picture()
    [[ $VERBOSE -eq 0 ]] || echo "local artist lookup"
    for TAG in $3
    do
-      ARTIST="$(check_cache "$TAG")"
+      ARTIST="$(check_artist "$TAG")"
       if [[ "$ARTIST" ]]
       then
          MATCH="$TAG"
