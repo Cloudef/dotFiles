@@ -118,6 +118,13 @@ usage()
    done
 }
 
+# Encode urls
+# $1 = URL
+urlencode()
+{
+   echo -n "$@" | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'
+}
+
 # $1 = API URL
 # $2 = URL Arguments
 get_json()
@@ -147,7 +154,7 @@ rating_str()
 {
    [[ "$@" != "s" ]] || echo "Safe"
    [[ "$@" != "q" ]] || echo "Questionable"
-   [[ "$@" != "m" ]] || echo "Explicit"
+   [[ "$@" != "e" ]] || echo "Explicit"
 }
 
 # $1 = Matching tag
@@ -262,7 +269,7 @@ check_picture()
       [[ $VERBOSE -eq 0 ]] || echo "remote artist lookup"
       for TAG in $3
       do
-         RESULT="$(get_json "artist/index" "limit=1&name=$TAG")"
+         RESULT="$(get_json "artist/index" "limit=1&name=$(urlencode "$TAG")")"
          if [[ "$RESULT" != "[]" ]]
          then
             MATCH="$TAG"
@@ -300,7 +307,7 @@ main()
 
    local LIMIT="${3-100}"
    local PAGE="${1-1}"
-   local TAGS="$(echo -n "$2" | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg')"
+   local TAGS="$(urlencode "$2")"
    local OK=0
    local i=
 
