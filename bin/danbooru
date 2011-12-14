@@ -14,6 +14,10 @@
 #
 # eg.
 # /Danbooru/Safe/Rib:y(uhki)/12401290395023.jpg"
+#
+# Note that artist directories are not stripped anyway ATM,
+# so on some filesystems they might be problematic.
+
 LOCAL_STORE="$HOME/Kuvat/Danbooru"
 
 # Artist database
@@ -59,7 +63,7 @@ VERBOSE=0
 error()
 {
    unlock
-   echo -e "$@"
+   echo "$@"
    exit 1
 }
 
@@ -151,7 +155,11 @@ rating_str()
 # Caches artist to DB file
 cache_artist()
 {
-   echo -e "$1::$2" >> "$ARTIST_DB"
+   local ARTIST="$2"
+   [[ "$1" ]]        || return
+   [[ "$ARTIST" ]]   || ARTIST="$1"
+
+   echo "$1::$2" >> "$ARTIST_DB"
 }
 
 # $1 = Matching tag
@@ -164,7 +172,7 @@ check_cache()
 
    for TAG in $(cat "$ARTIST_DB")
    do
-      if [[ "$(echo -e "$TAG" | awk -F'::' '{print $1}')" == "$1" ]]
+      if [[ "$(echo "$TAG" | awk -F'::' '{print $1}')" == "$1" ]]
       then
          MATCH="$TAG"
          break
@@ -172,18 +180,44 @@ check_cache()
    done
 
    # Echo name
-   echo -e "$MATCH" | awk -F'::' '{print $2}'
+   echo "$MATCH" | awk -F'::' '{print $2}'
+}
+
+# $1 = URL
+# $2 = Rating
+# $3 = Artist
+# Download picture
+store_picture()
+{
+   # target
+   local TARGET="$LOCAL_STORE/$2/$3/$(basename "$1")"
+   local TEMP="$TMP_DIR/$(basename "$1")"
+
+   # download to $TEMP and move after finished to
+   # destination to avoid partial downloads
+   echo "$TARGET"
+   curl -s -o "$TEMP" "$1"
+
+   # Download failed
+   [ -f "$TEMP" ] || return
+
+   # mkdirs
+   mkdir -p "$LOCAL_STORE/$2"
+   mkdir -p "$LOCAL_STORE/$2/$3"
+
+   # move to destination
+   mv "$TEMP" "$TARGET"
 }
 
 # $1 = URL
 # $2 = Rating
 # $3 = Tags
 # Stores the picture
-store_picture()
+check_picture()
 {
    local RESULT=
    local ARTIST=
-   local MATCH=""
+   local MATCH=
 
    [[ "$1" ]] || return
    [[ "$2" ]] || return
@@ -249,25 +283,7 @@ store_picture()
       ARTIST="unknown"
    fi
 
-   # target
-   local TARGET="$LOCAL_STORE/$2/$ARTIST/$(basename "$1")"
-   local TEMP="$TMP_DIR/$(basename "$1")"
-
-   # download to $TEMP and move after finished to
-   # destination to avoid partial downloads
-   echo "$TARGET"
-   curl -s -o "$TEMP" "$1"
-
-   # Download failed
-   [ -f "$TEMP" ] || return
-
-   # mkdirs
-   mkdir -p "$LOCAL_STORE/$2"
-   mkdir -p "$LOCAL_STORE/$2/$ARTIST"
-
-   # move to destination
-   mv "$TEMP" "$TARGET"
-   echo "$TEMP ===> $TARGET"
+   store_picture "$1" "$2" "$ARTIST" &
 }
 
 # Main
@@ -329,12 +345,14 @@ main()
          continue
       fi
 
-      if [ $(jobs -p | wc -l) -lt $FORK_LIMIT ]
-      then
-         store_picture "$URL" "$(rating_str "${RATING[$i]}")" "$1" &
-      else
-         store_picture "$URL" "$(rating_str "${RATING[$i]}")" "$1"
-      fi
+      # Check picture
+      check_picture "$URL" "$(rating_str "${RATING[$i]}")" "$1"
+
+      # Wait for forks
+      while [ $(jobs -p | wc -l) -gt $FORK_LIMIT ]
+      do
+         sleep 1
+      done
 
       ((i++)) # Next array index
       shift 1 # Next tag cloud
