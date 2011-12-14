@@ -101,7 +101,7 @@ sigint()
    unlock
 
    echo "$(basename "$0"): SIGINT"
-   exit 0
+   exit 1
 }
 
 # Usage
@@ -255,12 +255,16 @@ store_picture()
    echo "$TARGET"
    curl -s -o "$TEMP" "$1"
 
+   # Download failed
+   [ -f "$TEMP" ] || return
+
    # mkdirs
    mkdir -p "$LOCAL_STORE/$2"
    mkdir -p "$LOCAL_STORE/$2/$ARTIST"
 
    # move to destination
    mv "$TEMP" "$TARGET"
+   echo "$TEMP ===> $TARGET"
 }
 
 # Main
