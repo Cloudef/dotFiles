@@ -26,7 +26,7 @@ ARTIST_DB="$LOCAL_STORE/artist.db"
 # Status to download
 # active  = Only download active posts
 # pending = Download pending && active
-DANBOORU_STATUS="pending"
+DANBOORU_STATUS="active"
 
 # Rating to download
 # s = Only download safe posts
@@ -37,20 +37,28 @@ DANBOORU_RATING="e"
 # Download pictures with no artist tag?
 DANBOORU_NO_ARTIST=0
 
+# Filter tags
+# Pictures which match one of these tags will not be downloaded
+DANBOORU_FILTER=("yaoi tiger_&_bunny boys_love shounen-ai")
+
 # Limit the number of sub processes for download
-FORK_LIMIT=40
+FORK_LIMIT=20
 
 # Lock file
-LOCK_FILE="/tmp/danbooru.lck"
+TMP_DIR="/tmp/danbooru"
+LOCK_FILE="$TMP_DIR/lock"
 
 # Danbooru API root
 DANBOORU_ROOT="http://danbooru.donmai.us"
 
 # Depencies for this script
-BIN_DEPS="curl jsawk awk"
+# Perl is used for url encoding tags
+BIN_DEPS="curl jsawk awk perl"
+VERBOSE=0
 
 error()
 {
+   unlock
    echo -e "$@"
    exit 1
 }
@@ -65,6 +73,25 @@ check_deps()
    done
 }
 
+# Lock
+lock()
+{
+   [[ ! "$TMP_DIR" ]]      || mkdir -p "$TMP_DIR"
+   [[ ! -f "$LOCK_FILE" ]] || error "$(basename "$0") is already running!"
+   touch "$LOCK_FILE"
+}
+
+# Unlock
+unlock()
+{
+   [[ -f "$LOCK_FILE" ]] || return
+   rm "$LOCK_FILE"
+
+   [[ -d "$TMP_DIR" ]]   || return
+   rm -r "$TMP_DIR"
+}
+
+# Signal handler
 sigint()
 {
    # Kill all sub processes
@@ -77,26 +104,13 @@ sigint()
    exit 0
 }
 
-# Lock
-lock()
-{
-   [[ ! -f "$LOCK_FILE" ]] || error "$(basename "$0") is already running!"
-   touch "$LOCK_FILE"
-}
-
-# Unlock
-unlock()
-{
-   [[ -f "$LOCK_FILE" ]] || return
-   rm "$LOCK_FILE"
-}
-
 # Usage
 usage()
 {
    for i in $@
    do
-      [[ "$i" != "-h" ]] && [[ "$i" != "--help" ]] || error "$(basename "$0") [page] [tags] [limit]"
+      [[ "$i" != "-h" ]] && [[ "$i" != "--help" ]] || error "$(basename "$0") (-v) [page] [tags] [limit]"
+      [[ "$i" != "-v" ]]                           || VERBOSE=1
    done
 }
 
@@ -169,14 +183,35 @@ store_picture()
 {
    local RESULT=
    local ARTIST=
-   local MATCH=
+   local MATCH=""
+
+   [[ "$1" ]] || return
+   [[ "$2" ]] || return
 
    if [ -d "$LOCAL_STORE/$2" ]
    then
-      [[ ! "$(find "$LOCAL_STORE/$2" -type f -name "$(basename $1)" | sed 1q)" ]] || echo "exist: $(basename $1)" && return
+      if [[ "$(find "$LOCAL_STORE/$2" -type f -name "$(basename $1)" | sed 1q)" ]]
+      then
+         echo "exist: $(basename $1)"
+         return
+      fi
    fi
 
-   # Check cache first
+   # Check filter first
+   for TAG in $3
+   do
+      for FILTER in $DANBOORU_FILTER
+      do
+         if [[ "$TAG" == "$FILTER" ]]
+         then
+            echo "filter [$TAG]: $(basename $1)"
+            return
+         fi
+      done
+   done
+
+   # Check cache second
+   [[ $VERBOSE -eq 0 ]] || echo "local artist lookup"
    for TAG in $3
    do
       ARTIST="$(check_cache "$TAG")"
@@ -190,6 +225,7 @@ store_picture()
    # If no match in cache, get from danbooru
    if [[ ! "$MATCH" ]]
    then
+      [[ $VERBOSE -eq 0 ]] || echo "remote artist lookup"
       for TAG in $3
       do
          RESULT="$(get_json "artist/index" "limit=1&name=$TAG")"
@@ -210,18 +246,29 @@ store_picture()
       fi
    fi
 
+   # target
+   local TARGET="$LOCAL_STORE/$2/$ARTIST/$(basename "$1")"
+   local TEMP="$TMP_DIR/$(basename "$1")"
+
+   # download to $TEMP and move after finished to
+   # destination to avoid partial downloads
+   echo "$TARGET"
+   curl -s -o "$TEMP" "$1"
+
    # mkdirs
    mkdir -p "$LOCAL_STORE/$2"
    mkdir -p "$LOCAL_STORE/$2/$ARTIST"
 
-   # download
-   echo -e "$LOCAL_STORE/$2/$ARTIST/$(basename "$1")"
-   curl -s -o "$LOCAL_STORE/$2/$ARTIST/$(basename "$1")" "$1"
+   # move to destination
+   mv "$TEMP" "$TARGET"
 }
 
 # Main
 main()
 {
+   # get rid of the verbose argument
+   [[ "$VERBOSE" -eq 0 ]] || shift 1
+
    local RESULT=
    local URLS=
    local RATING=
@@ -230,12 +277,16 @@ main()
 
    local LIMIT="${3-100}"
    local PAGE="${1-1}"
+   local TAGS="$(echo -n "$2" | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg')"
+   local OK=0
    local i=
 
    # Trap SIGINT
    trap sigint SIGINT
 
-   RESULT="$(get_json "post/index" "page=$PAGE&limit=$LIMIT&tags=$2")"
+   [[ "$VERBOSE" -eq 0 ]] || echo "$DANBOORU_ROOT/post/index.json?page=$PAGE&limit=$LIMIT&tags=$TAGS"
+
+   RESULT="$(get_json "post/index" "page=$PAGE&limit=$LIMIT&tags=$TAGS")"
    URLS=("$(json_parse "$RESULT" 'file_url')")
    TAGS=("$(json_parse_q "$RESULT" 'tags')")
    RATING=($(json_parse "$RESULT" 'rating'))
@@ -247,14 +298,29 @@ main()
    i=0
    for URL in $URLS
    do
+      [[ "$URL" != "[]" ]] || error "No results.."
       # Check status
-      [[ "${STATUS[$i]}" == "pending" ]] && [[ "$DANBOORU_STATUS" == "pending" ]] || \
-      [[ "${STATUS[$i]}" == "active" ]]                                           || continue
+      OK=0
+      [[ "${STATUS[$i]}" == "pending" ]] && [[ "$DANBOORU_STATUS" != "pending" ]] || OK=1
+      [[ "${STATUS[$i]}" != "active"  ]] || OK=1
+
+      if [[ $OK -eq 0 ]]
+      then
+         echo "block status [${STATUS[$i]}]: $URL"
+         continue
+      fi
 
       # Check rating
-      [[ "${RATING[$i]}" == "e" ]] && [[ "$DANBOORU_RATING" == "e" ]]                                    || \
-      [[ "${RATING[$i]}" == "q" ]] && [[ "$DANBOORU_RATING" == "q" ]] || [[ "$DANBOORU_RATING" == "e" ]] || \
-      [[ "${RATING[$i]}" == "s" ]]                                                                       || continue
+      OK=0
+      [[ "${RATING[$i]}" == "e" ]] && [[ "$DANBOORU_RATING" != "e" ]] || OK=1
+      [[ "${RATING[$i]}" == "q" ]] && [[ "$DANBOORU_RATING" != "q" ]] || [[ "$DANBOORU_RATING" != "e" ]] || OK=1
+      [[ "${RATING[$i]}" != "s" ]] || OK=1
+
+      if [[ $OK -eq 0 ]]
+      then
+         echo "block rating [${RATING[$i]}]: $URL"
+         continue
+      fi
 
       if [ $(jobs -p | wc -l) -lt $FORK_LIMIT ]
       then
@@ -265,6 +331,12 @@ main()
 
       ((i++)) # Next array index
       shift 1 # Next tag cloud
+   done
+
+   # Wait for subprocesses
+   while [ $(jobs -p | wc -l) -gt 1 ]
+   do
+      sleep 1
    done
 }
 
