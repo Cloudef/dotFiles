@@ -13,12 +13,12 @@
 # $LOCAL_STORE/$RATING/$ARTIST/$IMAGE
 #
 # eg.
-# /Danbooru/Safe/Rib:y(uhki)/12401290395023.jpg"
-#
-# Note that artist directories are not stripped anyway ATM,
-# so on some filesystems they might be problematic.
-
+# /Danbooru/Safe/Rib_y(uhki)/12401290395023.jpg"
 LOCAL_STORE="$HOME/Kuvat/Danbooru"
+
+# Filename expression
+# Set characters which you want stripped from filename, eg, if you use fat32.
+FILENAME_EXP='s/[][%\+\\\"\*;:\?\|<>,=]/_/g'
 
 # Artist database
 # Since danbooru API allows no easy way to get artist from post,
@@ -206,8 +206,13 @@ check_ignore()
 # Download picture
 store_picture()
 {
+   # artist
+   local ARTIST="$3"
+   ARTIST=$(echo -n "$ARTIST" | sed 's/^ *//' | sed 's/[ .]*$//')  # Strip leading spaces and trailing spaces / periods.
+   ARTIST=$(echo -n "$ARTIST" | sed "$FILENAME_EXP")               # Replace illegal characters.
+
    # target
-   local TARGET="$LOCAL_STORE/$2/$3/$(basename "$1")"
+   local TARGET="$LOCAL_STORE/$2/$ARTIST/$(basename "$1")"
    local TEMP="$TMP_DIR/$(basename "$1")"
 
    # download to $TEMP and move after finished to
@@ -220,7 +225,7 @@ store_picture()
 
    # mkdirs
    mkdir -p "$LOCAL_STORE/$2"
-   mkdir -p "$LOCAL_STORE/$2/$3"
+   mkdir -p "$LOCAL_STORE/$2/$ARTIST"
 
    # move to destination
    mv "$TEMP" "$TARGET"
