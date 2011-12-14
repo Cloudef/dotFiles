@@ -240,10 +240,13 @@ store_picture()
       then
          ARTIST="$(json_parse "$RESULT" 'name')"
          cache_artist "$MATCH" "$ARTIST"
-      else
-         [[ $DANBOORU_NO_ARTIST -eq 0 ]] || return
-         ARTIST="unknown"
       fi
+   fi
+
+   if [[ ! "$ARTIST" ]]
+   then
+      [[ $DANBOORU_NO_ARTIST -eq 1 ]] || return
+      ARTIST="unknown"
    fi
 
    # target
