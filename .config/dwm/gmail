@@ -1,6 +1,0 @@
-#!/bin/sh
-
-while true; do
-    python2 "$HOME/.config/dwm/checkgmail.py" -u mailroxas -p `cat $HOME/.config/dwm/.gmailpw`
-    sleep 10
-done

@@ -215,6 +215,17 @@ function videoencodesd()
 }
 
 ################
+## VID >> OGV ##
+################
+function vid2ogv() {
+    if [ ! -f "$1" ] || [[ ! "$1" ]]; then
+      echo "'$1' is not a valid file"
+      return
+   fi
+   ffmpeg -i "$1" -vcodec libtheora -sameq -acodec libvorbis ${1%.*}.ogv
+}
+
+################
 ## FLV >> MKV ##
 ################
 function flv2mkv() {

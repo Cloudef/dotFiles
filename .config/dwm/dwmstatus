@@ -1,0 +1,67 @@
+#!/bin/bash
+# DWM Status
+
+ICON="$HOME/.icons/dwm"
+FONT="erusfont:7"
+DZEN_BG="#161616"
+DZEN_FG="#9d9d9d"
+DZEN_FG2="#444444"
+DZEN_W="270"
+DZEN_H="15"
+DZEN_X="1170"
+DZEN_Y="122"
+GFX_FG="#04c656"
+GFX_BG="#363636"
+CRIT="#FF6600"
+GFX_H="9"
+GFX_W="65"
+INTERVAL="0"
+
+printVolume()
+{
+   Perc=$(amixer get Master | grep "Mono:" | awk '{print $4}' | tr -d '[]%')
+   Mute=$(amixer get Master | grep "Mono:" | awk '{print $6}')
+   echo -n " ^fg($DZEN_FG2)^i($ICON/spkr_01.xbm) "
+
+   if [[ $Mute == "[off]" ]]; then
+      echo -n "$(echo $Perc | gdbar \
+      -fg $CRIT -bg $GFX_BG -h $GFX_H -w $GFX_W -s o -ss 1 -sw 2 -nonl) "
+      echo -n " ^fg()off "
+   else
+      echo -n "$(echo $Perc | gdbar \
+      -fg $GFX_FG -bg $GFX_BG -h $GFX_H -w $GFX_W -s o -ss 1 -sw 2 -nonl) "
+      printf "^fg()%4s " "$Perc%"
+   fi
+
+   return
+}
+
+printTime()
+{
+   echo -n " ^fg()$(date '+^fg()%A %d/%m ^fg(#44ddff)%H:%M')  "
+   return
+}
+
+printSep()
+{
+   echo -n "^fg($DZEN_FG2)|"
+   return
+}
+
+printBar()
+{
+   while true
+   do
+      printSep
+      printVolume
+      printSep
+      printTime
+
+      echo
+      sleep $INTERVAL
+   done
+   return
+}
+
+printBar | dzen2 -x $DZEN_X -y $DZEN_Y -w $DZEN_W -h $DZEN_H -fn $FONT \
+                 -ta 'r' -bg $DZEN_BG -fg $DZEN_FG -p -e ''

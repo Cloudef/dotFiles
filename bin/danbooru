@@ -5,7 +5,9 @@
 # Much fool proof and allows more control.
 # Also it won't bloat your directory with lots of images,
 # that slows down various file browsers.
-
+#
+# The script does lots of caching since crawling always web is slow,
+# So while you run the script few times, it starts getting faster
 
 # Local directory where to store the pictures
 # Images are stored in following format

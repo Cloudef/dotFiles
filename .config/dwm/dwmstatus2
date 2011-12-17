@@ -1,0 +1,221 @@
+#!/bin/bash
+# DWM Status
+
+ICON="$HOME/.icons/dwm"
+FONT="erusfont:7"
+DZEN_BG="#161616"
+DZEN_FG="#9d9d9d"
+DZEN_FG2="#444444"
+DZEN_W="1440"
+DZEN_H="15"
+DZEN_X="0"
+DZEN_Y="1024"
+GFX_FG="#04c656"
+GFX_BG="#363636"
+CRIT="#FF6600"
+GFX_H="9"
+GFX_W="65"
+INTERVAL="1"
+
+# Settings that don't need to update every loop
+TIMEOUT_NP=10
+TIMEOUT_LOAD=5
+TIMEOUT_PACMAN=300
+TIMEOUT_TEMP=5
+TIMEOUT_MAIL=10
+
+# Counters
+PM_CYCLES=($TIMEOUT_PACMAN-1)
+NP_CYCLES=($TIMEOUT_NP-1)
+LO_CYCLES=($TIMEOUT_LOAD-1)
+TEMP_CYCLES=($TIMEOUT_TEMP-1)
+MAIL_CYCLES=($TIMEOUT_MAIL-1)
+
+# Start values
+UPDATES=
+LOAD=
+NP=
+LINUX="$(uname -rn)"
+CPU_TEMP=(0,0,0,0)
+GPU_TEMP=0
+RXB=(cat /sys/class/net/${INTERFACE}/statistics/rx_bytes)
+TXB=(cat /sys/class/net/${INTERFACE}/statistics/tx_bytes)
+
+np_update()
+{
+   ((NP_CYCLES++))
+   [[ $NP_CYCLES -eq $TIMEOUT_NP ]] || return
+
+   NP=
+   NP_CYCLES=0
+
+   [ -f "$HOME/.config/deadbeef/nowPlaying" ] || return
+
+   ARTIST="$(cat $HOME/.config/deadbeef/nowPlaying | head -n2 | tail -n1)"
+   ALBUM="$(cat $HOME/.config/deadbeef/nowPlaying | head -n3 | tail -n1)"
+   TRACK="$(cat $HOME/.config/deadbeef/nowPlaying | head -n1)"
+   TIME="$(cat $HOME/.config/deadbeef/nowPlaying | head -n5 | tail -n1)"
+   ALBUMTRACK="$ARTIST - $ALBUM - $TRACK"
+
+   NP="DeaDBeeF $(printSep) ^fg()${ALBUMTRACK::60} $(printSep) ^fg()$TIME"
+}
+
+load_update()
+{
+   ((LO_CYCLES++))
+   [[ $LO_CYCLES -eq $TIMEOUT_LOAD ]] || return
+
+   LOAD="$(uptime | cut -d, -f 3 |  awk -F: ' $2>0.1 { a=$2;printf ("%4.2f",a) }')"
+   LO_CYCLES=0
+}
+
+pacman_update()
+{
+   ((PM_CYCLES++))
+   [[ $PM_CYCLES -eq $TIMEOUT_PACMAN ]] || return
+
+   UPDATES="$(pacman -Qu | wc -l)"
+   PM_CYCLES=0
+}
+
+temp_update()
+{
+   ((TEMP_CYCLES++))
+   [[ $TEMP_CYCLES -eq $TIMEOUT_TEMP ]] || return
+
+   for i in $(seq 0 3); do
+      CPU_TEMP[$i]="$(sensors | grep Core\ $i| paste -s | cut -c16-17,17-17)"
+   done
+   GPU_TEMP="$(nvidia-settings -query GPUCoreTemp | perl -ne 'print $1 if /GPUCoreTemp.*?: (\d+)./;')"
+
+   TEMP_CYCLES=0
+}
+
+printLinux()
+{
+   echo -n " ^fg($DZEN_FG2)^i(${ICON}/arch.xbm) ^fg()${LINUX} "
+   printSep
+   echo -n " ^fg($DZEN_FG2)^i(${ICON}/cpu.xbm) ^fg()${LOAD} "
+}
+
+printPacman()
+{
+   # Pacman info
+   echo -n " ^fg($DZEN_FG2)^i(${ICON}/pacman.xbm) ^fg()"
+   if [[ "$UPDATES" ]]; then
+      echo -n "${UPDATES} updates "
+   else
+      echo -n "no updates.. "
+   fi
+}
+
+printCPU()
+{
+   for i in $(seq 0 3); do
+      echo -n " ^fg($DZEN_FG2)^i(${ICON}/cpu.xbm)$i ^fg()${CPU_TEMP[$i]}°C "
+   done
+}
+
+printGPU()
+{
+   [[ ! "$GPU_TEMP" ]] || echo -n " ^fg($DZEN_FG2)^i(${ICON}/cpu.xbm) ^fg()${GPU_TEMP}°C "
+}
+
+printNP()
+{
+   [[ ! "$NP" ]] || echo -n " ^fn(IPAMonaGothic:size=7)^fg($DZEN_FG2)^i(${ICON}/play.xbm) ^fg()${NP} ^fn()"
+   [[ "$NP" ]]   || printf "%97s" " "
+}
+
+printRam()
+{
+   MEMACTIVE="$(echo "`awk \
+      '/MemTotal/{mtotal=$2};/MemFree/{mfree=$2};/^Cached/{mcached=$2};
+      END { print mtotal-mcached-mfree }' /proc/meminfo`/1024" | bc)"
+
+   echo -n " ^fg(#444444)^i(${ICON}/mem.xbm) "
+   echo -n "$(awk '/MemTotal/{mtotal=$2};/MemFree/{mfree=$2};/^Cached/{mcached=$2};
+   END { print mtotal-mcached-mfree" "mtotal }' /proc/meminfo | \
+   gdbar -fg $GFX_FG -bg $GFX_BG -h $GFX_H -w $GFX_W -s o -ss 1 -sw 2 -nonl)"
+   echo -n " ^fg($DZEN_FG)$MEMACTIVE MiB "
+}
+
+printWlan()
+{
+   # network interface
+   INTERFACE=wlan0
+   WIRELESS=1
+
+   # get new rx/tx counts
+   RXBN=$(cat /sys/class/net/${INTERFACE}/statistics/rx_bytes)
+   TXBN=$(cat /sys/class/net/${INTERFACE}/statistics/tx_bytes)
+
+   # calculate the rates
+   # format the values to 4 digit fields
+   RXR=$(printf "%4d\n" $(echo "($RXBN - $RXB) / 1024/${INTERVAL}" | bc))
+   TXR=$(printf "%4d\n" $(echo "($TXBN - $TXB) / 1024/${INTERVAL}" | bc))
+
+   if [[ "$WIRELESS" ]]; then
+      SIGNAL=$(iwconfig $INTERFACE | sed -ne '/Link Quality/ { s/.*Link Quality=\([0-9]*\)\/\([0-9]*\).*/\1/p}' )
+      SIGNALMETER="$(echo $SIGNAL | gdbar -s v -h 15 -ss 1 -sh 2 -fg $GFX_FG -bg $GFX_BG -nonl)"
+   fi
+
+   # print out the rates with some nice formatting
+   echo -n "^fg($DZEN_FG)^p(3)^i(${ICON}/net_down_03.xbm)^fg()${RXR}KiB/s ^fg($DZEN_FG)^i(${ICON}/net_up_03.xbm)^fg()${TXR}KiB/s^fg() $SIGNALMETER"
+
+   # reset old rates
+   RXB=$RXBN; TXB=$TXBN
+}
+
+printSep()
+{
+   echo -n "^fg($DZEN_FG2)|"
+   return
+}
+
+printBar()
+{
+   while true
+   do
+      # Update stuff
+      load_update
+      np_update
+      temp_update
+      pacman_update
+
+      # Linux info
+      printLinux
+      printSep
+
+      # Pacman info
+      printPacman
+      printSep
+
+      # CPU info
+      printCPU
+      printSep
+
+      # GPU info
+      printGPU
+      printSep
+
+      # Now playing
+      printNP
+      printSep
+
+      # Ram bar
+      printRam
+      printSep
+
+      # Wlan
+      printWlan
+
+      # Finish
+      echo
+      sleep ${INTERVAL}
+   done
+   return
+}
+
+printBar | dzen2 -x $DZEN_X -y $DZEN_Y -w $DZEN_W -h $DZEN_H -fn $FONT \
+                 -ta 'l' -bg $DZEN_BG -fg $DZEN_FG -p -e ''

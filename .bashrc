@@ -36,6 +36,9 @@ export LDFLAGS="-Wl,--hash-style=gnu -Wl,--as-needed"
 export OPERAPLUGINWRAPPER_PRIORITY=0
 export OPERA_KEEP_BLOCKED_PLUGIN=1
 
+# Fix JAVA
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # Old GTK Applications
 export GDK_USE_XFT=1
 

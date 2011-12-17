@@ -63,7 +63,7 @@ syntax enable
 nmap <C-s> :w<CR>
 imap <C-s> <Esc>:w<CR>a
 
-vmap <C-c> y: call system("xclip -i -selection clipboard", getreg("\""))<CR>
+vmap <C-c> y: call system("xclip -i -selection clipboard", getreg("\""))<CR><CR>
 nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 imap <C-v> <Esc><C-v>a
 
