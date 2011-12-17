@@ -18,7 +18,7 @@ GFX_W="65"
 INTERVAL="1"
 
 # Settings that don't need to update every loop
-TIMEOUT_NP=10
+TIMEOUT_NP=1
 TIMEOUT_LOAD=5
 TIMEOUT_PACMAN=300
 TIMEOUT_TEMP=5
@@ -55,6 +55,7 @@ np_update()
    TRACK="$(cat $HOME/.config/deadbeef/nowPlaying | head -n1)"
    TIME="$(cat $HOME/.config/deadbeef/nowPlaying | head -n5 | tail -n1)"
    ALBUMTRACK="$ALBUM - $TRACK"
+   LEN=${#ALBUMTRACK}
 
    NP="DeaDBeeF $(printSep) ^fg()${ALBUMTRACK::50} $(printSep) ^fg()$TIME"
 }
@@ -123,7 +124,6 @@ printGPU()
 printNP()
 {
    [[ ! "$NP" ]] || echo -n " ^fn(IPAMonaGothic:size=7)^fg($DZEN_FG2)^i(${ICON}/play.xbm) ^fg()${NP} ^fn()"
-   [[ "$NP" ]]   || printf "%97s" " "
 }
 
 printRam()
@@ -200,9 +200,12 @@ printBar()
 
       # Now playing
       printNP
-      printSep
+
+      # Position to right
+      echo -n "^pa(1130)"
 
       # Ram bar
+      printSep
       printRam
       printSep
 
