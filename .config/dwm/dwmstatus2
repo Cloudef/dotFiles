@@ -51,13 +51,12 @@ np_update()
 
    [ -f "$HOME/.config/deadbeef/nowPlaying" ] || return
 
-   ARTIST="$(cat $HOME/.config/deadbeef/nowPlaying | head -n2 | tail -n1)"
    ALBUM="$(cat $HOME/.config/deadbeef/nowPlaying | head -n3 | tail -n1)"
    TRACK="$(cat $HOME/.config/deadbeef/nowPlaying | head -n1)"
    TIME="$(cat $HOME/.config/deadbeef/nowPlaying | head -n5 | tail -n1)"
-   ALBUMTRACK="$ARTIST - $ALBUM - $TRACK"
+   ALBUMTRACK="$ALBUM - $TRACK"
 
-   NP="DeaDBeeF $(printSep) ^fg()${ALBUMTRACK::60} $(printSep) ^fg()$TIME"
+   NP="DeaDBeeF $(printSep) ^fg()${ALBUMTRACK::50} $(printSep) ^fg()$TIME"
 }
 
 load_update()
