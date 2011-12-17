@@ -1,24 +1,11 @@
 #!/bin/sh
 
-PIDFILE="/tmp/IRSSI.pid"
 SOCKET="/tmp/IRSSI.sck"
-if [ -e "$PIDFILE" ]; then
-   PID="$(cat "$PIDFILE")"
-   if kill -0 $PID; then
-      echo "Already running!"
-      exit 1
-   else
-      rm "$PIDFILE"
-   fi
-fi
-
 if [ -e "$SOCKET" ]; then
-   urxvt -title IRSSI -name IRSSI -e dtach -a "$SOCKET" &
-   echo "$!" > "$PIDFILE"
+   dtach -a "$SOCKET"
    exit 1
 fi
 
 if [ ! -e "$PIDFILE" ]; then
-   urxvt -title IRSSI -name IRSSI -e dtach -c "$SOCKET" irssi &
-   echo "$!" > "$PIDFILE"
+   dtach -c "$SOCKET" irssi
 fi

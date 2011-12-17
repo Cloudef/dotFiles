@@ -1,0 +1,14 @@
+#!/bin/sh
+# Start IRC && MSN in tmux
+
+# Main
+main()
+{
+   tmux new-session -s 'IRC_MSN' -n 'IRC' -d 'IRC'
+   tmux new-window -n 'MSN' 'MSN'
+   tmux -2 attach-session -d -t 'IRC_MSN'
+}
+
+# Go
+tmux attach-session -t 'IRC_MSN'
+[ "$?" -eq 0 ] || main

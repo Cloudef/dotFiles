@@ -72,11 +72,8 @@ RSS
 # Torrent
 TORRENT
 
-# MSN
-MSN
-
-# IRC
-IRC
+# IRC && MSN
+urxvt -title "IRC && MSN" -name "IRC && MSN" -e TMUX_IRC_MSN &
 
 # Redshift
 (sleep 10 && gtk-redshift -l 62:22 &> /dev/null) &
