@@ -4,8 +4,8 @@
 # Main
 main()
 {
-   tmux new-session -s 'IRC_MSN' -n 'IRC' -d 'IRC'
-   tmux new-window -n 'MSN' 'MSN'
+   tmux new-session -s 'IRC_MSN' -n 'IRC' -d 'irssi'
+   tmux new-window -n 'MSN' "irssi --config=$HOME/.irssi/bitlbee"
    tmux -2 attach-session -d -t 'IRC_MSN'
 }
 
