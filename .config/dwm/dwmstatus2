@@ -55,9 +55,8 @@ np_update()
    TRACK="$(cat $HOME/.config/deadbeef/nowPlaying | head -n1)"
    TIME="$(cat $HOME/.config/deadbeef/nowPlaying | head -n5 | tail -n1)"
    ALBUMTRACK="$ALBUM - $TRACK"
-   LEN=${#ALBUMTRACK}
 
-   NP="DeaDBeeF $(printSep) ^fg()${ALBUMTRACK::50} $(printSep) ^fg()$TIME"
+   NP="DeaDBeeF $(printSep) ^fg()$(strtrim "$ALBUMTRACK" 60) ^pa(1070)$(printSep) ^fg()$TIME"
 }
 
 load_update()
