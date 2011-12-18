@@ -60,11 +60,11 @@ sleep 5
 # Conky
 (conky -q -c $HOME/.config/conky/db.conky &> /dev/null) &
 
-# Dzen
-source $HOME/.config/dwm/dzen2start
-
 # Xcompmgr
 (xcompmgr -fF -I-.02 -O-.04 -D0001 &> /dev/null) &
+
+# Dzen
+source "$HOME/.config/dwm/dzen2start"
 
 # RSS
 RSS

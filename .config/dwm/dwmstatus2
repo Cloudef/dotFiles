@@ -214,7 +214,7 @@ printBar()
 
       # Finish
       echo
-      sleep ${INTERVAL}
+      sleep $INTERVAL
    done
    return
 }

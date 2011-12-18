@@ -15,7 +15,12 @@ GFX_BG="#363636"
 CRIT="#FF6600"
 GFX_H="9"
 GFX_W="65"
-INTERVAL="0"
+
+OLDVOL=0
+NEWVOL=0
+SLEEP_TIMEOUT=0
+
+INTERVAL="1"
 
 printVolume()
 {
@@ -33,6 +38,7 @@ printVolume()
       printf "^fg()%4s " "$Perc%"
    fi
 
+   NEWVOL=$Perc
    return
 }
 
@@ -58,7 +64,12 @@ printBar()
       printTime
 
       echo
-      sleep $INTERVAL
+
+      # More reactive volume control
+      [ $OLDVOL -eq $NEWVOL ]  || SLEEP_TIMEOUT=100
+      [ $SLEEP_TIMEOUT -gt 0 ] && ((SLEEP_TIMEOUT--)) || sleep $INTERVAL
+      OLDVOL=$NEWVOL
+
    done
    return
 }
