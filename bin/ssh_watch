@@ -1,0 +1,35 @@
+#!/bin/sh
+# Watch for ssh connections
+
+INTERVAL=1
+AUTH_FILE=/var/log/auth.log
+LOG_FILE="$HOME/ssh.log"
+
+init()
+{
+   # Remove old log
+   [ ! -f "$LOG_FILE" ] || rm "$LOG_FILE"
+}
+
+main()
+{
+   while true
+   do
+      LASTOUT="$OUTPUT"
+      OUTPUT="$(cat "$AUTH_FILE" | tail -n1 | grep -o "sshd\[.*\]:.*")"
+
+      # notify
+      if [[ "$OUTPUT" ]]; then
+         if [[ "$LASTOUT" != "$OUTPUT" ]]; then
+            notify-send "SSH Warning" "$OUTPUT"
+            echo -e "$OUTPUT" >> "$LOG_FILE"
+         fi
+      fi
+
+      sleep $INTERVAL
+   done
+}
+
+# go
+init
+main
