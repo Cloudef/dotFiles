@@ -37,9 +37,6 @@ alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'
 # Extrenal IP
 alias extip='echo $(curl -s http://automation.whatismyip.com/n09230945.asp)'
 
-# Cherokee weblog
-alias weblog="cat /var/log/httpd/access_log | tail -15 | uniq | sort"
-
 # Vim && Tmux
 alias vimtux="tmux new-session -s VIMtux -d \"tmux set-option default-path $PWD\" \; source-file ~/.vimtux.conf \; attach"
 

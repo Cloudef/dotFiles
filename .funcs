@@ -287,15 +287,6 @@ function mkgit() {
    git push origin master
 }
 
-###########################
-## Change terminal title ##
-##########################
-function tname(){
-   echo -ne "\033]0;${1:-$TERM}\007";
-   PROMPT_TITLE=$1
-}
-
-
 #####################
 ## Decode QR codes ##
 #####################

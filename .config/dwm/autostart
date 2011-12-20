@@ -39,6 +39,9 @@ xset s off
 # DWM text
 xsetroot -name "DWM"
 
+# Start ssh_watch
+ssh_watch &
+
 # Wait for WM a bit
 sleep 5
 
@@ -104,3 +107,4 @@ done
 killall redshift
 killall gmail
 killall -9 opera
+killall ssh_watch

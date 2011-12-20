@@ -83,6 +83,8 @@ function prompt() {
    local path="${PWD}"
    local cinfo="${path}"
 
+   [ "$PROMPT_TITLE" ] || echo -ne "\033]0;${PWD}\007";
+
    if [ -n "$git" ]; then
       gitNum="["
       gitNum+="$(echo $cgit | sed -r "s:\x1B\[[0-9;]*[mK]::g" | wc -c)"
@@ -127,6 +129,14 @@ function welcome() {
       echo "${ORANGE}TMUX${GREEN}"
       tmux list-sessions
    fi
+}
+
+###########################
+## Change terminal title ##
+##########################
+function tname(){
+   echo -ne "\033]0;${@:-$TERM}\007";
+   PROMPT_TITLE=$1
 }
 
 ###########################

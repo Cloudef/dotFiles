@@ -155,11 +155,11 @@ printWlan()
 
    if [[ "$WIRELESS" ]]; then
       SIGNAL=$(iwconfig $INTERFACE | sed -ne '/Link Quality/ { s/.*Link Quality=\([0-9]*\)\/\([0-9]*\).*/\1/p}' )
-      SIGNALMETER="$(echo $SIGNAL | gdbar -s v -h 15 -ss 1 -sh 2 -fg $GFX_FG -bg $GFX_BG -nonl)"
+      SIGNALMETER="$(echo $SIGNAL | gdbar -s v -h 10 -ss 1 -sh 2 -fg $GFX_FG -bg $GFX_BG -nonl)"
    fi
 
    # print out the rates with some nice formatting
-   echo -n "^fg($DZEN_FG)^p(3)^i(${ICON}/net_down_03.xbm)^fg()${RXR}KiB/s ^fg($DZEN_FG)^i(${ICON}/net_up_03.xbm)^fg()${TXR}KiB/s^fg() $SIGNALMETER"
+   echo -n "^fg($DZEN_FG)^p(3)^i(${ICON}/net_down_03.xbm)^fg()${RXR}KiB/s ^fg($DZEN_FG)^i(${ICON}/net_up_03.xbm)^fg()${TXR}KiB/s^fg()  $SIGNALMETER"
 
    # reset old rates
    RXB=$RXBN; TXB=$TXBN
