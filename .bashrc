@@ -83,15 +83,16 @@ fi
 ###############
 ## LS COLORS ##
 ###############
-eval $( dircolors -b $HOME/.LS_COLORS )
+eval $( dircolors -b "$HOME/.LS_COLORS" )
 
 ########################
 ## Includes && Prompt ##
 ########################
-source ${HOME}/.alias      # Aliases
-source ${HOME}/.prompt     # Prompt
-source ${HOME}/.funcs      # Shell functions
-source ${HOME}/.sshagent   # Keeps you from entering SSH password repeateply
+source ${HOME}/.alias         # Aliases
+source ${HOME}/.prompt        # Prompt
+source ${HOME}/.funcs         # Shell functions
+source ${HOME}/.sshagent      # Keeps you from entering SSH password repeateply
+source ${HOME}/.private_alias # Private aliases
 
 PROMPT_COMMAND=prompt
 

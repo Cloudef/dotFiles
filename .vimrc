@@ -34,9 +34,6 @@ set suffixes=.bak,~,.swp,.o,.log
 " encodings
 set fileencodings=ucs-bom,utf-8,sjis,default
 
-" colorscheme
-colorscheme desertEx
-
 " gvim
 if has('gui_running')
    set guioptions-=T " Remove the toolbar

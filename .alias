@@ -53,7 +53,4 @@ function rmnote() {
 
 # Watch CPU clocks
 alias cpu='watch grep \"cpu MHz\" /proc/cpuinfo'
-
-alias bot="if [ ! -e /tmp/BOT.sck ]; then pushd /media/Storage/Dev/Projektit/lightbot; dtach -c /tmp/BOT.sck ./lightbot; popd; else dtach -a /tmp/BOT.sck; fi"
-
 alias macostart="pkill macopix; sleep 2; (macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &"
