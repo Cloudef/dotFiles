@@ -39,7 +39,7 @@ alias extip='echo $(curl -s http://automation.whatismyip.com/n09230945.asp)'
 
 # Vim && Tmux
 alias tmux="tmux -2"
-alias vimtux="tmux new-session -s VIMtux -d \"tmux set-option default-path $PWD\" \; source-file ~/.vimtux.conf \; attach"
+alias vimtux="tmux -2 new-session -s VIMtux -d \"tmux set-option default-path $PWD\" \; source-file ~/.vimtux.conf \; attach"
 
 # DWM note
 alias note="cat \"$HOME/.note\""
