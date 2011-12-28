@@ -14,6 +14,10 @@ export LESS_TERMCAP_so=$'\E[01;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+# GLIB
+export G_BROKEN_FILENAMES=1
+export G_FILENAME_ENCODING=@locale
+
 # ALSA
 export SDL_AUDIODRIVER="alsa"
 

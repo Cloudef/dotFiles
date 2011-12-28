@@ -92,7 +92,7 @@ ossvolume()
 
    # OSSv4
    # Simple, clean and works
-   ossvol "$MIXARG" | sed 's/^.* //' &> /dev/null
+   ossvol $MIXARG &> /dev/null # | sed 's/^.* //' <- for getting volume
 }
 
 # ALSA Volume handling

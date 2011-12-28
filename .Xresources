@@ -32,10 +32,10 @@ URxvt.urgentOnBell:  true
 ! xterm
 XTerm*bellIsUrgent:  true
 
-URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: opera
-URxvt.matcher.button: 1
-URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt.perl-ext-common:  default,url-select
+URxvt.keysym.M-u:       perl:url-select:select_next
+URxvt.urlLauncher:      opera
+URxvt.underlineURLs:    true
 
 ! ctrl keys
 URxvt.keysym.Control-Up:    \033[1;5A

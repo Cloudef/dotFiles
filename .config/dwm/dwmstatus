@@ -24,8 +24,14 @@ INTERVAL="1"
 
 printVolume()
 {
+   # ALSA
    Perc=$(amixer get Master | grep "Mono:" | awk '{print $4}' | tr -d '[]%')
    Mute=$(amixer get Master | grep "Mono:" | awk '{print $6}')
+
+   # OSSv4
+   # Perc=$(echo "$(ossmix | grep 'vmix0-outvol' | sed -n 's/.*(currently \(.*\) dB)/\1/p') * 100 / 25.0" | bc)
+   # Mute=""; [ "$Perc" != "0" ] || Mute="[off]"
+
    echo -n " ^fg($DZEN_FG2)^i($ICON/spkr_01.xbm) "
 
    if [[ $Mute == "[off]" ]]; then
@@ -44,7 +50,7 @@ printVolume()
 
 printTime()
 {
-   echo -n " ^fg()$(date '+^fg()%a %d/%m ^fg(#44ddff)%H:%M')  "
+   echo -n " ^fg()$(date '+^fg()%a %d/%m ^fg(#44ddff)%H:%M') "
    return
 }
 
