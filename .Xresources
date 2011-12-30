@@ -34,6 +34,7 @@ XTerm*bellIsUrgent:  true
 
 URxvt.perl-ext-common:  default,url-select
 URxvt.keysym.M-u:       perl:url-select:select_next
+URxvt.urlButton:        1
 URxvt.urlLauncher:      opera
 URxvt.underlineURLs:    true
 

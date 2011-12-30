@@ -28,6 +28,7 @@ set shell=bash
 set showtabline=2
 set backspace=indent,eol,start
 set cmdheight=2
+set modeline
 
 " Set statusline
 set noruler
@@ -113,6 +114,17 @@ autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d :",
+        \ &tabstop, &shiftwidth, &textwidth)
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> :ml :call AppendModeline()<CR>
+
 " Restore cursor position to where it was before
 augroup JumpCursorOnEdit
    au!
@@ -138,3 +150,5 @@ augroup JumpCursorOnEdit
             \   unlet b:doopenfold |
             \ endif
 augroup END
+
+" vim: set ts=8 sw=3 tw=78 :
