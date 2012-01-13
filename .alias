@@ -8,6 +8,7 @@ alias vdir='vdir -h --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias du='du -sh'
 alias :w='echo sorry, but this isnt vim'
 alias :wq=:w
 alias :q="exit"

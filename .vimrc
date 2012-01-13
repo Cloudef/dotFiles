@@ -121,6 +121,7 @@ function! AppendModeline()
   let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d :",
         \ &tabstop, &shiftwidth, &textwidth)
   let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), "")
   call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> :ml :call AppendModeline()<CR>

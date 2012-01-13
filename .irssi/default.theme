@@ -217,7 +217,7 @@ formats = {
     daychange = "                      %w-%c-%C- %K| %nDay changed to %%d %%b %%Y";
     your_nick_changed = "           %w-%c-%C- %K| %nYou're now known as %W$1";
 
-    pubmsg = "%b<%w$2\00303$[-11]0%b>%K | %n$1";
+    pubmsg = "%b<%w$2\00312$[-11]0%b>%K | %n$1";
     own_msg_private_query = "%m<%W$[-12]2%m> %K| %n$1";
     msg_private_query = "%b<%w$[-12]0%b>%K | %n$2";
     own_msg = "%m<%W$2$[-11]0%m>%K | %n$1";

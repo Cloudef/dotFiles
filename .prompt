@@ -70,6 +70,17 @@ function git_cprompt() {
    echo ${pre}${ref#refs/heads/}
 }
 
+################################
+## Pre execution implentation ##
+################################
+preexec () { :; }
+preexec_invoke_exec () {
+    [ -n "$COMP_LINE" ] && return  # do nothing if completing
+    export RUN_COMMAND=`history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//g"`;
+    preexec "$RUN_COMMAND"
+}
+trap 'preexec_invoke_exec' DEBUG
+
 ############
 ## Prompt ##
 ############
@@ -83,7 +94,9 @@ function prompt() {
    local path="${PWD}"
    local cinfo="${path}"
 
-   [ "$PROMPT_TITLE" ] || echo -ne "\033]0;${PWD}\007";
+   if [[ "$TERM" != "linux" ]]; then
+   [ "$PROMPT_TITLE" ] || echo -ne "\033]0;${PWD}\007"
+   fi
 
    if [ -n "$git" ]; then
       gitNum="["
@@ -145,7 +158,7 @@ function tname(){
 ###########################
 function kingbash.fn() {
    echo -n "KingBash> $READLINE_LINE" #Where "KingBash> " looks best if it resembles your PS1, at least in length.
-   OUTPUT=`kingbash --bashcompletion --extracommands "$(compgen -ab -A function)" --extrafiles "$(compgen -v -P $)"`
+   OUTPUT=`kingbash --extracommands "$(compgen -ab -A function)" --extrafiles "$(compgen -v -P $)"`
    READLINE_POINT=`echo "$OUTPUT" | tail -n 1`
    READLINE_LINE=`echo "$OUTPUT" | head -n -1`
    echo -ne "\r\e[2K";

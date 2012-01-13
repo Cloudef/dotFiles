@@ -1,12 +1,10 @@
 #!/bin/sh
 
 # Argument is fine
-WM="$1"
-if [[ ! "$WM" ]]; then
-   WM="dwm"
-fi
+WM="${1-dwm}"
 
 # X
+numlockx on
 xset s off
 xset -dpms
 setxkbmap fi
@@ -24,4 +22,4 @@ export QT_IM_MODULE='uim'
 (uim-toolbar-gtk-systray &> /dev/null) &
 (uim-xim &> /dev/null) &
 
-exec ck-launch-session dbus-launch --sh-syntax --exit-with-session "$WM"
+exec ck-launch-session dbus-launch --exit-with-session "$WM"

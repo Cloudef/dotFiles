@@ -10,5 +10,5 @@ main()
 }
 
 # Go
-tmux attach-session -t 'IRC_MSN'
+tmux attach-session -t 'IRC_MSN' -d
 [ "$?" -eq 0 ] || main

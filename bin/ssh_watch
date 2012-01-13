@@ -11,21 +11,40 @@ init()
    [ ! -f "$LOG_FILE" ] || rm "$LOG_FILE"
 }
 
+check_ssh()
+{
+   LASTSSH="$OUTSSH"
+   OUTSSH="$(cat "$AUTH_FILE" | tail -n1 | grep -o "sshd\[.*\]:.*")"
+
+   # notify
+   if [[ "$OUTSSH" ]]; then
+      if [[ "$LASTSSH" != "$OUTSSH" ]]; then
+         notify-send "SSH Warning" "$OUTSSH"
+         echo -e "$OUTSSH" >> "$LOG_FILE"
+      fi
+   fi
+}
+
+check_shellinabox()
+{
+   LASTSHELL="$OUTSHELL"
+   OUTSHELL="$(cat "$AUTH_FILE" | tail -n1 | grep -o "session opened for user .* by SHELLINABOX")"
+
+   # notify
+   if [[ "$OUTSHELL" ]]; then
+      if [[ "$LASTSHELL" != "$OUTSHELL" ]]; then
+         notify-send "SHELL Warning" "$OUTSHELL"
+         echo -e "$OUTSHELL" >> "$LOG_FILE"
+      fi
+   fi
+}
+
 main()
 {
    while true
    do
-      LASTOUT="$OUTPUT"
-      OUTPUT="$(cat "$AUTH_FILE" | tail -n1 | grep -o "sshd\[.*\]:.*")"
-
-      # notify
-      if [[ "$OUTPUT" ]]; then
-         if [[ "$LASTOUT" != "$OUTPUT" ]]; then
-            notify-send "SSH Warning" "$OUTPUT"
-            echo -e "$OUTPUT" >> "$LOG_FILE"
-         fi
-      fi
-
+      check_ssh
+      check_shellinabox
       sleep $INTERVAL
    done
 }
