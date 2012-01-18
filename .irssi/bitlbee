@@ -61,6 +61,7 @@ aliases = {
   UNSET = "set -clear";
   RESET = "set -default";
   np = "/exec -out np";
+  table = "/say （╯°□°）╯︵ ┻━┻";
 };
 
 statusbar = {

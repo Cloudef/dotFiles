@@ -32,7 +32,7 @@ export PATH="$HOME/bin:$PATH"
 
 # Compile options
 # [ ARM enviroiment will override ]
-export CFLAGS="-march=native -mtune=native -O2 -pipe -fstack-protector --param=ssp-buffer-size=4"
+export CFLAGS="-march=native -mtune=native -O2 -pipe"
 export CXXFLAGS="${CFLAGS}"
 export LDFLAGS="-Wl,--hash-style=gnu -Wl,--as-needed"
 

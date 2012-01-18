@@ -29,6 +29,7 @@ set showtabline=2
 set backspace=indent,eol,start
 set cmdheight=2
 set modeline
+set background=dark
 
 " Set statusline
 set noruler
@@ -93,6 +94,12 @@ imap <C-e> <Esc><C-e>a
 
 " GPL
 map :GPL :0r ~/.vim/GPL.txt
+
+" Different colorscheme for diffing
+colorscheme default
+if &diff
+   colorscheme blacksea
+endif
 
 " Autostart
 autocmd VimEnter * wincmd p
