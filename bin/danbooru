@@ -179,7 +179,7 @@ get_json()
 # Parses quoted strings (Needs eval set -- ${ARRAY[@]})
 json_parse_q()
 {
-   echo "$1" | jsawk "return this.$2" | sed -e 's/\[\"/"/' -e 's/\"\]/"/' -e 's/","/" "/g'
+   echo "$1" | jsawk "return this.$2" | sed -e 's/\[\"/"/' -e 's/\"\]/"/' -e 's/","/" "/g' -e 's/`/\\`/g'
 }
 
 # $1 = JSON data
