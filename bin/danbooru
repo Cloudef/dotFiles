@@ -396,6 +396,8 @@ main()
       if [[ $OK -eq 0 ]]
       then
          echo "block status [${STATUS[$i]}]: $URL"
+         ((i++))
+         shift 1
          continue
       fi
 
@@ -408,6 +410,8 @@ main()
       if [[ $OK -eq 0 ]]
       then
          echo "block rating [${RATING[$i]}]: $URL"
+         ((i++))
+         shift 1
          continue
       fi
 
