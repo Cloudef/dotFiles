@@ -478,12 +478,11 @@ glc-encode() {
    fi
 }
 
-##################################################
-## Stream to JustinTV                           ##
-## Create $HOME/.streamkey with your stream key ##
-## or export STREAM_KEY variable                ##
-##################################################
-source ${HOME}/.streamkey
+################################
+## Stream to JustinTV         ##
+## export STREAM_KEY variable ##
+################################
+source "${HOME}/passwd/streamkey"
 streamjustin() {
    local WININFO="`xwininfo`"
    local INRESW=`echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}'`

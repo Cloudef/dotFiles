@@ -55,12 +55,24 @@ DANBOORU_FILTER=("yaoi tiger_&_bunny boys_love shounen-ai")
 # Limit the number of sub processes for download
 FORK_LIMIT=20
 
+# Limit requests
+# Why? See: http://danbooru.donmai.us/forum/show/72300
+REQUESTS_PER_SECOND=1
+
 # Lock file
 TMP_DIR="/tmp/danbooru"
 LOCK_FILE="$TMP_DIR/lock"
 
 # Danbooru API root
 DANBOORU_ROOT="http://danbooru.donmai.us"
+DANBOORU_COOKIE="$TMP_DIR/cookie"
+
+# Danbooru user && password
+DANBOORU_USER="$(head "$HOME/passwd/danbooru" -n1)"
+DANBOORU_PASSWD="$(head "$HOME/passwd/danbooru" -n2 | tail -n1)"
+
+# Curl agent
+CURL_AGENT="Mozilla/4.73 [en] (X11; U; Linux 2.2.15 i686)"
 
 # Depencies for this script
 # Perl is used for url encoding tags
@@ -74,12 +86,18 @@ error()
    exit 1
 }
 
+error_no_unlock()
+{
+   echo "$@"
+   exit 1
+}
+
 check_deps()
 {
    for i in $BIN_DEPS; do
       which $i > /dev/null
       if [ $? -ne 0 ]; then
-         error "Missing depency: $i"
+         error_no_unlock "Missing depency: $i"
       fi
    done
 }
@@ -88,7 +106,7 @@ check_deps()
 lock()
 {
    [[ ! "$TMP_DIR" ]]      || mkdir -p "$TMP_DIR"
-   [[ ! -f "$LOCK_FILE" ]] || error "$(basename "$0") is already running!"
+   [[ ! -f "$LOCK_FILE" ]] || error_no_unlock "$(basename "$0") is already running!"
    touch "$LOCK_FILE"
 }
 
@@ -120,7 +138,7 @@ usage()
 {
    for i in $@
    do
-      [[ "$i" != "-h" ]] && [[ "$i" != "--help" ]] || error "$(basename "$0") (-v) [page] [tags] [limit]"
+      [[ "$i" != "-h" ]] && [[ "$i" != "--help" ]] || error_no_unlock "$(basename "$0") (-v) [page] [tags] [limit]"
       [[ "$i" != "-v" ]]                           || VERBOSE=1
    done
 }
@@ -132,11 +150,26 @@ urlencode()
    echo -n "$@" | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'
 }
 
+# Login to danbooru
+# $1 = Username
+# $2 = Password
+login()
+{
+   local RET=
+   RET="$(curl -s -c "$DANBOORU_COOKIE" --user-agent "$CURL_AGENT" \
+          -F "user[name]=$1" -F "user[password]=$2" -F "commit=1" \
+             "$DANBOORU_ROOT/user/authenticate")"
+
+   # Check login
+   RET="$(curl -s -b "$DANBOORU_COOKIE" --user-agent "$CURL_AGENT" "$DANBOORU_ROOT/user/login")"
+   [[ ! "$(echo "$RET" | grep -w "Access denied")" ]] || error "Login failed.."
+}
+
 # $1 = API URL
 # $2 = URL Arguments
 get_json()
 {
-   curl -s "$DANBOORU_ROOT/$1.json?$2"
+   curl -s -b "$DANBOORU_COOKIE" --user-agent "$CURL_AGENT" "$DANBOORU_ROOT/$1.json?$2"
 }
 
 # $1 = JSON data
@@ -312,6 +345,7 @@ check_picture()
    fi
 
    store_picture "$1" "$2" "$ARTIST" &
+   sleep $REQUESTS_PER_SECOND
 }
 
 # Main
@@ -328,16 +362,19 @@ main()
 
    local LIMIT="${3-100}"
    local PAGE="${1-1}"
-   local TAGS="$(urlencode "$2")"
+   local PTAGS="$(urlencode "$2")"
    local OK=0
    local i=
 
    # Trap SIGINT
    trap sigint SIGINT
 
-   [[ "$VERBOSE" -eq 0 ]] || echo "$DANBOORU_ROOT/post/index.json?page=$PAGE&limit=$LIMIT&tags=$TAGS"
+   [[ "$VERBOSE" -eq 0 ]] || echo "$DANBOORU_ROOT/user/authenticate"
+   login "$DANBOORU_USER" "$DANBOORU_PASSWD"
 
-   RESULT="$(get_json "post/index" "page=$PAGE&limit=$LIMIT&tags=$TAGS")"
+   [[ "$VERBOSE" -eq 0 ]] || echo "$DANBOORU_ROOT/post/index.json?page=$PAGE&limit=$LIMIT&tags=$PTAGS"
+
+   RESULT="$(get_json "post/index" "page=$PAGE&limit=$LIMIT&tags=$PTAGS")"
    URLS=("$(json_parse "$RESULT" 'file_url')")
    TAGS=("$(json_parse_q "$RESULT" 'tags')")
    RATING=($(json_parse "$RESULT" 'rating'))
@@ -385,6 +422,7 @@ main()
       ((i++)) # Next array index
       shift 1 # Next tag cloud
    done
+   [[ $i -gt 0 ]] || error "Hm? No URLs from: $DANBOORU_ROOT/post/index.json?page=$PAGE&limit=$LIMIT&tags=$PTAGS"
 
    # Wait for subprocesses
    while [ $(jobs -p | wc -l) -gt 1 ]
