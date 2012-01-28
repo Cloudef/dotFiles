@@ -1,0 +1,24 @@
+#!/bin/sh
+
+PIDFILE="/tmp/IRC.pid"
+SOCKET="/tmp/IRC.sck"
+if [ -e "$PIDFILE" ]; then
+   PID="$(cat "$PIDFILE")"
+   if kill -0 $PID; then
+      echo "Already running"
+      exit 1
+   else
+      rm "$PIDFILE"
+   fi
+fi
+
+if [ -e "$SOCKET" ]; then
+   urxvt -title IRC -name IRC -e dtach -a "$SOCKET" &
+   echo "$!" > "$PIDFILE"
+   exit 1
+fi
+
+if [ ! -e "$PIDFILE" ]; then
+   urxvt -title IRC -name IRC -e dtach -c "$SOCKET" irssi &
+   echo "$!" > "$PIDFILE"
+fi

@@ -136,6 +136,14 @@ function welcome() {
    local tmux=`ps -a | grep tmux`
    clear
    echo "${BOLD}${CYAN}${arch}${WHITE}${nix}${NORMAL}"
+
+   # Animated version
+   # echo -n "${BOLD}${CYAN}"
+   # for i in A r c h; do echo -n $i; sleep .05; done
+   # echo -n "${WHITE}"
+   # for i in L i n u x; do echo -n $i; sleep .05; done
+   # echo -n "${NORMAL}"
+
    if [[ "$tmux" ]]
    then
       echo ""

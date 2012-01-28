@@ -143,6 +143,8 @@ printWlan()
    # network interface
    INTERFACE=wlan0
    WIRELESS=1
+   # INTERFACE=eth0
+   # WIRELESS=0
 
    # get new rx/tx counts
    RXBN=$(cat /sys/class/net/${INTERFACE}/statistics/rx_bytes)
@@ -153,7 +155,7 @@ printWlan()
    RXR=$(printf "%4d\n" $(echo "($RXBN - $RXB) / 1024/${INTERVAL}" | bc))
    TXR=$(printf "%4d\n" $(echo "($TXBN - $TXB) / 1024/${INTERVAL}" | bc))
 
-   if [[ "$WIRELESS" ]]; then
+   if [[ $WIRELESS -eq 1 ]]; then
       SIGNAL=$(iwconfig $INTERFACE | sed -ne '/Link Quality/ { s/.*Link Quality=\([0-9]*\)\/\([0-9]*\).*/\1/p}' )
       SIGNALMETER="$(echo $SIGNAL | gdbar -s v -h 10 -ss 1 -sh 2 -fg $GFX_FG -bg $GFX_BG -nonl)"
    fi

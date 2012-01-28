@@ -29,7 +29,7 @@ alias dataloss="grep ^Dirty /proc/meminfo"
 # Packer aliases
 alias ai="packer-color"
 alias as="packer-color -Ss"
-alias au="sudo packer-color -Su --noconfirm"
+alias au="packer-color -Su --noconfirm"
 alias ar="sudo pacman-color -Rcs"
 
 # Clean garbage
