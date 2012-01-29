@@ -37,7 +37,7 @@ function mkcdr() {
 ## CPU is better for me ##
 ##########################
 function vplay() {
-   mplayer-icon -vo vdpau -vc ffh264vdpau "$1"
+   mplayer -vo vdpau -vc ffh264vdpau "$1"
 }
 
 ##################
@@ -580,7 +580,7 @@ anime()
    fi
 
    echo "playing: $MATCH"
-   mplayer-icon "$MATCH" &> /dev/null
+   mplayer "$MATCH" &> /dev/null
 }
 
 ################
