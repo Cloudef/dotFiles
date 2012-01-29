@@ -62,8 +62,8 @@ URXvt*mouseWheelScrollPage:false
 
 ! URxvt Fonts {{{
 URxvt.keysym.C-plus: command:\033]50;xft:DejaVu Sans Mono:pixelsize=14,xft:IPAMonaGothic\007
-URxvt.keysym.C-minus: command:\033]50;xft:erusfont:pixelsize=11,xft:IPAMonaGothic\007
-URxvt.font:xft:erusfont:pixelsize=11,xft:IPAMonaGothic
+URxvt.keysym.C-minus: command:\033]50;xft:erusfont,xft:IPAMonaGothic\007
+URxvt.font:xft:erusfont,xft:IPAMonaGothic
 !}}}
 
 ! URxvt Color Settings {{{
