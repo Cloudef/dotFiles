@@ -74,9 +74,6 @@ syntax enable
 nmap <C-x> <plug>NERDTreeMirrorToggle<CR>
 imap <C-x> <Esc><C-x>
 
-" Syntastic options
-let g:syntastic_auto_jump=1
-
 " Indentguides options
 let g:indent_guides_auto_colors=0
 let g:indent_guides_start_level=2
