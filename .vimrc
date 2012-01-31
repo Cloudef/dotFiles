@@ -1,3 +1,7 @@
+" pathogen
+call pathogen#infect()
+call pathogen#helptags()
+
 " Settings
 set nocompatible
 set showcmd
@@ -12,7 +16,7 @@ set softtabstop=3       " indents
 set shiftwidth=3        " more indents
 set pastetoggle=<F12>
 set number
-set mouse=a
+set mouse=i
 set ttymouse=xterm
 set noswapfile
 set wildmenu
@@ -30,20 +34,13 @@ set backspace=indent,eol,start
 set cmdheight=2
 set modeline
 set background=dark
+set t_Co=256
+colorscheme shady
 
 " Set statusline
 set noruler
 set laststatus=2
-set statusline=
-set statusline +=%1*\ %n\ %*            "buffer number
-set statusline +=%5*%{&ff}%*            "file format
-set statusline +=%3*%y%*                "file type
-set statusline +=%4*\ %<%F%*            "full path
-set statusline +=%2*%m%*                "modified flag
-set statusline +=%1*%=%5l%*             "current line
-set statusline +=%2*/%L%*               "total lines
-set statusline +=%1*%4c\ %*             "column number
-set statusline +=%2*0x%04B\ %*          "character under cursor
+let g:Powerline_symbols='unicode'
 
 " Lower prioritory for tab completition
 set suffixes=.bak,~,.swp,.o,.log
@@ -73,10 +70,27 @@ filetype plugin on
 filetype plugin indent on
 syntax enable
 
-" Mappings
-nmap <C-s> :w<CR>
-imap <C-s> <Esc>:w<CR>a
+" NERDTree toggle
+nmap <C-x> <plug>NERDTreeMirrorToggle<CR>
+imap <C-x> <Esc><C-x>
 
+" Syntastic options
+let g:syntastic_auto_jump=1
+
+" Indentguides options
+let g:indent_guides_auto_colors=0
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=2
+autocmd BufEnter * IndentGuidesEnable
+hi IndentGuidesOdd  ctermbg=234
+hi IndentGuidesEven ctermbg=234
+
+" Hilight
+set cursorline
+hi cursorline   cterm=NONE ctermbg=234
+hi cursorcolumn cterm=NONE ctermbg=234
+
+" Mappings
 vmap <C-c> y: call system("xclip -i -selection clipboard", getreg("\""))<CR><CR>
 nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 imap <C-v> <Esc><C-v>a
@@ -84,22 +98,12 @@ imap <C-v> <Esc><C-v>a
 " Toggle folds with space
 nnoremap <space> za
 
-" NERDTree toggle
-nmap <C-x> <plug>NERDTreeMirrorToggle<CR>
-imap <C-x> <Esc><C-x>
-
 " C-e = cycle tabs, similar to C-w for panes
 nmap <C-e> :tabNext<CR>
 imap <C-e> <Esc><C-e>a
 
 " GPL
 map :GPL :0r ~/.vim/GPL.txt
-
-" Different colorscheme for diffing
-colorscheme default
-if &diff
-   colorscheme blacksea
-endif
 
 " Autostart
 autocmd VimEnter * wincmd p
