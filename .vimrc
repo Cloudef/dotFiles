@@ -16,7 +16,7 @@ set softtabstop=3       " indents
 set shiftwidth=3        " more indents
 set pastetoggle=<F12>
 set number
-set mouse=i
+set mouse=a
 set ttymouse=xterm
 set noswapfile
 set wildmenu
@@ -35,7 +35,7 @@ set cmdheight=2
 set modeline
 set background=dark
 set t_Co=256
-colorscheme shady
+colorscheme slate
 
 " Set statusline
 set noruler
@@ -80,7 +80,7 @@ let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=2
 autocmd BufEnter * IndentGuidesEnable
 hi IndentGuidesOdd  ctermbg=234
-hi IndentGuidesEven ctermbg=234
+hi IndentGuidesEven ctermbg=235
 
 " Hilight
 set cursorline
