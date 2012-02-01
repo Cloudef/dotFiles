@@ -45,12 +45,12 @@ alias vimtux="tmux -2 new-session -s VIMtux -d \"tmux set-option default-path $P
 # DWM note
 alias note="cat \"$HOME/.note\""
 function mknote() {
-   [[ "$@" ]] || echo "mknote [note] - Adds new note"
-   [[ "$@" ]] && echo "$@" >> "$HOME/.note"
+   [ "$@" ] || echo "mknote [note] - Adds new note"
+   [ "$@" ] && echo "$@" >> "$HOME/.note"
 }
 function rmnote() {
-   [[ "$@" ]] || echo "rmnote [note] - Removes notes"
-   [[ "$@" ]] && sed "/$@/d" "$HOME/.note" > "$HOME/.note.tmp" && mv "$HOME/.note.tmp" "$HOME/.note"
+   [ "$@" ] || echo "rmnote [note] - Removes notes"
+   [ "$@" ] && sed "/$@/d" "$HOME/.note" > "$HOME/.note.tmp" && mv "$HOME/.note.tmp" "$HOME/.note"
 } # delete line containing reg exp
 
 # Watch CPU clocks

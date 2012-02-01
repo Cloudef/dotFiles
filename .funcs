@@ -99,7 +99,7 @@ man2pdf() {
 ## For each project create own folder and put the PKGBUILD there ##
 ###################################################################
 function pkg() {
-   if [[ ! "$1" ]]; then
+   if [ ! "$1" ]; then
       echo "Usage : pkg [PKGBUILD]"
       return
    fi
@@ -116,7 +116,7 @@ function pkg() {
       return
    fi
    pushd "$HOME/PKGBUILD/$1" >> /dev/null
-   if [[ "$2" ]]; then
+   if [ "$2" ]; then
       shift
       makepkg "$@"
    else
@@ -136,7 +136,7 @@ function quote() {
 ## CLIcandy from commandlinefu ##
 #################################
 function fu() {
-   if [[ ! "$1" ]]; then
+   if [ ! "$1" ]; then
       echo "Usage: fu [query]"
       return
    fi
@@ -199,7 +199,7 @@ function mktbz() {
 #################################################
 function videoencodehd()
 {
-   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
+   if [ ! -f "$1" ] || [ ! "$1" ]; then
       echo "'$1' is not a valid file"
       return
    fi
@@ -211,7 +211,7 @@ function videoencodehd()
 ################################
 function videoencodesd()
 {
-   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
+   if [ ! -f "$1" ] || [ ! "$1" ]; then
       echo "'$1' is not a valid file"
       return
    fi
@@ -222,7 +222,7 @@ function videoencodesd()
 ## VID >> OGV ##
 ################
 function vid2ogv() {
-    if [ ! -f "$1" ] || [[ ! "$1" ]]; then
+    if [ ! -f "$1" ] || [ ! "$1" ]; then
       echo "'$1' is not a valid file"
       return
    fi
@@ -233,7 +233,7 @@ function vid2ogv() {
 ## FLV >> MKV ##
 ################
 function flv2mkv() {
-   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
+   if [ ! -f "$1" ] || [ ! "$1" ]; then
       echo "'$1' is not a valid file"
       return
    fi
@@ -244,7 +244,7 @@ function flv2mkv() {
 ## FLV >> MP3 ##
 ################
 function flv2mp3() {
-   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
+   if [ ! -f "$1" ] || [ ! "$1" ]; then
       echo "'$1' is not a valid file"
       return
    fi
@@ -256,7 +256,7 @@ function flv2mp3() {
 ################
 function mid2ogg()
 {
-   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
+   if [ ! -f "$1" ] || [ ! "$1" ]; then
       echo "'$1' is not a valid file"
       return
    fi
@@ -268,7 +268,7 @@ function mid2ogg()
 ################
 function mid2wav()
 {
-   if [ ! -f "$1" ] || [[ ! "$1" ]]; then
+   if [ ! -f "$1" ] || [ ! "$1" ]; then
       echo "'$1' is not a valid file"
       return
    fi
@@ -301,7 +301,7 @@ qrdecode() {
 ############################
 ## BGM music with mplayer ##
 ############################
-function bgmplayer(){
+function bgmplayer() {
    mplayer "$1" -novideo &>/dev/null </dev/null &
 }
 
@@ -309,19 +309,19 @@ function bgmplayer(){
 ## Getting undefined references?  ##
 ## Grep your libs for symbols     ##
 ####################################
-function greplib(){
-if [[ ! "$1" ]]; then
-   echo "Usage : greplib [symbol] (lookup path)"
-   return
-fi
+function greplib() {
+   if [ ! "$1" ]; then
+      echo "Usage : greplib [symbol] (lookup path)"
+      return
+   fi
 
-if [[ ! "$2" ]]; then
-   nm -a -o /usr/lib/*.so 2> /dev/null | grep $1
-   nm -a -o /usr/lib/*.a  2> /dev/null | grep $1
-else
-   nm -a -o $2/*.so 2> /dev/null | grep $1
-   nm -a -o $2/*.a  2> /dev/null | grep $1
-fi
+   if [ ! "$2" ]; then
+      nm -a -o /usr/lib/*.so 2> /dev/null | grep $1
+      nm -a -o /usr/lib/*.a  2> /dev/null | grep $1
+   else
+      nm -a -o $2/*.so 2> /dev/null | grep $1
+      nm -a -o $2/*.a  2> /dev/null | grep $1
+   fi
 }
 
 ###########################################
@@ -344,7 +344,7 @@ finlandtime() {
 ## Remux MKV to use only 1 audio && subtible track ##
 #####################################################
 remux() {
-   if [[ ! "$1" ]] || [[ ! "$2" ]] || [[ ! "$3" ]] || [[ ! "$4" ]]; then
+   if [ ! "$1" ] || [ ! "$2" ] || [ ! "$3" ] || [ ! "$4" ]; then
       echo "Usage : remux [output] [input] [audio track to keep] [subtible track to keep]"
       return
    fi
@@ -356,13 +356,11 @@ remux() {
 #####################################################################
 bremux() {
    FILTER="*.mkv"
-   if [[ ! "$1" ]] || [[ ! "$2" ]]; then
+   if [ ! "$1" ] || [ ! "$2" ]; then
       echo "Usage : bremux [audio track] [subtible track] [filter]"
       return
    fi
-   if [[ "$3" ]]; then
-      FILTER="$3"
-   fi
+   [ "$3" ] && FILTER="$3"
    for i in $FILTER
    do
       remux "[REMUX]$i" "$i" "$1" "$2"
@@ -373,7 +371,7 @@ bremux() {
 ## Print MKV info, use this to find out the track numbers ##
 ############################################################
 mkv() {
-   if [[ ! "$1" ]]; then
+   if [ ! "$1" ]; then
       echo "Usage : mkv [file]"
       return
    fi
@@ -384,7 +382,7 @@ mkv() {
 ## Compress && Strip elf binary ##
 ##################################
 elfcompress() {
-   if [[ ! "$1" ]]; then
+   if [ ! "$1" ]; then
       echo "Usage : elfcompress [binary]"
       return
    fi
@@ -462,14 +460,12 @@ function screencaplow() {
 ## Encode GLC captured file ##
 ##############################
 glc-encode() {
-   if [[ ! "$1" ]] || [[ ! "$2" ]] || [[ ! "$3" ]] || [[ ! "$4" ]]; then
+   if [ ! "$1" ] || [ ! "$2" ] || [ ! "$3" ] || [ ! "$4" ]; then
       echo "Usage : glc-encode [input] [audio bitrate] [video bitrate] [output]"
       return
    fi
 
-   if [[ "$2" != "0" ]]; then
-      glc-play "$1" -o - -a 1 | ffmpeg -i pipe: -ab $2 /tmp/audio.mp4
-   fi
+   [[ "$2" == "0" ]] || glc-play "$1" -o - -a 1 | ffmpeg -i pipe: -ab $2 /tmp/audio.mp4
    if [ -f /tmp/audio.mp4 ]; then
       glc-play "$1" -o - -y 1 | ffmpeg -i pipe: -i /tmp/audio.mp4 -acodec copy -b $3 "$4"
       rm /tmp/audio.mp4
@@ -534,7 +530,7 @@ memleak()
 ##################################################
 wiisplit()
 {
-   if [[ ! "$1" ]]; then
+   if [ ! "$1" ]; then
       echo "Usage: wiisplit [ISO file]"
       return
    fi
@@ -554,7 +550,7 @@ ANIME_SEED="/media/Anime/Seed"
 ################
 anime()
 {
-   if [[ ! "$1" ]] || [[ ! "$2" ]]; then
+   if [ ! "$1" ] || [ ! "$2" ]; then
       echo "Usage:"
       echo "anime   [title] [episode] - Watch"
       echo "animec  [title]           - Check"
@@ -565,16 +561,10 @@ anime()
    fi
 
    local MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*\[*\].*$3" -print -quit`
-   if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*.*$3" -print -quit`
-   fi
-   if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHED" -type f -iname "*$1*$2*\[*\].*$3" -print -quit`
-   fi
-   if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHED" -type f -iname "*$1*$2*.*$3" -print -quit`
-   fi
-   if [[ ! "$MATCH" ]]; then
+   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*.*$3" -print -quit`
+   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHED"  -type f -iname "*$1*$2*\[*\].*$3" -print -quit`
+   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHED"  -type f -iname "*$1*$2*.*$3" -print -quit`
+   if [ ! "$MATCH" ]; then
       echo "No match.."
       return
    fi
@@ -588,7 +578,7 @@ anime()
 ################
 animec()
 {
-   if [[ ! "$1" ]]; then
+   if [ ! "$1" ]; then
       echo "Usage: animec [title]"
       return
    fi
@@ -606,7 +596,7 @@ animec()
 #############################
 mvanime()
 {
-   if [[ ! "$1" ]] || [[ ! "$2" ]]; then
+   if [ ! "$1" ] || [ ! "$2" ]; then
       echo "Usage: mvanime [title] [title]"
       return
    fi
@@ -615,25 +605,19 @@ mvanime()
    local MATCH=`find "$ANIME_WATCHING" -iname "*$2*.*" -print -quit`
 
    # try without ext
-   if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHING" -iname "*$2*" -print -quit`
-   fi
+   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHING" -iname "*$2*" -print -quit`
 
    # same for WATCHED
-   if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHED" -iname "*$2*.*" -print -quit`
-   fi
-   if [[ ! "$MATCH" ]]; then
-      MATCH=`find "$ANIME_WATCHED" -iname "*$2*" -print -quit`
-   fi
-   if [[ ! "$MATCH" ]]; then
+   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHED"  -iname "*$2*.*" -print -quit`
+
+   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHED"  -iname "*$2*" -print -quit`
+
+   if [ ! "$MATCH" ]; then
       echo "destination not found, check with animec"
       return
    fi
 
-   if [ -f "$MATCH" ]; then
-      MATCH=`dirname "$MATCH"`
-   fi
+   [ -f "$MATCH" ] && MATCH=`dirname "$MATCH"`
    find "$ANIME_SEED" -maxdepth 1 -type f -iname "*$1*.*" -print0 | xargs -0 -r mv -v --target-directory="$MATCH"
 }
 
@@ -642,7 +626,7 @@ mvanime()
 ################################
 mkanime()
 {
-   if [[ ! "$1" ]]; then
+   if [ ! "$1" ]; then
       echo "Usage: mkanime [title]"
       return
    fi
@@ -656,7 +640,7 @@ mkanime()
 ############################
 rsanime()
 {
-   if [[ ! "$1" ]]; then
+   if [ ! "$1" ]; then
       echo "Usage: rsanime [title]"
       return
    fi

@@ -73,13 +73,13 @@ function git_cprompt() {
 ################################
 ## Pre execution implentation ##
 ################################
-preexec () { :; }
-preexec_invoke_exec () {
-    [ -n "$COMP_LINE" ] && return  # do nothing if completing
-    export RUN_COMMAND=`history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//g"`;
-    preexec "$RUN_COMMAND"
-}
-trap 'preexec_invoke_exec' DEBUG
+# preexec () { :; }
+# preexec_invoke_exec () {
+#     [ -n "$COMP_LINE" ] && return  # do nothing if completing
+#     export RUN_COMMAND=`history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//g"`;
+#     preexec "$RUN_COMMAND"
+# }
+# trap 'preexec_invoke_exec' DEBUG
 
 ############
 ## Prompt ##
@@ -120,7 +120,7 @@ function prompt() {
       echo "${info}"
    fi
 
-   if [[ "$PROMPT_TITLE" ]]; then
+   if [ "$PROMPT_TITLE" ]; then
       PS1="\[\e[1;35m\]$PROMPT_TITLE\[\e[1;31m\] >>\[\e[0m\] "
    else
       PS1="\[\e[1;31m\]>>\[\e[0m\] "
@@ -144,12 +144,14 @@ function welcome() {
    # for i in L i n u x; do echo -n $i; sleep .05; done
    # echo -n "${NORMAL}"
 
-   if [[ "$tmux" ]]
+   if [ "$tmux" ]
    then
       echo ""
       echo "${ORANGE}TMUX${GREEN}"
       tmux list-sessions
    fi
+
+   [[ "$0" == "welcome" ]] && echo "" # ZSH
 }
 
 ###########################
@@ -171,4 +173,5 @@ function kingbash.fn() {
    READLINE_LINE=`echo "$OUTPUT" | head -n -1`
    echo -ne "\r\e[2K";
 }
-[[ $- =~ i ]] && bind -x '"\t":kingbash.fn'
+[[ "$0" == "bash" ]] && bind -x '"\t":kingbash.fn'
+
