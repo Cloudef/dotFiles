@@ -8,7 +8,7 @@ ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="crunchplus"
 
 # Set to this to use case-sensitive completion
-CASE_SENSITIVE="true"
+CASE_SENSITIVE="false"
 
 # Comment this out to disable weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
