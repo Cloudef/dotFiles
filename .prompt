@@ -133,7 +133,7 @@ function prompt() {
 function welcome() {
    local arch="Arch"
    local nix="Linux"
-   local tmux=`ps -a | grep tmux`
+   local tmux="$(ps -a | grep tmux)"
    clear
    echo "${BOLD}${CYAN}${arch}${WHITE}${nix}${NORMAL}"
 
@@ -150,16 +150,14 @@ function welcome() {
       echo "${ORANGE}TMUX${GREEN}"
       tmux list-sessions
    fi
-
-   [[ "$0" == "welcome" ]] && echo "" # ZSH
 }
 
 ###########################
 ## Change terminal title ##
 ##########################
 function tname(){
-   echo -ne "\033]0;${@:-$TERM}\007";
-   PROMPT_TITLE=$1
+   echo -ne "\033]0;${@:-$PWD}\007";
+   PROMPT_TITLE=${@:-""}
 }
 
 ###########################
