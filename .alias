@@ -19,8 +19,8 @@ alias ctest='(x=`tput op` y=`printf %81s`;for i in {0..256};do o=00$i;echo -e ${
 # Directory aliases
 alias dev="cd /media/Storage/Dev/"
 alias cdw="cd /media/Storage/Dev/VCS/dwm"
-alias projekti="cd /media/Storage/Dev/Projektit/Projekti/"
-alias ogl="cd /media/Storage/Dev/Projektit/CFrameWork"
+alias projekti="cd /media/Storage/Dev/projektit/Projekti/"
+alias ogl="cd /media/Storage/Dev/projektit/CFrameWork"
 alias projektit="cd /media/Storage/Dev/projektit"
 
 # Power outages (-_-;)うっ・・・
