@@ -1,0 +1,15 @@
+# zathurarc
+
+# Autostart
+set adjust_open width
+recolor 1
+
+# Status text
+default_text "＼(^o^)オハヨウ！！！"
+
+# Key bindings
+map <PageUp> navigate previous
+map <PageDown> navigate next
+
+map + zoom in
+map - zoom out
