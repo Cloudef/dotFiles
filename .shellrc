@@ -114,14 +114,14 @@ fi
 ################
 ## TTY COLORS ##
 ################
-if [ "$TERM" = "linux" ]; then
-   local colors=($(cat "$HOME/.Xcolors/$TTY_THEME"| sed 's/#.*//'))
-   for index in ${!colors[@]}
-   do
-          printf '\e]P%x%s' $index ${colors[$index]}
-   done
-   clear
-fi
+# if [[ "$TERM" == "linux" ]]; then
+#    colors=($(sed 's/#.*//' "$HOME/.Xcolors/$TTY_THEME"))
+#    for index in ${!colors[@]}
+#    do
+#           printf '\e]P%x%s' $index ${colors[$index]}
+#    done
+#    clear
+# fi
 
 ###############
 ## LS COLORS ##

@@ -44,7 +44,9 @@ precmd() {
    # Check if we have custom prompt title
    [ "$PROMPT_TITLE" ] && CRUNCH_CUSTOM="%{$fg[red]%}$PROMPT_TITLE >> " \
                        || CRUNCH_CUSTOM=""
-   [ "$PROMPT_TITLE" ] || echo -ne "\033]0;${PWD}\007"
+   if [[ "$TERM" != "linux" ]]; then
+      [ "$PROMPT_TITLE" ] || echo -ne "\033]0;${PWD}\007"
+   fi
    CRUNCH_DIR_="$CRUNCH_DIR_COLOR$PWD$(git_prompt_info | sed -e 's/[{}%]//g')"
 
    # Put it all together
