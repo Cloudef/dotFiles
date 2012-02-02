@@ -72,7 +72,8 @@ ionice -c 3 -p $$
 #################
 [[ "$0" == "$HOME/.shellrc" ]] && 0="zsh" # Ugly hack
 if [[ "$0" == "zsh" ]];then
-   unsetopt correct_all
+   unsetopt correct_all # I can't see why people like this
+                        # Stop typing wrong silly people
    bindkey -v # Vim bindings
    bindkey "\e[1~" beginning-of-line # Home
    bindkey "\e[4~" end-of-line # End
@@ -102,6 +103,7 @@ if [[ "$0" == "zsh" ]];then
    bindkey "^[[1;5D" backward-word
    bindkey "^[[1;5C" forward-word
    bindkey "\e[3~" delete-char # Del
+   bindkey "^I" menu-complete # Why press tab twice?
 fi
 
 ##################
