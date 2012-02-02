@@ -14,7 +14,7 @@ init()
 check_ssh()
 {
    LASTSSH="$OUTSSH"
-   OUTSSH="$(cat "$AUTH_FILE" | tail -n1 | grep -o "sshd\[.*\]:.*")"
+   OUTSSH="$(tail "$AUTH_FILE" -n1 | grep -o "sshd\[.*\]:.*")"
 
    # notify
    if [[ "$OUTSSH" ]]; then
@@ -28,7 +28,7 @@ check_ssh()
 check_shellinabox()
 {
    LASTSHELL="$OUTSHELL"
-   OUTSHELL="$(cat "$AUTH_FILE" | tail -n1 | grep -o "session opened for user .* by SHELLINABOX")"
+   OUTSHELL="$(tail "$AUTH_FILE" -n1 | grep -o "session opened for user .* by SHELLINABOX")"
 
    # notify
    if [[ "$OUTSHELL" ]]; then
