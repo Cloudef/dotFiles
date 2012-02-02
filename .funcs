@@ -140,7 +140,7 @@ function fu() {
       echo "Usage: fu [query]"
       return
    fi
-   URL=`echo "$@" | perl -MURI::Escape -ne 'chomp;print uri_escape($_)'`
+   URL="$(echo "$@" | perl -MURI::Escape -ne 'chomp;print uri_escape($_)')"
    curl -s "http://www.commandlinefu.com/commands/matching/$URL/$(echo -n "$@" | openssl base64)/plaintext" | grep -v "^# commandlinefu"
 }
 
@@ -406,11 +406,11 @@ elfcompress() {
 ############################
 function screencap() {
    local fd="${1-capture.mkv}"
-   local WININFO="`xwininfo`"
-   local INRESW=`echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}'`
-   local INRESH=`echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}'`
-   local INPOSX=`echo "$WININFO" | grep 'Absolute upper-left X:'  | awk '{print $4;}'`
-   local INPOSY=`echo "$WININFO" | grep 'Absolute upper-left Y:'  | awk '{print $4;}'`
+   local WININFO="$(xwininfo)"
+   local INRESW="$(echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}')"
+   local INRESH="$(echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}')"
+   local INPOSX="$(echo "$WININFO" | grep 'Absolute upper-left X:'  | awk '{print $4;}')"
+   local INPOSY="$(echo "$WININFO" | grep 'Absolute upper-left Y:'  | awk '{print $4;}')"
 
    local INRES="${INRESW}x${INRESH}"
    local INPOS="${INPOSX},${INPOSY}"
@@ -434,11 +434,11 @@ function screencap() {
 #########################################
 function screencaplow() {
    local fd="${1-capture.avi}"
-   local WININFO="`xwininfo`"
-   local INRESW=`echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}'`
-   local INRESH=`echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}'`
-   local INPOSX=`echo "$WININFO" | grep 'Absolute upper-left X:'  | awk '{print $4;}'`
-   local INPOSY=`echo "$WININFO" | grep 'Absolute upper-left Y:'  | awk '{print $4;}'`
+   local WININFO="$(xwininfo)"
+   local INRESW="$(echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}')"
+   local INRESH="$(echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}')"
+   local INPOSX="$(echo "$WININFO" | grep 'Absolute upper-left X:'  | awk '{print $4;}')"
+   local INPOSY="$(echo "$WININFO" | grep 'Absolute upper-left Y:'  | awk '{print $4;}')"
 
    local INRES="${INRESW}x${INRESH}"
    local INPOS="${INPOSX},${INPOSY}"
@@ -480,11 +480,11 @@ glc-encode() {
 ################################
 source "${HOME}/passwd/streamkey"
 streamjustin() {
-   local WININFO="`xwininfo`"
-   local INRESW=`echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}'`
-   local INRESH=`echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}'`
-   local INPOSX=`echo "$WININFO" | grep 'Absolute upper-left X:'  | awk '{print $4;}'`
-   local INPOSY=`echo "$WININFO" | grep 'Absolute upper-left Y:'  | awk '{print $4;}'`
+   local WININFO="$(xwininfo)"
+   local INRESW="$(echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}')"
+   local INRESH="$(echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}')"
+   local INPOSX="$(echo "$WININFO" | grep 'Absolute upper-left X:'  | awk '{print $4;}')"
+   local INPOSY="$(echo "$WININFO" | grep 'Absolute upper-left Y:'  | awk '{print $4;}')"
 
    local INRES="${INRESW}x${INRESH}"
    local INPOS="${INPOSX},${INPOSY}"
@@ -560,10 +560,10 @@ anime()
       return
    fi
 
-   local MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*\[*\].*$3" -print -quit`
-   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHING" -type f -iname "*$1*$2*.*$3" -print -quit`
-   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHED"  -type f -iname "*$1*$2*\[*\].*$3" -print -quit`
-   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHED"  -type f -iname "*$1*$2*.*$3" -print -quit`
+   local MATCH="$(find "$ANIME_WATCHING" -type f -iname "*$1*$2*\[*\].*$3" -print -quit)"
+   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHING" -type f -iname "*$1*$2*.*$3" -print -quit)"
+   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHED"  -type f -iname "*$1*$2*\[*\].*$3" -print -quit)"
+   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHED"  -type f -iname "*$1*$2*.*$3" -print -quit)"
    if [ ! "$MATCH" ]; then
       echo "No match.."
       return
@@ -602,22 +602,22 @@ mvanime()
    fi
 
    # prefer files first
-   local MATCH=`find "$ANIME_WATCHING" -iname "*$2*.*" -print -quit`
+   local MATCH="$(find "$ANIME_WATCHING" -iname "*$2*.*" -print -quit)"
 
    # try without ext
-   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHING" -iname "*$2*" -print -quit`
+   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHING" -iname "*$2*" -print -quit)"
 
    # same for WATCHED
-   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHED"  -iname "*$2*.*" -print -quit`
+   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHED"  -iname "*$2*.*" -print -quit)"
 
-   [ "$MATCH" ] || MATCH=`find "$ANIME_WATCHED"  -iname "*$2*" -print -quit`
+   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHED"  -iname "*$2*" -print -quit)"
 
    if [ ! "$MATCH" ]; then
       echo "destination not found, check with animec"
       return
    fi
 
-   [ -f "$MATCH" ] && MATCH=`dirname "$MATCH"`
+   [ -f "$MATCH" ] && MATCH="$(dirname "$MATCH")"
    find "$ANIME_SEED" -maxdepth 1 -type f -iname "*$1*.*" -print0 | xargs -0 -r mv -v --target-directory="$MATCH"
 }
 

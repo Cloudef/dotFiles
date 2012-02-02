@@ -16,128 +16,138 @@ USE_MACOPIX=1
 MACOPIX_ANIM=1
 MACOPIX_LOOPS=-1
 
-macopix_play()
-{
-   if [ $USE_MACOPIX == 1 ]; then
-      # start the dance
-      macopix --anim $MACOPIX_ANIM --anim-loop $MACOPIX_LOOPS
-   fi
-}
-
-macopix_stop()
-{
-   if [ $USE_MACOPIX == 1 ]; then
-      # stop the dance
-      macopix --anim-loop 0
-   fi
-}
-
-CURCOVER=""
-TRACK="`deadbeef --nowplaying "%t"`"
-if [ "$TRACK" = "nothing" ]; then
-	if [ -f ~/.config/deadbeef/nowPlaying ]; then
-		rm ~/.config/deadbeef/nowPlaying
-	fi
-
-   # deadbeef closed
-   macopix_stop
-	exit
-fi
-
-if [ ! -f ~/.config/deadbeef/nowPlaying ];then
-   # no file yet, this should be called only once in deadbeef's lifetime
-   macopix_play
-fi
-
-if [ -f ~/.config/deadbeef/nowPlaying ]; then
-	LTRACK="`cat ~/.config/deadbeef/nowPlaying | head -n1`"
-	LALBUM="`cat ~/.config/deadbeef/nowPlaying | head -n3 | tail -n1`"
-	CURCOVER="`cat ~/.config/deadbeef/nowPlaying | head -n6 | tail -n1`"
-fi
-
-ARTCACHE=~/.cache/deadbeef/covers
-if [ ! "$TRACK" = "$LTRACK" ]; then
-	ARTIST="`deadbeef --nowplaying "%a"`"
-	ALBUM="`deadbeef --nowplaying "%b"`"
-	YEAR="`deadbeef --nowplaying "%y"`"
-
-   # track changed
-   macopix_play # Hopefully it's fixed now
-else
-	ARTIST="`cat ~/.config/deadbeef/nowPlaying | head -n2 | tail -n1`"
-	ALBUM=$LALBUM
-	YEAR="`cat ~/.config/deadbeef/nowPlaying | head -n4 | tail -n1`"
-   LWTIME="`cat ~/.config/deadbeef/nowPlaying | head -n5 | tail -n1`"
-   LPERCENT="`cat ~/.config/deadbeef/nowPlaying | head -n7 | tail -n1`"
-   LSTOP="`cat ~/.config/deadbeef/nowPlaying | head -n8 | tail -n1`"
-fi
-ELAPSED="`deadbeef --nowplaying "%e"`"
-TIME="`deadbeef --nowplaying "%l"`"
+# Coverart settings
 CONKYDIR="$HOME/.config/conky"
 COVER="$CONKYDIR/conkyCover.png"
+ARTCACHE="$HOME/.cache/deadbeef/covers"
+NPFILE="$HOME/.config/deadbeef/nowPlaying"
 
-if [ ! "$ALBUM" = "$LALBUM" ]; then
-	FALBUM="`echo \"${ALBUM}\" | sed \"s/\\//_/g\"`" # Convert all '/' to '_'
-	CURCOVER="`find ${ARTCACHE} -name \"${FALBUM}.jpg\" | head -n 1`"
-	echo $FALBUM
-	if [ ! -f "$CURCOVER" ]; then
-	    cp $CONKYDIR//base.png "$COVER"
-	else
-	    cp "$CURCOVER" "$COVER"
+macopix_play() {
+   # start the dance
+   [ $USE_MACOPIX == 1 ] && macopix --anim $MACOPIX_ANIM --anim-loop $MACOPIX_LOOPS
+}
 
-	    ASPECT=$((($(identify -format %w "$COVER") - $(identify -format %h "$COVER"))/86))
+macopix_stop() {
+   # stop the dance
+   [ $USE_MACOPIX == 1 ] && macopix --anim-loop 0
+}
 
-	    if [ $ASPECT -lt -30 ]; then
-		   convert "$COVER"  -thumbnail 86x300 "$COVER"
-		   convert "$COVER" -crop 86x86+0+86 +repage "$COVER"
-	    else
-		   convert "$COVER"  -thumbnail 300x86 "$COVER"
-		   if [ $ASPECT -lt 30 ]; then
-			   convert "$COVER" -crop 86x86+0+0 +repage "$COVER"
-		   else
-			   convert "$COVER" -crop 86x86+86+0 +repage "$COVER"
-		   fi
-	    fi
-	fi
-fi
+albumart_do() {
+   local CURCOVER=
+   local LTRACK=
+   local LALBUM=
+   local ARTIST=
+   local ALBUM=
+   local YEAR=
+   local LWTIME=
+   local LPERCENT=
+   local LSTOP=
+   local STOP=
 
-WTIME="$ELAPSED/$TIME"
+   local TRACK="$(deadbeef --nowplaying "%t")"
+   if [[ "$TRACK" == "nothing" ]]; then
+      [ -f "$NPFILE" ] && rm "$NPFILE"
 
-if [ ! "$WTIME" = "$LWTIME" ]; then
-   eMINUTES="`echo \"$ELAPSED\"|cut -d":" -f1`"
-   eSECONDS="`echo \"$ELAPSED\"|cut -d":" -f2`"
-   eMINUTES=$(expr $eMINUTES \* 60 )
-   eSECONDS=$(expr $eMINUTES + $eSECONDS )
-
-   tMINUTES="`echo \"$TIME\"|cut -d":" -f1`"
-   tSECONDS="`echo \"$TIME\"|cut -d":" -f2`"
-   tMINUTES=$(expr $tMINUTES \* 60 )
-   tSECONDS=$(expr $tMINUTES + $tSECONDS )
-
-   PERCENT=$(expr \( $eSECONDS \* 100 \) / $tSECONDS )
-
-   STOP=0
-else
-   PERCENT=$LPERCENT
-   STOP=1
-fi
-
-if [ ! "$STOP" = "$LSTOP" ]; then
-   if [ $STOP == 1 ]; then
-      # Stopped
+      # deadbeef closed
       macopix_stop
-   else
-      # Started
-      macopix_play
+      exit
    fi
-fi
 
-echo "$TRACK"        > ~/.config/deadbeef/nowPlaying
-echo "$ARTIST"      >> ~/.config/deadbeef/nowPlaying
-echo "$ALBUM"       >> ~/.config/deadbeef/nowPlaying
-echo "$YEAR"        >> ~/.config/deadbeef/nowPlaying
-echo "$WTIME"       >> ~/.config/deadbeef/nowPlaying
-echo "$CURCOVER"    >> ~/.config/deadbeef/nowPlaying
-echo "$PERCENT"     >> ~/.config/deadbeef/nowPlaying
-echo "$STOP"        >> ~/.config/deadbeef/nowPlaying
+   # no file yet, this should be called only once in deadbeef's lifetime
+   [ -f "$NPFILE" ] || macopix_play
+
+   # query old information
+   if [ -f "$NPFILE" ]; then
+      LTRACK="$(head "$NPFILE" -n1)"
+      LALBUM="$(head "$NPFILE" -n3     | tail -n1)"
+      CURCOVER="$(head "$NPFILE" -n6   | tail -n1)"
+   fi
+
+   echo "$TRACK" "$LTRACK"
+   if [[ "$TRACK" != "$LTRACK" ]]; then
+      ARTIST="$(deadbeef --nowplaying "%a")"
+      ALBUM="$(deadbeef --nowplaying "%b")"
+      YEAR="$(deadbeef --nowplaying "%y")"
+
+      # track changed
+      macopix_play # Hopefully it's fixed now
+   else
+      ARTIST="$(head "$NPFILE" -n2     | tail -n1)"
+      ALBUM=$LALBUM
+      YEAR="$(head "$NPFILE" -n4       | tail -n1)"
+      LWTIME="$(head "$NPFILE" -n5     | tail -n1)"
+      LPERCENT="$(head "$NPFILE" -n7   | tail -n1)"
+      LSTOP="$(head "$NPFILE" -n8      | tail -n1)"
+   fi
+
+   local ELAPSED="$(deadbeef --nowplaying "%e")"
+   local TIME="$(deadbeef --nowplaying "%l")"
+
+   # album changed
+   if [[ "$ALBUM" != "$LALBUM" ]]; then
+      FALBUM="$(echo "${ALBUM}" | sed "s/\\//_/g")" # Convert all '/' to '_'
+      CURCOVER="$(find "${ARTCACHE}" -name "${FALBUM}.jpg" | head -n 1)"
+      if [ ! -f "$CURCOVER" ]; then
+         cp "$CONKYDIR/base.png" "$COVER"
+      else
+         cp "$CURCOVER" "$COVER"
+
+         ASPECT=$((($(identify -format %w "$COVER") - $(identify -format %h "$COVER"))/86))
+         if [[ $ASPECT -lt -30 ]]; then
+            convert "$COVER"  -thumbnail 86x300 "$COVER"
+            convert "$COVER" -crop 86x86+0+86 +repage "$COVER"
+         else
+            convert "$COVER"  -thumbnail 300x86 "$COVER"
+            if [[ $ASPECT -lt 30 ]]; then
+               convert "$COVER" -crop 86x86+0+0 +repage "$COVER"
+            else
+               convert "$COVER" -crop 86x86+86+0 +repage "$COVER"
+            fi
+         fi
+      fi
+   fi
+
+   local WTIME="$ELAPSED/$TIME"
+
+   # time changed
+   if [[ "$WTIME" != "$LWTIME" ]]; then
+      eMINUTES="$(echo "$ELAPSED"|cut -d":" -f1)"
+      eSECONDS="$(echo "$ELAPSED"|cut -d":" -f2)"
+      eMINUTES=$(echo "$eMINUTES * 60" | bc)
+      eSECONDS=$(echo "$eMINUTES + $eSECONDS" | bc)
+
+      tMINUTES="$(echo "$TIME"|cut -d":" -f1)"
+      tSECONDS="$(echo "$TIME"|cut -d":" -f2)"
+      tMINUTES=$(echo "$tMINUTES * 60" | bc)
+      tSECONDS=$(echo "$tMINUTES + $tSECONDS" | bc)
+
+      PERCENT=$(echo "($eSECONDS * 100) / $tSECONDS" | bc)
+      STOP=0
+   else
+      PERCENT=$LPERCENT
+      STOP=1
+   fi
+
+   # state changed
+   if [[ "$STOP" != "$LSTOP" ]]; then
+      if [[ $STOP -eq 1 ]]; then
+         # Stopped
+         macopix_stop
+      else
+         # Started
+         macopix_play
+      fi
+   fi
+
+   echo "$TRACK"        > "$NPFILE"
+   echo "$ARTIST"      >> "$NPFILE"
+   echo "$ALBUM"       >> "$NPFILE"
+   echo "$YEAR"        >> "$NPFILE"
+   echo "$WTIME"       >> "$NPFILE"
+   echo "$CURCOVER"    >> "$NPFILE"
+   echo "$PERCENT"     >> "$NPFILE"
+   echo "$STOP"        >> "$NPFILE"
+}
+
+albumart_do
 exit

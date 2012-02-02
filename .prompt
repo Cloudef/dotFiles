@@ -85,8 +85,8 @@ function git_cprompt() {
 ## Prompt ##
 ############
 function prompt() {
-   local user=`whoami`
-   local host=$HOSTNAME
+   local user="$(whoami)"
+   local host="$HOSTNAME"
 
    local gitNum=""
    local cgit="$(git_cprompt)"
