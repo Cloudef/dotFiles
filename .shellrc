@@ -72,7 +72,7 @@ ionice -c 3 -p $$
 #################
 [[ "$0" == "$HOME/.shellrc" ]] && 0="zsh" # Ugly hack
 if [[ "$0" == "zsh" ]];then
-   unsetopt correct
+   unsetopt correct_all
    bindkey -v # Vim bindings
    bindkey "\e[1~" beginning-of-line # Home
    bindkey "\e[4~" end-of-line # End
