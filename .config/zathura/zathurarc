@@ -4,12 +4,15 @@
 set adjust_open width
 recolor 1
 
-# Status text
-default_text "＼(^o^)オハヨウ！！！"
-
 # Key bindings
-map <PageUp> navigate previous
+map <PageUp>   navigate previous
 map <PageDown> navigate next
+
+map <Up>     navigate_index up       index
+map <Down>   navigate_index down     index
+map <Right>  navigate_index expand   index
+map <Left>   navigate_index collapse index
+map <Return> navigate_index select   index
 
 map + zoom in
 map - zoom out
