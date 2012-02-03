@@ -15,7 +15,7 @@ setxkbmap fi
 setxkbmap -option terminate:ctrl_alt_bksp
 xrdb -merge $HOME/.Xresources
 
-# IBUS
+# UIM
 export GTK_IM_MODULE='uim'
 export XMODIFIERS=@im='uim'
 export QT_IM_MODULE='uim'
