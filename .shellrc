@@ -10,7 +10,7 @@ export BROWSER="opera"
 
 # GLIB
 export G_BROKEN_FILENAMES=1
-export G_FILENAME_ENCODING=@locale
+export G_FILENAME_ENCODING="UTF-8"
 
 # ALSA
 export SDL_AUDIODRIVER="alsa"
