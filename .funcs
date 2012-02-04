@@ -647,3 +647,19 @@ rsanime()
 
    find "$ANIME_WATCHING" -maxdepth 1 -type d -iname "*$1*" -print0 | xargs -0 -r mv -v --target-directory="$ANIME_WATCHED"
 }
+
+#############################
+## Japanese text to speech ##
+#############################
+say() { mplayer -really-quiet "http://translate.google.com/translate_tts?ie=UTF-8&tl=JA&q=$@" &> /dev/null }
+
+######################################
+## Crappy google translate [JA->EN] ##
+######################################
+translate() { curl -s -A "Mozilla" "http://translate.google.com/translate_a/t?client=t&ie=UTF-8&text=$@&sl=ja&tl=en" | awk -F'"' '{print $2}' }
+
+##################
+## JA -> ROMAJI ##
+## Needs KAKASI ##
+##################
+romaji() { echo "$@" | iconv -f utf8 -t eucjp | kakasi -i euc -w | kakasi -i euc -Ha -Ka -Ja -Ea -ka }
