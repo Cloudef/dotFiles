@@ -15,6 +15,7 @@ alias :q="exit"
 alias dm="man dwb"
 alias vo="cat $HOME/.opera/keyboard/vimperopera.ini | grep $@"
 alias ctest='(x=`tput op` y=`printf %81s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
+alias open='xdg-open'
 
 # Directory aliases
 alias dev="cd /media/Storage/Dev/"
@@ -30,7 +31,7 @@ alias dataloss="grep ^Dirty /proc/meminfo"
 alias ai="packer-color"
 alias as="packer-color -Ss"
 alias au="packer-color -Su --noconfirm"
-alias ar="sudo pacman-color -Rcs"
+alias ar="sudo pacman-color -Rcs" # Note: ar is also a binary, use /usr/bin/ar if needed
 
 # Clean garbage
 alias cclean='rm -rf ~/.adobe/* ~/.macromedia/* ~/.icedteaplugin/*'
