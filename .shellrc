@@ -95,6 +95,7 @@ if [[ "$0" == "zsh" ]];then
    bindkey "\eOF"    end-of-line
    bindkey "^I"      menu-complete        # Why press tab twice?
    bindkey "^Z"      undo                 # Undo
+   bindkey '^R' history-incremental-search-backward
 fi
 
 ##################

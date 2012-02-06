@@ -61,9 +61,9 @@ URXvt*mouseWheelScrollPage:false
 !}}}
 
 ! URxvt Fonts {{{
-URxvt.keysym.C-plus: command:\033]50;xft:DejaVu Sans Mono:pixelsize=16,xft:IPAMonaGothic:antialias=false,xft:Symbola,xft:LastResort\007
-URxvt.keysym.C-minus: command:\033]50;xft:erusfont,xft:IPAMonaGothic:antialias=false,xft:Symbola,xft:LastResort\007
-URxvt.font:xft:erusfont,xft:IPAMonaGothic:antialias=false,xft:Symbola,xft:LastResort
+URxvt.keysym.C-plus: command:\033]50;xft:DejaVu Sans Mono:pixelsize=16,xft:IPAMonaGothic:antialias=false,xft:Symbola\007
+URxvt.keysym.C-minus: command:\033]50;xft:erusfont,xft:IPAMonaGothic:antialias=false,xft:Symbola\007
+URxvt.font:xft:erusfont,xft:IPAMonaGothic:antialias=false,xft:Symbola
 !}}}
 
 ! URxvt Color Settings {{{

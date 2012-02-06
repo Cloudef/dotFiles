@@ -18,13 +18,13 @@ sub notify {
     $SIG{CHLD} = 'IGNORE';
     if(fork() == 0)
     {
-		close(STDOUT);
-		close(STDIN);
-		close(STDERR);
+       close(STDOUT);
+       close(STDIN);
+       close(STDERR);
 
-      my(@args) = ('-t', 6000, $summary, $message);
-      system('/usr/bin/notify-send', @args);
-      exit(0);
+       my(@args) = ('-t', 6000, $summary, $message);
+       system('/usr/bin/notify-send', @args);
+       exit(0);
     }
 }
 

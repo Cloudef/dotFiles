@@ -140,7 +140,7 @@ function fu() {
       echo "Usage: fu [query]"
       return
    fi
-   URL="$(echo "$@" | perl -MURI::Escape -ne 'chomp;print uri_escape($_)')"
+   local URL="$(echo "$@" | perl -MURI::Escape -ne 'chomp;print uri_escape($_)')"
    curl -s "http://www.commandlinefu.com/commands/matching/$URL/$(echo -n "$@" | openssl base64)/plaintext" | grep -v "^# commandlinefu"
 }
 
@@ -355,7 +355,7 @@ remux() {
 ## Same as earlier, expect you can batch whole directory with this ##
 #####################################################################
 bremux() {
-   FILTER="*.mkv"
+   local FILTER="*.mkv"
    if [ ! "$1" ] || [ ! "$2" ]; then
       echo "Usage : bremux [audio track] [subtible track] [filter]"
       return
@@ -648,6 +648,15 @@ rsanime()
    find "$ANIME_WATCHING" -maxdepth 1 -type d -iname "*$1*" -print0 | xargs -0 -r mv -v --target-directory="$ANIME_WATCHED"
 }
 
+###############################
+## Detect language of string ##
+###############################
+detectlanguage() {
+   local URL="$(echo "$@" | perl -MURI::Escape -ne 'chomp;print uri_escape($_)')"
+   curl -s -A "Mozilla" "http://ws.detectlanguage.com/0.2/detect?q=$URL&key=$(cat "$HOME/passwd/langdetect")" \
+                        | sed 's/.*\[{.*"language":"\(.*\)"},.*/\1\n/'
+}
+
 #############################
 ## Japanese text to speech ##
 #############################
@@ -658,8 +667,17 @@ say() { mplayer -really-quiet "http://translate.google.com/translate_tts?ie=UTF-
 ######################################
 translate() { curl -s -A "Mozilla" "http://translate.google.com/translate_a/t?client=t&ie=UTF-8&text=$@&sl=ja&tl=en" | awk -F'"' '{print $2}' }
 
-##################
-## JA -> ROMAJI ##
-## Needs KAKASI ##
-##################
+###########################
+##    JA -> ROMAJI       ##
+## Needs KAKASI && ICONV ##
+###########################
 romaji() { echo "$@" | iconv -f utf8 -t eucjp | kakasi -i euc -w | kakasi -i euc -Ha -Ka -Ja -Ea -ka }
+
+###########################
+##    JA -> READING      ##
+## Needs KAKASI && ICONV ##
+###########################
+reading() {
+   # Additional echo to "trim" newlines without tr
+   echo $(echo "$@" | mecab | awk -F',' '{print $8}' | iconv -f utf8 -t eucjp | kakasi -i euc -KH | iconv -f eucjp -t utf8)
+}
