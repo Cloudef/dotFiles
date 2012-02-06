@@ -99,6 +99,7 @@ man2pdf() {
 ## For each project create own folder and put the PKGBUILD there ##
 ###################################################################
 function pkg() {
+   local nopop=0
    if [ ! "$1" ]; then
       echo "Usage : pkg [PKGBUILD]"
       return
@@ -115,14 +116,15 @@ function pkg() {
       echo "No PKGBUILD for $1"
       return
    fi
-   pushd "$HOME/PKGBUILD/$1" >> /dev/null
+   [[ "$PWD" == "$HOME/PKGBUILD/$1" ]] && nopop=1
+   [[ $nopop -eq 0 ]] && pushd "$HOME/PKGBUILD/$1" >> /dev/null
    if [ "$2" ]; then
       shift
       makepkg "$@"
    else
       makepkg --clean --install
    fi
-   popd >> /dev/null
+   [[ $nopop -eq 0 ]] && popd >> /dev/null
 }
 
 ###########################
