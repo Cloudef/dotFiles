@@ -116,6 +116,14 @@ let vala_space_errors = 1
 " GLSL syntax
 au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.shd set syntax=glsl
 
+" Mutt settings
+autocmd BufNewFile,BufRead /tmp/mutt-* set filetype=mail
+au FileType mail set tw=64 autoindent expandtab formatoptions=tcqn
+au FileType mail set list listchars=tab:»·,trail:·
+au FileType mail set comments=nb:>
+au FileType mail vmap D dO[...]^[
+au FileType mail silent normal /--\s*$^MO^[gg/^$^Mj
+
 " Automatically cd into the directory that the file is in
 autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 
