@@ -15,16 +15,16 @@ $VERSION = "0.1";
 
 sub msg_join {
    my ($server, $channel, $nick) = @_;
-   $server->print( $channel,    " %m            * %K|%W %B-%n!%B-%G Wild %Y$nick %Gappears!", MSGLEVEL_CLIENTCRAP);
+   $server->print( $channel,    " %m            * %K|%W %B-%n!%B-%G Wild %Y$nick %Gappears!", MSGLEVEL_JOINS);
    Irssi::signal_stop();
 }
 
 sub msg_part {
    my ($server, $channel, $nick, $address, $reason) = @_;
    if($reason) {
-      $server->print( $channel, " %m            * %K|%W %B-%n!%B-%G Wild %Y$nick %Gfainted! %W[$reason]", MSGLEVEL_CLIENTCRAP);
+      $server->print( $channel, " %m            * %K|%W %B-%n!%B-%G Wild %Y$nick %Gfainted! %W[$reason]", MSGLEVEL_PARTS);
    } else {
-      $server->print( $channel, " %m            * %K|%W %B-%n!%B-%G Wild %Y$nick %Gfainted!", MSGLEVEL_CLIENTCRAP);
+      $server->print( $channel, " %m            * %K|%W %B-%n!%B-%G Wild %Y$nick %Gfainted!", MSGLEVEL_PARTS);
    }
    Irssi::signal_stop();
 }
