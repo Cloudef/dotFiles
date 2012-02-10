@@ -52,7 +52,7 @@ sleep 5
 (nm-applet &> /dev/null) &
 
 # Clipit
-(clipit &> /dev/null) &
+(parcellite &> /dev/null) &
 
 # Smart notify
 (smart-notifier &> /dev/null) &
