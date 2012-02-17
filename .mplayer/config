@@ -19,6 +19,10 @@ slang=English,eng,en
 a52drc=1
 af=volnorm
 
+# Software volume
+softvol=1
+softvol-max=1000
+
 # Fix A/V sync problems.
 mc=0.2
 autosync=30

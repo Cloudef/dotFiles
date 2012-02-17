@@ -34,7 +34,10 @@ set backspace=indent,eol,start
 set cmdheight=2
 set modeline
 set background=dark
-set t_Co=256
+set term=$TERM
+if $TERM != "linux"
+   set t_Co=256
+endif
 colorscheme slate
 
 " Set statusline

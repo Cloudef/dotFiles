@@ -650,6 +650,18 @@ rsanime()
    find "$ANIME_WATCHING" -maxdepth 1 -type d -iname "*$1*" -print0 | xargs -0 -r mv -v --target-directory="$ANIME_WATCHED"
 }
 
+###############################################
+## Which type of Japanese character is this? ##
+###############################################
+jchr()
+{
+   local char=$(printf "%d" \'$@)
+   [ $char -gt 19967 ] && [ $char -lt 40896 ] && echo "$@ is kanji"     && return
+   [ $char -gt 12351 ] && [ $char -lt 12448 ] && echo "$@ is hiragana"  && return
+   [ $char -gt 12447 ] && [ $char -lt 12544 ] && echo "$@ is katakana"  && return
+   echo "$@ is wtf!?"
+}
+
 ###############################
 ## Detect language of string ##
 ###############################

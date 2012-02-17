@@ -45,6 +45,9 @@ export GDK_USE_XFT=1
 ################################
 [[ "$-" == *i* ]] || return # Shell is non-interactive.  Be done now!
 
+# on SSH export linux as TERM
+[ "$SSH_TTY" ] && export TERM="linux"
+
 ########
 # LESS #
 ########
@@ -151,6 +154,19 @@ welcome
 ## ARM Dev ##
 #############
 export PROJECTS_BASEDIR="/media/Storage/Dev/Pandora"
+
+bitbake() {
+   local nopop=0
+   unset LDFLAGS
+   unset CFLAGS
+   unset CXXFLAGS
+   source "$HOME/.oe/environment-openpandora"
+   [[ "$PWD" == "$OE_BUILD_DIR" ]] && nopop=1
+   [[ $nopop -eq 0 ]] && pushd "$OE_BUILD_DIR" &> /dev/null
+   schedtool -D -e ionice -c 3 bitbake $@ # Let it calm down
+   [[ $nopop -eq 0 ]] && popd &> /dev/null
+   source "$HOME/.oe/environment-openpandora-clean"
+}
 
 setprj() {
    . /usr/local/angstrom/arm/environment-setup;
