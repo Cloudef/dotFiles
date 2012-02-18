@@ -28,6 +28,7 @@ session = /home/jari/.session
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
 schedule = anime_torrent,10,10,"load_start=/media/Anime/Torrent/*.torrent,d.set_directory=/media/Anime/Seed"
+schedule = anime_torrent2,10,10,"load_start=/media/Storage/Anime/Torrent/*.torrent,d.set_directory=/media/Storage/Anime/Seed"
 schedule = storage_torrent,10,10,"load_start=/media/Storage/Torrent/*.torrent,d.set_directory=/media/Storage"
 schedule = music_torrent,10,10,"load_start=/media/Storage/Musiikki/Torrent/*.torrent,d.set_directory=/media/Storage/Musiikki"
 

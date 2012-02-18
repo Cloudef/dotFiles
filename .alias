@@ -17,6 +17,12 @@ alias vo="cat $HOME/.opera/keyboard/vimperopera.ini | grep $@"
 alias ctest='(x=`tput op` y=`printf %81s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
 alias open='xdg-open'
 
+# Transparency
+function ts() {
+   [ "$@" ] || transset-df -t -a --dec 0.1
+   [ "$@" ] && transset-df -t -a --dec "$@"
+}
+
 # Directory aliases
 alias dev="cd /media/Storage/Dev/"
 alias cdw="cd /media/Storage/Dev/VCS/dwm"

@@ -15,10 +15,12 @@ fi
 if [ -e "$SOCKET" ]; then
    urxvt -title rTorrent -name rTorrent -e dtach -a "$SOCKET" &
    echo "$!" > "$PIDFILE"
+   sleep 1 && transset-df --no-regex -n rTorrent --dec 0.1
    exit 1
 fi
 
 if [ ! -e "$PIDFILE" ]; then
    urxvt -title rTorrent -name rTorrent -e dtach -c "$SOCKET" rtorrent &
    echo "$!" > "$PIDFILE"
+   sleep 1 && transset-df --no-regex -n rTorrent --dec 0.1
 fi
