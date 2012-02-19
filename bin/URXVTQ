@@ -9,6 +9,7 @@ if [ ! "$wid" ]; then
   URXVTC -name URxvtq -geometry 240x26+0+137
   wid="$(xdotool search --classname URxvtq | head -1)"
   xdotool windowfocus $wid
+  sleep 1 && transset-df --no-regex -n URxvtq --dec 0.1
 else
   visible="$(xdotool search --onlyvisible --classname URxvtq 2>/dev/null)"
   if [ ! "$visible" ]; then
