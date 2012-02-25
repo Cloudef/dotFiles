@@ -75,7 +75,6 @@ printBar()
       [ $OLDVOL -eq $NEWVOL ]  || SLEEP_TIMEOUT=100
       [ $SLEEP_TIMEOUT -gt 0 ] && ((SLEEP_TIMEOUT--)) || sleep $INTERVAL
       OLDVOL=$NEWVOL
-
    done
    return
 }
