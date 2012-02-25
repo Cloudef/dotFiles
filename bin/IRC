@@ -15,12 +15,12 @@ fi
 if [ -e "$SOCKET" ]; then
    urxvt -title IRC -name IRC -e dtach -a "$SOCKET" &
    echo "$!" > "$PIDFILE"
-   sleep 1 && transset-df --no-regex -n IRC --dec 0.1
+   sleep 3 && transset-df --no-regex -n IRC --dec 0.1
    exit 1
 fi
 
 if [ ! -e "$PIDFILE" ]; then
    urxvt -title IRC -name IRC -e dtach -c "$SOCKET" irssi &
    echo "$!" > "$PIDFILE"
-   sleep 1 && transset-df --no-regex -n IRC --dec 0.1
+   sleep 3 && transset-df --no-regex -n IRC --dec 0.1
 fi

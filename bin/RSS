@@ -14,5 +14,5 @@ fi
 if [ ! -e "$PIDFILE" ]; then
    urxvt -title SnowNews -name SnowNews -e snownews &
    echo "$!" > "$PIDFILE"
-   sleep 1 && transset-df --no-regex -n SnowNews --dec 0.1
+   sleep 3 && transset-df --no-regex -n SnowNews --dec 0.1
 fi
