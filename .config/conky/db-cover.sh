@@ -139,14 +139,15 @@ albumart_do() {
       fi
    fi
 
-   echo "$TRACK"        > "$NPFILE"
-   echo "$ARTIST"      >> "$NPFILE"
-   echo "$ALBUM"       >> "$NPFILE"
-   echo "$YEAR"        >> "$NPFILE"
-   echo "$WTIME"       >> "$NPFILE"
-   echo "$CURCOVER"    >> "$NPFILE"
-   echo "$PERCENT"     >> "$NPFILE"
-   echo "$STOP"        >> "$NPFILE"
+   echo "$TRACK"        > "$NPFILE.tmp"
+   echo "$ARTIST"      >> "$NPFILE.tmp"
+   echo "$ALBUM"       >> "$NPFILE.tmp"
+   echo "$YEAR"        >> "$NPFILE.tmp"
+   echo "$WTIME"       >> "$NPFILE.tmp"
+   echo "$CURCOVER"    >> "$NPFILE.tmp"
+   echo "$PERCENT"     >> "$NPFILE.tmp"
+   echo "$STOP"        >> "$NPFILE.tmp"
+   mv "$NPFILE.tmp" "$NPFILE" # so conky doesn't do partial reads
 }
 
 albumart_do
