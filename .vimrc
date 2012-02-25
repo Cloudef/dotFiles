@@ -95,6 +95,10 @@ vmap <C-c> y: call system("xclip -i -selection clipboard", getreg("\""))<CR><CR>
 nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 imap <C-v> <Esc><C-v>a
 
+" Comment lines
+map ,/ :call CommentLineToEnd('/')<CR>+
+map ,* :call CommentLinePincer('/* ', ' */')<CR>+
+
 " Toggle folds with space
 nnoremap <space> za
 
