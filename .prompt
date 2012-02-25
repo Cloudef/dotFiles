@@ -135,7 +135,8 @@ function welcome() {
    local nix="Linux"
    local tmux="$(ps -a | grep tmux)"
    clear
-   echo "${BOLD}${CYAN}${arch}${WHITE}${nix}${NORMAL}"
+   cols=41
+   echo "${BOLD}${CYAN}${arch}${WHITE}${nix}${NORMAL}$(printf "%${cols}s" " ")アナルセックスがとても好きです"
 
    # Animated version
    # echo -n "${BOLD}${CYAN}"
