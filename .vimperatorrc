@@ -9,6 +9,7 @@ nnoremap <C-c> <C-v><C-c>
 nnoremap <C-v> <C-v><C-v>
 nnoremap <C-x> <C-v><C-x>
 nnoremap <C-a> <Ins><C-a><Ins>
+nnoremap <A-Tab> :tn<CR>
 
 " Insert Mode Mappings
 inoremap <C-c> <C-v><C-c>
