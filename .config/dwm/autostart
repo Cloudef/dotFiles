@@ -70,13 +70,13 @@ sleep 5
 source "$HOME/.config/dwm/dzen2start"
 
 # RSS
-RSS
+RSS &> /dev/null
 
 # Torrent
-TORRENT
+TORRENT &> /dev/null
 
 # IRC
-IRC
+IRC &> /dev/null
 
 # Redshift
 (sleep 10 && gtk-redshift -l 62:22 &> /dev/null) &
@@ -104,7 +104,12 @@ done
 
 # Exit
 # If you get any processes that run even after logout, kill them here
-killall redshift
-killall opera
-deadbeef --quit    # Deadbeef fails saving playlist on exit without this
-killall ssh_watch
+killall redshift   &> /dev/null
+killall ssh_watch  &> /dev/null
+killall -3 firefox &> /dev/null # Prevents "Oops session bleh, error"
+
+# Quit deadbeef
+while killall -0 deadbeef &> /dev/null; do
+   deadbeef --quit
+   sleep 10
+done
