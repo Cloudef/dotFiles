@@ -93,7 +93,7 @@ IRC &> /dev/null
 # Use pstree to debug your autostart
 # note: it's possible to find DWM's PID by other means,
 # but bash provides it out of the box neatly
-while kill -0 $PPID; do
+while kill -0 $PPID &> /dev/null; do
    OS=`df / | awk '{print $5}' | tail -n 1`;
    STORAGE=`df /media/Storage | awk '{ print $5 }' | tail -n 1`;
    ANIME=`df /media/Anime | awk '{ print $5 }' | tail -n 1`;
