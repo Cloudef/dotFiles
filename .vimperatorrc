@@ -5,12 +5,10 @@ source! /home/jari/.vimperatorrc.local
 " Normal Mode Mappings
 nnoremap <C-f> /
 nnoremap <C-w> :tabclose<CR>
-nnoremap <C-c> <C-v><C-c>
 nnoremap <C-a> <Ins><C-a><Ins>
 nnoremap <A-Tab> :tn<CR>
 
 " Insert Mode Mappings
-inoremap <C-c> <C-v><C-c>
 inoremap <C-a> <Ins><C-a><Ins>
 
 " vim: set ft=vimperator:
