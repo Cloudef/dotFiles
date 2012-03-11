@@ -33,293 +33,293 @@ gtk-menu-popup-delay = 50
 
 style "theme-default" {
 
-  GtkButton::default_border = { 0, 0, 0, 0 }
-  GtkButton::child-displacement-x = 0
-  GtkButton::child-displacement-y = 1
-  GtkWidget::focus-padding = 0
+   GtkButton::default_border = { 0, 0, 0, 0 }
+   GtkButton::child-displacement-x = 0
+   GtkButton::child-displacement-y = 1
+   GtkWidget::focus-padding = 0
 
-  GtkRange::trough-border   = 0
-  GtkRange::slider-width    = 10
-  GtkRange::stepper_size    = 2
-  GtkRange::stepper_spacing = 0
+   GtkRange::trough-border   = 0
+   GtkRange::slider-width    = 10
+   GtkRange::stepper_size    = 2
+   GtkRange::stepper_spacing = 0
 
-  GtkScrollbar::min_slider_length = 40
-  GtkScrollbar::has-forward-stepper = 1
-  GtkScrollbar::has-backward-stepper = 1
-  GtkScrollbar::has-secondary-forward-stepper = 0
-  GtkScrollbar::has-secondary-backward-stepper = 0
+   GtkScrollbar::min_slider_length = 40
+   GtkScrollbar::has-forward-stepper = 1
+   GtkScrollbar::has-backward-stepper = 1
+   GtkScrollbar::has-secondary-forward-stepper = 0
+   GtkScrollbar::has-secondary-backward-stepper = 0
 
-  GtkMenuBar::internal-padding  = 0
-	GtkMenuBar::window-dragging = 1
+   GtkMenuBar::internal-padding  = 0
+   GtkMenuBar::window-dragging = 1
 
-  GtkTreeView::expander_size    = 13
-  GtkExpander::expander_size    = 13
+   GtkTreeView::expander_size    = 13
+   GtkExpander::expander_size    = 13
 
-  GtkScale::slider-length = 12
-  GtkScale::slider-width  = 12
-  GtkScale::trough-border = 2
+   GtkScale::slider-length = 12
+   GtkScale::slider-width  = 12
+   GtkScale::trough-border = 2
 
-  GtkWidget::link-color = "#6BACFF"
-  GtkWidget::visited-link-color = "#6BACFF"
-  GtkIMHtml::hyperlink-color = "#6BACFF"
-  GtkIMHtml::hyperlink-prelight-color = "#6BACFF"
-	GtkHTML::link-color = "#6BACFF"
-  GtkHTML::alink_color = "#6BACFF"
-  GtkHTML::link_color = "#6BACFF"
-  GtkHTML::vlink_color = "#6BACFF"
-  GnomeHref::link_color = "#6BACFF"
+   GtkWidget::link-color               = "#6BACFF"
+   GtkWidget::visited-link-color       = "#6BACFF"
+   GtkIMHtml::hyperlink-color          = "#6BACFF"
+   GtkIMHtml::hyperlink-prelight-color = "#6BACFF"
+   GtkHTML::link-color     = "#6BACFF"
+   GtkHTML::alink_color    = "#6BACFF"
+   GtkHTML::link_color     = "#6BACFF"
+   GtkHTML::vlink_color    = "#6BACFF"
+   GnomeHref::link_color   = "#6BACFF"
 
-  WnckTasklist::fade-overlay-rect = 0
-  WnckTasklist::fade-loop-time    = 5.0 # 5 seconds
-  WnckTasklist::fade-opacity      = 0.5 # final opacity
+   WnckTasklist::fade-overlay-rect = 0
+   WnckTasklist::fade-loop-time    = 5.0 # 5 seconds
+   WnckTasklist::fade-opacity      = 0.5 # final opacity
 
-  #makes menu only overlap border
-  GtkMenu::horizontal-padding = 0
+   # makes menu only overlap border
+   GtkMenu::horizontal-padding = 0
 
-  #removes extra padding at top and bottom of menus.  Makes menuitem overlap border
-  GtkMenu::vertical-padding = 0
+   # removes extra padding at top and bottom of menus.  Makes menuitem overlap border
+   GtkMenu::vertical-padding = 0
 
-  #set to the same as roundness, used for better hotspot selection of tabs
-  GtkNotebook::tab-curvature = 2.5
-  GtkNotebook::tab-overlap   = 3
+   # set to the same as roundness, used for better hotspot selection of tabs
+   GtkNotebook::tab-curvature = 2.5
+   GtkNotebook::tab-overlap   = 3
 
-  GtkMenuItem::arrow-spacing = 10
-  #Spacing between edge with indicator and text
-  GtkOptionMenu  ::indicator-size = {11, 5}
-  #GtkOptionMenu  ::indicator-spacing = {6, 5, 4, 4}
+   GtkMenuItem::arrow-spacing = 10
+   # Spacing between edge with indicator and text
+   GtkOptionMenu  ::indicator-size = {11, 5}
+   # GtkOptionMenu  ::indicator-spacing = {6, 5, 4, 4}
 
-  GtkCheckButton ::indicator-size    = 15
-  GtkCheckButton ::indicator-spacing = 1
-  GtkRadioButton ::indicator-size    = 15
+   GtkCheckButton ::indicator-size    = 15
+   GtkCheckButton ::indicator-spacing = 1
+   GtkRadioButton ::indicator-size    = 15
 
-  GtkPaned::handle-size = 8
+   GtkPaned::handle-size = 8
 
-  # A new color must be defined since affectation of mix or shade functions to GtkTreeView::odd_row_color raise this message :
-  # Gtk-Message: (for origin information, set GTK_DEBUG): failed to retrieve property `GtkTreeView::odd-row-color' of type `GdkColor' from rc file value "((GString*) 0x9ccba00)" of type `GString'
-  #color["odd_row_color"] = @base_color
-  GtkTreeView::horizontal_separator = 1
-  GtkTreeView::odd_row_color = @base_color
+   # A new color must be defined since affectation of mix or shade functions to GtkTreeView::odd_row_color raise this message :
+   # Gtk-Message: (for origin information, set GTK_DEBUG): failed to retrieve property `GtkTreeView::odd-row-color' of type `GdkColor' from rc file value "((GString*) 0x9ccba00)" of type `GString'
+   # color["odd_row_color"] = @base_color
+   GtkTreeView::horizontal_separator = 1
+   GtkTreeView::odd_row_color = @base_color
 
-  GtkScrolledWindow::scrollbar-spacing       = 0
-  GtkScrolledWindow::scrollbars-within-bevel = 0
-  #GtkScrolledWindow::vscrollbar-policy = GTK_POLICY_AUTOMATIC
-  #GtkScrolledWindow::hscrollbar-policy = GTK_POLICY_AUTOMATIC
+   GtkScrolledWindow::scrollbar-spacing       = 0
+   GtkScrolledWindow::scrollbars-within-bevel = 0
+   # GtkScrolledWindow::vscrollbar-policy = GTK_POLICY_AUTOMATIC
+   # GtkScrolledWindow::hscrollbar-policy = GTK_POLICY_AUTOMATIC
 
-  # The following line hints to gecko (and possibly other appliations)
-  # that the entry should be drawn transparently on the canvas.
-	# Without this, gecko will fill in the background of the entry.
-  GtkEntry::honors-transparent-bg-hint = 1
-  GtkEntry::state-hint = 0
+   # The following line hints to gecko (and possibly other appliations)
+   # that the entry should be drawn transparently on the canvas.
+   # Without this, gecko will fill in the background of the entry.
+   GtkEntry::honors-transparent-bg-hint = 1
+   GtkEntry::state-hint = 0
 
-  GtkEntry::progress-border = { 2, 2, 2, 2 }
+   GtkEntry::progress-border = { 2, 2, 2, 2 }
 
-  GtkWidget::new-tooltip-style = 1
-  GtkImage::x-ayatana-indicator-dynamic = 1
+   GtkWidget::new-tooltip-style = 1
+   GtkImage::x-ayatana-indicator-dynamic = 1
 
-  xthickness = 1
-  ythickness = 1
+   xthickness = 1
+   ythickness = 1
 
-  fg[NORMAL]       	=  @fg_color
-  fg[ACTIVE]       	=  @fg_color # inactive tab text, checkboxes' labels and Togglebutton's labels
-  fg[PRELIGHT]     	=  @fg_color
-  fg[SELECTED]     	=  @selected_fg_color
-  fg[INSENSITIVE]  	=  shade (4.5, @bg_color)
+   fg[NORMAL]       	=  @fg_color
+   fg[ACTIVE]       	=  @fg_color # inactive tab text, checkboxes' labels and Togglebutton's labels
+   fg[PRELIGHT]     	=  @fg_color
+   fg[SELECTED]     	=  @selected_fg_color
+   fg[INSENSITIVE]  	=  shade (4.5, @bg_color)
 
-  bg[NORMAL]       	=  @bg_color
-  bg[ACTIVE]        =  shade (0.975, @fg_color) # inactive tab color
-  bg[PRELIGHT]      =  mix (0.85, shade (1.1, @bg_color), @selected_bg_color)
-  bg[SELECTED]      =  @selected_bg_color
-  bg[INSENSITIVE]  	=  shade (1.03, @bg_color)
+   bg[NORMAL]       	=  @bg_color
+   bg[ACTIVE]           =  shade (0.9, @fg_color) # inactive tab color
+   bg[PRELIGHT]         =  mix (0.85, shade (1.1, @bg_color), @selected_bg_color)
+   bg[SELECTED]         =  @selected_bg_color
+   bg[INSENSITIVE]  	=  shade (1.03, @bg_color)
 
-  base[NORMAL]     	=  @base_color
-  base[ACTIVE]     	=  shade (1.8, @base_color) # background color for inactive selected items
-  base[PRELIGHT]   	=  @base_color
-  base[SELECTED]    =  @selected_bg_color
-  base[INSENSITIVE]	=  shade (0.95, @bg_color)
+   base[NORMAL]     	=  @base_color
+   base[ACTIVE]     	=  shade (1.8, @base_color) # background color for inactive selected items
+   base[PRELIGHT]   	=  @base_color
+   base[SELECTED]       =  @selected_bg_color
+   base[INSENSITIVE]	=  shade (0.95, @bg_color)
 
-  text[NORMAL]     	=  @text_color
-  text[ACTIVE]      =  @selected_fg_color # text color for inactive selected items
-  text[PRELIGHT]   	=  @text_color
-  text[SELECTED]   	=  @selected_fg_color
-  text[INSENSITIVE]	=  shade (0.5, @fg_color)
+   text[NORMAL]     	=  @text_color
+   text[ACTIVE]         =  @selected_fg_color # text color for inactive selected items
+   text[PRELIGHT]   	=  @text_color
+   text[SELECTED]   	=  @selected_fg_color
+   text[INSENSITIVE]	=  shade (0.5, @fg_color)
 
-  engine "equinox" {
-    curvature           = 2.5
-    menubarstyle        = 1 # 0 = flat, 1 = gradient
-    menubarborders      = 0 # 0 = none, 1 = bottom border, 2 = top half-border, 3 = bottom border and top half-border
-    menubaritemstyle    = 0 # 0 = flat, 1 = gradient, 2 = inverse gradient, 3 = line, 99 = original
-    toolbarstyle        = 5 # 0 = flat, 1 = gradient, 2 = flat without border, 3 = gradient without border, 4 = flat with bottom border, 5 = gradient with bottom border
-    buttonstyle         = 0 # 0 = normal, 1 = glassy
-    menuitemstyle       = 0 # 0 = normal, 1 = glassy
-    listviewheaderstyle = 0 # 0 = normal, 1 = glassy
-    listviewitemstyle   = 1 # 0 = flat, 1 = gradient
-    scrollbarstyle      = 4 # 0 = normal, 1 = glassy, 2 = normal with handles, 3 = glassy with handles, 4 = flat
-    scrollbartrough     = 0 # 0 = background color of the parent widget, 1 = base color of the widget itself
-    scalesliderstyle    = 0 # 0 = normal, 1 = glassy, 2 = normal with bullet
-    checkradiostyle     = 0 # 0 = normal, 1 = glassy
-    progressbarstyle    = 0 # 0 = normal, 1 = glassy
-    separatorstyle    	= 2 # 0 = solid inset, 1 = gradient inset, 2 = lighter line, 3 = darker line
-    resizegripstyle    	= 1 # 0 = circle, 1 = corner
-    textstyle           = 0
-    textshade           = 1.0
-    animation           = TRUE # FALSE = disabled, TRUE = enabled
-  }
+   engine "equinox" {
+      curvature            = 2.5
+      menubarstyle         = 1 # 0 = flat, 1 = gradient
+      menubarborders       = 0 # 0 = none, 1 = bottom border, 2 = top half-border, 3 = bottom border and top half-border
+      menubaritemstyle     = 0 # 0 = flat, 1 = gradient, 2 = inverse gradient, 3 = line, 99 = original
+      toolbarstyle         = 5 # 0 = flat, 1 = gradient, 2 = flat without border, 3 = gradient without border, 4 = flat with bottom border, 5 = gradient with bottom border
+      buttonstyle          = 1 # 0 = normal, 1 = glassy
+      menuitemstyle        = 1 # 0 = normal, 1 = glassy
+      listviewheaderstyle  = 0 # 0 = normal, 1 = glassy
+      listviewitemstyle    = 1 # 0 = flat, 1 = gradient
+      scrollbarstyle       = 4 # 0 = normal, 1 = glassy, 2 = normal with handles, 3 = glassy with handles, 4 = flat
+      scrollbartrough      = 0 # 0 = background color of the parent widget, 1 = base color of the widget itself
+      scalesliderstyle     = 1 # 0 = normal, 1 = glassy, 2 = normal with bullet
+      checkradiostyle      = 1 # 0 = normal, 1 = glassy
+      progressbarstyle     = 1 # 0 = normal, 1 = glassy
+      separatorstyle       = 2 # 0 = solid inset, 1 = gradient inset, 2 = lighter line, 3 = darker line
+      resizegripstyle      = 0 # 0 = circle, 1 = corner
+      textstyle            = 0
+      textshade            = 1.0
+      animation            = TRUE # FALSE = disabled, TRUE = enabled
+   }
 
-  color["menu_bg_color"] 	= "#b0b0b0"
-  color["menu_fg_color"] 	= "#C1C1C1"
-  color["widget_bg_color"] 	= "#808080"
+   color["menu_bg_color"] 	= "#b0b0b0"
+   color["menu_fg_color"] 	= "#C1C1C1"
+   color["widget_bg_color"] 	= "#808080"
 }
 
 style "test" = "theme-default" {
-  fg[NORMAL]       	=  "#00FF00"
-  fg[ACTIVE]       	=  "#00FF00"
-  fg[PRELIGHT]     	=  "#00FF00"
-  fg[SELECTED]     	=  "#00FF00"
-  fg[INSENSITIVE]  	=  "#00FF00"
+   fg[NORMAL]         =  "#00FF00"
+   fg[ACTIVE]         =  "#00FF00"
+   fg[PRELIGHT]       =  "#00FF00"
+   fg[SELECTED]       =  "#00FF00"
+   fg[INSENSITIVE]    =  "#00FF00"
 
-  bg[NORMAL]       	=  "#FF0000"
-  bg[ACTIVE]        =  "#FF0000"
-  bg[PRELIGHT]      =  "#FF0000"
-  bg[SELECTED]      =  "#FF0000"
-  bg[INSENSITIVE]  	=  "#FF0000"
+   bg[NORMAL]         =  "#FF0000"
+   bg[ACTIVE]         =  "#FF0000"
+   bg[PRELIGHT]       =  "#FF0000"
+   bg[SELECTED]       =  "#FF0000"
+   bg[INSENSITIVE]    =  "#FF0000"
 
-  text[NORMAL]      =  "#0000FF"
-  text[ACTIVE]      =  "#0000FF"
-  text[PRELIGHT]    =  "#0000FF"
-  text[SELECTED]    =  "#0000FF"
-  text[INSENSITIVE] =  "#0000FF"
+   text[NORMAL]       =  "#0000FF"
+   text[ACTIVE]       =  "#0000FF"
+   text[PRELIGHT]     =  "#0000FF"
+   text[SELECTED]     =  "#0000FF"
+   text[INSENSITIVE]  =  "#0000FF"
 
-  base[NORMAL]      =  "#AA0000"
-  base[ACTIVE]      =  "#AA0000"
-  base[PRELIGHT]    =  "#AA0000"
-  base[SELECTED]    =  "#AA0000"
-  base[INSENSITIVE] =  "#AA0000"
+   base[NORMAL]       =  "#AA0000"
+   base[ACTIVE]       =  "#AA0000"
+   base[PRELIGHT]     =  "#AA0000"
+   base[SELECTED]     =  "#AA0000"
+   base[INSENSITIVE]  =  "#AA0000"
 }
 
 style "theme-wide" = "theme-default" {
-  xthickness = 2
-  ythickness = 2
+   xthickness = 2
+   ythickness = 2
 }
 
 style "theme-wider" = "theme-default" {
-  xthickness = 3
-  ythickness = 3
+   xthickness = 3
+   ythickness = 3
 }
 
 style "theme-widest" = "theme-default" {
-  xthickness = 4
-  ythickness = 3
+   xthickness = 4
+   ythickness = 3
 }
 
 style "theme-button" = "theme-wider" {
-  bg[NORMAL]   = shade (1.2, @bg_color)
-  bg[ACTIVE]   = shade (0.9, @bg_color)
-  bg[PRELIGHT] = shade (1.4, @bg_color)
-  text[NORMAL] = @fg_color
+   bg[NORMAL]   = shade (1.2, @bg_color)
+   bg[ACTIVE]   = shade (0.9, @bg_color)
+   bg[PRELIGHT] = shade (1.4, @bg_color)
+   text[NORMAL] = @fg_color
 }
 
 style "theme-scrollbar" = "theme-default" {
-  text[NORMAL]      = "#000000"
-  text[ACTIVE]      = "#000000"
-  text[INSENSITIVE] = "#000000"
-  text[PRELIGHT]    = "#000000"
-  text[SELECTED]    = "#000000"
-  bg[NORMAL]   = shade (2.5, @bg_color)
-  bg[ACTIVE]   = shade (5.0, @bg_color)
-  bg[PRELIGHT] = shade (2.0, @bg_color)
-  engine "equinox" {
+   text[NORMAL]      = "#000000"
+   text[ACTIVE]      = "#000000"
+   text[INSENSITIVE] = "#000000"
+   text[PRELIGHT]    = "#000000"
+   text[SELECTED]    = "#000000"
+   bg[NORMAL]   = shade (2.5, @bg_color)
+   bg[ACTIVE]   = shade (5.0, @bg_color)
+   bg[PRELIGHT] = shade (2.0, @bg_color)
+   engine "equinox" {
       curvature = 2
-	}
+   }
 }
 
 style "theme-entry" = "theme-button" {
-  bg[PRELIGHT] = @bg_color
-  base[PRELIGHT] = mix(0.85, shade(1.20, @base_color), @selected_bg_color)
-  text[NORMAL] = @text_color
+   bg[PRELIGHT]   = @bg_color
+   base[PRELIGHT] = mix(0.85, shade(1.20, @base_color), @selected_bg_color)
+   text[NORMAL]   = @text_color
 }
 
 style "theme-frame" = "theme-wide" {
-  GtkWidget::draw-border = {1,1,1,1}
+   GtkWidget::draw-border = {1,1,1,1}
 }
 
 style "theme-handlebox" = "theme-default" {
-  bg[NORMAL] = shade (0.95, @bg_color)
+   bg[NORMAL] = shade (0.95, @bg_color)
 }
 
 style "theme-scale" = "theme-default" {
-  bg[NORMAL]     = @widget_bg_color
-  bg[PRELIGHT]   = shade (1.15, @widget_bg_color)
-  #base[SELECTED] = mix (0.7, shade(0.85, @bg_color), @selected_bg_color)
-  base[SELECTED] = shade(0.88, @bg_color)
+   bg[NORMAL]     = @widget_bg_color
+   bg[PRELIGHT]   = shade (1.15, @widget_bg_color)
+   # base[SELECTED] = mix (0.7, shade(0.85, @bg_color), @selected_bg_color)
+   base[SELECTED] = shade(0.88, @bg_color)
 }
 
 style "theme-range" = "theme-default" {
-  bg[NORMAL]        = shade (1.0930, @bg_color)
-  bg[PRELIGHT]      = mix (0.93, shade (1.14, @bg_color), @selected_bg_color)
+   bg[NORMAL]        = shade (1.0930, @bg_color)
+   bg[PRELIGHT]      = mix (0.93, shade (1.14, @bg_color), @selected_bg_color)
 
-  #Arrows
-  text[NORMAL]      = shade (0.275,@selected_fg_color)
-  text[PRELIGHT]    = @selected_fg_color
-  text[ACTIVE]      = shade (0.10,@selected_fg_color)
-  text[INSENSITIVE] = mix (0.80,shade (0.90,@bg_color),@fg_color)
+   # Arrows
+   text[NORMAL]      = shade (0.275,@selected_fg_color)
+   text[PRELIGHT]    = @selected_fg_color
+   text[ACTIVE]      = shade (0.10,@selected_fg_color)
+   text[INSENSITIVE] = mix (0.80,shade (0.90,@bg_color),@fg_color)
 }
 
 style "theme-notebook-bg" = "theme-default" {
-	bg[NORMAL]   = shade (1.15, @bg_color)
+   bg[NORMAL]   = shade (1.15, @bg_color)
 }
 
 style "theme-notebook" = "theme-notebook-bg" {
-  xthickness = 2
-  ythickness = 2
+   xthickness = 2
+   ythickness = 2
 }
 
 style "theme-notebook-scrollbar" = "theme-scrollbar" {
-	#base[NORMAL]   = shade (1.07, @bg_color)
+   # base[NORMAL] = shade (1.07, @bg_color)
 }
 
 style "theme-notebook-label" = "theme-notebook-bg" {
-  fg[ACTIVE] = shade (1.75, @bg_color)
+   fg[ACTIVE] = shade (1.75, @bg_color)
 }
 
 style "theme-notebook-layout" = "theme-default" {
-  bg[ACTIVE] = @selected_bg_color
-  bg[SELECTED] = @selected_bg_color
+   bg[ACTIVE]   = @selected_bg_color
+   bg[SELECTED] = @selected_bg_color
 }
 
 style "theme-menu" = "theme-default" {
-  xthickness = 0
-  ythickness = 0
-  bg[NORMAL] = shade (0.65,@bg_color)
-  bg[ACTIVE] = shade (0.6,@bg_color)
+   xthickness = 0
+   ythickness = 0
+   bg[NORMAL] = shade (0.65,@bg_color)
+   bg[ACTIVE] = shade (0.6,@bg_color)
 }
 
 style "theme-menuitem" = "theme-wider" {
-  fg[PRELIGHT]   =  @selected_fg_color
-  text[NORMAL]   =  @fg_color
-  text[PRELIGHT] =  @selected_fg_color
+   fg[PRELIGHT]   =  @selected_fg_color
+   text[NORMAL]   =  @fg_color
+   text[PRELIGHT] =  @selected_fg_color
 }
 
 style "theme-menubar" = "theme-default" {
-  xthickness = 0
-  ythickness = 0
-  bg[NORMAL] = @menu_bg_color
-  fg[NORMAL] = @menu_fg_color
+   xthickness = 0
+   ythickness = 0
+   bg[NORMAL] = @menu_bg_color
+   fg[NORMAL] = @menu_fg_color
 }
 
 style "theme-menubar-item" = "theme-default" {
-  xthickness = 3
-  ythickness = 3
-  bg[SELECTED]   = shade(0.65, @bg_color)
-  fg[PRELIGHT]   = @selected_fg_color
-	fg[NORMAL]	   = @menu_fg_color
-	fg[SELECTED]   = @selected_fg_color
-	fg[ACTIVE]	   = shade (1.15, @menu_fg_color)
-	bg[INSENSITIVE]	   = @menu_bg_color
-	fg[INSENSITIVE]	   = shade(1.15, @menu_fg_color)
-  engine "equinox" {
-    textstyle = 3
-    textshade = 2.5
-  }
+   xthickness = 3
+   ythickness = 3
+   bg[SELECTED]      = shade(0.65, @bg_color)
+   fg[PRELIGHT]      = @selected_fg_color
+   fg[NORMAL]        = @menu_fg_color
+   fg[SELECTED]      = @selected_fg_color
+   fg[ACTIVE]	     = shade (1.15, @menu_fg_color)
+   bg[INSENSITIVE]   = @menu_bg_color
+   fg[INSENSITIVE]   = shade(1.15, @menu_fg_color)
+   engine "equinox" {
+      textstyle = 3
+      textshade = 2.5
+   }
 }
 
 style "theme-toolbar" = "theme-default" {
@@ -327,85 +327,85 @@ style "theme-toolbar" = "theme-default" {
 }
 
 style "theme-treeview-header" = "theme-default" {
-  xthickness   = 3
-  ythickness   = 1
-  GtkWidget::focus-padding = 0
-  bg[NORMAL]        = @widget_bg_color
-  bg[PRELIGHT]      = shade (1.15, @widget_bg_color)
-  bg[ACTIVE]        = shade (0.9, @widget_bg_color)
-  fg[NORMAL]        = "#222222"
-  fg[PRELIGHT]      = "#222222"
-  fg[ACTIVE]        = "#222222"
-  fg[SELECTED]      = "#222222"
-  fg[INSENSITIVE]   = "#666666"
-  text[NORMAL]      = "#222222"
-  text[PRELIGHT]    = "#222222"
-  text[ACTIVE]      = "#222222"
-  text[SELECTED]    = "#222222"
-  text[INSENSITIVE] = "#666666"
-  engine "equinox" {
-    textstyle = 3
-    textshade = 1.125
-  }
+   xthickness = 3
+   ythickness = 1
+   GtkWidget::focus-padding = 0
+   bg[NORMAL]        = @widget_bg_color
+   bg[PRELIGHT]      = shade (1.15, @widget_bg_color)
+   bg[ACTIVE]        = shade (0.9, @widget_bg_color)
+   fg[NORMAL]        = "#222222"
+   fg[PRELIGHT]      = "#222222"
+   fg[ACTIVE]        = "#222222"
+   fg[SELECTED]      = "#222222"
+   fg[INSENSITIVE]   = "#666666"
+   text[NORMAL]      = "#222222"
+   text[PRELIGHT]    = "#222222"
+   text[ACTIVE]      = "#222222"
+   text[SELECTED]    = "#222222"
+   text[INSENSITIVE] = "#666666"
+   engine "equinox" {
+      textstyle = 3
+      textshade = 1.125
+   }
 }
 
 style "theme-calendar" = "theme-default" {
-  xthickness     = 0
-  ythickness     = 0
+   xthickness = 0
+   ythickness = 0
 }
 
 style "theme-tooltips" = "theme-widest" {
-  bg[NORMAL]   = @tooltip_bg_color
-  bg[SELECTED] = @tooltip_bg_color
-  fg[NORMAL]   = @tooltip_fg_color
-  text[NORMAL] = shade (0.92, @tooltip_bg_color) # border color
+   bg[NORMAL]   = @tooltip_bg_color
+   bg[SELECTED] = @tooltip_bg_color
+   fg[NORMAL]   = @tooltip_fg_color
+   text[NORMAL] = shade (0.92, @tooltip_bg_color) # border color
 }
 
 style "theme-progressbar" = "theme-default" {
-  xthickness   = 2
-  ythickness   = 2
-  font_name    = "Bold"
-  bg[NORMAL]   = shade (1.20, @bg_color)
-  bg[SELECTED] = mix(0.2, @bg_color, shade (1.35, @selected_bg_color))
-  fg[PRELIGHT] = shade(1.30, @selected_fg_color)
+   xthickness   = 2
+   ythickness   = 2
+   font_name    = "Bold"
+   bg[NORMAL]   = shade (1.20, @bg_color)
+   bg[SELECTED] = mix(0.2, @bg_color, shade (1.35, @selected_bg_color))
+   fg[PRELIGHT] = shade(1.30, @selected_fg_color)
 }
 
 style "theme-combo" = "theme-button" {
-  GtkButton::inner-border = { 0, 1, 0, 0 }
-  base[ACTIVE] = @base_color
-  text[ACTIVE] = @fg_color
+   GtkButton::inner-border = { 0, 1, 0, 0 }
+   base[ACTIVE] = @base_color
+   text[ACTIVE] = @fg_color
 }
 
 style "theme-combo-box" = "theme-button" {
-  text[NORMAL] = @fg_color
-  text[PRELIGHT] = @fg_color
-  fg[NORMAL] = @fg_color
+   text[NORMAL]    = @fg_color
+   text[PRELIGHT]  = @fg_color
+   fg[NORMAL]      = @fg_color
 }
 
 style "theme-combo-arrow" = "theme-button" {
-  xthickness = 1
-  ythickness = 1
-  text[NORMAL] = @fg_color
+   xthickness   = 1
+   ythickness   = 1
+   text[NORMAL] = @fg_color
 }
 
 style "theme-viewport" = "theme-default" {
-	engine "pixmap" {
-		image {
-			function	= SHADOW
-		}
-	}
+   engine "pixmap" {
+      image {
+         function = SHADOW
+      }
+   }
 }
 
 style "theme-statusbar" = "theme-default" {
 }
 
 style "theme-check-radio-buttons" = "theme-button" {
-  GtkWidget::focus-padding = 1
-  text[SELECTED]    = @base_color #mix(0.95, @bg_color, @fg_color)
-  text[INSENSITIVE] = shade (0.625, @bg_color)
-  base[PRELIGHT]    = shade(1.1, @base_color) #mix (0.75, @base_color, @selected_bg_color)
-  base[SELECTED]    = @widget_bg_color
-  #base[NORMAL]      = shade(0.6, @base_color)
+   GtkWidget::focus-padding = 1
+   text[SELECTED]    = @base_color #mix(0.95, @bg_color, @fg_color)
+   text[INSENSITIVE] = shade (0.625, @bg_color)
+   base[PRELIGHT]    = shade(1.1, @base_color) #mix (0.75, @base_color, @selected_bg_color)
+   base[SELECTED]    = @widget_bg_color
+   # base[NORMAL]     = shade(0.6, @base_color)
 }
 
 # widget styles
@@ -416,23 +416,23 @@ class "GtkFrame"        style "theme-frame"
 class "GtkEntry"        style "theme-entry"
 class "GtkProgressBar"  style "theme-progressbar"
 class "GtkSeparator"    style "theme-wide"
-class "GtkScrollbar"	  style "theme-scrollbar"
+class "GtkScrollbar"	style "theme-scrollbar"
 class "GtkCalendar"     style "theme-calendar"
 class "GtkViewport"     style "theme-viewport"
 class "GtkStatusbar"    style "theme-statusbar"
 
-widget_class "*<GtkStatusbar>" 		style "theme-statusbar"
-widget_class "*<GtkButton>"       style "theme-button"
-widget_class "*<GtkCheckButton>"  style "theme-check-radio-buttons"
-widget_class "*<GtkHandleBox>"    style "theme-handlebox"
+widget_class "*<GtkStatusbar>" 	 style "theme-statusbar"
+widget_class "*<GtkButton>"      style "theme-button"
+widget_class "*<GtkCheckButton>" style "theme-check-radio-buttons"
+widget_class "*<GtkHandleBox>"   style "theme-handlebox"
 
 # Toolbar
-class "*HandleBox"          style "theme-toolbar"
-class "GtkToolbar"          style "theme-toolbar"
-widget_class "*HandleBox"   style "theme-toolbar"
+class "*HandleBox"         style "theme-toolbar"
+class "GtkToolbar"         style "theme-toolbar"
+widget_class "*HandleBox"  style "theme-toolbar"
 
 # tooltips stuff
-widget "gtk-tooltip*"  			style "theme-tooltips"
+widget "gtk-tooltip*"   style "theme-tooltips"
 
 # Notebook
 widget_class "*<GtkNotebook>*<GtkEventBox>"     style "theme-notebook-bg"
@@ -442,45 +442,45 @@ widget_class "*<GtkNotebook>"                   style "theme-notebook"
 widget_class "*<GtkNotebook>.<GtkLabel>"        style "theme-notebook-label"
 
 # combobox stuff
-widget_class "*<GtkCombo>*"                 style "theme-combo"
-widget_class "*<GtkComboBox>*"              style "theme-combo"
-widget_class "*<GtkComboBox>*<GtkButton>*"  style "theme-combo-box"
-widget_class "*<GtkComboBoxEntry>*"         style "theme-entry"
-widget_class "*<GtkSpinButton>*"            style "theme-entry"
+widget_class "*<GtkCombo>*"                  style "theme-combo"
+widget_class "*<GtkComboBox>*"               style "theme-combo"
+widget_class "*<GtkComboBox>*<GtkButton>*"   style "theme-combo-box"
+widget_class "*<GtkComboBoxEntry>*"          style "theme-entry"
+widget_class "*<GtkSpinButton>*"             style "theme-entry"
 
 # Menus
-class "GtkMenu"                             style "theme-menu"
-class "GtkMenuBar"                          style "theme-menubar"
-widget_class "*<GtkMenuItem>*"              style "theme-menuitem"
-widget_class "*<GtkMenuBar>.<GtkMenuItem>*" style "theme-menubar-item"
+class "GtkMenu"                              style "theme-menu"
+class "GtkMenuBar"                           style "theme-menubar"
+widget_class "*<GtkMenuItem>*"               style "theme-menuitem"
+widget_class "*<GtkMenuBar>.<GtkMenuItem>*"  style "theme-menubar-item"
 
 # treeview stuff
-widget_class "*<GtkTreeView>.<GtkButton>"   style "theme-treeview-header"
-widget_class "*<GtkCTree>.<GtkButton>" 	    style "theme-treeview-header"
-widget_class "*<GtkList>.<GtkButton>" 	    style "theme-treeview-header"
-widget_class "*<GtkCList>.<GtkButton>" 	    style "theme-treeview-header"
-widget_class "*<GtkTreeView>.<GtkButton>.*"   style "theme-treeview-header"
-widget_class "*<GtkCTree>.<GtkButton>.*" 	    style "theme-treeview-header"
-widget_class "*<GtkList>.<GtkButton>.*" 	    style "theme-treeview-header"
-widget_class "*<GtkCList>.<GtkButton>.*" 	    style "theme-treeview-header"
+widget_class "*<GtkTreeView>.<GtkButton>"    style "theme-treeview-header"
+widget_class "*<GtkCTree>.<GtkButton>" 	     style "theme-treeview-header"
+widget_class "*<GtkList>.<GtkButton>" 	     style "theme-treeview-header"
+widget_class "*<GtkCList>.<GtkButton>" 	     style "theme-treeview-header"
+widget_class "*<GtkTreeView>.<GtkButton>.*"  style "theme-treeview-header"
+widget_class "*<GtkCTree>.<GtkButton>.*"     style "theme-treeview-header"
+widget_class "*<GtkList>.<GtkButton>.*"      style "theme-treeview-header"
+widget_class "*<GtkCList>.<GtkButton>.*"     style "theme-treeview-header"
 style "treeview-header-fix" {
-  fg[NORMAL]        = "#222222"
-  fg[PRELIGHT]      = "#222222"
-  fg[ACTIVE]        = "#222222"
-  fg[SELECTED]      = "#222222"
-  fg[INSENSITIVE]   = "#666666"
-  text[NORMAL]      = "#222222"
-  text[PRELIGHT]    = "#222222"
-  text[ACTIVE]      = "#222222"
-  text[SELECTED]    = "#222222"
-  text[INSENSITIVE] = "#666666"
+   fg[NORMAL]        = "#222222"
+   fg[PRELIGHT]      = "#222222"
+   fg[ACTIVE]        = "#222222"
+   fg[SELECTED]      = "#222222"
+   fg[INSENSITIVE]   = "#666666"
+   text[NORMAL]      = "#222222"
+   text[PRELIGHT]    = "#222222"
+   text[ACTIVE]      = "#222222"
+   text[SELECTED]    = "#222222"
+   text[INSENSITIVE] = "#666666"
 }
-widget_class "*<GtkFixed>.<GtkButton>"        style "treeview-header-fix"
+widget_class "*<GtkFixed>.<GtkButton>" style "treeview-header-fix"
 
 #For arrow bg
-#widget_class "*<GtkTreeView>.<GtkButton>*<GtkArrow>"    style "theme-tree-arrow"
-#widget_class "*<GtkCTree>.<GtkButton>*<GtkArrow>" 	    style "theme-tree-arrow"
-#widget_class "*<GtkList>.<GtkButton>*<GtkArrow>" 	      style "theme-tree-arrow"
+#widget_class "*<GtkTreeView>.<GtkButton>*<GtkArrow>" style "theme-tree-arrow"
+#widget_class "*<GtkCTree>.<GtkButton>*<GtkArrow>"    style "theme-tree-arrow"
+#widget_class "*<GtkList>.<GtkButton>*<GtkArrow>"     style "theme-tree-arrow"
 
 include "apps/gnome-panel.rc"
 include "apps/nautilus.rc"
