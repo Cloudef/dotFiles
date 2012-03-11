@@ -7,6 +7,7 @@ vo=xv
 
 # Audio output
 ao=alsa
+channels=6
 
 # Software scaling
 # zoom=yes
@@ -18,10 +19,6 @@ slang=English,eng,en
 # Ajust volume differences.
 a52drc=1
 af=volnorm
-
-# Software volume
-softvol=1
-softvol-max=1000
 
 # Fix A/V sync problems.
 mc=0.2
