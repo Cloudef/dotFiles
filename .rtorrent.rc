@@ -18,7 +18,7 @@ download_rate = 0
 upload_rate   = 50
 
 # Default directory to save the downloaded torrents.
-directory = /media/Storage/Torrent/
+directory = /media/Storage
 
 # Default session directory. Make sure you don't run multiple instance
 # of rtorrent using the same session directory. Perhaps using a
