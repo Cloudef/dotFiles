@@ -1,9 +1,5 @@
 # zathurarc
 
-# Autostart
-set adjust_open width
-recolor 1
-
 # Key bindings
 map <PageUp>   navigate previous
 map <PageDown> navigate next

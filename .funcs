@@ -407,7 +407,6 @@ elfcompress() {
 ## Screen capture to file ##
 ############################
 function screencap() {
-   local fd="${1-capture.mkv}"
    local WININFO="$(xwininfo)"
    local INRESW="$(echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}')"
    local INRESH="$(echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}')"
@@ -426,7 +425,7 @@ function screencap() {
    ffmpeg -f x11grab -s "$INRES" -vf scale=${INRESW}:-1 -r "$FPS" -i :0.0+$INPOS \
           -f alsa -i hw:0,0 -acodec pcm_s16le -async 1 -ar 44100 -ab 96k \
           -vcodec libx264 -vpre "$PRESET" -crf 25 \
-          -threads 4 "$fd"
+          -threads 4 $@
 }
 
 #########################################
@@ -435,7 +434,6 @@ function screencap() {
 ## However watch out for disk space!   ##
 #########################################
 function screencaplow() {
-   local fd="${1-capture.avi}"
    local WININFO="$(xwininfo)"
    local INRESW="$(echo "$WININFO" | grep 'Width:'                  | awk '{print $2;}')"
    local INRESH="$(echo "$WININFO" | grep 'Height:'                 | awk '{print $2;}')"
@@ -454,7 +452,7 @@ function screencaplow() {
    ffmpeg -f x11grab -s "$INRES" -vf scale=${INRESW}:-1 -r "$FPS" -i :0.0+$INPOS \
           -f alsa -i hw:0,0 -acodec pcm_s16le -async 1 -ar 44100 -ab 128k \
           -vcodec huffyuv \
-          -threads 4 "$fd"
+          -threads 4 $@
 }
 
 

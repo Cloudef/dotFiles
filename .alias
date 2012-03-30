@@ -9,11 +9,11 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias du='du -sh'
+alias df='df -h'
 alias :w='echo sorry, but this isnt vim'
 alias :wq=:w
 alias :q="exit"
 alias dm="man dwb"
-alias vo="cat $HOME/.opera/keyboard/vimperopera.ini | grep $@"
 alias ctest='(x=`tput op` y=`printf %81s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
 alias open='xdg-open'
 

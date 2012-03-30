@@ -63,7 +63,7 @@ VLESS="$(find /usr/share/vim -name 'less.sh')"
 ######################################
 ## Keep a desktop system responsive ##
 ######################################
-schedtool -D $$
+# schedtool -D $$
 ionice -c 3 -p $$
 
 #################
@@ -149,8 +149,7 @@ welcome
 #############
 ## ARM Dev ##
 #############
-export PROJECTS_BASEDIR="/media/Storage/Dev/Pandora"
-
+export PNDSDK="/media/Storage/Dev/Pandora/pandora-dev/arm-2011.09"
 bitbake() {
    local nopop=0
    unset LDFLAGS
@@ -163,21 +162,35 @@ bitbake() {
    [[ $nopop -eq 0 ]] && popd &> /dev/null
    source "$HOME/.oe/environment-openpandora-clean"
 }
+pandora() {
+   export PND_BASEDIR="/media/Storage/Dev/Pandora/pandora-dev/utmp"
+   export TARGET_SYS="arm-none-linux-gnueabi"
+   export CONFIG_SITE="$PNDSDK/site-config"
+   export OLD_PATH="$PATH"
+   export PATH="$PNDSDK/bin:$PATH:$PNDSDK/usr/bin"
+   export LIBTOOL_SYSROOT_PATH="$PNDSDK"
+   export PKG_CONFIG_PATH="$PNDSDK/usr/lib/pkgconfig"
+   export CPATH="$PNDSDK/usr/include:$CPATH"
+   export CFLAGS="-DPANDORA -O2 -pipe -march=armv7-a -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp -ftree-vectorize -ffast-math -fsingle-precision-constant -I$PNDSDK/usr/include"
+   export CXXFLAGS="-I$PNDSDK/usr/include"
+   export LDFLAGS="-L$PNDSDK/usr/lib -Wl,-rpath,$PNDSDK/usr/lib"
+   export LIBRARY_PATH="$PNDSDK/usr/lib"
+   export CPPFLAGS="$CFLAGS"
+   export CROSSTOOL="$PNDSDK/bin/$TARGET_SYS"
+   export CXX="$CROSSTOOL-g++" CC="$CROSSTOOL-gcc" AR="$CROSSTOOL-ar" AS="$CROSSTOOL-as" RANLIB="$CROSSTOOL-ranlib" STRIP="$CROSSTOOL-strip"
+   export HOST_CC=gcc HOST_CXX=g++
 
-setprj() {
-   . /usr/local/angstrom/arm/environment-setup;
-   setprj $@
-}
+   alias opkg="$PNDSDK/../sdk_utils/opkg-pandora.sh"
+   alias genpxml="$PNDSDK/../sdk_utils/genpxml.sh"
+   alias pndmake="$PNDSDK/../sdk_utils/pnd_make.sh"
+   alias pndconfigure="$PNDSDK/../sdk_utils/pandora_configure.sh"
 
-# Bash only completition
-_setprj ()
-{
-   local cur
-   _get_comp_words_by_ref cur
-   COMPREPLY=()
-   if ls $PROJECTS_BASEDIR/${cur}* >/dev/null 2>&1;then
-         COMPREPLY=( $(ls -1d $PROJECTS_BASEDIR/${cur}*|sed "s#$PROJECTS_BASEDIR/##") )
-   fi
-   return 0
 }
-[[ "$0" == "bash" ]] && complete -F _setprj setprj
+unpandora() {
+   export PATH="$OLD_PATH"
+   unset LIBRARY_PATH CONFIG_SITE LIBTOOL_SYSROOT_PATH PKG_CONFIG_PATH CPATH CFLAGS CXXFLAGS CPPFLAGS LDFLAGS CROSSTOOL CXX CC AR AS RANLIB HOST_CC HOST_CXX
+   unalias pndconfigure
+   unalias pndmake
+   unalias genpxml
+   unalias opkg
+}

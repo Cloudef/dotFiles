@@ -48,8 +48,8 @@ sleep 5
 # Set wallpapers
 (nitrogen --restore &> /dev/null) &
 
-# Networkmanager applet
-(nm-applet &> /dev/null) &
+# Wicd-gtk in tray
+(wicd-gtk -t &> /dev/null) &
 
 # Clipit
 (parcellite &> /dev/null) &
