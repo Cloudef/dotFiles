@@ -4,6 +4,14 @@
 # Useful shell functions
 # Most of these aren't done by me, but collected from different places.
 
+##############################################
+## Colored Find                             ##
+## NOTE: Searches current tree recrusively. ##
+##############################################
+f() {
+    find . -iregex ".*$@.*" -printf '%P\0' | xargs -r0 ls --color=auto -1d
+}
+
 ################
 ## Smarter CD ##
 ################

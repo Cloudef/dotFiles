@@ -27,7 +27,7 @@ NVIDIA_SETTINGS_FILE="$HOME/.nvidia-settings-rc"
 # Nvidia-settings utility
 NVIDIA_SETTINGS_BINARY="nvidia-settings"
 
-for value in $(egrep -v '^(#|$)' "$NVIDIA_SETTINGS_FILE" | grep '[0-9]/.*=');
+for value in $(grep -Ev '^(#|$)' "$NVIDIA_SETTINGS_FILE" | grep '[0-9]/.*=');
 do
    value="$(echo "$value" | sed "s/$HOSTNAME//")"
    "$NVIDIA_SETTINGS_BINARY" -a "$value"

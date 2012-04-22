@@ -19,6 +19,9 @@ DISABLE_LS_COLORS="true"
 # Disable auto titling
 DISABLE_AUTO_TITLE="true"
 
+# Disable auto update
+DISABLE_AUTO_UPDATE="true"
+
 # Something to look for when waiting for auto-completition
 COMPLETION_WAITING_DOTS="true"
 

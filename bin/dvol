@@ -112,10 +112,10 @@ alsavolume()
    if [[ "$VOL" == "0" ]]
    then
       # Volume == 0, mute the mute channel
-      amixer set "$MF" "mute" | tail -n 1 &> /dev/null
+      amixer set "$MF" "mute" &> /dev/null
    else
       # If we did not press mute button, unmute
-      [[ "$MIXARG" == "toggle" ]] || amixer set "$MF" "unmute" | tail -n 1 &> /dev/null
+      [[ "$MIXARG" == "toggle" ]] || amixer set "$MF" "unmute" &> /dev/null
    fi
 }
 

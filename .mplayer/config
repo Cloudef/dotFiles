@@ -28,8 +28,8 @@ autosync=30
 # really-quiet=1
 
 # Buffer cache
-cache=8192
-cache-min=4
+cache=2048
+cache-min=80
 
 # Double buffering [ TribleBuffering enabled on driver ]
 # double=yes

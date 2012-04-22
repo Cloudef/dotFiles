@@ -27,7 +27,7 @@ function ts() {
 alias dev="cd /media/Storage/Dev/"
 alias cdw="cd /media/Storage/Dev/VCS/dwm"
 alias projekti="cd /media/Storage/Dev/projektit/Projekti/"
-alias ogl="cd /media/Storage/Dev/projektit/CFrameWork"
+alias ogl="cd /media/Storage/Dev/projektit/glhck"
 alias projektit="cd /media/Storage/Dev/projektit"
 
 # Power outages (-_-;)うっ・・・

@@ -76,7 +76,6 @@ printBar()
       [ $SLEEP_TIMEOUT -gt 0 ] && ((SLEEP_TIMEOUT--)) && sleep 0.01 || sleep $INTERVAL
       OLDVOL=$NEWVOL
    done
-   return
 }
 
 printBar | dzen2 -x $DZEN_X -y $DZEN_Y -w $DZEN_W -h $DZEN_H -fn $FONT \

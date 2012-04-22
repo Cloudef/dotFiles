@@ -6,7 +6,11 @@
 ###########################
 # DEFAULT PROGRAMS
 export EDITOR="vim"
-export BROWSER="firefox"
+export BROWSER="dwb"
+
+# Fix sorting
+export LC_ALL=
+export LC_COLLATE="C"
 
 # GLIB
 export G_BROKEN_FILENAMES=1
@@ -36,6 +40,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Old GTK Applications
 export GDK_USE_XFT=1
 
+# Make GEGL use OpenCL
+export GEGL_USE_OPENCL=yes
+
 ################################
 ## Test for interactive shell ##
 ################################
@@ -63,7 +70,7 @@ VLESS="$(find /usr/share/vim -name 'less.sh')"
 ######################################
 ## Keep a desktop system responsive ##
 ######################################
-# schedtool -D $$
+schedtool -D $$
 ionice -c 3 -p $$
 
 #################
