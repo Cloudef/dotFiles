@@ -128,28 +128,55 @@ system.method.insert = pyro.extended, value|const, 1
 # Make sure you end it with a "/"; if this is left empty, then the shell's path is searched.
 system.method.insert = pyro.bin_dir, string|const,
 
+# Track time
+system.method.set_key = event.download.finished,time_stamp,"d.set_custom=tm_completed,$cat=$system.time= ;d.save_session="
+
 # Collapse view
 schedule = bind_collapse,0,0,"ui.bind_key=download_list,c,view.collapsed.toggle="
+view.collapsed.toggle=main
+view.collapsed.toggle=name
+view.collapsed.toggle=active
+view.collapsed.toggle=started
+view.collapsed.toggle=stopped
+view.collapsed.toggle=complete
+view.collapsed.toggle=incomplete
+view.collapsed.toggle=hashing
+view.collapsed.toggle=seeding
+view.collapsed.toggle=leeching
+view.collapsed.toggle=rtcontrol
+
+# Show traffic of the last hour
+network.history.depth.set = 112
+schedule = network_history_sampling,1,32, network.history.sample=
+method.insert = network.history.auto_scale.toggle, simple|private, "branch=network.history.auto_scale=,\"network.history.auto_scale.set=0\",\"network.history.auto_scale.set=1\""
+method.insert = network.history.auto_scale.ui_toggle, simple|private, "network.history.auto_scale.toggle= ;network.history.refresh="
+branch=pyro.extended=,"schedule = bind_auto_scale,0,0,\"ui.bind_key=download_list,=,network.history.auto_scale.ui_toggle=\""
 
 # Colors
 ui.color.alarm.set=""
-ui.color.complete.set="green"
-ui.color.even.set=""
 ui.color.focus.set="reverse"
 ui.color.footer.set="white on black"
 ui.color.incomplete.set="yellow"
 ui.color.info.set="white"
 ui.color.label.set="blue"
 ui.color.leeching.set="bold bright yellow"
-ui.color.odd.set=""
-ui.color.progress0.set="red"
-ui.color.progress20.set="bold bright red"
-ui.color.progress40.set="bold bright magenta"
-ui.color.progress60.set="yellow"
-ui.color.progress80.set="bold bright yellow"
-ui.color.progress100.set="green"
-ui.color.progress120.set="green"
 ui.color.queued.set="magenta"
 ui.color.seeding.set="bold bright green"
-ui.color.stopped.set="blue"
 ui.color.title.set="white on black"
+
+# 256 color tweak
+ui.color.complete.set=41
+ui.color.stopped.set=33
+ui.color.even.set="on 234"
+ui.color.odd.set="on 232"
+ui.color.progress0.set=196
+ui.color.progress20.set=202
+ui.color.progress40.set=213
+ui.color.progress60.set=214
+ui.color.progress80.set=226
+ui.color.progress100.set=41
+ui.color.progress120.set="bold bright green"
+
+# ASCII glyphs
+ui.style.ratio.set=0
+
