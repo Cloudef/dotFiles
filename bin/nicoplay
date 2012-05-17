@@ -1,0 +1,8 @@
+#!/bin/sh
+# Streams the nicovideo to mplayer
+[[ -p /tmp/nicovideo.fifo ]] && rm /tmp/nicovideo.fifo
+mkfifo -m 666 /tmp/nicovideo.fifo
+nicovideo-dl -o /tmp/nicovideo.fifo $@ &
+mplayer -cache 300 /tmp/nicovideo.fifo
+test -z "`jobs -p`" || kill -9 `jobs -p` &> /dev/null
+rm /tmp/nicovideo.fifo &> /dev/null
