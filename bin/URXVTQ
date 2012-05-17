@@ -1,22 +1,40 @@
 #!/bin/sh
 # Urxvt quake console
 
+# from top
+animate() {
+   for i in {1..300..5}; do
+      xdotool windowsize $@ $((1440-BORDER)) $i
+   done
+}
+
+# to top
+animate2() {
+   for i in {300..1..5}; do
+       xdotool windowsize $@ $((1440-BORDER)) $i
+   done
+}
+
+# border width * 2
+BORDER=4
 wid="$(xdotool search --classname URxvtq 2>&1 | head -1)"
 if [[ "$wid" == *BadWindow* ]]; then
    exit
 fi
 if [ ! "$wid" ]; then
-  URXVTC -name URxvtq -geometry 240x26+0+137
+  URXVTC -name URxvtq -geometry 1x1+0+124
   wid="$(xdotool search --classname URxvtq | head -1)"
   xdotool windowfocus $wid
-  sleep 1 && transset-df --no-regex -n URxvtq --dec 0.1
+  animate $wid
 else
   visible="$(xdotool search --onlyvisible --classname URxvtq 2>/dev/null)"
   if [ ! "$visible" ]; then
     xdotool windowmap $wid
     xdotool windowfocus $wid
     xdotool windowraise $wid
+    animate $wid
   else
+    animate2 $wid
     xdotool windowunmap $wid
   fi
 fi
