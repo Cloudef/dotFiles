@@ -15,7 +15,7 @@ max_uploads = 8
 
 # Global upload and download rate in KiB. "0" for unlimited.
 download_rate = 0
-upload_rate   = 50
+upload_rate   = 200
 
 # Default directory to save the downloaded torrents.
 directory = /media/Storage
@@ -111,3 +111,45 @@ peer_exchange = yes
 # before forcing. Overworked systems might need lower values to get a
 # decent hash checking rate.
 #hash_max_tries = 10
+
+# sort by creation date
+view_sort_new = main,less=d.get_creation_date=
+view_sort_current = main,less=d.get_creation_date=
+
+#
+# PyroScope SETTINGS
+#
+
+# Set "pyro.extended" to 1 to activate rTorrent-PS features!
+# LEAVE THIS AT 0 IF YOU RUN A VANILLA rTorrent!
+system.method.insert = pyro.extended, value|const, 1
+
+# Set "pyro.bin_dir" to the "bin" directory where you installed the pyrocore tools!
+# Make sure you end it with a "/"; if this is left empty, then the shell's path is searched.
+system.method.insert = pyro.bin_dir, string|const,
+
+# Collapse view
+schedule = bind_collapse,0,0,"ui.bind_key=download_list,c,view.collapsed.toggle="
+
+# Colors
+ui.color.alarm.set=""
+ui.color.complete.set="green"
+ui.color.even.set=""
+ui.color.focus.set="reverse"
+ui.color.footer.set="white on black"
+ui.color.incomplete.set="yellow"
+ui.color.info.set="white"
+ui.color.label.set="blue"
+ui.color.leeching.set="bold bright yellow"
+ui.color.odd.set=""
+ui.color.progress0.set="red"
+ui.color.progress20.set="bold bright red"
+ui.color.progress40.set="bold bright magenta"
+ui.color.progress60.set="yellow"
+ui.color.progress80.set="bold bright yellow"
+ui.color.progress100.set="green"
+ui.color.progress120.set="green"
+ui.color.queued.set="magenta"
+ui.color.seeding.set="bold bright green"
+ui.color.stopped.set="blue"
+ui.color.title.set="white on black"

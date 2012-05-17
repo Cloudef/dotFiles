@@ -1,5 +1,7 @@
 # zathurarc
 
+adjust-open width
+
 # Key bindings
 map <PageUp>   navigate previous
 map <PageDown> navigate next

@@ -141,10 +141,10 @@ printRam()
 printWlan()
 {
    # network interface
-   INTERFACE=wlan0
-   WIRELESS=1
-   # INTERFACE=eth0
-   # WIRELESS=0
+   # INTERFACE=wlan0
+   # WIRELESS=1
+   INTERFACE=eth0
+   WIRELESS=0
 
    # get new rx/tx counts
    RXBN=$(cat /sys/class/net/${INTERFACE}/statistics/rx_bytes)

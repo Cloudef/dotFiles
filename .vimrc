@@ -14,6 +14,8 @@ set cindent
 set expandtab           " spaces not tabs
 set softtabstop=3       " indents
 set shiftwidth=3        " more indents
+"set softtabstop=4
+"set shiftwidth=4
 set pastetoggle=<F12>
 set number
 set mouse=a

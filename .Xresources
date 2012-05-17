@@ -32,11 +32,13 @@ URxvt.urgentOnBell:  true
 ! xterm
 XTerm*bellIsUrgent:  true
 
-URxvt.perl-ext-common:  default,url-select
+URxvt.perl-ext-common:  default,url-select,keyboard-select
 URxvt.keysym.M-u:       perl:url-select:select_next
 URxvt.urlButton:        0
 URxvt.urlLauncher:      dwb
 URxvt.underlineURLs:    true
+URxvt.keysym.M-Down:    perl:keyboard-select:activate
+URxvt.keysym.M-Up:      perl:keyboard-select:search
 
 ! ctrl keys
 URxvt.keysym.Control-Up:    \033[1;5A

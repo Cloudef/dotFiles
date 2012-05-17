@@ -3,6 +3,26 @@
 # Argument is fine
 WM="${1-dwm}"
 
+monster_init() {
+    local ff="/tmp/monsterwm.fifo"
+
+    # autostart
+    bar "$ff" 0 | dzen2 -h 18 -y 124  -w 1440 -ta l -fn erusfont -e -p &
+    bar "$ff" 1 | dzen2 -h 18 -x 1440 -w 1280 -ta l -fn erusfont -e -p &
+
+    # wait for fifo
+    while [[ ! -p "$ff" ]]; do sleep 1; done
+
+    # wait for dzen's
+    sleep 2
+
+    # execute wm
+    monsterwm | tee -a "$ff"
+
+    # cleanup
+    [[ -p "$ff" ]] && rm "$ff"
+}
+
 # Source scripts in /etc/X11/xinit/xinitrc.d/
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
    for f in /etc/X11/xinit/xinitrc.d/*; do
@@ -30,4 +50,7 @@ export QT_IM_MODULE='uim'
 (uim-toolbar-gtk-systray &> /dev/null) &
 (uim-xim &> /dev/null) &
 
-exec "$WM"
+# Set wallpaper
+nitrogen --restore
+
+[[ "$WM" == monsterwm ]] && monster_init || exec "$WM"

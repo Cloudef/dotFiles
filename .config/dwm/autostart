@@ -32,10 +32,6 @@ if which /usr/lib/openbox/xdg-autostart >/dev/null 2>&1; then
   /usr/lib/openbox/xdg-autostart $DESKTOP_ENV
 fi
 
-# Turn off dmps and screen blanking
-xset -dpms
-xset s off
-
 # DWM text
 xsetroot -name "DWM"
 
@@ -44,9 +40,6 @@ ssh_watch &
 
 # Wait for WM a bit
 sleep 5
-
-# Set wallpapers
-(nitrogen --restore &> /dev/null) &
 
 # Wicd-gtk in tray
 (wicd-gtk -t &> /dev/null) &
@@ -84,8 +77,8 @@ IRC &> /dev/null
 # Cow notify
 (sleep 10 && cow-notify &> /dev/null) &
 
-# Hatsune Miku
-(sleep 10 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
+# Hatsune Miku (Replacing macopix with own program)
+# (sleep 10 && macopix --sockmsg ~/.config/macopix/L-Miku.mcpx &> /dev/null) &
 
 # IMPORTANT!
 # Avoids this script from exiting until DWM finishes

@@ -17,6 +17,9 @@ alias dm="man dwb"
 alias ctest='(x=`tput op` y=`printf %81s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
 alias open='xdg-open'
 
+# Compile objc
+alias objc="gcc `gnustep-config --objc-flags` -lobjc -lgnustep-base"
+
 # Transparency
 function ts() {
    [ "$@" ] || transset-df -t -a --dec 0.1
@@ -36,7 +39,7 @@ alias dataloss="grep ^Dirty /proc/meminfo"
 # Packer aliases
 alias ai="packer-color"
 alias as="packer-color -Ss"
-alias au="packer-color -Su --noconfirm"
+alias au="packer-color -Syu --noconfirm"
 alias ar="sudo pacman-color -Rcs" # Note: ar is also a binary, use /usr/bin/ar if needed
 
 # Clean garbage
