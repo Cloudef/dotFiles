@@ -14,7 +14,7 @@ Xft.dpi: 95
 preeditType:OverTheSpot,Root
 
 ! URxvt Settings {{{
-URxvt*termName:rxvt-unicode
+URxvt*termName:rxvt-unicode-256color
 URxvt.letterSpace:0
 URxvt*borderLess:false
 URxvt*perl-ext-common:default,-tabbed,matcher,-selection-popup,-option-popupi

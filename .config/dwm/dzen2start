@@ -1,8 +1,0 @@
-#!/bin/bash
-# dzen2 autostart
-
-# TOP
-"$HOME/.config/dwm/dwmstatus" &
-
-# BOTTOM
-"$HOME/.config/dwm/dwmstatus2" &

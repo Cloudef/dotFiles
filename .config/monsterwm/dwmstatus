@@ -7,9 +7,9 @@ DZEN_BG="#161616"
 DZEN_FG="#9d9d9d"
 DZEN_FG2="#444444"
 DZEN_W="230"
-DZEN_H="13"
+DZEN_H="18"
 DZEN_X="1210"
-DZEN_Y="120"
+DZEN_Y="124"
 GFX_FG="#04c656"
 GFX_BG="#363636"
 CRIT="#FF6600"
@@ -79,4 +79,4 @@ printBar()
 }
 
 printBar | dzen2 -x $DZEN_X -y $DZEN_Y -w $DZEN_W -h $DZEN_H -fn $FONT \
-                 -ta 'r' -bg $DZEN_BG -fg $DZEN_FG -p -e ''
+                 -ta 'r' -bg $DZEN_BG -fg $DZEN_FG -p -e '' -title-name status1

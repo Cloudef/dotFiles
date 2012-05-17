@@ -1,0 +1,14 @@
+#!/bin/bash
+# dzen2 autostart
+
+# TOP
+"$HOME/.config/monsterwm/dwmstatus" &
+
+# BOTTOM
+"$HOME/.config/monsterwm/dwmstatus2" &
+
+# TRAY
+trayer --edge top --align right --SetDockType true \
+       --width 230 --height 18 --widthtype pixel   \
+       --tint 0x161616 --transparent true --alpha 0     \
+       --distancefrom right --distance 230 &

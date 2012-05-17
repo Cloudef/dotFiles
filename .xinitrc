@@ -1,26 +1,14 @@
 #!/bin/sh
 
-# Argument is fine
-WM="${1-dwm}"
+WM="${1-monsterwm}"
 
-monster_init() {
-    local ff="/tmp/monsterwm.fifo"
-
-    # autostart
-    bar "$ff" 0 | dzen2 -h 18 -y 124  -w 1440 -ta l -fn erusfont -e -p &
-    bar "$ff" 1 | dzen2 -h 18 -x 1440 -w 1280 -ta l -fn erusfont -e -p &
-
-    # wait for fifo
-    while [[ ! -p "$ff" ]]; do sleep 1; done
-
-    # wait for dzen's
-    sleep 2
-
-    # execute wm
-    monsterwm | tee -a "$ff"
-
-    # cleanup
-    [[ -p "$ff" ]] && rm "$ff"
+# special route for monsterwm
+monsterwm_init() {
+   local ff="/tmp/monsterwm.fifo"
+   bar "$ff" 0 | dzen2 -h 18 -y 124  -w 980 -ta l -fn erusfont -e -p &
+   while [[ ! -p "$ff" ]]; do sleep 1; done; sleep 1
+   monsterwm | tee -a "$ff"
+   [[ -p "$ff" ]] && rm "$ff"
 }
 
 # Source scripts in /etc/X11/xinit/xinitrc.d/
@@ -30,6 +18,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
    done
    unset f
 fi
+
+# Set cursor
+xsetroot -cursor_name left_ptr &
 
 # Properiaty shit, that does not work
 # nvidia-settings --load-config-only
@@ -53,4 +44,28 @@ export QT_IM_MODULE='uim'
 # Set wallpaper
 nitrogen --restore
 
-[[ "$WM" == monsterwm ]] && monster_init || exec "$WM"
+# Etc...
+$HOME/.config/monsterwm/dzen2start
+(dropboxd &> /dev/null) &
+(parcellite &> /dev/null) &
+(smart-notifier &> /dev/null) &
+(sleep 10 && gtk-redshift -l 62:22 &> /dev/null) &
+(sleep 10 && IRC) &
+(sleep 10 && RSS) &
+(sleep 10 && TORRENT) &
+ssh_watch &
+
+# Wait for dzen2
+while ! killall -0 dzen2; do sleep 1; done; sleep 1
+[[ "$WM" == "monsterwm" ]] && monsterwm_init ||
+exec $WM &> /dev/null
+
+# Kill
+killall redshift  &> /dev/null
+killall ssh_watch &> /dev/null
+
+# Wait for deadbeef
+while killall -0 deadbeef &> /dev/null; do
+   deadbeef --quit
+   sleep 10
+done
