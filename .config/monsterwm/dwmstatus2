@@ -19,7 +19,6 @@ INTERVAL="1"
 
 # Settings that don't need to update every loop
 TIMEOUT_NP=1
-TIMEOUT_LOAD=5
 TIMEOUT_PACMAN=300
 TIMEOUT_TEMP=5
 TIMEOUT_MAIL=10
@@ -27,13 +26,11 @@ TIMEOUT_MAIL=10
 # Counters
 PM_CYCLES=($TIMEOUT_PACMAN-1)
 NP_CYCLES=($TIMEOUT_NP-1)
-LO_CYCLES=($TIMEOUT_LOAD-1)
 TEMP_CYCLES=($TIMEOUT_TEMP-1)
 MAIL_CYCLES=($TIMEOUT_MAIL-1)
 
 # Start values
 UPDATES=
-LOAD=
 NP=
 LINUX="$(uname -rn)"
 CPU_TEMP=(0,0,0,0)
@@ -57,15 +54,6 @@ np_update()
    ALBUMTRACK="$ALBUM - $TRACK"
 
    NP="DeaDBeeF $(printSep) ^fg()$(strtrim "$ALBUMTRACK" 60) ^pa(1070)$(printSep) ^fg()$TIME"
-}
-
-load_update()
-{
-   ((LO_CYCLES++))
-   [[ $LO_CYCLES -eq $TIMEOUT_LOAD ]] || return
-
-   LOAD="$(uptime | cut -d, -f 3 |  awk -F: ' $2>0.1 { a=$2;printf ("%4.2f",a) }')"
-   LO_CYCLES=0
 }
 
 pacman_update()
@@ -93,8 +81,6 @@ temp_update()
 printLinux()
 {
    echo -n " ^fg($DZEN_FG2)^i(${ICON}/arch.xbm) ^fg()${LINUX} "
-   printSep
-   echo -n " ^fg($DZEN_FG2)^i(${ICON}/cpu.xbm) ^fg()${LOAD} "
 }
 
 printPacman()
