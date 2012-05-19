@@ -1,5 +1,7 @@
 #!/bin/sh
 # Watch for ssh connections
+#
+# needs: notify-send
 
 INTERVAL=1
 AUTH_FILE=/var/log/auth.log

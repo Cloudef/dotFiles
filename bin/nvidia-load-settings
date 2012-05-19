@@ -20,15 +20,18 @@
 #
 # If nvidia ever changes their configuration, this script will break obviously :)
 
-# Path to nvidia-settings configuration file
-# or custom configuration
-NVIDIA_SETTINGS_FILE="$HOME/.nvidia-settings-rc"
+main() {
+   # Path to nvidia-settings configuration file
+   # or custom configuration
+   local NVIDIA_SETTINGS_FILE="$HOME/.nvidia-settings-rc"
 
-# Nvidia-settings utility
-NVIDIA_SETTINGS_BINARY="nvidia-settings"
+   # Nvidia-settings utility
+   local NVIDIA_SETTINGS_BINARY="nvidia-settings"
 
-for value in $(grep -Ev '^(#|$)' "$NVIDIA_SETTINGS_FILE" | grep '[0-9]/.*=');
-do
-   value="$(echo "$value" | sed "s/$HOSTNAME//")"
-   "$NVIDIA_SETTINGS_BINARY" -a "$value"
-done
+   for value in $(grep -Ev '^(#|$)' "$NVIDIA_SETTINGS_FILE" | grep '[0-9]/.*=');
+   do
+      value="$(echo "$value" | sed "s/$HOSTNAME//")"
+      "$NVIDIA_SETTINGS_BINARY" -a "$value"
+   done
+}
+main $@

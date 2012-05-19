@@ -1,19 +1,22 @@
 #!/bin/sh
 # Shortcut
+#
+# optional: wine
 
-if [[ ! "$1" ]]; then
-   echo "Usage: pikakuvake <application>"
-   exit
-fi
+error() { echo "$@"; exit 1; }
+main() {
+   [[ ! "$1" ]] && error "usage: $(basename $0) <application>"
 
-DIR="$(dirname  "$1")"
-BIN="$(basename "$1")"
-shift; cd "$DIR"
+   local DIR="$(dirname  "$1")"
+   local BIN="$(basename "$1")"
+   shift; cd "$DIR"
 
-if [[ $(file "$BIN" --mime-type | grep "application/x-dosexec") ]];
-then
-   export WINEDEBUG=-all
-   wine "$BIN" "$@"
-else
-   ./"$BIN" \"$@\"
-fi
+   if [[ $(file "$BIN" --mime-type |\
+         grep "application/x-dosexec") ]]; then
+      export WINEDEBUG=-all
+      wine "$BIN" "$@"
+   else
+      ./"$BIN" \"$@\"
+   fi
+}
+main $@

@@ -1,5 +1,0 @@
-#!/bin/sh
-# Wrapper to compton, starts with my settings
-# Useful when eg. compton needs to be killed (causing problems) and then later want to start it again.
-
-/usr/bin/compton -fF -I-.02 -O-.04 -D0001 &> /dev/null

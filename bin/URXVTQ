@@ -1,40 +1,58 @@
 #!/bin/sh
 # Urxvt quake console
+#
+# needs: urxvt, xdotool
+
+# border width * 2
+BORDER=4
+
+# offset
+X=0
+Y=125
+
+# width
+WIDTH=1440
 
 # from top
 animate() {
    for i in {1..300..5}; do
-      xdotool windowsize $@ $((1440-BORDER)) $i
+      xdotool windowsize $@ $((WIDTH-BORDER)) $i
    done
 }
 
 # to top
 animate2() {
    for i in {300..1..5}; do
-       xdotool windowsize $@ $((1440-BORDER)) $i
+       xdotool windowsize $@ $((WIDTH-BORDER)) $i
    done
 }
 
-# border width * 2
-BORDER=4
-wid="$(xdotool search --classname URxvtq 2>&1 | head -1)"
-if [[ "$wid" == *BadWindow* ]]; then
-   exit
-fi
-if [ ! "$wid" ]; then
-  URXVTC -name URxvtq -geometry 1x1+0+125
-  wid="$(xdotool search --classname URxvtq | head -1)"
-  xdotool windowfocus $wid
-  animate $wid
-else
-  visible="$(xdotool search --onlyvisible --classname URxvtq 2>/dev/null)"
-  if [ ! "$visible" ]; then
-    xdotool windowmap $wid
-    xdotool windowfocus $wid
-    xdotool windowraise $wid
-    animate $wid
-  else
-    animate2 $wid
-    xdotool windowunmap $wid
-  fi
-fi
+# spawn
+spawn() {
+   URXVTC -name URxvtq -geometry 1x1+$X+$Y
+   wid="$(xdotool search --classname URxvtq | head -1)"
+   xdotool windowfocus $wid
+   animate $wid
+}
+
+# toggle
+toggle() {
+   local visible="$(xdotool search --onlyvisible --classname URxvtq 2>/dev/null)"
+   if [ ! "$visible" ]; then
+      xdotool windowmap $wid
+      xdotool windowfocus $wid
+      xdotool windowraise $wid
+      animate $wid
+   else
+      animate2 $wid
+      xdotool windowunmap $wid
+   fi
+}
+
+# main
+main() {
+   local wid="$(xdotool search --classname URxvtq 2>&1 | head -1)"
+   [[ "$wid" == *BadWindow* ]] && exit
+   [ ! "$wid" ] && spawn || toggle
+}
+main $@

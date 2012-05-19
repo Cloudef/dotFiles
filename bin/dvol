@@ -5,6 +5,7 @@
 #
 # Handles some volume quirks, and can be used either with ALSA or OSSv4
 #
+# needs: amixer or ossvol
 
 # Customize this stuff
 IF="Master" # audio channel: Master|PCM

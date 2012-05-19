@@ -1,0 +1,158 @@
+#!/bin/sh
+# EN <-> JA Dict
+#
+# needs: edict, mecab, kakasi, iconv
+
+EDICT="$HOME/bin/edict"
+IGNORE='*「」。、…”！？´ ▽　' # Ignore these
+ESCAPE='*&^#$%~_{}'           # Escape these
+MECABEUCJP=0                  # By default use utf8 mecab, change 1 to eucjp
+
+# escape
+_escape() {
+   while read -r pipe; do
+      echo "$pipe" | sed -e 's/\\/\\\\/g' -e "s/\([$ESCAPE]\)/\\\&/g"
+   done
+}
+
+# mecab wrapper for utf8 and eucjp mecab
+_mecab() {
+   while read pipe; do
+      [[ $MECABEUCJP -eq 1 ]] && echo "$pipe" | iconv -f utf8 -t eucjp | mecab | iconv -f eucjp -t utf8
+      [[ $MECABEUCJP -eq 0 ]] && echo "$pipe" | mecab
+   done
+}
+
+# duplicate _mecab code to save iconv calls on eucjp mode
+_kakasi() {
+   while read pipe; do
+      [[ $MECABEUCJP -eq 1 ]] && echo "$pipe" | iconv -f utf8 -t eucjp | mecab | \
+                                 kakasi -i euc -KH | iconv -f eucjp -t utf8
+      [[ $MECABEUCJP -eq 0 ]] && echo "$pipe" | mecab | awk -F',' '{print $8}' | \
+                                 iconv -f utf8 -t eucjp | kakasi -i euc -KH | iconv -f eucjp -t utf8
+   done
+}
+
+# $1 = type
+# $2 = stem
+# $3 = kana
+parse_edict()
+{
+   local edic=
+   local ekfield=$(grep -E "(^|;)$2[ ;(]" "$EDICT/edict2.utf")
+   local particles=$(echo "$ekfield" | grep -vF '[')
+
+   if [[ -z $particles ]]; then
+      edic=$(echo "$ekfield" | grep "$2.*\[")
+      [[ -z $edic ]] && edic=$(grep "\[$2[](]" "$EDICT/edict2.utf")
+   else
+      edic=$particles
+   fi
+   [[ -z $edic ]] && edic=$(grep "\[$3[](]" "$EDICT/edict2.utf")
+   [[ -z $edic ]] && edic=$(grep -E "(^|;)$2[] (]" "$EDICT/edict2.utf")
+   [[ $1 =~ "動詞" ]] && edic=$(echo "$edic" | grep -F $'(v\n(aux') # filter verbs
+
+   # return
+   echo "$edic"
+}
+
+# $1 = Lookup word [stem]
+# $2 = Type
+# $3 = Kana
+edic_lookup()
+{
+   local OIFS=$IFS
+   local first=0
+   local edic=$(grep "^$1 " "$EDICT/edict2.utf")
+   [[ -z $edic ]] && edic="$(parse_edict "$2" "$1" "$3")"
+   IFS="\n"
+   echo "$edic" | while read -r i; do
+      [ "$i" ] || continue
+      [[ $first -eq 1 ]] && echo
+      echo "$i" | sed 's|.*\[\(.*\)\] \/|\1 |;s|/[^/]*/$||;q' | sed 's/) \([a-z]\)/)\n\1/g'
+      first=1
+   done
+   IFS=$OIFS
+}
+
+# $1 = orig
+# $2 = type
+_filter()
+{
+   [ "$1" ]                   || echo 1 && return
+   [[ "$1" == "\*" ]]         && echo 1 && return
+   [[ "$2" == "助詞" ]]       && echo 1 && return
+   [[ "$2" == "助動詞" ]]     && echo 1 && return
+   [[ "$2" == "接続助詞" ]]   && echo 1 && return
+   [[ "$1" == "て" ]]         && echo 1 && return
+   echo 0
+}
+
+main()
+{
+   [[ "$@" ]] || return
+   local kana=
+   local mecab="$(echo "$@" | _mecab | _escape | sed 's/EOS//g')"
+   local origs=($(echo "$mecab" | awk -F' ' '{print $1}'))
+   local types=($(echo "$mecab" | awk -F' ' '{print $2}' | sed 's/,.*//g'))
+   local relations=($(echo "$mecab" | awk -F',' '{print $3}'))
+   local stems=$(echo "$mecab" | awk -F',' '{print $7}')
+   local orig=
+   local stem=
+   local type=
+   local relation=
+   local edic=
+   local x=0
+
+   # try whole word first
+   # NOTE: we won't filter particles and such here,
+   # because user might want to know it
+   if [ "$(grep "$@" "$EDICT/edict2.utf")" ]; then
+      # get type
+      kana=$(echo "$@" | _kakasi | _escape)
+      edic="$(edic_lookup "$@" "" "$kana")"
+
+      # print
+      if [ "$edic" ]; then
+         echo read: $kana
+         echo stem: $@
+         echo "------------------------"
+         echo "$edic"
+         echo "------------------------"
+         return # We don't want more :)
+      fi
+   fi
+
+   # then stems
+   for i in $stems; do
+      orig=${origs[$x]}
+      stem=$i
+      type=${types[$x]}
+      relation=${relations[$x]}
+
+      # this is not actual word.. ignore
+      if [[ $(_filter "$stem" "$type") -eq 1 ]]; then
+         ((x++))
+         continue
+      fi
+
+      # get type
+      local kana=$(echo "$stem" | _kakasi | _escape)
+      if [ ! "$kana" ]; then
+         ((x++))
+         continue
+      fi
+      [[ $stem == '*' || -z $stem ]] && stem=$orig
+      edic=$(edic_lookup "$stem" "$type" "$kana")
+
+      # print
+      echo read: $kana
+      echo stem: $i orig: $orig
+      echo "-----------------------"
+      echo "$edic"
+      echo "-----------------------"
+      echo
+      ((x++))
+   done
+}
+main "$@"
