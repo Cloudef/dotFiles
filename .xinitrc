@@ -51,9 +51,9 @@ $HOME/.config/monsterwm/dzen2start
 (parcellite &> /dev/null) &
 (smart-notifier &> /dev/null) &
 (sleep 10 && gtk-redshift -l 62:22 &> /dev/null) &
-(sleep 10 && IRC) &
-(sleep 15 && RSS) &
-(sleep 10 && TORRENT) &
+(sleep 10 && URXVTD IRC irssi) &
+(sleep 15 && URXVTD RSS snownews) &
+(sleep 10 && URXVTD TORRENT rtorrent) &
 ssh_watch &
 
 # Wait for dzen2
