@@ -13,7 +13,7 @@ error() { echo "$@"; exit 1; }
 # check pid
 check_pid() {
    local PID="$(cat "$@")"
-   kill -0 $PID && error "already running" || rm "$@"
+   kill -0 $PID &> /dev/null && error "already running" || rm "$@"
 }
 
 # attach
