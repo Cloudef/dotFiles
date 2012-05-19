@@ -30,6 +30,9 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git lol archlinux autojump nyan vi-mode zsh-syntax-highlighting)
 
+# zmv
+autoload -U zmv
+
 # Source files
 source "$ZSH/oh-my-zsh.sh"
 source "$HOME/.shellrc"
