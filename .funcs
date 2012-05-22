@@ -678,3 +678,11 @@ reading() {
    # Additional echo to "trim" newlines without tr
    echo $(echo "$@" | mecab | awk -F',' '{print $8}' | iconv -f utf8 -t eucjp | kakasi -i euc -KH | iconv -f eucjp -t utf8)
 }
+
+################
+## Calculator ##
+################
+calc() {
+   local result="$(xsel -o | dmenu -p Calculate: | xargs echo | bc 2>&1)"
+   echo "$result" | xsel -i; echo "$result"
+}
