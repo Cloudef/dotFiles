@@ -139,6 +139,24 @@ autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
+" Dmenu integration
+function! Chomp(str)
+  return substitute(a:str, '\n$', '', '')
+endfunction
+
+function! DmenuOpen(cmd)
+  let fname = Chomp(system("git ls-files | dmenu -i -l 20 -p " . a:cmd))
+  if empty(fname)
+    return
+  endif
+  execute a:cmd . " " . fname
+endfunction
+
+" use ctrl-t to open file in a new tab
+" use ctrl-f to open file in current buffer
+map <c-t> :call DmenuOpen("tab")<cr>
+map <c-f> :call DmenuOpen("open")<cr>
+
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
