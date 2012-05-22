@@ -36,6 +36,11 @@ alias projektit="cd /media/Storage/Dev/projektit"
 # Power outages (-_-;)うっ・・・
 alias dataloss="grep ^Dirty /proc/meminfo"
 
+# IRC
+alias irc="URXVTD IRC irssi"
+alias rss="URXVTD RSS snownews"
+alias torrent="URXVTD TORRENT rtorrent"
+
 # Packer aliases
 alias ai="packer-color"
 alias as="packer-color -Ss"
