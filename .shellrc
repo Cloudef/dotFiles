@@ -30,7 +30,7 @@ export PATH="$HOME/bin:$PATH"
 
 # Compile options
 # [ ARM enviroiment will override ]
-export CFLAGS="-march=native -mtune=native -O2 -pipe"
+export CFLAGS="-march=native -mtune=native -O2 -fPIC -pipe"
 export CXXFLAGS="${CFLAGS}"
 export LDFLAGS="-Wl,--hash-style=gnu -Wl,--as-needed"
 
@@ -73,6 +73,9 @@ VLESS="$(find /usr/share/vim -name 'less.sh')"
 schedtool -D $$
 ionice -c 3 -p $$
 
+# Store current shell
+export CURRENT_SHELL="$(basename $SHELL)"
+
 #################
 ## ZSH Options ##
 #################
@@ -102,6 +105,8 @@ if [[ "$0" == "zsh" ]];then
    bindkey "^I"      menu-complete        # Why press tab twice?
    bindkey "^Z"      undo                 # Undo
    bindkey '^R' history-incremental-search-backward
+
+   export CURRENT_SHELL="zsh"
 fi
 
 ##################
@@ -116,6 +121,8 @@ if [[ "$0" == "bash" ]];then
    shopt -s hostcomplete
    shopt -s no_empty_cmd_completion
    shopt -s nocaseglob
+
+   export CURRENT_SHELL="bash"
 fi
 
 ################
