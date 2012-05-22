@@ -550,53 +550,40 @@ wiisplit()
    wbfs_file "$1"
 }
 
-ANIME_WATCHED="/media/Anime/Katsotut"
-ANIME_WATCHING="/media/Anime/Watching"
-ANIME_SEED="/media/Anime/Seed"
+ANIME_BASE="/media/Anime"
+ANIME_WATCHED="$ANIME_BASE/Katsotut"
+ANIME_WATCHING="$ANIME_BASE/Watching"
+ANIME_SEED="$ANIME_BASE/Seed"
 ################
 ## Play Anime ##
 ################
 anime()
 {
-   if [ ! "$1" ] || [ ! "$2" ]; then
+   if [[ "$@" == "--help" ]] || [[ "$@" == "-h" ]]; then
       echo "Usage:"
-      echo "anime   [title] [episode] - Watch"
-      echo "animec  [title]           - Check"
-      echo "mvanime [title] [title]   - Move"
+      echo "anime   [title]           - Watch"
+      echo "mvanime                   - Move"
+      echo "rsanime                   - Store"
       echo "mkanime [title]           - New"
-      echo "rsanime [title]           - Store"
       return
    fi
 
-   local MATCH="$(find "$ANIME_WATCHING" -type f -iname "*$1*$2*\[*\].*$3" -print -quit)"
-   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHING" -type f -iname "*$1*$2*.*$3" -print -quit)"
-   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHED"  -type f -iname "*$1*$2*\[*\].*$3" -print -quit)"
-   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHED"  -type f -iname "*$1*$2*.*$3" -print -quit)"
-   if [ ! "$MATCH" ]; then
-      echo "No match.."
-      return
+   local to_history=1
+   local name="$(echo "$@" | sed 's/ /*/g')"
+   local match="$(find $ANIME_WATCHING $ANIME_WATCHED -type f -iname "*$name*" | grep -v ".ass" | grep -v ".srt")"
+   [[ $(echo "$match" | wc -l) -gt 1 ]] && match="$(echo "$match" | dmenu -i -l 20 -p "anime")" || to_history=0
+   [[ -f "$match" ]] || return
+
+   # add the animu to history, so you can ctrl+r later and
+   # track which episode you are going in.
+   #
+   # NOTE: $CURRENT_SHELL is my own variable
+   if [[ $to_history -eq 1 ]]; then
+      [[ $CURRENT_SHELL == "zsh"  ]] && print   -s "anime \'$(basename $match)\'"
+      [[ $CURRENT_SHELL == "bash" ]] && history -s "anime \'$(basename $match)\'"
    fi
-
-   echo "playing: $MATCH"
-   mplayer "$MATCH" &> /dev/null
-}
-
-################
-## List Anime ##
-################
-animec()
-{
-   if [ ! "$1" ]; then
-      echo "Usage: animec [title]"
-      return
-   fi
-
-   echo "Watching:"
-   find "$ANIME_WATCHING" -iname "*$1*.*" -exec basename {} \;
-   echo ""
-
-   echo "Watched:"
-   find "$ANIME_WATCHED" -iname "*$1*.*"  -exec basename {} \;
+   echo "playing: $(basename "$match")"
+   mplayer -really-quiet "$match" &> /dev/null
 }
 
 #############################
@@ -604,29 +591,26 @@ animec()
 #############################
 mvanime()
 {
-   if [ ! "$1" ] || [ ! "$2" ]; then
-      echo "Usage: mvanime [title] [title]"
-      return
-   fi
+   local from="$(find $ANIME_SEED -maxdepth 1 -mindepth 1 -type f | grep -v ".ass" | grep -v ".srt" | dmenu -i -l 20 -p "mvanime")"
+   [[ -f "$from" ]] || return
 
-   # prefer files first
-   local MATCH="$(find "$ANIME_WATCHING" -iname "*$2*.*" -print -quit)"
+   local to="$(find $ANIME_WATCHING $ANIME_WATCHED -maxdepth 1 -mindepth 1 -type d | dmenu -i -l 20 -p "to")"
+   [[ -d "$to" ]] || return
 
-   # try without ext
-   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHING" -iname "*$2*" -print -quit)"
+   # move
+   mv -v "$from" "$to"
+}
 
-   # same for WATCHED
-   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHED"  -iname "*$2*.*" -print -quit)"
+############################
+## Store anime in watched ##
+############################
+rsanime()
+{
+   local match="$(find $ANIME_WATCHING -maxdepth 1 -mindepth 1 -type d | dmenu -i -l 20 -p "rsanime")"
+   [[ -d "$match" ]] || return
 
-   [ "$MATCH" ] || MATCH="$(find "$ANIME_WATCHED"  -iname "*$2*" -print -quit)"
-
-   if [ ! "$MATCH" ]; then
-      echo "destination not found, check with animec"
-      return
-   fi
-
-   [ -f "$MATCH" ] && MATCH="$(dirname "$MATCH")"
-   find "$ANIME_SEED" -maxdepth 1 -type f -iname "*$1*.*" -print0 | xargs -0 -r mv -v --target-directory="$MATCH"
+   # store
+   mv -v "$match" "$ANIME_WATCHED/$(basename "$match")"
 }
 
 ################################
@@ -641,19 +625,6 @@ mkanime()
 
    mkdir "$ANIME_WATCHING/$1"
    echo "mk : $ANIME_WATCHING/$1"
-}
-
-############################
-## Store anime in watched ##
-############################
-rsanime()
-{
-   if [ ! "$1" ]; then
-      echo "Usage: rsanime [title]"
-      return
-   fi
-
-   find "$ANIME_WATCHING" -maxdepth 1 -type d -iname "*$1*" -print0 | xargs -0 -r mv -v --target-directory="$ANIME_WATCHED"
 }
 
 ###############################################
