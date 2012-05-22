@@ -154,7 +154,7 @@ endfunction
 
 " use ctrl-t to open file in a new tab
 " use ctrl-f to open file in current buffer
-map <c-t> :call DmenuOpen("tab")<cr>
+map <c-t> :call DmenuOpen("tabe")<cr>
 map <c-f> :call DmenuOpen("open")<cr>
 
 " Append modeline after last line in buffer.
