@@ -29,6 +29,7 @@ function ts() {
 # Directory aliases
 alias dev="cd /media/Storage/Dev/"
 alias cdw="cd /media/Storage/Dev/VCS/dwm"
+alias cdm="cd /media/Storage/Dev/VCS/monsterwm"
 alias projekti="cd /media/Storage/Dev/projektit/Projekti/"
 alias ogl="cd /media/Storage/Dev/projektit/glhck"
 alias projektit="cd /media/Storage/Dev/projektit"
