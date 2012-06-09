@@ -686,3 +686,15 @@ calc() {
    local result="$(xsel -o | dmenu -p Calculate: | xargs echo | bc 2>&1)"
    echo "$result" | xsel -i; echo "$result"
 }
+
+######################################
+## Open file inside git tree on vim ##
+######################################
+vimo() {
+   local match=
+   [ "$@" ] && match="$(git ls-files | grep "$@")" ||
+               match="$(git ls-files)"
+   [[ $(echo "$match" | wc -l) -gt 1 ]] && match="$(echo $match | dmenu -i -l 20 -p "vim")"
+   [[ -f "$match" ]] || return
+   vim "$match"
+}
