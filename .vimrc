@@ -84,6 +84,9 @@ au FileType mail silent normal /--\s*$^MO^[gg/^$^Mj
 " }}}
 " {{{ Plugins and their settings
 
+" {{{ CSyntaxPlus plugin
+au BufNewFile,BufRead *.{c,h} call CSyntaxPlus()
+" }}}
 " {{{ Powerline plugin
 let g:Powerline_symbols='unicode'
 " }}}
@@ -94,7 +97,7 @@ let g:LargeFile = 10             " 10 mb file is large
 let g:user_zen_leader_key = '<c-h>'
 " }}}
 " {{{ GLSL plugin
-au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.shd set syntax=glsl
+au BufNewFile,BufRead *.{frag,vert,fp,vp,glsl,shd} set syntax=glsl
 " }}}
 " {{{ Indent guides plugin
 let g:indent_guides_auto_colors=0 " no auto colors
