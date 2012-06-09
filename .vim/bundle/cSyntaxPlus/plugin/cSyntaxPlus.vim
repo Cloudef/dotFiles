@@ -21,5 +21,5 @@ function! CSyntaxPlus()
    hi link _Pointer  Type
    hi link _Struct   _Pointer
 
-   hi _Block guifg=yellow1 guibg=NONE gui=none
+   hi _Block ctermfg=red ctermbg=NONE cterm=none guifg=red1 guibg=NONE gui=none
 endfunction
