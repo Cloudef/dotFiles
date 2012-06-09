@@ -70,8 +70,8 @@ VLESS="$(find /usr/share/vim -name 'less.sh')"
 ######################################
 ## Keep a desktop system responsive ##
 ######################################
-schedtool -D $$
-ionice -c 3 -p $$
+# schedtool -D $$
+# ionice -c 3 -p $$
 
 # Store current shell
 export CURRENT_SHELL="$(basename $SHELL)"
