@@ -181,6 +181,9 @@ imap <C-e> <Esc><C-e>a
 " toggle folds with space
 nnoremap <space> za
 
+" strip non ascii characters from file
+nnoremap <silent> :strip :%s/[<C-V>128-<C-V>255<C-V>01-<C-V>31]//gi
+
 " {{{ Dmenu functions
 function! Chomp(str)
   return substitute(a:str, '\n$', '', '')
