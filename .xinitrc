@@ -3,11 +3,30 @@
 WM="${1-monsterwm}"
 export PATH="$HOME/bin:$PATH"
 
+# autostart
+autostart() {
+   (dropboxd &> /dev/null) &
+   (parcellite &> /dev/null) &
+   (smart-notifier &> /dev/null) &
+   (sleep 10 && gtk-redshift -l 62:22 &> /dev/null) &
+   (sleep 10 && URXVTD IRC irssi) &
+   (sleep 10 && URXVTD TORRENT rtorrent) &
+   (np-loop &> /dev/null) &
+   ssh_watch &
+}
+
+# status bar init
+status_init() {
+   $HOME/.config/monsterwm/dzen2start
+}
+
 # special route for monsterwm
 monsterwm_init() {
    local ff="/tmp/monsterwm.fifo"
+   status_init
    bar "$ff" 0 | dzen2 -h 18 -y 124  -w 980 -ta l -fn erusfont -e -p &
-   while [[ ! -p "$ff" ]]; do sleep 1; done; sleep 1
+   while [[ ! -p "$ff" ]]; do sleep 1; done; sleep 5
+   autostart
    exec monsterwm | tee -a "$ff"
    [[ -p "$ff" ]] && rm "$ff"
 }
@@ -45,21 +64,9 @@ export QT_IM_MODULE='uim'
 # Set wallpaper
 nitrogen --restore
 
-# Etc...
-$HOME/.config/monsterwm/dzen2start
-(dropboxd &> /dev/null) &
-(parcellite &> /dev/null) &
-(smart-notifier &> /dev/null) &
-(sleep 10 && gtk-redshift -l 62:22 &> /dev/null) &
-(sleep 10 && URXVTD IRC irssi) &
-(sleep 15 && URXVTD RSS snownews) &
-(sleep 10 && URXVTD TORRENT rtorrent) &
-ssh_watch &
-
 # Wait for dzen2
-while ! killall -0 dzen2; do sleep 1; done; sleep 1
 [[ "$WM" == "monsterwm" ]] && monsterwm_init
-[[ "$WM" != "monsterwm" ]] && exec $WM &> /dev/null
+[[ "$WM" != "monsterwm" ]] && status_init && autostart && exec $WM &> /dev/null
 
 # Kill
 killall dwb        &> /dev/null
@@ -67,6 +74,7 @@ killall redshift   &> /dev/null
 killall ssh_watch  &> /dev/null
 killall dwmstatus  &> /dev/null
 killall dwmstatus2 &> /dev/null
+killall np-loop    &> /dev/null
 
 # Wait for deadbeef
 while killall -0 deadbeef &> /dev/null; do
