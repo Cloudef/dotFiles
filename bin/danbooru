@@ -241,6 +241,7 @@ check_ignore()
 # $1 = URL
 # $2 = Rating
 # $3 = Artist
+# $4 = Tags
 # Download picture
 store_picture()
 {
@@ -266,7 +267,8 @@ store_picture()
    mkdir -p "$LOCAL_STORE/$2/$ARTIST"
 
    # move to destination
-   mv "$TEMP" "$TARGET"
+   mv "$TEMP"  "$TARGET"
+   echo "$4" > "$TARGET.tags"
 }
 
 # $1 = URL
@@ -346,7 +348,7 @@ check_picture()
       ARTIST="unknown"
    fi
 
-   store_picture "$1" "$2" "$ARTIST" &
+   store_picture "$1" "$2" "$ARTIST" "$3" &
 }
 
 # Main
